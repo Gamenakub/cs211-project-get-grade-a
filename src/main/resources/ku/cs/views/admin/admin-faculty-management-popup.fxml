@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminFacultyManagementPopupController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0">
+         <children>
+            <Label styleClass="PopUpHeadLabel" stylesheets="@../styles/main-style.css" text="แก้ไขข้อมูลคณะ">
+               <font>
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="280.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="38.0" prefWidth="280.0">
+                     <children>
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ชื่อผู้ใช้งาน">
+                           <font>
+                              <Font name="TH SarabunPSK Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="userNameTextField2" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อผู้ใช้งาน" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="38.0" prefWidth="280.0">
+                     <children>
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="รหัสผ่าน">
+                           <font>
+                              <Font name="TH SarabunPSK Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="userNameTextField22" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสผ่าน" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Label prefWidth="63.0" styleClass="ErrorLabel" stylesheets="@../styles/main-style.css" text="errorLabel" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ยืนยัน" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
