@@ -22,4 +22,13 @@ module ku.cs {
 
     exports ku.cs.controllers.requestforms;
     opens ku.cs.controllers.requestforms to javafx.fxml;
+
+    exports ku.cs.controllers.officer.department;
+    opens ku.cs.controllers.officer.department to javafx.fxml;
+
+    exports ku.cs.controllers.officer.faculty;
+    opens ku.cs.controllers.officer.faculty to javafx.fxml;
+
+    exports ku.cs.controllers.officer;
+    opens ku.cs.controllers.officer to javafx.fxml;
 }

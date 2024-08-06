@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this, stage, "CS211 Project", 1080, 720);
         configRoutes();
-        FXRouter.goTo("advisor-student-information");
+        FXRouter.goTo("department-officer-request-management");
     }
 
     private void configRoutes() {
@@ -31,6 +31,11 @@ public class MainApplication extends Application {
         FXRouter.when("advisor-request-form", viewPath + "advisor/advisor-request-form-page.fxml");
         FXRouter.when("advisor-student-information", viewPath + "advisor/advisor-student-information-page.fxml");
         FXRouter.when("advisor-student-request-form-history", viewPath + "advisor/advisor-student-request-form-history-page.fxml");
+        FXRouter.when("faculty-officer-request-management", viewPath + "officer/faculty/faculty-officer-request-management-page.fxml");
+        FXRouter.when("faculty-officer-request-approver-management", viewPath + "officer/faculty/faculty-officer-approver-management-page.fxml");
+        FXRouter.when("department-officer-request-approver-management", viewPath + "officer/department/department-officer-approver-management-page.fxml");
+        FXRouter.when("department-officer-request-management", viewPath + "officer/department/department-officer-request-management-page.fxml");
+        FXRouter.when("department-officer-student-management",viewPath+"officer/department/department-officer-student-management-page.fxml");
     }
 
     public static void main(String[] args) {
