@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DeveloperInformationPageController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="151.0" layoutY="7.0" prefHeight="720.0" prefWidth="1080.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="80.0" prefWidth="1080.0">
+               <children>
+                  <Button layoutX="481.0" layoutY="28.0" mnemonicParsing="false" onAction="#onBackToLoginButton" text="กลับไปหน้าลงชื่อเข้าใช้" />
+               </children></Pane>
+            <Label styleClass="HeadLabel" stylesheets="@styles/main-style.css" text="ข้อมูลนิสิตผู้จัดทำโปรแกรม">
+               <font>
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="1080.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+                     <children>
+                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/developer-pictures/thaphon-picture.png" />
+                           </image></ImageView>
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="ฐาพล ชินกรสกุล (ซัน)" />
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="6610401993" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+                     <children>
+                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/developer-pictures/tee-picture.png" />
+                           </image></ImageView>
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="ธีร์ อนุสรณ์ศาสน์ (ตี้)" />
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="661040XXXX" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+                     <children>
+                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/developer-pictures/isarapong-picture.png" />
+                           </image></ImageView>
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="อิสรพงษ์ เถื่อนสกุล (เกม)" />
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="6610402272" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+                     <children>
+                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/developer-pictures/jirat-picture.png" />
+                           </image></ImageView>
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="จิรัฏฐ์ ค่องสกุล (เฟม)" />
+                        <Label styleClass="subHeadLabel" stylesheets="@styles/main-style.css" text="6610405832" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
