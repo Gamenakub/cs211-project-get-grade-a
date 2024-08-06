@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAbsenceRequestFormPopupController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;" stylesheets="@../styles/main-style.css">
+         <children>
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel" stylesheets="@../styles/main-style.css" text="รายวิชาที่ขอหยุดเรียน">
+               <font>
+                  <Font name="TH SarabunPSK" size="48.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="311.0" prefWidth="750.0" stylesheets="@../styles/main-style.css">
+               <content>
+                  <VBox fillWidth="false" prefHeight="210.0" prefWidth="694.0" spacing="8.0" stylesheets="@../styles/main-style.css">
+                     <children>
+                        <VBox prefHeight="262.0" prefWidth="678.0" spacing="8.0" styleClass="SubjectInformationBox" stylesheets="@../styles/main-style.css">
+                           <children>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0" stylesheets="@../styles/main-style.css">
+                                 <children>
+                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="432.0" spacing="4.0" stylesheets="@../styles/main-style.css">
+                                       <children>
+                                          <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ชื่อวิชา">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="TH SarabunPSK" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="39.0" prefWidth="383.0" promptText="Software Construction" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                    <VBox prefHeight="70.0" prefWidth="239.0" spacing="4.0" stylesheets="@../styles/main-style.css">
+                                       <children>
+                                          <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="รหัสวิชา">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="TH SarabunPSK" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefHeight="39.0" prefWidth="145.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0" stylesheets="@../styles/main-style.css">
+                                 <children>
+                                    <VBox prefHeight="70.0" prefWidth="192.0" spacing="4.0" stylesheets="@../styles/main-style.css">
+                                       <children>
+                                          <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="หมู่เรียน">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="TH SarabunPSK" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField prefWidth="133.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="482.0" spacing="4.0" stylesheets="@../styles/main-style.css">
+                                       <children>
+                                          <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="อาจารย์ประจำวิชา">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font name="TH SarabunPSK" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField promptText="1" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="677.0" stylesheets="@../styles/main-style.css">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="49.0" style="-fx-background-color: #da3131;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ลบ" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" right="8.0" top="4.0" />
+                     </padding>
+                  </VBox>
+               </content>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </ScrollPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/main-style.css">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #006b67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="เพิ่ม" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Pane prefHeight="84.0" prefWidth="278.0" stylesheets="@../styles/main-style.css" />
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage1" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #f4f4f4;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ย้อนกลับ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006b67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ถัดไป" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
