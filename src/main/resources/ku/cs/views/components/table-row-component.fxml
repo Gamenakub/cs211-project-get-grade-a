@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ku.cs.controllers.components.TableRowController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <HBox fx:id="tableRowHBox" prefHeight="50.0" prefWidth="0" spacing="0.0" style="-fx-border-style: hidden none solid none;">
+            <children>
+
+            </children>
+            <padding>
+                <Insets top="0.0" />
+            </padding>
+        </HBox>
+    </children>
+
+</AnchorPane>
