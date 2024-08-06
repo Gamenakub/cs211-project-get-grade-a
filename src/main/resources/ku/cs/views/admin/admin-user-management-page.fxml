@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPageController">
+   <children>
+      <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
+      <VBox alignment="CENTER_LEFT" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" stylesheets="@../styles/main-style.css" text="การจัดการข้อมูลผู้ใช้">
+               <font>
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="80.0" top="20.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <TextField prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></TextField>
+            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="MenuButtonFilter" stylesheets="@../styles/main-style.css" text="แยกตามบทบาท" textAlignment="CENTER" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+            </MenuButton>
+         </children>
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+      </HBox>
+      <Pane fx:id="tablePane" layoutX="81.0" layoutY="267.0" prefHeight="404.0" prefWidth="910.0" />
+   </children>
+</AnchorPane>
