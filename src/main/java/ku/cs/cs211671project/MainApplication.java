@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this, stage, "CS211 Project", 1080, 720);
         configRoutes();
-        FXRouter.goTo("user-login");
+        FXRouter.goTo("advisor-student-information");
     }
 
     private void configRoutes() {
@@ -28,6 +28,9 @@ public class MainApplication extends Application {
         FXRouter.when("admin-department-officer-management", viewPath + "admin/admin-department-officer-management-page.fxml");
         FXRouter.when("admin-advisor-management", viewPath + "admin/admin-advisor-management-page.fxml");
         FXRouter.when("student-register", viewPath + "student/student-register-page.fxml");
+        FXRouter.when("advisor-request-form", viewPath + "advisor/advisor-request-form-page.fxml");
+        FXRouter.when("advisor-student-information", viewPath + "advisor/advisor-student-information-page.fxml");
+        FXRouter.when("advisor-student-request-form-history", viewPath + "advisor/advisor-student-request-form-history-page.fxml");
     }
 
     public static void main(String[] args) {

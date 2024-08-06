@@ -16,4 +16,10 @@ module ku.cs {
 
     exports ku.cs.controllers.student;
     opens ku.cs.controllers.student to javafx.fxml;
+
+    exports ku.cs.controllers.advisor;
+    opens ku.cs.controllers.advisor to javafx.fxml;
+
+    exports ku.cs.controllers.requestforms;
+    opens ku.cs.controllers.requestforms to javafx.fxml;
 }
