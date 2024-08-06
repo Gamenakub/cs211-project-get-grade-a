@@ -70,7 +70,11 @@ public class AdminNavigatorBarController {
 
     @FXML
     public void onDashboardButton() {
-
+        try {
+            FXRouter.goTo("admin-dashboard");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
