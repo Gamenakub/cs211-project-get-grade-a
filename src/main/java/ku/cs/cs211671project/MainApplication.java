@@ -11,14 +11,23 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXRouter.bind(this, stage, "CS211 Project", 1024, 768);
+        FXRouter.bind(this, stage, "CS211 Project", 1080, 720);
         configRoutes();
-        FXRouter.goTo("hello");
+        FXRouter.goTo("user-login");
     }
 
     private void configRoutes() {
         String viewPath = "ku/cs/views/";
-        FXRouter.when("hello", viewPath + "hello-view.fxml");
+        FXRouter.when("developer-information", viewPath + "developer-information-page.fxml");
+        FXRouter.when("user-login", viewPath + "user-login-page.fxml");
+        FXRouter.when("user-personal-information-management", viewPath + "user-personal-information-management-page.fxml");
+        FXRouter.when("admin-user-management", viewPath + "admin/admin-user-management-page.fxml");
+        FXRouter.when("admin-faculty-management", viewPath + "admin/admin-faculty-management-page.fxml");
+        FXRouter.when("admin-department-management", viewPath + "admin/admin-department-management-page.fxml");
+        FXRouter.when("admin-faculty-officer-management", viewPath + "admin/admin-faculty-officer-management-page.fxml");
+        FXRouter.when("admin-department-officer-management", viewPath + "admin/admin-department-officer-management-page.fxml");
+        FXRouter.when("admin-advisor-management", viewPath + "admin/admin-advisor-management-page.fxml");
+        FXRouter.when("student-register", viewPath + "student/student-register-page.fxml");
     }
 
     public static void main(String[] args) {
