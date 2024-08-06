@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerStudentModifyPopupController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="7.0" layoutY="7.0" prefHeight="518.0" prefWidth="388.0">
+         <children>
+            <Label text="แก้ไขข้อมูลนิสิต">
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="28.0" top="32.0" />
+               </VBox.margin>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="รหัสนิสิต">
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" text="6610401993" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="4.0" top="4.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <HBox spacing="12.0">
+                     <VBox.margin>
+                        <Insets bottom="32.0" top="32.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="ชื่อ">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="39.0" prefWidth="185.0" styleClass="BigTextField" stylesheets="@../../styles/main-style.css" text="ฐาพล" />
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" />
+                           </padding>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="นามสกุล">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField prefHeight="39.0" prefWidth="198.0" styleClass="BigTextField" stylesheets="@../../styles/main-style.css" text="ชินกรสกุล" />
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox>
+                     <children>
+                        <Label text="อีเมล">
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" text="thaphon.c@ku.th" />
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" />
+                     </padding>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="อาจารย์ที่ปรึกษา">
+                           <VBox.margin>
+                              <Insets bottom="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" text="ชาคริด วัชโรภาส" />
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="4.0" top="4.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onCancel" prefHeight="49.0" prefWidth="152.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirm" prefHeight="49.0" prefWidth="152.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ยืนยัน" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
