@@ -44,13 +44,15 @@ public class PopupComponent<T> {
     public void show(){
         stage.setScene(new Scene(popupAnchorPane));
         stage.setTitle(popupTitle);
-        try {
+
+        if (!stage.getModality().equals(Modality.WINDOW_MODAL)) {
             stage.initModality(Modality.WINDOW_MODAL);
+        }
+
+        if (stage.getOwner() == null) {
             stage.initOwner(popupRoot);
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
         popupController.onPopupOpen();
         popupController.setStage(stage);
