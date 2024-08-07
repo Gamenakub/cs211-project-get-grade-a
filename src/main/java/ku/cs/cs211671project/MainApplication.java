@@ -28,8 +28,8 @@ public class MainApplication extends Application {
         FXRouter.when("admin-department-officer-management", viewPath + "admin/admin-department-officer-management-page.fxml");
         FXRouter.when("admin-advisor-management", viewPath + "admin/admin-advisor-management-page.fxml");
         FXRouter.when("admin-dashboard",viewPath + "admin/admin-dashboard-page.fxml");
-        FXRouter.when("student", viewPath + "student/student-request-form-tracking-page.fxml");
         FXRouter.when("student-register", viewPath + "student/student-register-page.fxml");
+        FXRouter.when("student-request-form-tracking", viewPath + "student/student-request-form-tracking-page.fxml");
         FXRouter.when("advisor-request-form", viewPath + "advisor/advisor-request-form-page.fxml");
         FXRouter.when("advisor-student-information", viewPath + "advisor/advisor-student-information-page.fxml");
         FXRouter.when("advisor-student-request-form-history", viewPath + "advisor/advisor-student-request-form-history-page.fxml");
