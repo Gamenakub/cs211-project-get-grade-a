@@ -31,4 +31,7 @@ module ku.cs {
 
     exports ku.cs.controllers.officer;
     opens ku.cs.controllers.officer to javafx.fxml;
+
+    exports ku.cs.services to javafx.fxml;
+    opens ku.cs.services to javafx.fxml;
 }
