@@ -14,7 +14,7 @@ import ku.cs.services.PopupComponent;
 
 import java.io.IOException;
 
-public class StudentPageController {
+public class StudentRequestFormTrackingPageController {
     @FXML private Pane tablePane;
     @FXML private Pane navBarPane;
 

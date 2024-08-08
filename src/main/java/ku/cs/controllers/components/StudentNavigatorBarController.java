@@ -13,7 +13,7 @@ public class StudentNavigatorBarController {
 
     @FXML public void onRequestFormTrackingButton(){
         try {
-            FXRouter.goTo("student");
+            FXRouter.goTo("student-request-form-tracking");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
