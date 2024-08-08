@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" style="-fx-background-color: white;"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorFormAbsenceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorFormAbsenceController">
    <children>
-      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;" >
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel"  text="รายวิชาที่ขอหยุดเรียน">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel" text="รายวิชาที่ขอหยุดเรียน">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -26,15 +26,15 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="311.0" prefWidth="750.0" >
+            <ScrollPane hbarPolicy="NEVER" prefHeight="311.0" prefWidth="750.0">
                <content>
-                  <VBox fillWidth="false" prefHeight="210.0" prefWidth="694.0" spacing="8.0" >
+                  <VBox fillWidth="false" prefHeight="210.0" prefWidth="694.0" spacing="8.0">
                      <children>
-                        <VBox prefHeight="262.0" prefWidth="678.0" spacing="8.0" styleClass="SubjectInformationBox" >
+                        <VBox prefHeight="262.0" prefWidth="678.0" spacing="8.0" styleClass="SubjectInformationBox">
                            <children>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0" >
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0">
                                  <children>
-                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="432.0" spacing="4.0" >
+                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="432.0" spacing="4.0">
                                        <children>
                                           <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ชื่อวิชา">
                                              <VBox.margin>
@@ -44,7 +44,7 @@
                                                 <Font name="TH SarabunPSK" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="39.0" prefWidth="383.0" promptText="Software Construction" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" >
+                                          <TextField prefHeight="39.0" prefWidth="383.0" promptText="Software Construction" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -54,7 +54,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </VBox>
-                                    <VBox prefHeight="70.0" prefWidth="239.0" spacing="4.0" >
+                                    <VBox prefHeight="70.0" prefWidth="239.0" spacing="4.0">
                                        <children>
                                           <Label prefWidth="273.0" styleClass="TextFieldLabel" text="รหัสวิชา">
                                              <VBox.margin>
@@ -64,7 +64,7 @@
                                                 <Font name="TH SarabunPSK" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefHeight="39.0" prefWidth="145.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" >
+                                          <TextField prefHeight="39.0" prefWidth="145.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -76,9 +76,9 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0" >
+                              <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="678.0" spacing="8.0">
                                  <children>
-                                    <VBox prefHeight="70.0" prefWidth="192.0" spacing="4.0" >
+                                    <VBox prefHeight="70.0" prefWidth="192.0" spacing="4.0">
                                        <children>
                                           <Label prefWidth="273.0" styleClass="TextFieldLabel" text="หมู่เรียน">
                                              <VBox.margin>
@@ -88,7 +88,7 @@
                                                 <Font name="TH SarabunPSK" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField prefWidth="133.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" >
+                                          <TextField prefWidth="133.0" promptText="2" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -98,9 +98,9 @@
                                           <Insets />
                                        </opaqueInsets>
                                     </VBox>
-                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="482.0" spacing="4.0" >
+                                    <VBox maxWidth="-Infinity" prefHeight="70.0" prefWidth="482.0" spacing="4.0">
                                        <children>
-                                          <Label prefWidth="273.0" styleClass="TextFieldLabel"  text="อาจารย์ประจำวิชา">
+                                          <Label prefWidth="273.0" styleClass="TextFieldLabel" text="อาจารย์ประจำวิชา">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
@@ -108,7 +108,7 @@
                                                 <Font name="TH SarabunPSK" size="18.0" />
                                              </font>
                                           </Label>
-                                          <TextField promptText="1" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" >
+                                          <TextField promptText="1" style="-fx-background-color: #d7d7d7;" styleClass="BigTextField">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -141,23 +141,15 @@
                   <Insets left="4.0" right="4.0" top="4.0" />
                </padding>
             </ScrollPane>
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0" >
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #006b67;" styleClass="Button"  text="เพิ่ม" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-                  <Pane prefHeight="84.0" prefWidth="278.0"  />
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage1" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #f4f4f4;" styleClass="Button"  text="ย้อนกลับ">
+                  <Pane prefHeight="84.0" prefWidth="278.0" />
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage1" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #f4f4f4;" styleClass="Button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006b67;" styleClass="Button"  text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006b67;" styleClass="Button" text="ถัดไป" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

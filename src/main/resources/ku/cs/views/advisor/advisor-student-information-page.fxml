@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +21,7 @@
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox prefHeight="49.0" prefWidth="169.0" />
+                  <Button mnemonicParsing="false" prefHeight="44.0" prefWidth="108.0" text="search" />
                </children>
             </HBox>
             <Pane prefHeight="325.0" prefWidth="1026.0">
@@ -33,7 +33,7 @@
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1078.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" stylesheets="@../../../../../../../../../Downloads/main-style.css" text="รายชื่อนิสิตในที่ปรึกษา">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" text="รายชื่อนิสิตในที่ปรึกษา">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
