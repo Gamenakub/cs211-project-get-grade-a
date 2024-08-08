@@ -22,22 +22,22 @@
                <children>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ชื่อผู้ใช้งาน">
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ชื่อคณะ">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userNameTextField2" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อผู้ใช้งาน" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
+                        <TextField fx:id="userNameTextField2" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อคณะ" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="รหัสผ่าน">
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="รหัสคณะ">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userNameTextField22" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสผ่าน" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
+                        <TextField fx:id="userNameTextField22" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสคณะ" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
                      </children>
                   </VBox>
                </children>
