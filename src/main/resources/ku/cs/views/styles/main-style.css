@@ -1,0 +1,103 @@
+
+.HeadLabel
+{
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 58;
+    -fx-font-weight: bold;
+}
+
+.PopUpHeadLabel
+{
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 48;
+    -fx-font-weight: bold;
+}
+
+.subHeadLabel
+{
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+}
+
+.SubjectInformationBox
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
+}
+
+.NormalTextLabel
+{
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+}
+
+
+.TextFieldLabel
+{
+    -fx-text-fill: black;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: normal;
+}
+
+.MenuButtonFilter
+{
+    -fx-background-color: #006B67;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.Button
+{
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.UploadBotton
+{
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-border-style: dashed;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+
+AnchorPane{
+    -fx-background-color: #4F4F4F;
+}
+
+.BigTextField
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+}
+
+.ErrorLabel{
+    -fx-text-fill: red;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: normal;
+    -fx-text-alignment: center;
+}

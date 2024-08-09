@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="333.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentCreateRequestFormPopupController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="340.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="1059.0" styleClass="PopUpHeadLabel" stylesheets="@../styles/main-style.css" text="การสร้างคำร้อง">
+               <font>
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="147.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="309.0" styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ประเภทคำร้อง" />
+                  <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="308.0" styleClass="MenuButtonFilter" stylesheets="@../styles/main-style.css" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" textAlignment="CENTER" textFill="WHITE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectLateEnrollRequestFormMenuItem" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectLateDropRequestFormMenuItem" text="ใบคำร้องลงถอนล่าช้า" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectCoEnrollRequestFormMenuItem" text="ใบคำร้องลงทะเบียนเรียนร่วม" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectAbsenceRequestFormMenuItem" text="ใบคำร้องลาป่วยลากิจ" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#onCreateRequestFormButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="สร้างคำร้อง" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
