@@ -125,12 +125,6 @@ public class DataProvider {
         departmentOfficer.setStudentList(studentInDepartment);
         departmentOfficer.setRequestFormList(targetRequestForms);
 
-        for (DepartmentApprover departmentApprover : getDepartmentApproverList().getApprovers() ){
-            if (departmentApprover.getDepartment().equals(departmentOfficer.getDepartment())){
-                departmentOfficer.getDepartmentApproverList().addApprover(departmentApprover);
-            }
-        }
-
         AdvisorList newAdvisorList = new AdvisorList();
         for (Advisor advisor : advisorList.getAdvisors()) {
             if (advisor.getDepartment().isId(departmentOfficer.getDepartment().getId())) {
@@ -143,11 +137,6 @@ public class DataProvider {
     }
 
     private FacultyOfficer setFacultyOfficerData(FacultyOfficer facultyOfficer) {
-        for (FacultyApprover facultyApprover : getFacultyApproverList().getApprovers() ){
-            if (facultyApprover.getFaculty().equals(facultyOfficer.getFaculty())){
-                facultyOfficer.getFacultyApproverList().addApprover(facultyApprover);
-            }
-        }
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByFaculty(facultyOfficer.getFaculty()).findRequestFormsByStatus(RequestForm.Status.PENDING_TO_FACULTY);
         facultyOfficer.setRequestFormList(requestFormList);
         return facultyOfficer;
@@ -308,12 +297,28 @@ public class DataProvider {
         FacultyOfficerDataSource facultyOfficerDataSource = new FacultyOfficerDataSource(getFacultyList());
         DataSourceReader<FacultyOfficerList, FacultyOfficer> facultyOfficerDataSourceReader = new DataSourceReader<>(facultyOfficerDataSource);
         facultyOfficerList = facultyOfficerDataSourceReader.readData();
+        getFacultyApproverList();
+        for(FacultyOfficer facultyOfficer : facultyOfficerList.getFacultyOfficers()){
+            for(FacultyApprover facultyApprover : facultyApproverList.getApprovers()) {
+                if(facultyApprover.getFaculty().equals(facultyOfficer.getFaculty()) && !facultyOfficer.getFacultyApproverList().getApprovers().contains(facultyApprover)) {
+                    facultyOfficer.getFacultyApproverList().addApprover(facultyApprover);
+                }
+            }
+        }
     }
 
     private void loadDepartmentOfficerList() {
         DepartmentOfficerDataSource departmentOfficerDataSource = new DepartmentOfficerDataSource(getDepartmentList(), getStudentList());
         DataSourceReader<DepartmentOfficerList, DepartmentOfficer> departmentOfficerDataSourceReader = new DataSourceReader<>(departmentOfficerDataSource);
         departmentOfficerList = departmentOfficerDataSourceReader.readData();
+        getDepartmentApproverList();
+        for(DepartmentOfficer departmentOfficer : departmentOfficerList.getDepartmentOfficers()){
+            for(DepartmentApprover departmentApprover : departmentApproverList.getApprovers()){
+                if(departmentOfficer.getDepartment().equals(departmentApprover.getDepartment()) && !departmentOfficer.getDepartmentApproverList().getApprovers().contains(departmentApprover)){
+                    departmentOfficer.getDepartmentApproverList().addApprover(departmentApprover);
+                }
+            }
+        }
     }
 
     private void loadFacultyList() {
