@@ -10,12 +10,12 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.UserPersonalInformationManagementPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.UserPersonalInformationManagementPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
       <VBox alignment="CENTER_LEFT" layoutX="96.0" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="888.0" styleClass="HeadLabel" stylesheets="@styles/main-style.css" text="การจัดการข้อมูลส่วนตัว">
+            <Label prefHeight="80.0" prefWidth="888.0" styleClass="Header" text="การจัดการข้อมูลส่วนตัว">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -25,7 +25,7 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <HBox layoutX="80.0" layoutY="188.0" prefHeight="482.0" prefWidth="920.0" style="-fx-background-color: #E8E8E8;">
+      <HBox layoutX="85.0" layoutY="194.0" prefHeight="482.0" prefWidth="920.0">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="460.0" spacing="40.0">
                <HBox.margin>
@@ -35,8 +35,8 @@
                   <Circle fill="#c9c9c9" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onChangeProfilePictureButton" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #00524F;" styleClass="Button" stylesheets="@styles/main-style.css" text="แก้ไขรูปภาพ" textFill="WHITE" />
-                        <Button mnemonicParsing="false" onAction="#onChangePasswordButton" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #00524F;" styleClass="Button" stylesheets="@styles/main-style.css" text="เปลี่ยนรหัสผ่าน" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#onChangeProfilePictureButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="แก้ไขรูปภาพ" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#onChangePasswordButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="เปลี่ยนรหัสผ่าน" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
@@ -49,37 +49,42 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
                <children>
-                  <Label styleClass="HeadLabel" stylesheets="@styles/main-style.css" text="นาย เกษตรศาสตร์">
+                  <Label styleClass="Header" text="นาย เกษตรศาสตร์">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="64.0" />
                      </font>
                   </Label>
-                  <Label styleClass="HeadLabel" stylesheets="@styles/main-style.css" text="ยูนิเวอร์ซิตี้">
+                  <Label styleClass="Header" text="ยูนิเวอร์ซิตี้">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="64.0" />
                      </font>
                   </Label>
-                  <Label styleClass="NormalTextLabel" stylesheets="@styles/main-style.css" text="  ">
+                  <Label styleClass="NormalTextLabel" text="  ">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label styleClass="NormalTextLabel" stylesheets="@styles/main-style.css" text="นิสิต">
+                  <Label fx:id="usernameLabel" styleClass="SubHeader" text="usernameLabel">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label styleClass="NormalTextLabel" stylesheets="@styles/main-style.css" text="คณะ">
+                  <Label fx:id="roleLabel" styleClass="SubHeader" text="roleLabel">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label styleClass="NormalTextLabel" stylesheets="@styles/main-style.css" text="ภาควิชา">
+                  <Label fx:id="facultyLabel" styleClass="SubHeader" text="facultyLabel">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label styleClass="NormalTextLabel" stylesheets="@styles/main-style.css" text="รหัสนิสิต">
+                  <Label fx:id="departmentLabel" styleClass="SubHeader" text="departmentLabel">
+                     <font>
+                        <Font name="TH SarabunPSK Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="IdLabel" styleClass="SubHeader" text="IdLabel">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="36.0" />
                      </font>
