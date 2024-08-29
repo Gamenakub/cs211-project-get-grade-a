@@ -9,31 +9,25 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPopupController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPopupController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0">
          <children>
             <Circle fill="#c9c9c9" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="46.0" prefWidth="476.0" styleClass="SubHeader" text="usernameLabel">
+            <Label styleClass="PopUpHeadLabel" stylesheets="@../styles/main-style.css" text="b6610402272">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
             </Label>
-            <Label fx:id="nameSurnameLabel" alignment="CENTER" prefHeight="46.0" prefWidth="456.0" styleClass="SubHeader" text="Name SURNAME">
+            <Label styleClass="PopUpHeadLabel" stylesheets="@../styles/main-style.css" text="Jirat KONGSAKUL">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
             </Label>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onBanButton" prefHeight="50.0" prefWidth="160.0" styleClass="DenyButton" text="ระงับสิทธิ์" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onUnbanButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="คืนสิทธิ์" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onBanButton" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ระงับสิทธิ์" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onUnbanButton" prefHeight="50.0" prefWidth="160.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="คืนสิทธิ์" textFill="WHITE" />
                </children>
             </HBox>
          </children>

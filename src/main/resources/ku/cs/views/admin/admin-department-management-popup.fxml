@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="480.0" prefWidth="400.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDepartmentManagementPopupController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDepartmentManagementPopupController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="400.0" spacing="20.0">
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Label fx:id="titleLabel" styleClass="PopupHeader" text="แก้ไขข้อมูลภาควิชา">
+            <Label styleClass="PopUpHeadLabel" stylesheets="@../styles/main-style.css" text="แก้ไขข้อมูลภาควิชา">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -24,22 +24,22 @@
                <children>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="ชื่อภาควิชา">
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="ชื่อภาควิชา">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="TextFieldBox" />
+                        <TextField fx:id="userNameTextField2" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="คณะที่สังกัด">
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="คณะที่สังกัด">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="facultyNameMenuButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="359.0" styleClass="MenuButton" text="วิทยาศาสตร์">
+                        <MenuButton mnemonicParsing="false" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #FFFFFF;" styleClass="BigTextField" stylesheets="@../styles/main-style.css" text="วิทยาศาสตร์">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
                             <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -49,12 +49,12 @@
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="รหัสภาควิชา">
+                        <Label styleClass="TextFieldLabel" stylesheets="@../styles/main-style.css" text="รหัสภาควิชา">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="TextFieldBox" />
+                        <TextField fx:id="userNameTextField221" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" />
@@ -62,10 +62,10 @@
                   </VBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="420.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" styleClass="DenyButton" text="ยกเลิก" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="ยืนยัน" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="ยืนยัน" textFill="WHITE" />
                </children>
             </HBox>
          </children>
