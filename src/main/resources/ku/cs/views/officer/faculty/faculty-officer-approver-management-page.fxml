@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,12 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.faculty.FacultyOfficerApproverManagementPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.faculty.FacultyOfficerApproverManagementPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" stylesheets="@../../styles/main-style.css" text="การจัดการข้อมูลผู้อนุมัติคำร้อง">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="การจัดการข้อมูลผู้อนุมัติคำร้อง">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -32,43 +31,35 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="421.0" prefWidth="1080.0">
                <content>
-                  <VBox prefHeight="420.0" prefWidth="1080.0" spacing="20.0" stylesheets="@../../styles/main-style.css">
+                  <VBox prefHeight="420.0" prefWidth="1080.0" spacing="20.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="SubjectInformationBox" stylesheets="@../../styles/main-style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="TextFieldBox">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกบุคคล" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="อาจารย์">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกบุคคล" />
+                                    <MenuButton fx:id="selectFirstApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="อาจารย์">
                                       <items>
                                         <MenuItem mnemonicParsing="false" text="Action 1" />
                                         <MenuItem mnemonicParsing="false" text="Action 2" />
                                       </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกตำแหน่ง" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="คณะบดีคณะวิทยาศาสตร์์">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกตำแหน่ง" />
+                                    <MenuButton fx:id="selectFirstApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="คณะบดีคณะวิทยาศาสตร์์">
                                        <items>
                                           <MenuItem mnemonicParsing="false" text="Action 1" />
                                           <MenuItem mnemonicParsing="false" text="Action 2" />
                                        </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #da3131; -fx-font-size: 24;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ลบ" textFill="WHITE" />
+                                    <Button fx:id="deleteFirstApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="DenyButton" text="ลบ" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>
@@ -76,86 +67,70 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="SubjectInformationBox" stylesheets="@../../styles/main-style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="TextFieldBox">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                            <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกบุคคล" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="อาจารย์">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกบุคคล" />
+                                    <MenuButton fx:id="selectSecondApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="อาจารย์">
                                        <items>
                                           <MenuItem mnemonicParsing="false" text="Action 1" />
                                           <MenuItem mnemonicParsing="false" text="Action 2" />
                                        </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกตำแหน่ง" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="รองคณะบดีฝ่ายพัฒนานิสิต">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกตำแหน่ง" />
+                                    <MenuButton fx:id="selectSecondApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="รองคณะบดีฝ่ายพัฒนานิสิต">
                                        <items>
                                           <MenuItem mnemonicParsing="false" text="Action 1" />
                                           <MenuItem mnemonicParsing="false" text="Action 2" />
                                        </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #da3131; -fx-font-size: 24;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ลบ" textFill="WHITE" />
+                                    <Button fx:id="deleteSecondApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="DenyButton" text="ลบ" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="SubjectInformationBox" stylesheets="@../../styles/main-style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="TextFieldBox">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                            <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกบุคคล" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="อาจารย์">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกบุคคล" />
+                                    <MenuButton fx:id="selectThirdApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="อาจารย์">
                                        <items>
                                           <MenuItem mnemonicParsing="false" text="Action 1" />
                                           <MenuItem mnemonicParsing="false" text="Action 2" />
                                        </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
                                  <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" stylesheets="@../../styles/main-style.css" text="เลือกตำแหน่ง" />
-                                    <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" stylesheets="@../../styles/main-style.css" text="รองคณะบดีฝ่ายสารสนเทศ">
+                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="TextFieldLabel" text="เลือกตำแหน่ง" />
+                                    <MenuButton fx:id="selectThirdApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="MenuButton" text="รองคณะบดีฝ่ายสารสนเทศ">
                                        <items>
                                           <MenuItem mnemonicParsing="false" text="Action 1" />
                                           <MenuItem mnemonicParsing="false" text="Action 2" />
                                        </items>
-                                       <styleClass>
-                                          <String fx:value="SubjectInformationBox" />
-                                          <String fx:value="TextFieldLabel" />
-                                       </styleClass>
                                     </MenuButton>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../../styles/main-style.css">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" style="-fx-background-color: #da3131; -fx-font-size: 24;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ลบ" textFill="WHITE" />
+                                    <Button fx:id="deleteThirdApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="DenyButton" text="ลบ" textFill="WHITE" />
                                  </children>
                               </VBox>
                            </children>
@@ -167,16 +142,10 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" stylesheets="@../../styles/main-style.css">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1080.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../styles/main-style.css" text="เพิ่มข้อมูลผู้อนุมัติคำร้อง" textFill="WHITE">
-                     <styleClass>
-                        <String fx:value="Button" />
-                        <String fx:value="TextFieldLabel" />
-                        <String fx:value="SubjectInformationBox" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="บันทึกข้อมูล" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onAddApproverButtonClick" prefHeight="50.0" prefWidth="240.0" styleClass="BackButton" text="เพิ่มข้อมูลผู้อนุมัติคำร้อง" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onSaveDataButtonClick" prefHeight="50.0" prefWidth="240.0" styleClass="DefaultButton" text="บันทึกข้อมูล" textFill="WHITE" />
                </children>
             </HBox>
          </children>
