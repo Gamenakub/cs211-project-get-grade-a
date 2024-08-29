@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url('THSarabun.ttf');
+}
+
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url('THSarabunBold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Angsana New';
+    src: url('angsana.ttc');
+}
+
+@font-face {
+    font-family: 'TH Mali Grade 6';
+    src: url('THMaliGrade6.ttf');
+}
+
+@font-face {
+    font-family: 'TH Mali Grade 6';
+    src: url('THMaliGrade6Bold.ttf');
+    font-weight: bold;
+}

@@ -12,12 +12,12 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
       <VBox alignment="CENTER_LEFT" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" stylesheets="@../styles/main-style.css" text="การจัดการข้อมูลผู้ใช้">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="การจัดการข้อมูลผู้ใช้">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -29,12 +29,12 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+            <TextField prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="TextFieldBox">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
             <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="MenuButtonFilter" stylesheets="@../styles/main-style.css" text="แยกตามบทบาท" textAlignment="CENTER" textFill="WHITE">
+            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="DefaultButton" text="แยกตามบทบาท" textAlignment="CENTER" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Action 1" />
                   <MenuItem mnemonicParsing="false" text="Action 2" />

@@ -1,103 +1,123 @@
-
-.HeadLabel
-{
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 58;
-    -fx-font-weight: bold;
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url('THSarabun.ttf');
 }
 
-.PopUpHeadLabel
-{
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 48;
-    -fx-font-weight: bold;
+@font-face {
+    font-family: 'TH SarabunPSK';
+    src: url('THSarabunBold.ttf');
+    font-weight: bold;
 }
 
-.subHeadLabel
-{
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 32;
-    -fx-font-weight: bold;
+@font-face {
+    font-family: 'Angsana New';
+    src: url('angsana.ttc');
 }
 
-.SubjectInformationBox
-{
+@font-face {
+    font-family: 'TH Mali Grade 6';
+    src: url('THMaliGrade6.ttf');
+}
+
+@font-face {
+    font-family: 'TH Mali Grade 6';
+    src: url('THMaliGrade6Bold.ttf');
+    font-weight: bold;
+}
+
+.Background {
+    -fx-background-color: #f9f9f9;
+}
+
+.TextFieldBox,.SubjectInfoBox,.MenuButton {
     -fx-background-color: #FFFFFF;
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-border-width: 1;
-    -fx-border-color: #000000;
-}
-
-.NormalTextLabel
-{
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 28;
-    -fx-font-weight: bold;
-}
-
-
-.TextFieldLabel
-{
     -fx-text-fill: black;
     -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 20;
     -fx-font-weight: normal;
 }
 
-.MenuButtonFilter
-{
-    -fx-background-color: #006B67;
-    -fx-background-radius: 16;
-    -fx-border-radius: 16;
+.TextFieldBox {
+    -fx-background-radius: 12;
+    -fx-border-color: black;
+    -fx-border-radius: 12;
     -fx-border-width: 1;
-    -fx-font-family: "TH SarabunPSK";
     -fx-font-size: 20;
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
 }
 
-.Button
-{
-    -fx-background-radius: 16;
-    -fx-border-radius: 16;
-    -fx-border-width: 1;
+.TextFieldLabel {
+    -fx-font-size: 18;
+    -fx-text-fill: black;
     -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 20;
+}
+
+.Header,.PopupHeader,.SubHeader,.NormalText
+{
+    -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: bold;
 }
 
-.UploadBotton
-{
-    -fx-background-radius: 16;
-    -fx-border-radius: 16;
-    -fx-border-width: 1;
-    -fx-border-style: dashed;
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 20;
-    -fx-font-weight: bold;
+.Header {
+    -fx-font-size: 56;
 }
 
-
-AnchorPane{
-    -fx-background-color: #4F4F4F;
+.PopupHeader {
+    -fx-font-size: 48;
 }
 
-.BigTextField
-{
+.SubHeader {
+    -fx-font-size: 32;
+}
+
+.NormalText {
+    -fx-font-size: 24;
+    -fx-font-weight: normal;
+}
+
+.NavBarButton {
+    -fx-border-color: #FFFFFF;
     -fx-background-color: #FFFFFF;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
+}
+
+.PopupDatePicker {
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
     -fx-border-width: 1;
     -fx-border-color: #000000;
+    -fx-font-size: 16;
+}
+
+.DefaultButton,.DenyButton,.BackButton,.BorderButton {
+    -fx-background-radius: 12;
+    -fx-border-width: 1;
     -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+.BorderButton {
+    -fx-border-radius: 12;
+    -fx-border-color: white;
+    -fx-background-color: transparent;
+}
+
+.DefaultButton {
+    -fx-background-color: #006B67;
+}
+
+.MenuButton {
+    -fx-background-radius: 12;
+    -fx-border-color: black;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
     -fx-font-size: 20;
 }
 
-.ErrorLabel{
-    -fx-text-fill: red;
-    -fx-font-family: "TH SarabunPSK";
-    -fx-font-size: 20;
-    -fx-font-weight: normal;
-    -fx-text-alignment: center;
+.BackButton {
+    -fx-background-color: #e3e3e3;
+}
+
+.DenyButton {
+    -fx-background-color: #DA3131;
 }
