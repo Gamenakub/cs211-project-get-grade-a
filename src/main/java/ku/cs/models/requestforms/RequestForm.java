@@ -1,8 +1,7 @@
 package ku.cs.models.requestforms;
 
-import ku.cs.models.Advisor;
-import ku.cs.models.DepartmentApproverList;
-import ku.cs.models.Student;
+
+import ku.cs.models.users.Advisor;
 
 import java.time.LocalDateTime;
 
