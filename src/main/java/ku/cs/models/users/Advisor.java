@@ -1,5 +1,7 @@
 package ku.cs.models.users;
 
+import ku.cs.models.requestforms.RequestForm;
+
 public class Advisor extends User {
     public static final String roleString = "advisor";
     private final String advisorId;
