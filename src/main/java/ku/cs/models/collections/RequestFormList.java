@@ -1,5 +1,7 @@
 package ku.cs.models.collections;
 
+import ku.cs.models.requestforms.RequestForm;
+
 import java.util.ArrayList;
 
 public class RequestFormList {

@@ -1,5 +1,9 @@
 package ku.cs.models.requestforms;
 
+import ku.cs.models.users.Advisor;
+import ku.cs.models.users.Student;
+
+import javax.security.auth.Subject;
 import java.time.LocalDateTime;
 
 public class AbsenceRequestForm extends RequestForm {
