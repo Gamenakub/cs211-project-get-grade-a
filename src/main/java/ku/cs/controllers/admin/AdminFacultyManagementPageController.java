@@ -16,18 +16,16 @@ import ku.cs.services.PopupComponent;
 import java.io.IOException;
 
 public class AdminFacultyManagementPageController {
-    @FXML
-    private Pane navBarPane;
-
-    @FXML
-    private Pane tablePane;
-
-    @FXML
-    private Circle searchButton;
+    @FXML private Pane navBarPane;
+    @FXML private Pane tablePane;
+    @FXML private Circle searchButton;
+    @FXML private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getChildren().clear();
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
@@ -40,6 +38,7 @@ public class AdminFacultyManagementPageController {
         searchButton.setFill(new ImagePattern(searchIcon));
 
         tablePane.getChildren().clear();
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
@@ -48,8 +47,8 @@ public class AdminFacultyManagementPageController {
             tableController.setRowHeight(40);
             tableController.setDisplayRowCount(8);
             // สร้างหัว Table
-            tableController.addTableHead(new Label("ชื่อคณะ"),400);
-            tableController.addTableHead(new Label("รหัสคณะ"),200);
+            tableController.addTableHead(new Label("ชื่อคณะ"),500);
+            tableController.addTableHead(new Label("รหัสคณะ"),300);
             tableController.addTableHead(new Label(""),100);
 
 

@@ -16,18 +16,16 @@ import ku.cs.services.PopupComponent;
 import java.io.IOException;
 
 public class AdminDepartmentOfficerManagementPageController {
-    @FXML
-    private Pane navBarPane;
-
-    @FXML
-    private Pane tablePane;
-
-    @FXML
-    private Circle searchButton;
+    @FXML private Pane navBarPane;
+    @FXML private Pane tablePane;
+    @FXML private Circle searchButton;
+    @FXML private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getChildren().clear();
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
@@ -40,20 +38,21 @@ public class AdminDepartmentOfficerManagementPageController {
         searchButton.setFill(new ImagePattern(searchIcon));
 
         tablePane.getChildren().clear();
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
             TableComponentController tableController = fxmlLoader.getController();
             tableController.setHeadHeight(40);
-            tableController.setRowHeight(40);
-            tableController.setDisplayRowCount(8);
+            tableController.setRowHeight(60);
+            tableController.setDisplayRowCount(5);
             // สร้างหัว Table
             tableController.addTableHead(new Label("โปรไฟล์"),80);
             tableController.addTableHead(new Label("ชื่อ"),180);
             tableController.addTableHead(new Label("ชื่อผู้ใช้"),120);
             tableController.addTableHead(new Label("รหัสผ่านเริ่มต้น"),120);
-            tableController.addTableHead(new Label("คณะที่สังกัด"),100);
-            tableController.addTableHead(new Label("ภาควิชาที่สังกัด"),100);
+            tableController.addTableHead(new Label("คณะที่สังกัด"),150);
+            tableController.addTableHead(new Label("ภาควิชาที่สังกัด"),150);
             tableController.addTableHead(new Label(""),100);
 
 

@@ -16,18 +16,16 @@ import ku.cs.services.PopupComponent;
 import java.io.IOException;
 
 public class AdminUserManagementPageController {
-    @FXML
-    private Pane navBarPane;
-
-    @FXML
-    private Pane tablePane;
-
-    @FXML
-    private Circle searchButton;
+    @FXML private Pane navBarPane;
+    @FXML private Pane tablePane;
+    @FXML private Circle searchButton;
+    @FXML private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getChildren().clear();
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
@@ -40,6 +38,7 @@ public class AdminUserManagementPageController {
         searchButton.setFill(new ImagePattern(searchIcon));
 
         tablePane.getChildren().clear();
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
@@ -52,7 +51,7 @@ public class AdminUserManagementPageController {
             tableController.addTableHead(new Label("ชื่อผู้ใช้"),120);
             tableController.addTableHead(new Label("ชื่อ"),180);
             tableController.addTableHead(new Label("บทบาท"),140);
-            tableController.addTableHead(new Label("วันเวลาที่ใช้งาน"),100);
+            tableController.addTableHead(new Label("วันเวลาที่ใช้งาน"),160);
             tableController.addTableHead(new Label("สถานะ"),120);
             tableController.addTableHead(new Label(""),100);
 
@@ -71,7 +70,7 @@ public class AdminUserManagementPageController {
                 Label username = new Label("fscijirat");
                 Label name = new Label("จิรัฏฐ์ ค่องสกุล");
                 Label role = new Label("อาจารย์ที่ปรึกษา");
-                Label date = new Label("12/12/2512");
+                Label date = new Label("12/12/2512 15:10:52");
                 Label status = new Label("ปกติ");
                 Button permissionManagementButton = new Button("จัดการสิทธิ์");
 
