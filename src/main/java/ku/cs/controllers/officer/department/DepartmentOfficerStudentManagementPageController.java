@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -16,16 +17,23 @@ import java.io.IOException;
 
 public class DepartmentOfficerStudentManagementPageController {
     @FXML
+    public TextField searchTextField;
+    @FXML
     private Pane tablePane;
     @FXML
     private Pane navBarPane;
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
-        navBarPane.getChildren().clear();
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/department-officer-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
+            navBarPane.getChildren().clear();
             navBarPane.getChildren().add(adminNavbar);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -96,5 +104,8 @@ public class DepartmentOfficerStudentManagementPageController {
     public void onAddNisit(ActionEvent actionEvent) {
         PopupComponent<Object> editPopup = new PopupComponent<>(new Object(), "/ku/cs/views/officer/department/department-officer-student-create-popup.fxml","modify",navBarPane.getScene().getWindow());
         editPopup.show();
+    }
+
+    public void onSearchButtonClick(ActionEvent actionEvent) {
     }
 }

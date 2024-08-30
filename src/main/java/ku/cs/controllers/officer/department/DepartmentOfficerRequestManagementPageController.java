@@ -1,9 +1,11 @@
 package ku.cs.controllers.officer.department;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ku.cs.controllers.components.TableComponentController;
@@ -12,16 +14,25 @@ import ku.cs.models.FormDataModel;
 import ku.cs.services.PopupComponent;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class DepartmentOfficerRequestManagementPageController {
+    @FXML
+    public TextField searchTextField;
     @FXML
     private Pane tablePane;
     @FXML
     private Pane navBarPane;
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
         navBarPane.getChildren().clear();
+        navBarPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ku/cs/views/styles/main-style.css")).toString());
+        anchorPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ku/cs/views/styles/main-style.css")).toString());
+        tablePane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/ku/cs/views/styles/main-style.css")).toString());
+
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/department-officer-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
@@ -184,5 +195,11 @@ public class DepartmentOfficerRequestManagementPageController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void onDataSelectDropdownClick(ActionEvent actionEvent) {
+    }
+
+    public void onSearchButtonClick(ActionEvent actionEvent) {
     }
 }
