@@ -1,5 +1,7 @@
 package ku.cs.models.collections;
 
+import ku.cs.models.users.User;
+
 import java.util.ArrayList;
 
 public class UserList {
