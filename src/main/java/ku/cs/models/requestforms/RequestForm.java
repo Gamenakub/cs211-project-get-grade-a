@@ -1,6 +1,8 @@
 package ku.cs.models.requestforms;
 
 
+import ku.cs.models.collections.DepartmentApproverList;
+import ku.cs.models.collections.FacultyApproverList;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 
@@ -57,8 +59,6 @@ public class RequestForm {
         return timeStamp.getDayOfMonth() + "/" + timeStamp.getMonthValue() + "/" + timeStamp.getYear() + "\n" +
                 timeStamp.getHour() + ":" + timeStamp.getMinute() + ":" + timeStamp.getSecond();
     }
-    public DepartmentApproverList getApprovers() { return departmentApproverList; }
-    public FacultyApproverList getApprovers() { return facultyApproverList; }
 
     public boolean checkRequestFormById(String requestFormID) { return requestFormID.equals(this.requestFormId);}
 }
