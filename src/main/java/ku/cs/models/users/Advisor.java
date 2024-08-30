@@ -1,6 +1,7 @@
 package ku.cs.models.users;
 
 import ku.cs.models.collections.RequestFormList;
+import ku.cs.models.collections.StudentList;
 import ku.cs.models.requestforms.RequestForm;
 
 public class Advisor extends User {

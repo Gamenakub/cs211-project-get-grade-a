@@ -1,5 +1,8 @@
 package ku.cs.models.requestforms;
 
+import ku.cs.models.users.Advisor;
+import ku.cs.models.users.Student;
+
 public class CoEnrollRequestForm extends RequestForm {
     private String course;
     private String address;

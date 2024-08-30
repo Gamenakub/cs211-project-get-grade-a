@@ -1,8 +1,7 @@
 package ku.cs.models.requestforms;
 
-import ku.cs.models.Advisor;
-import ku.cs.models.Student;
-import ku.cs.models.SubjectList;
+import ku.cs.models.users.Student;
+import ku.cs.models.users.Advisor;
 
 public class AddDropRequestForm extends RequestForm {
     private SubjectList subjectList;
