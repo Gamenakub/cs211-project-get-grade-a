@@ -1,6 +1,7 @@
 package ku.cs.models.requestforms;
 
 import ku.cs.models.Subject;
+import ku.cs.models.collections.SubjectList;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 

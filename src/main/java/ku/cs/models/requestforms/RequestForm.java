@@ -14,7 +14,8 @@ public class RequestForm {
     private String requestFormCause;
     private int status;
     private LocalDateTime timeStamp;
-    private final DepartmentApproverList approvers;
+    private DepartmentApproverList departmentApproverList;
+    private FacultyApproverList facultyApproverList;
 
     public RequestForm(String title,String requestFormId, Student student, Advisor advisor, int status) {
         this.requestFormTitle = title;
@@ -23,7 +24,8 @@ public class RequestForm {
         this.advisor = advisor;
         this.status = status;
         this.timeStamp = LocalDateTime.now();
-        this.approvers = new DepartmentApproverList();
+        this.departmentApproverList = new DepartmentApproverList();
+        this.facultyApproverList = new FacultyApproverList();
     }
 
     public void setRequestFormId(String requestFormId) { this.requestFormId = requestFormId;}
@@ -45,7 +47,6 @@ public class RequestForm {
     public String getRequestFormTitle() {
         return requestFormTitle;
     }
-
     public String getRequestFormId() { return requestFormId; }
     public Student getStudent() { return student; }
     public Advisor getAdvisor() { return advisor; }
@@ -56,7 +57,8 @@ public class RequestForm {
         return timeStamp.getDayOfMonth() + "/" + timeStamp.getMonthValue() + "/" + timeStamp.getYear() + "\n" +
                 timeStamp.getHour() + ":" + timeStamp.getMinute() + ":" + timeStamp.getSecond();
     }
-    public DepartmentApproverList getApprovers() { return approvers; }
+    public DepartmentApproverList getApprovers() { return departmentApproverList; }
+    public FacultyApproverList getApprovers() { return facultyApproverList; }
 
     public boolean checkRequestFormById(String requestFormID) { return requestFormID.equals(this.requestFormId);}
 }
