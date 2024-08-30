@@ -10,14 +10,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.student.StudentRequestFormTrackingPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.student.StudentRequestFormTrackingPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" stylesheets="@../styles/main-style.css" text="การติดตามคำร้อง">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="การติดตามคำร้อง">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -29,18 +30,19 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField prefHeight="50.0" prefWidth="400.0" promptText="หัวข้อเรื่องหรือเลขที่ใบคำร้อง" styleClass="BigTextField" stylesheets="@../styles/main-style.css">
+            <TextField fx:id="textFieldSearchBar" prefHeight="50.0" prefWidth="400.0" promptText="หัวข้อเรื่องหรือเลขที่ใบคำร้อง" styleClass="TextFieldBox">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="MenuButtonFilter" stylesheets="@../styles/main-style.css" text="สถานะคำร้อง" textAlignment="CENTER" textFill="WHITE">
+            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="MenuButton" text="สถานะคำร้อง" textAlignment="CENTER" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Action 1" />
                   <MenuItem mnemonicParsing="false" text="Action 2" />
                </items>
             </MenuButton>
-            <Button mnemonicParsing="false" onAction="#onCreateFormButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../styles/main-style.css" text="เพิ่มคำร้อง" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onCreateFormButton" prefHeight="50.0" prefWidth="145.0" styleClass="DefaultButton" text="เพิ่มคำร้อง" textFill="WHITE" />
          </children>
          <padding>
             <Insets left="80.0" />

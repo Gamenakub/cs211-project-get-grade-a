@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAcceptPopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAcceptPopupController">
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="247.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;" stylesheets="@../styles/login-style.css">
+      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="247.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label fx:id="requestAcceptLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" stylesheets="@../styles/login-style.css" text="requestAcceptLabel">
+            <Label fx:id="requestAcceptLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="SubHeader" text="requestAcceptLabel">
                <font>
                   <Font name="TH SarabunPSK Bold" size="40.0" />
                </font>
@@ -24,10 +24,10 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Pane prefHeight="84.0" prefWidth="278.0" stylesheets="@../styles/login-style.css" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006C67;" styleClass="Button" stylesheets="@../styles/login-style.css" text="รับทราบ" textFill="WHITE">
+                  <Pane prefHeight="84.0" prefWidth="278.0" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="DefaultButton" text="รับทราบ" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

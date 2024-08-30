@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerStudentCreatePopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="546.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerStudentCreatePopupController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="7.0" layoutY="7.0" prefHeight="518.0" prefWidth="388.0">
+      <VBox alignment="TOP_CENTER" layoutX="7.0" layoutY="7.0" prefHeight="518.0" prefWidth="388.0" stylesheets="@../../styles/main-style.css">
          <children>
             <Label text="เพิ่มข้อมูลนิสิต">
                <font>
@@ -26,12 +25,12 @@
                <children>
                   <VBox>
                      <children>
-                        <Label text="รหัสนิสิต">
+                        <Label styleClass="TextFieldLabel" text="รหัสนิสิต">
                            <VBox.margin>
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" />
+                        <TextField styleClass="TextFieldBox" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="4.0" top="4.0" />
@@ -44,12 +43,12 @@
                      <children>
                         <VBox>
                            <children>
-                              <Label text="ชื่อ">
+                              <Label styleClass="TextFieldLabel" text="ชื่อ">
                                  <VBox.margin>
                                     <Insets bottom="4.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField prefHeight="39.0" prefWidth="185.0" styleClass="BigTextField" stylesheets="@../../styles/main-style.css" />
+                              <TextField prefHeight="39.0" prefWidth="185.0" styleClass="TextFieldBox" />
                            </children>
                            <padding>
                               <Insets bottom="8.0" />
@@ -57,12 +56,12 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Label text="นามสกุล">
+                              <Label styleClass="TextFieldLabel" text="นามสกุล">
                                  <VBox.margin>
                                     <Insets bottom="4.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField prefHeight="39.0" prefWidth="198.0" styleClass="BigTextField" stylesheets="@../../styles/main-style.css" />
+                              <TextField prefHeight="39.0" prefWidth="198.0" styleClass="TextFieldBox" />
                            </children>
                            <padding>
                               <Insets bottom="8.0" />
@@ -72,12 +71,12 @@
                   </HBox>
                   <VBox>
                      <children>
-                        <Label text="อีเมล">
+                        <Label styleClass="TextFieldLabel" text="อีเมล">
                            <VBox.margin>
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" />
+                        <TextField styleClass="TextFieldBox" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" />
@@ -85,12 +84,12 @@
                   </VBox>
                   <VBox>
                      <children>
-                        <Label text="อาจารย์ที่ปรึกษา">
+                        <Label styleClass="TextFieldLabel" text="อาจารย์ที่ปรึกษา">
                            <VBox.margin>
                               <Insets bottom="4.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField styleClass="BigTextField" stylesheets="@../../styles/main-style.css" />
+                        <TextField styleClass="TextFieldBox" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" />
@@ -103,8 +102,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onCancel" prefHeight="49.0" prefWidth="152.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ยกเลิก" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onConfirm" prefHeight="49.0" prefWidth="152.0" style="-fx-background-color: #006B67;" styleClass="Button" stylesheets="@../../styles/main-style.css" text="ยืนยัน" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onCancel" prefHeight="49.0" prefWidth="152.0" styleClass="DenyButton" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirm" prefHeight="49.0" prefWidth="152.0" styleClass="DefaultButton" text="ยืนยัน" textFill="WHITE" />
                </children>
             </HBox>
          </children>

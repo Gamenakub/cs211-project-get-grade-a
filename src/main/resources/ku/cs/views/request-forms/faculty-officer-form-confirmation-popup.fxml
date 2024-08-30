@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerFacultyRequestFormConfirmationPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="650.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerFacultyRequestFormConfirmationPopupController">
    <children>
-      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;" stylesheets="@../styles/login-style.css">
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel" stylesheets="@../styles/login-style.css" text="แนบไฟล์เอกสาร">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="Header" text="แนบไฟล์เอกสาร">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -33,9 +33,9 @@
                      <image>
                         <Image url="@../../../../images/upload-file.png" />
                      </image></ImageView>
-                  <VBox maxWidth="-Infinity" spacing="4.0" stylesheets="@../styles/login-style.css">
+                  <VBox maxWidth="-Infinity" spacing="4.0">
                      <children>
-                        <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="เลือกบุคคล">
+                        <Label prefWidth="273.0" styleClass="TextFieldLabel" text="เลือกบุคคล">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -43,7 +43,7 @@
                               <Font name="TH SarabunPSK" size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefHeight="39.0" prefWidth="576.0" styleClass="BigTextField" stylesheets="@../styles/main-style.css" />
+                        <ChoiceBox prefHeight="39.0" prefWidth="576.0" styleClass="MenuButton" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -51,20 +51,20 @@
                   </VBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Pane prefHeight="84.0" prefWidth="278.0" stylesheets="@../styles/login-style.css" />
-                  <Button mnemonicParsing="false" onAction="#onButtonBack" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #f4f4f4;" styleClass="Button" stylesheets="@../styles/login-style.css" text="ย้อนกลับ">
+                  <Pane prefHeight="84.0" prefWidth="278.0" />
+                  <Button mnemonicParsing="false" onAction="#onButtonBack" prefHeight="50.0" prefWidth="272.0" styleClass="BackButton" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onRequestRefuse" prefHeight="50.0" prefWidth="352.0" style="-fx-background-color: #DA3131;" styleClass="Button" stylesheets="@../styles/login-style.css" text="ปฏิเสธคำร้อง" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onRequestRefuse" prefHeight="50.0" prefWidth="352.0" styleClass="DenyButton" text="ปฏิเสธคำร้อง" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onRequestEndAtDean" prefHeight="50.0" prefWidth="352.0" style="-fx-background-color: #006b67;" styleClass="Button" stylesheets="@../styles/login-style.css" text="คำร้องสิ้นสุดที่คณะบดี" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onRequestEndAtDean" prefHeight="50.0" prefWidth="352.0" styleClass="DefaultButton" text="คำร้องสิ้นสุดที่คณะบดี" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
