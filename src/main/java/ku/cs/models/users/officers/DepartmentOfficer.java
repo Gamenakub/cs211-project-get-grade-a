@@ -1,8 +1,7 @@
-package ku.cs.models.users.officers.department;
+package ku.cs.models.users.officers;
 
 import ku.cs.models.Department;
 import ku.cs.models.Faculty;
-import ku.cs.models.users.officers.Officer;
 
 public class DepartmentOfficer extends Officer {
     public static final String role = "DepartmentOfficer";
