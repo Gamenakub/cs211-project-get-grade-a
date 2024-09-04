@@ -1,7 +1,7 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.users.officers.Officer;
-import ku.cs.models.users.officers.department.DepartmentOfficer;
+import ku.cs.models.users.officers.DepartmentOfficer;
 
 import java.util.ArrayList;
 
