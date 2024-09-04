@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormEnrollLatePopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormEnrollLatePopupPage3Controller">
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;" stylesheets="@../styles/login-style.css">
+      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel" stylesheets="@../styles/login-style.css" text="สาเหตุที่ลงทะเบียนเรียนล่าช้้า">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="PopupHeader" text="สาเหตุที่ลงทะเบียนเรียนล่าช้า">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -25,16 +25,16 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextArea prefHeight="324.0" prefWidth="720.0" stylesheets="@../styles/login-style.css" text="คอมพิวเตอร์ไม่สามารถใช้การได้" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
+            <TextArea prefHeight="324.0" prefWidth="720.0" text="คอมพิวเตอร์ไม่สามารถใช้การได้" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Pane prefHeight="84.0" prefWidth="278.0" stylesheets="@../styles/login-style.css" />
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage2" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #f4f4f4;" styleClass="Button" stylesheets="@../styles/login-style.css" text="ย้อนกลับ">
+                  <Pane prefHeight="84.0" prefWidth="278.0" />
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage2" prefHeight="50.0" prefWidth="272.0" styleClass="BackButton" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006b67;" styleClass="Button" stylesheets="@../styles/login-style.css" text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="DefaultButton" text="ถัดไป" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -19,8 +20,18 @@ public class AdvisorStudentInformationController {
     @FXML
     private Pane navBarPane;
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private TextField searchTextField;
+
     public void initialize() {
         navBarPane.getChildren().clear();
+        tablePane.getChildren().clear();
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getChildren().clear();
+
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/advisor-navbar.fxml"));
         try {
             AnchorPane advisorNavBar = navBarFxmlLoader.load();
@@ -80,4 +91,7 @@ public class AdvisorStudentInformationController {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    public void onSearchButtonClick(){}
 }

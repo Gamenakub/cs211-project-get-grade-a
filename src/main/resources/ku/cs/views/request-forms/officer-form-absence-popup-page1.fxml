@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAbsencePopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAbsencePopupPage1Controller">
    <children>
-      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="HeadLabel" stylesheets="@../styles/login-style.css" text="คำร้องขอลากิจหรือลาป่วย">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="Header" text="คำร้องขอลากิจหรือลาป่วย">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -25,13 +25,13 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <VBox prefHeight="318.0" prefWidth="641.0" spacing="8.0" stylesheets="@../styles/login-style.css">
+            <VBox prefHeight="318.0" prefWidth="641.0" spacing="8.0">
                <children>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
                      <children>
-                        <VBox maxWidth="-Infinity" prefWidth="360.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox maxWidth="-Infinity" prefWidth="360.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="ชื่อนิสิต">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ชื่อนิสิต">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -39,7 +39,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="จิรัฏฐ์ ค่องสกุล">
+                              <TextField styleClass="TextFieldBox" text="จิรัฏฐ์ ค่องสกุล">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -49,9 +49,9 @@
                               <Insets />
                            </opaqueInsets>
                         </VBox>
-                        <VBox prefHeight="68.0" prefWidth="180.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox prefHeight="68.0" prefWidth="180.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="รหัสประจำตัวนิสิต">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="รหัสประจำตัวนิสิต">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -59,7 +59,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="6612345678">
+                              <TextField styleClass="TextFieldBox" text="6612345678">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -69,9 +69,9 @@
                               <Insets />
                            </opaqueInsets>
                         </VBox>
-                        <VBox prefHeight="68.0" prefWidth="180.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox prefHeight="68.0" prefWidth="180.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="หลักสูตร">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="หลักสูตร">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -79,155 +79,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="ไทย">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
-                     <children>
-                        <VBox maxWidth="-Infinity" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="ชั้นปีที่">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="1">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="คณะ">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="2567">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="สาขา">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="บางเขน">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0" stylesheets="@../styles/login-style.css">
-                     <children>
-                        <VBox maxWidth="-Infinity" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="เบอร์โทร">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="วิทยาศาสตร์">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="อีเมล">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="วิทยาการคอมพิวเตอร์">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="facebook">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="D14">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0" stylesheets="@../styles/login-style.css">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="Line ID">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="D14">
+                              <TextField styleClass="TextFieldBox" text="ไทย">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -241,9 +93,9 @@
                   </HBox>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
                      <children>
-                        <VBox maxWidth="-Infinity" prefWidth="360.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox maxWidth="-Infinity" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="ประเภทการลา">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ชั้นปีที่">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -251,7 +103,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="ลากิจ">
+                              <TextField styleClass="TextFieldBox" text="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -261,9 +113,9 @@
                               <Insets />
                            </opaqueInsets>
                         </VBox>
-                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="ลาตั้งแต่วันที่">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="คณะ">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -271,7 +123,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="D1425">
+                              <TextField styleClass="TextFieldBox" text="2567">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -281,9 +133,9 @@
                               <Insets />
                            </opaqueInsets>
                         </VBox>
-                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0" stylesheets="@../styles/login-style.css">
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="TextFieldLabel" stylesheets="@../styles/login-style.css" text="ถึงวันที่">
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="สาขา">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -291,7 +143,155 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: #d7d7d7;" styleClass="BigTextField" stylesheets="@../styles/login-style.css" text="D1425">
+                              <TextField styleClass="TextFieldBox" text="บางเขน">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
+                     <children>
+                        <VBox maxWidth="-Infinity" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="เบอร์โทร">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="วิทยาศาสตร์">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="อีเมล">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="วิทยาการคอมพิวเตอร์">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="facebook">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="D14">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="Line ID">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="D14">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
+                     <children>
+                        <VBox maxWidth="-Infinity" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ประเภทการลา">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="ลากิจ">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ลาตั้งแต่วันที่">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="D1425">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="TextFieldLabel" text="ถึงวันที่">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField styleClass="TextFieldBox" text="D1425">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -308,9 +308,9 @@
                   <Insets bottom="20.0" />
                </padding>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="720.0" stylesheets="@../styles/login-style.css">
+            <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="720.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage2" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #006b67;" styleClass="Button" stylesheets="@../styles/login-style.css" text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage2" prefHeight="50.0" prefWidth="272.0" styleClass="DefaultButton" text="ถัดไป" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ku.cs.controllers.components.TableComponentController;
@@ -16,14 +17,21 @@ import java.io.IOException;
 public class AdvisorRequestFormController {
     @FXML
     private Pane tablePane;
-
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Pane navBarPane;
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     public void initialize() {
-
         navBarPane.getChildren().clear();
+        tablePane.getChildren().clear();
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/advisor-navbar.fxml"));
         try {
             AnchorPane advisorNavBar = navBarFxmlLoader.load();
@@ -32,7 +40,6 @@ public class AdvisorRequestFormController {
             throw new RuntimeException(e);
         }
 
-        tablePane.getChildren().clear();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
@@ -87,6 +94,12 @@ public class AdvisorRequestFormController {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    void onOldToNewFilterClick(){}
+
+    @FXML
+    void onNewToOldFilterClick(){}
 
 
 

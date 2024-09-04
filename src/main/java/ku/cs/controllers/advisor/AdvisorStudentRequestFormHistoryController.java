@@ -19,7 +19,15 @@ public class AdvisorStudentRequestFormHistoryController {
     private Pane navBarPane;
 
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
     public void initialize() {
+        navBarPane.getChildren().clear();
+        tablePane.getChildren().clear();
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        navBarPane.getChildren().clear();
 
         navBarPane.getChildren().clear();
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/advisor-navbar.fxml"));
@@ -81,6 +89,22 @@ public class AdvisorStudentRequestFormHistoryController {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    void onAllFilterButtonClick(){}
+
+    @FXML
+    void onSuccessFormFilterButtonClick(){}
+
+    @FXML
+    void onInProgressFormFilterButtonClick(){}
+
+    @FXML
+    void onRejectedFormFilterButtonClick(){}
+
+    @FXML
+    void onSearchButtonClick() {}
+
 
 
 

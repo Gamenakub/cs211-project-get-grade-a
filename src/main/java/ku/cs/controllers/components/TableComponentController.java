@@ -81,10 +81,10 @@ public class TableComponentController {
         }
         rowController.setRowHeight(rowHeight);
         tableComponentVBox.getChildren().add(newRowComponent);
+        rowCount++;
         this.tableComponentVBox.setPrefHeight(rowHeight*rowCount);
         this.tableComponentVBox.setMinHeight(rowHeight*rowCount);
         this.tableComponentVBox.setMaxHeight(rowHeight*rowCount);
-        rowCount++;
     }
 
 
@@ -103,5 +103,10 @@ public class TableComponentController {
         this.tableScrollPane.setPrefHeight(rowHeight*displayRowCount);
         this.tableScrollPane.setMinHeight(rowHeight*displayRowCount);
         this.tableScrollPane.setMaxHeight(rowHeight*displayRowCount);
+    }
+
+    public void clearData(){
+        this.tableComponentVBox.getChildren().clear();
+        this.rowCount = 0;
     }
 }

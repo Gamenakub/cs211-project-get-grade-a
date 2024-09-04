@@ -2,13 +2,18 @@ package ku.cs.controllers.requestforms;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
+import javafx.scene.layout.AnchorPane;
 import ku.cs.controllers.components.BasePopup;
 
 public class StudentCreateRequestFormPopupController extends BasePopup<Object> {
-    private String formPath = "/ku/cs/views/request-forms/student-late-enroll-request-form-popup-page1.fxml";
-
+    @FXML private AnchorPane anchorPane;
     @FXML private MenuButton menuButton;
 
+    private String formPath = "/ku/cs/views/request-forms/student-late-enroll-request-form-popup-page1.fxml";
+
+    @FXML public void initialize() {
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+    }
     @FXML public void onSelectLateEnrollRequestFormMenuItem() {
         formPath = "/ku/cs/views/request-forms/student-late-enroll-request-form-popup-page1.fxml";
         menuButton.setText("ใบคำร้องลงทะเบียนเรียนล่าช้า");

@@ -16,18 +16,16 @@ import ku.cs.services.PopupComponent;
 import java.io.IOException;
 
 public class AdminAdvisorManagementPageController {
-    @FXML
-    private Pane navBarPane;
-
-    @FXML
-    private Pane tablePane;
-
-    @FXML
-    private Circle searchButton;
+    @FXML private Pane navBarPane;
+    @FXML private Pane tablePane;
+    @FXML private Circle searchButton;
+    @FXML private AnchorPane anchorPane;
 
     @FXML
     public void initialize() {
+        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getChildren().clear();
+        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
         try {
             AnchorPane adminNavbar = navBarFxmlLoader.load();
@@ -41,6 +39,7 @@ public class AdminAdvisorManagementPageController {
 
 
         tablePane.getChildren().clear();
+        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
