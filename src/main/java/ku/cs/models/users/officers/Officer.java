@@ -5,14 +5,20 @@ import ku.cs.models.requestforms.RequestForm;
 import ku.cs.models.users.User;
 
 public class Officer extends User {
-    public static final String role = "Officer";
+    public static final String role = "officer";
     private String officerEmail;
-    private final RequestFormList requestFormList;
-    public Officer(String username, String password, String name, String surname, String email) {
-        super(username, password, name, surname);
+    private RequestFormList requestFormList;
+
+    public Officer(String username, String password,String nameTitle, String name, String surname, String role) {
+        super(username, password, nameTitle, name, surname, role);
         this.requestFormList = new RequestFormList();
-        this.officerEmail = email;
     }
+
+    public Officer(String username, String hashedPassword,String nameTitle, String name, String surname, String role, String recentTime, boolean status,boolean activated, String profilePictureFileName){
+        super(username, hashedPassword, nameTitle, name, surname, role, recentTime, status, activated, profilePictureFileName);
+        this.requestFormList = new RequestFormList();
+    }
+
     public void addRequestForm(RequestForm requestForm) {
         if(requestForm != null) {
             requestFormList.addRequestForm(requestForm);
@@ -25,6 +31,14 @@ public class Officer extends User {
 
     public void setOfficerEmail(String officerEmail) {
         this.officerEmail = officerEmail;
+    }
+
+    public void setRequestFormList(RequestFormList requestFormList) {
+        this.requestFormList = requestFormList;
+    }
+
+    public RequestFormList getRequestFormList() {
+        return requestFormList;
     }
 
     public boolean checkOfficerByEmail(String officerEmail) {
