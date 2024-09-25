@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,8 @@ public class AdminUserManagementPageController {
     @FXML private Pane tablePane;
     @FXML private Circle searchButton;
     @FXML private AnchorPane anchorPane;
+    @FXML private MenuButton filterMenuButton;
+
 
     @FXML
     public void initialize() {
