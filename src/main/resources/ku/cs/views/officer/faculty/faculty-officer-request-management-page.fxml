@@ -17,7 +17,7 @@
             <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
             <VBox alignment="BOTTOM_LEFT" prefHeight="51.0">
                <children>
-                  <Label prefHeight="51.0" styleClass="Header" text="การจัดการคำร้องเจ้าหน้าที่คณะ">
+                  <Label prefHeight="51.0" styleClass="header" text="การจัดการคำร้องเจ้าหน้าที่คณะ">
                      <font>
                         <Font name="TH SarabunPSK Bold" size="64.0" />
                      </font>
@@ -29,7 +29,7 @@
             </VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="1080.0" spacing="12.0" VBox.vgrow="NEVER">
                <children>
-                  <TextField fx:id="searchTextField" prefHeight="49.0" prefWidth="608.0" promptText="ชื่อนิสิต/รหัสนิสิต/หัวข้อ/เลขที่ใบคำร้อง/คณะ/สาขา" styleClass="TextFieldBox">
+                  <TextField fx:id="searchTextField" prefHeight="49.0" prefWidth="608.0" promptText="ชื่อนิสิต/รหัสนิสิต/หัวข้อ/เลขที่ใบคำร้อง/คณะ/สาขา" styleClass="text-field-box">
                      <font>
                         <Font size="42.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#onDataSelectDropdownClick" prefHeight="44.0" prefWidth="162.0" styleClass="MenuButton" text="12 ก.ค. 67 - 13 ม.ค 68">
+                  <Button mnemonicParsing="false" onAction="#onDataSelectDropdownClick" prefHeight="44.0" prefWidth="162.0" styleClass="menu-button" text="12 ก.ค. 67 - 13 ม.ค 68">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -45,7 +45,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="44.0" prefWidth="162.0" styleClass="MenuButton" text="Search">
+                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="44.0" prefWidth="162.0" styleClass="menu-button" text="Search">
                      <font>
                         <Font size="25.0" />
                      </font>
