@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="ku.cs.controllers.components.FacultyApproverComponentController" alignment="CENTER" spacing="16" prefHeight="100" prefWidth="200" styleClass="text-field-box">
+    <padding>
+        <Insets top="0" right="20" bottom="0" left="20"/>
+    </padding>
+
+    <!-- VBox 1: Label and TextField -->
+    <VBox alignment="CENTER" spacing="8" prefHeight="98" prefWidth="400">
+        <Label text="เลือกบุคคล" prefWidth="432" prefHeight="17" styleClass="text-field-label"/>
+        <TextField fx:id="nameTextField" promptText="อาจารย์" prefWidth="432" prefHeight="25" styleClass="text-field"/>
+    </VBox>
+
+    <!-- VBox 2: Label and MenuButton -->
+    <VBox alignment="CENTER" spacing="8" prefHeight="98" prefWidth="400">
+        <Label text="เลือกตำแหน่ง" prefWidth="432" prefHeight="17" styleClass="text-field-label"/>
+        <TextField fx:id="roleTextField" promptText="อาจารย์" prefWidth="432" prefHeight="25" styleClass="text-field"/>
+    </VBox>
+
+    <!-- VBox 3: Button -->
+    <VBox alignment="CENTER" prefHeight="200" prefWidth="100">
+        <Button fx:id="deleteButton" text="ลบ" prefWidth="72" prefHeight="51" styleClass="deny-button" textFill="WHITE"/>
+    </VBox>
+</HBox>
