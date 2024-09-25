@@ -2,17 +2,28 @@ package ku.cs.controllers.advisor;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import ku.cs.controllers.components.TableComponentController;
-import ku.cs.controllers.components.TableRowController;
+import ku.cs.controllers.components.SearchController;
+import ku.cs.controllers.components.tables.TableComponentController;
+import ku.cs.controllers.officer.RequestFormsTableDescriptor;
+import ku.cs.models.FormDataModel;
+import ku.cs.models.collections.RequestFormList;
+import ku.cs.models.collections.StudentList;
+import ku.cs.models.requestforms.RequestForm;
+import ku.cs.models.users.Advisor;
+import ku.cs.models.users.Student;
+import ku.cs.services.AlertService;
 import ku.cs.services.FXRouter;
+import ku.cs.services.Session;
+import ku.cs.services.popup.PopupComponent;
 
+import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdvisorStudentInformationController {
     @FXML
@@ -23,75 +34,67 @@ public class AdvisorStudentInformationController {
     private AnchorPane anchorPane;
     @FXML
     private TextField searchTextField;
+    @FXML
+    private TableComponentController tableController;
 
+    @FXML
+    private SearchController searchController;
+
+    private Advisor user;
+    @FXML
     public void initialize() {
+
         navBarPane.getChildren().clear();
         tablePane.getChildren().clear();
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        navBarPane.getChildren().clear();
 
-        FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/advisor-navbar.fxml"));
-        try {
-            AnchorPane advisorNavBar = navBarFxmlLoader.load();
-            navBarPane.getChildren().add(advisorNavBar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        user=(Advisor) Session.getSession().getLoggedInUser();
+        Session.getSession().setNavbar(navBarPane);
+        Session.getSession().getTheme().setTheme(anchorPane);
+
         tablePane.getChildren().clear();
+
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
-            TableComponentController tableController = fxmlLoader.getController();
+            tableController = fxmlLoader.getController();
+
             tableController.setHeadHeight(80);
-            tableController.setRowHeight(60);
-            tableController.setDisplayRowCount(4);
-            // สร้างหัว Table
-            tableController.addTableHead(new Label("โปรไฟล์"),150);
-            tableController.addTableHead(new Label("ชื่อ"),300);
-            tableController.addTableHead(new Label("รหัสนิสิต"),200);
-            tableController.addTableHead(new Label(""),200);
+            tableController.setRowHeight(50);
+            tableController.setDisplayRowCount(5);
+            tableController.setTablePane(tablePane);
+            tableController.setTableHeadDescriptor(new StudentTableDescriptor());
 
+            tableController.addEventListener("ดูประวัติคำร้อง", eventData -> {
+                Student obj = (Student) eventData;
 
-
-            for (int i=0;i<20;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                Circle profile = new Circle(20);
-                Label name = new Label("นาย อนุสรณ์ศาสน์ ธีร์");
-                Label studentId = new Label("6610401993\n" + "คณะวิทยาศาสตร์");
-                Button action = new Button("ดูประวัติ");
-                action.setOnAction(event -> {
-                    try {
-                        FXRouter.goTo("advisor-student-request-form-history");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-
-                tableRowController.addElement(profile);
-                tableRowController.addElement(name);
-                tableRowController.addElement(studentId);
-                tableRowController.addElement(action);
-
-
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
-
+                try {
+                    FXRouter.goTo("advisor-student-request-form-history",obj);
+                } catch (IOException e) {
+                    AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+                    System.exit(0);
+                }
+            });
+            StudentList studentList = user.getStudents();
+            tableController.setDisplayModels(studentList.getStudents());
+            tableController.updateTable();
             tablePane.getChildren().add(table);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(0);
         }
+
+        searchController=new SearchController<>(searchTextField,tableController,user.getStudents());
     }
 
     @FXML
-    public void onSearchButtonClick(){}
+    public void onSearchButtonClick(){
+        searchController.searchFilter();
+    }
+
+
 }
