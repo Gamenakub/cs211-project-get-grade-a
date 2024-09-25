@@ -13,25 +13,25 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="340.0" prefWidth="600.0">
          <children>
-            <Label alignment="CENTER" prefHeight="80.0" prefWidth="1059.0" styleClass="PopupHeader" text="การสร้างคำร้อง">
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="1059.0" styleClass="popup-header" text="การสร้างคำร้อง">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
             </Label>
             <VBox alignment="CENTER" prefHeight="147.0" prefWidth="600.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="309.0" styleClass="TextFieldLabel" text="ประเภทคำร้อง" />
-                  <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="308.0" styleClass="MenuButton" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" textAlignment="CENTER">
+                  <Label prefHeight="17.0" prefWidth="309.0" styleClass="text-field-label" text="ประเภทคำร้อง" />
+                  <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="308.0" styleClass="menu-button" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" textAlignment="CENTER">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onSelectLateEnrollRequestFormMenuItem" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" />
-                        <MenuItem mnemonicParsing="false" onAction="#onSelectLateDropRequestFormMenuItem" text="ใบคำร้องลงถอนล่าช้า" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectAddRequestFormMenuItem" text="ใบคำร้องลงทะเบียนเรียนล่าช้า" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectDropRequestFormMenuItem" text="ใบคำร้องลงถอนล่าช้า" />
                         <MenuItem mnemonicParsing="false" onAction="#onSelectCoEnrollRequestFormMenuItem" text="ใบคำร้องลงทะเบียนเรียนร่วม" />
                         <MenuItem mnemonicParsing="false" onAction="#onSelectAbsenceRequestFormMenuItem" text="ใบคำร้องลาป่วยลากิจ" />
                      </items>
                   </MenuButton>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#onCreateRequestFormButton" prefHeight="50.0" prefWidth="200.0" styleClass="DefaultButton" text="สร้างคำร้อง" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onCreateRequestFormButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="สร้างคำร้อง" textFill="WHITE" />
          </children>
          <padding>
             <Insets top="20.0" />
