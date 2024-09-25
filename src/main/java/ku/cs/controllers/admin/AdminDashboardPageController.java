@@ -49,7 +49,7 @@ public class AdminDashboardPageController {
     public void initialize() {
         allUser=admin.getUserList();
         Session.getSession().setNavbar(navBarPane);
-        DashBoardMenuButtonController dashBoardMenuButtonController=new DashBoardMenuButtonController(totalFormLabel,
+        DashboardMenuButtonController dashBoardMenuButtonController=new DashboardMenuButtonController(totalFormLabel,
                 totalFacultyOfficerLabel,
                 totalDepartmentOfficerLabel,
                 totalAdvisorLabel,
