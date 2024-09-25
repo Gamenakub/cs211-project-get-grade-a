@@ -2,37 +2,41 @@ package ku.cs.controllers.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import ku.cs.controllers.components.TableComponentController;
-import ku.cs.controllers.components.TableRowController;
-import ku.cs.services.PopupComponent;
+import ku.cs.controllers.components.SearchController;
+import ku.cs.controllers.components.tables.EventCallback;
+import ku.cs.controllers.components.tables.TableComponentController;
+import ku.cs.models.Department;
+import ku.cs.models.collections.DepartmentList;
+import ku.cs.models.users.Admin;
+import ku.cs.services.AlertService;
+import ku.cs.services.Session;
+import ku.cs.services.SortDirection;
+import ku.cs.services.popup.PopupComponent;
 
 import java.io.IOException;
 
 public class AdminDepartmentManagementPageController {
     @FXML private Pane navBarPane;
     @FXML private Pane tablePane;
+    @FXML private TextField searchTextField;
     @FXML private Circle searchButton;
     @FXML private AnchorPane anchorPane;
+    private Admin admin;
+    TableComponentController<Department> tableController;
+
+    SearchController searchController;
 
     @FXML
     public void initialize() {
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        navBarPane.getChildren().clear();
-        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
-        try {
-            AnchorPane adminNavbar = navBarFxmlLoader.load();
-            navBarPane.getChildren().add(adminNavbar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Session.getSession().setNavbar(navBarPane);
+        Session.getSession().getTheme().setTheme(anchorPane);
+        admin = (Admin) Session.getSession().getLoggedInUser();
 
         Image searchIcon = new Image(getClass().getResource("/images/search-icon.png").toString(), false);
         searchButton.setFill(new ImagePattern(searchIcon));
@@ -40,56 +44,51 @@ public class AdminDepartmentManagementPageController {
         tablePane.getChildren().clear();
         tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
+
+        DepartmentList departmentList = admin.getDepartmentList();
+
         try {
             AnchorPane table = fxmlLoader.load();
-            TableComponentController tableController = fxmlLoader.getController();
+            tableController = fxmlLoader.getController();
             tableController.setHeadHeight(40);
             tableController.setRowHeight(40);
             tableController.setDisplayRowCount(8);
-            // สร้างหัว Table
-            tableController.addTableHead(new Label("ชื่อภาควิชา"),300);
-            tableController.addTableHead(new Label("คณะที่สังกัด"),300);
-            tableController.addTableHead(new Label("รหัสของภาควิชา"),200);
-            tableController.addTableHead(new Label(""),100);
 
-
-            for (int i=0;i<20;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label department = new Label("วิทยาการคอมพิวเตอร์");
-                Label faculty = new Label("วิทยาศาสตร์");
-                Label advisorId = new Label("D14");
-                Button editButton = new Button("แก้ไขข้อมูล");
-
-                editButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new Object(), "/ku/cs/views/admin/admin-department-management-popup.fxml","admin-department-management-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(department);
-                tableRowController.addElement(faculty);
-                tableRowController.addElement(advisorId);
-                tableRowController.addElement(editButton);
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
+            tableController.setTableHeadDescriptor(new DepartmentTableDescriptor());
+            tableController.setTablePane(tablePane);
+            tableController.sortBy("รหัสของภาควิชา", SortDirection.ASCENDING);
+            tableController.setDisplayModels(departmentList.getDepartments());
 
             tablePane.getChildren().add(table);
+            searchController = new SearchController(searchTextField, tableController, admin.getDepartmentList());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(0);
         }
+    }
+
+    public void onSearchButtonClick(){
+        searchController.searchFilter();
     }
 
     @FXML
     public void onAddDepartmentButton() {
-        PopupComponent<Object> popup = new PopupComponent<>(new Object(), "/ku/cs/views/admin/admin-department-management-popup.fxml","admin-department-management-popup",navBarPane.getScene().getWindow());
-        popup.show();
+        PopupComponent<Department> requestActionPopup = new PopupComponent<>(null, "/ku/cs/views/admin/admin-department-management-popup.fxml","admin-department-management-popup",navBarPane.getScene().getWindow());
+        requestActionPopup.show();
+        requestActionPopup.getPopupController().addEventListener(
+                "success", new EventCallback() {
+                    @Override
+                    public void onEvent(Object eventData) {
+                        try {
+                            tableController.setDisplayModels(admin.getDepartmentList().getDepartments());
+                        } catch (IOException e) {
+                            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+                            System.exit(0);
+                        }
+                        searchController.searchFilter();
+                    }
+                }
+        );
     }
 }
