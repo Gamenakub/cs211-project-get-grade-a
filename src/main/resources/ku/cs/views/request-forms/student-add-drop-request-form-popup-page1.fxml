@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentCoEnrollRequestFormPopupPage1Controller" >
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAddDropRequestFormPopupPage1Controller" >
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="650.0" prefWidth="800.0" spacing="20.0">
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="แบบลงทะเบียนเรียนร่วม">
+            <Label fx:id="labelRequestFormMode" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="labelRequestFormMode">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -26,14 +26,70 @@
             </Label>
             <VBox prefHeight="318.0" prefWidth="641.0" spacing="8.0">
                <children>
-                  <Label styleClass="sub-header" text="ข้อมูลนิสิต">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="4.0" top="4.0" />
-                     </VBox.margin>
-                  </Label>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
+                     <children>
+                        <VBox maxWidth="-Infinity" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="ภาคเรียน">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldTerm" promptText="1" styleClass="text-field-box">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="ปีการศึกษา">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldAcademicYear" promptText="2567" styleClass="text-field-box">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="วิทยาเขต">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldCampus" promptText="บางเขน" styleClass="text-field-box">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
                      <children>
                         <VBox prefHeight="68.0" prefWidth="114.0" spacing="4.0">
@@ -106,7 +162,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldProgram" promptText="ไทย" styleClass="text-field-box">
+                              <TextField fx:id="textFieldStudentProgram" promptText="ไทย" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -122,7 +178,7 @@
                      <children>
                         <VBox maxWidth="-Infinity" spacing="4.0">
                            <children>
-                              <Label prefWidth="358.0" styleClass="text-field-label" text="คณะ">
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="คณะ">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -130,7 +186,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldFaculty" promptText="วิทยาศาสตร์" styleClass="text-field-box">
+                              <TextField fx:id="textFieldStudentFaculty" promptText="วิทยาศาสตร์" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -140,7 +196,7 @@
                               <Insets />
                            </opaqueInsets>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="358.0" spacing="4.0">
+                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
                            <children>
                               <Label prefWidth="273.0" styleClass="text-field-label" text="สาขาวิชา">
                                  <VBox.margin>
@@ -150,63 +206,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldDepartment" prefWidth="0.0" promptText="วิทยาการคอมพิวเตอร์" styleClass="text-field-box">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
-                     <children>
-                        <VBox prefHeight="200.0" prefWidth="720.0" spacing="4.0">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="ที่อยู่ปัจจุบัน">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldAddress" promptText="เสนา" styleClass="text-field-box">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <Label styleClass="sub-header" text="ข้อมูลวิชา">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="4.0" top="4.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="720.0" spacing="8.0">
-                     <children>
-                        <VBox maxWidth="-Infinity" spacing="4.0">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="วิชา">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldSubjectName" promptText="Enterprise Information System" styleClass="text-field-box">
+                              <TextField fx:id="textFieldStudentDepartment" promptText="วิทยาการคอมพิวเตอร์" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -218,7 +218,7 @@
                         </VBox>
                         <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="รหัสวิชา">
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="รหัสสาขาวิชาเอก">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -226,27 +226,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldSubjectId" promptText="01418222" styleClass="text-field-box">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox maxWidth="273.0" prefHeight="200.0" prefWidth="294.0" spacing="4.0">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="หมู่เรียนร่วม">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldSubjectSection" promptText="11" styleClass="text-field-box">
+                              <TextField fx:id="textFieldStudentDepartmentId" promptText="D14" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -262,7 +242,7 @@
                      <children>
                         <VBox maxWidth="-Infinity" prefWidth="360.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="ชื่ออาจารย์">
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="ชื่ออาจารย์ที่ปรึกษา">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -270,7 +250,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldTeacherName" prefHeight="39.0" prefWidth="304.0" promptText="สุขุมาล กิติสิน" styleClass="text-field-box">
+                              <TextField fx:id="textFieldAdvisorName" promptText="สุขุมาล กิติสิน" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -282,7 +262,7 @@
                         </VBox>
                         <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
                            <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="คณะ">
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="รหัสอาจารย์ที่ปรึกษา">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -290,27 +270,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldTeacherFaculty" promptText="วิทยาศาตร์" styleClass="text-field-box">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </VBox>
-                        <VBox prefHeight="68.0" prefWidth="360.0" spacing="4.0">
-                           <children>
-                              <Label prefWidth="273.0" styleClass="text-field-label" text="ภาควิชา">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="TH SarabunPSK" size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldTeacherDepartment" promptText="วิทยาการคอมพิวเตอร์" styleClass="text-field-box">
+                              <TextField fx:id="textFieldAdvisorId" promptText="D1425" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -341,7 +301,7 @@
             </HBox>
          </children>
          <padding>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
          </padding>
       </VBox>
    </children>
