@@ -2,37 +2,41 @@ package ku.cs.controllers.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import ku.cs.controllers.components.TableComponentController;
-import ku.cs.controllers.components.TableRowController;
-import ku.cs.services.PopupComponent;
+import ku.cs.controllers.components.SearchController;
+import ku.cs.controllers.components.tables.EventCallback;
+import ku.cs.controllers.components.tables.TableComponentController;
+import ku.cs.models.Faculty;
+import ku.cs.models.collections.FacultyList;
+import ku.cs.models.users.Admin;
+import ku.cs.services.AlertService;
+import ku.cs.services.Session;
+import ku.cs.services.SortDirection;
+import ku.cs.services.popup.PopupComponent;
 
 import java.io.IOException;
 
 public class AdminFacultyManagementPageController {
     @FXML private Pane navBarPane;
     @FXML private Pane tablePane;
+    @FXML private TextField searchTextField;
     @FXML private Circle searchButton;
     @FXML private AnchorPane anchorPane;
+    private Admin admin;
+    TableComponentController<Faculty> tableController;
+
+    SearchController searchController;
 
     @FXML
     public void initialize() {
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        navBarPane.getChildren().clear();
-        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
-        try {
-            AnchorPane adminNavbar = navBarFxmlLoader.load();
-            navBarPane.getChildren().add(adminNavbar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Session.getSession().setNavbar(navBarPane);
+        Session.getSession().getTheme().setTheme(anchorPane);
+        admin = (Admin) Session.getSession().getLoggedInUser();
 
         Image searchIcon = new Image(getClass().getResource("/images/search-icon.png").toString(), false);
         searchButton.setFill(new ImagePattern(searchIcon));
@@ -40,54 +44,52 @@ public class AdminFacultyManagementPageController {
         tablePane.getChildren().clear();
         tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
+
+
+        FacultyList facultyList = admin.getFacultyList();
+
         try {
             AnchorPane table = fxmlLoader.load();
-            TableComponentController tableController = fxmlLoader.getController();
+            tableController = fxmlLoader.getController();
             tableController.setHeadHeight(40);
             tableController.setRowHeight(40);
             tableController.setDisplayRowCount(8);
-            // สร้างหัว Table
-            tableController.addTableHead(new Label("ชื่อคณะ"),500);
-            tableController.addTableHead(new Label("รหัสคณะ"),300);
-            tableController.addTableHead(new Label(""),100);
 
-
-            for (int i=0;i<20;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label facultyName = new Label("วิทยาศาสตร์");
-                Label facultyId = new Label("D");
-                Button editButton = new Button("แก้ไขข้อมูล");
-
-                editButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new Object(), "/ku/cs/views/admin/admin-faculty-management-popup.fxml","admin-faculty-management-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(facultyName);
-                tableRowController.addElement(facultyId);
-                tableRowController.addElement(editButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
+            tableController.setTableHeadDescriptor(new FacultyTableDescriptor());
+            tableController.setTablePane(tablePane);
+            tableController.sortBy("รหัสคณะ", SortDirection.ASCENDING);
+            tableController.setDisplayModels(facultyList.getFaculties());
 
             tablePane.getChildren().add(table);
+            searchController = new SearchController(searchTextField, tableController, admin.getFacultyList());
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(0);
         }
+    }
+
+    public void onSearchButtonClick(){
+        searchController.searchFilter();
     }
 
     @FXML
     public void onAddFacultyButton() {
-        PopupComponent<Object> popup = new PopupComponent<>(new Object(), "/ku/cs/views/admin/admin-faculty-management-popup.fxml","admin-faculty-management-popup",navBarPane.getScene().getWindow());
-        popup.show();
+        PopupComponent<Faculty> requestActionPopup = new PopupComponent<>(null, "/ku/cs/views/admin/admin-faculty-management-popup.fxml","admin-faculty-management-popup",navBarPane.getScene().getWindow());
+        requestActionPopup.show();
+        requestActionPopup.getPopupController().addEventListener(
+                "success", new EventCallback() {
+                    @Override
+                    public void onEvent(Object eventData) {
+                        try {
+                            tableController.setDisplayModels(admin.getFacultyList().getFaculties());
+                        } catch (IOException e) {
+                            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+                            System.exit(0);
+                        }
+                        searchController.searchFilter();
+                    }
+                }
+        );
     }
 }
