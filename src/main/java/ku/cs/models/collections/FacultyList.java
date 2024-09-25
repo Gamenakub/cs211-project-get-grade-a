@@ -4,7 +4,7 @@ import ku.cs.models.Faculty;
 
 import java.util.ArrayList;
 
-public class FacultyList {
+public class FacultyList implements Searchable<Faculty> {
     private ArrayList<Faculty> faculties;
     public FacultyList() {
         faculties = new ArrayList<Faculty>();
@@ -37,4 +37,18 @@ public class FacultyList {
         return null;
     }
 
+    @Override
+    public ArrayList<Faculty> search(String term) {
+        ArrayList<Faculty> targetFaculties = new ArrayList<>();
+        for(Faculty faculty : faculties) {
+            String name = faculty.getName();
+            String id = faculty.getId();
+            if(name.contains(term)){
+                targetFaculties.add(faculty);
+            } else if (id.contains(term)){
+                targetFaculties.add(faculty);
+            }
+        }
+        return targetFaculties;
+    }
 }
