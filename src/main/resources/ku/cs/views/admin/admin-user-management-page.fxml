@@ -17,7 +17,7 @@
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
       <VBox alignment="CENTER_LEFT" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="การจัดการข้อมูลผู้ใช้">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="การจัดการข้อมูลผู้ใช้">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -29,15 +29,18 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="TextFieldBox">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></TextField>
-            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="DefaultButton" text="แยกตามบทบาท" textAlignment="CENTER" textFill="WHITE">
+            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" onMouseClicked="#onSearchButtonClick" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+            <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="course-info-box" text="ทุกบทบาท" textAlignment="CENTER" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem fx:id="allRolesMenuItem" mnemonicParsing="false" onAction="#onAllRolesMenuItem" text="ทุกบทบาท" />
+                  <MenuItem fx:id="studentRoleMenuItem" mnemonicParsing="false" onAction="#onStudentRoleMenuItem" text="นิสิต" />
+                  <MenuItem fx:id="advisorRoleMenuItem" mnemonicParsing="false" onAction="#onAdvisorRoleMenuItem" text="อาจารย์ที่ปรึกษา" />
+                  <MenuItem fx:id="facultyOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onFacultyOfficerRoleMenuItem" text="เจ้าหน้าที่คณะ" />
+                  <MenuItem fx:id="departmentOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onDepartmentOfficerRoleMenuItem" text="เจ้าหน้าที่ภาควิชา" />
                </items>
             </MenuButton>
          </children>
