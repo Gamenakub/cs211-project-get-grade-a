@@ -1,5 +1,6 @@
 package ku.cs.models.collections;
 
+import ku.cs.models.Faculty;
 import ku.cs.models.FacultyApprover;
 
 import java.util.ArrayList;
@@ -18,12 +19,22 @@ public class FacultyApproverList {
     public ArrayList<FacultyApprover> getApprovers() {
         return facultyApprovers;
     }
-    public FacultyApprover findApproverByNname(String name) {
+    public FacultyApprover findApproverByName(String name) {
         for (FacultyApprover facultyApprover : facultyApprovers) {
             if (facultyApprover.isName(name)) {
                 return facultyApprover;
             }
         }
         return null;
+    }
+
+    public FacultyApproverList getRelatedToFacultyApproverList(Faculty faculty) {
+        FacultyApproverList relatedList = new FacultyApproverList();
+        for (FacultyApprover facultyApprover : facultyApprovers) {
+            if (facultyApprover.getFaculty().equals(faculty)) {
+                relatedList.addApprover(facultyApprover);
+            }
+        }
+        return relatedList;
     }
 }
