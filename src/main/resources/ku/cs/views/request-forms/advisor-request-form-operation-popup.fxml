@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorRequestFormOperationPopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="680.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorRequestFormOperationPopupController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="87.0" prefHeight="432.0" prefWidth="678.0" spacing="16.0">
          <children>
-            <Label text="ดำเนินการคำร้อง">
+            <Label styleClass="header" text="ดำเนินการคำร้อง">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label text="เรื่อง ขอลากิจ/ป่วย">
+            <Label styleClass="sub-header" text="เรื่อง ขอลากิจ/ป่วย">
                <font>
                   <Font size="24.0" />
                </font>
@@ -25,24 +25,24 @@
                   <Insets top="16.0" />
                </VBox.margin>
             </Label>
-            <Label text="เลขที่ใบคำร้อง กข-123">
+            <Label styleClass="sub-header" text="เลขที่ใบคำร้อง กข-123">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label text="รหัสนิสิต 6610402116">
+            <Label styleClass="sub-header" text="รหัสนิสิต 6610402116">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onViewDetailButtonClick" text="ดูรายละเอียด">
+                  <Button mnemonicParsing="false" onAction="#onViewDetailButtonClick" styleClass="green-button" text="ดูรายละเอียด">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="ดาวโหลดใบคำร้อง">
+                  <Button mnemonicParsing="false" styleClass="green-button" text="ดาวโหลดใบคำร้อง">
                      <font>
                         <Font size="16.0" />
                      </font>
