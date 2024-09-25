@@ -4,28 +4,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.controllers.components.ProfilePictureController;
-import ku.cs.models.DepartmentApprover;
 import ku.cs.models.FacultyApprover;
 import ku.cs.models.FormDataModel;
 import ku.cs.models.RequestFormActionHistory;
 import ku.cs.models.requestforms.RequestForm;
-import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.services.FileUploader;
-import ku.cs.services.ImageCropper;
 import ku.cs.services.Session;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class OfficerFacultyRequestFormConfirmationPopupController extends BasePopup<FormDataModel> {
