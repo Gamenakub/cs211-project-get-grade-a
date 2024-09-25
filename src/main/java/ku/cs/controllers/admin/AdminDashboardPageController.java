@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ku.cs.controllers.components.DashBoardMenuButtonController;
+import ku.cs.controllers.components.DashboardMenuButtonController;
 import ku.cs.models.collections.RequestFormList;
 import ku.cs.models.collections.UserList;
 import ku.cs.models.requestforms.RequestForm;
