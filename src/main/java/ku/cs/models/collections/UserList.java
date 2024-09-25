@@ -2,9 +2,11 @@ package ku.cs.models.collections;
 
 import ku.cs.models.users.User;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class UserList {
+public class UserList implements Searchable<User>{
     private ArrayList<User> users;
     public UserList() {
         users = new ArrayList<User>();
@@ -31,17 +33,38 @@ public class UserList {
     public User login(String username, String password) {
         User user = findUserByUsername(username);
         if(user != null && user.validatePassword(password)){
+            LocalDateTime recentTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            user.setRecentTime(recentTime);
             return user;
         }
         return null;
-//        if(username.equals("admin")){
-//            return new User("admin", "test", "Isarapong", "Tuensakul");
-//        }
-//        if(username.equals("student")){
-//            return new Student("student", "test", "Tee", "Anu", "b6610402222", "tee.anu@ku.th");
-//        }
-//        if(username.equals("advisor")){
-//            return new Advisor("admin", "test", "Jirat", "Kong", "D1425", "Com-sci", "")
-//        }
+    }
+
+    public void addUsers(ArrayList<? extends User> userList) {
+        users.addAll(userList);
+    }
+
+    @Override
+    public ArrayList<User> search(String term) {
+        ArrayList<User> targetUsers = new ArrayList<>();
+        for (User user : users) {
+            String name = user.getNameTitle() + user.getName() + " " + user.getSurname();
+            if(name.contains(term)){
+                targetUsers.add(user);
+            }
+        }
+        return targetUsers;
+    }
+
+    @Override
+    public ArrayList<User> filter(String role) {
+        ArrayList<User> targetUsers = new ArrayList<>();
+        for(User user : users){
+            if(user.getRole().equals(role)){
+                targetUsers.add(user);
+            }
+        }
+        return targetUsers;
     }
 }
