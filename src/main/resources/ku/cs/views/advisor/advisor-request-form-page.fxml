@@ -26,8 +26,8 @@
                   <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="51.0" prefWidth="104.0" styleClass="menu-button" text="search" />
                   <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="menu-button" text="filter">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#onOldToNewFilterClick" text="เก่า-ใหม่" />
-                      <MenuItem mnemonicParsing="false" onAction="#onNewToOldFilterClick" text="ใหม่-เก่า" />
+                      <MenuItem mnemonicParsing="false"  text="เก่า-ใหม่" />
+                      <MenuItem mnemonicParsing="false"  text="ใหม่-เก่า" />
                     </items>
                   </MenuButton>
                </children>
