@@ -15,22 +15,22 @@
          <children>
             <VBox alignment="CENTER" layoutX="95.0" layoutY="48.0" prefHeight="268.0" prefWidth="411.0" spacing="20.0">
                <children>
-                  <Label styleClass="SubHeader" text="ดำเนินการคำร้อง">
+                  <Label styleClass="sub-header" text="ดำเนินการคำร้อง">
                      <font>
                         <Font name="System Italic" size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="topicLabel" styleClass="TextFieldLabel" text="เรื่อง ขอลาออก" />
-                  <Label fx:id="numberLabel" styleClass="TextFieldLabel" text="เลขที่ใบคำร้อง กข-123" />
-                  <Label fx:id="nisitIdLabel" styleClass="TextFieldLabel" text="รหัสนิสิต 6610401993" />
+                  <Label fx:id="topicLabel" styleClass="text-field-label" text="เรื่อง ขอลาออก" />
+                  <Label fx:id="numberLabel" styleClass="text-field-label" text="เลขที่ใบคำร้อง กข-123" />
+                  <Label fx:id="nisitIdLabel" styleClass="text-field-label" text="รหัสนิสิต 6610401993" />
                   <HBox alignment="CENTER" prefHeight="82.0" prefWidth="411.0" spacing="16.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onRequestDetailViewAndOperate" prefHeight="82.0" prefWidth="210.0" styleClass="BackButton" text=" ดูรายละเอียดคำร้อง และดำเนินการคำร้อง" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#onRequestDetailViewAndOperate" prefHeight="82.0" prefWidth="210.0" styleClass="back-button" text=" ดูรายละเอียดคำร้อง และดำเนินการคำร้อง" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onDownloadRequest" prefHeight="82.0" prefWidth="210.0" styleClass="BackButton" text="ดาวน์โหลดใบคำร้อง" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#onDownloadRequest" prefHeight="82.0" prefWidth="210.0" styleClass="back-button" text="ดาวน์โหลดใบคำร้อง" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
