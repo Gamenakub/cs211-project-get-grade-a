@@ -2,17 +2,35 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="400.0" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.UserChangeProfilePicturePopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="360.0" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.UserChangeProfilePicturePopupController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="480.0" prefWidth="400.0" spacing="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="10.0" layoutY="10.0" prefHeight="560.0" prefWidth="360.0" spacing="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Circle fill="#c9c9c9" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" styleClass="BackButton" text="อัพโหลดไฟล์รูปภาพ" />
-            <Button mnemonicParsing="false" onAction="#onSaveButton" prefHeight="50.0" prefWidth="240.0" styleClass="DefaultButton" text="บันทึกรูปภาพ" textFill="WHITE" />
+            <Circle fx:id="profilePictureCircle" fill="#c9c9c9" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+            <Pane onDragDropped="#dropOnUploadButton" onDragOver="#dragOverUploadButton" onMouseClicked="#onUploadButton" prefHeight="80.0" prefWidth="240.0" styleClass="upload-area">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="25.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/upload-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="87.0" layoutY="21.0" styleClass="normal-text" text="อัปโหลดไฟล์รูปภาพ" />
+               </children>
+            </Pane>
+            <VBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="280.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onSaveButton" prefHeight="50.0" prefWidth="240.0" styleClass="green-button" text="บันทึกรูปภาพ" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onResetProfilePictureFileNameButton" prefHeight="50.0" prefWidth="240.0" styleClass="back-button" text="ใช้รูปโปรไฟล์พื้นฐาน" />
+               </children>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />

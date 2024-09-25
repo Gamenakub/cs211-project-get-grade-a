@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0"  xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDashboardPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDashboardPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="แดชบอร์ด">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="แดชบอร์ด">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -25,16 +25,16 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="200.0" prefWidth="492.0" >
+      <VBox alignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="200.0" prefWidth="492.0" spacing="20.0" styleClass="dashboard-container">
          <children>
-            <Label text="Label">
+            <Label text="คำร้องในระบบ">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-all-form">
                      <children>
                         <Label text="ทั้งหมด">
                            <font>
@@ -48,7 +48,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-success-form">
                      <children>
                         <Label text="อนุมัติแล้ว">
                            <font>
@@ -62,7 +62,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-in-process-form">
                      <children>
                         <Label text="รอพิจารณา">
                            <font>
@@ -76,7 +76,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-refused-form">
                      <children>
                         <Label text="ไม่อนุมัติ">
                            <font>
@@ -94,7 +94,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="62.0" layoutY="421.0" prefHeight="245.0" prefWidth="490.0" >
+      <VBox alignment="CENTER" layoutX="62.0" layoutY="421.0" prefHeight="245.0" prefWidth="490.0" spacing="10.0" styleClass="dashboard-container">
          <children>
             <Label text="คำร้องที่อนุมัติแล้ว">
                <font>
@@ -103,23 +103,31 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="446.0" spacing="16.0">
                <children>
-                  <MenuButton mnemonicParsing="false" styleClass="MenuButtonFilter" text="MenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-                  <MenuButton mnemonicParsing="false" styleClass="MenuButtonFilter" text="MenuButton">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                     </items>
-                  </MenuButton>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label text="คณะ" />
+                        <MenuButton fx:id="facultyFormMenuButton" mnemonicParsing="false" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#onAllFacultyFormClick" text="ทั้งหมด" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label text="สาขา" />
+                        <MenuButton fx:id="departmentFormMenuButton" mnemonicParsing="false" onAction="#onAllDepartmentFormClick" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="ทั้งหมด" />
+                           </items>
+                        </MenuButton>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="489.0" spacing="8.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-success-form">
                      <children>
                         <Label text="อนุมัติแล้ว">
                            <font>
@@ -137,7 +145,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="583.0" layoutY="189.0" prefHeight="478.0" prefWidth="446.0" >
+      <VBox alignment="CENTER" layoutX="587.0" layoutY="189.0" prefHeight="478.0" prefWidth="446.0" spacing="10.0" styleClass="dashboard-container">
          <children>
             <Label text="จำนวนผู้ใช้งาน">
                <font>
@@ -148,23 +156,31 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="66.0" prefWidth="446.0" spacing="16.0">
                      <children>
-                        <MenuButton mnemonicParsing="false" styleClass="MenuButtonFilter" text="MenuButton">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" styleClass="MenuButtonFilter" text="MenuButton">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </MenuButton>
+                        <VBox alignment="CENTER" spacing="3.0">
+                           <children>
+                              <Label text="คณะ" />
+                              <MenuButton fx:id="facultyUserMenuButton" mnemonicParsing="false" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#onAllFacultyUserClick" text="ทั้งหมด" />
+                                 </items>
+                              </MenuButton>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="3.0">
+                           <children>
+                              <Label text="สาขา" />
+                              <MenuButton fx:id="departmentUserMenuButton" mnemonicParsing="false" onAction="#onAllDepartmentUserClick" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="ทั้งหมด" />
+                                 </items>
+                              </MenuButton>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
                            <children>
                               <Label text="เจ้าหน้าที่คณะ">
                                  <font>
@@ -178,7 +194,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
                            <children>
                               <Label text="เจ้าหน้าที่สาขา">
                                  <font>
@@ -196,7 +212,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
                            <children>
                               <Label text="อาจารย์ที่ปรึกษา">
                                  <font>
@@ -210,7 +226,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" >
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
                            <children>
                               <Label text="นิสิต">
                                  <font>

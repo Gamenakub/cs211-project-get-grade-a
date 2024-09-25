@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,7 +16,7 @@
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="การจัดการข้อมูลเจ้าหน้าที่คณะ">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="การจัดการข้อมูลเจ้าหน้าที่คณะ">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -30,19 +28,13 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField prefHeight="50.0" prefWidth="360.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="TextFieldBox">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="360.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-            <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" styleClass="DefaultButton" text="ค้นหาจากชื่อ" textAlignment="CENTER" textFill="WHITE">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </MenuButton>
-            <Button mnemonicParsing="false" onAction="#onAddFacultyStaffButton" prefHeight="50.0" prefWidth="180.0" styleClass="DefaultButton" text="เพิ่มข้อมูลเจ้าหน้าที่คณะ" textFill="WHITE" />
+            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" onMouseClicked="#onSearchButtonClick" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button mnemonicParsing="false" onAction="#onAddFacultyStaffButton" prefHeight="50.0" prefWidth="180.0" styleClass="green-button" text="เพิ่มข้อมูลเจ้าหน้าที่คณะ" textFill="WHITE" />
          </children>
          <padding>
             <Insets left="80.0" />
