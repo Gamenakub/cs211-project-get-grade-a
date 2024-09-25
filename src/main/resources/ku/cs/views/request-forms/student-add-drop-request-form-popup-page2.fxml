@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAbsenceRequestFormPopupPage2Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAddDropRequestFormPopupPage2Controller">
    <children>
       <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="รายวิชาที่ขอหยุดเรียน">
+            <Label fx:id="requestFormModeLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="requestFormModeLabel">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -27,7 +27,7 @@
             </Label>
             <ScrollPane hbarPolicy="NEVER" prefHeight="311.0" prefWidth="750.0" styleClass="table">
                <content>
-                  <VBox fx:id="courseListVBox" fillWidth="false" prefHeight="301.0" prefWidth="704.0" spacing="8.0" styleClass="table">
+                  <VBox fx:id="courseListVBox" fillWidth="false" prefHeight="297.0" prefWidth="704.0" spacing="8.0">
                      <padding>
                         <Insets bottom="8.0" right="8.0" top="4.0" />
                      </padding>
@@ -56,7 +56,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onCloseButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ถัดไป" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
