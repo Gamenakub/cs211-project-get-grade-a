@@ -6,13 +6,25 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import ku.cs.services.PopupHistory;
-import ku.cs.services.PopupHistoryList;
+import ku.cs.controllers.components.tables.EventCallback;
+import ku.cs.controllers.components.tables.EventCompatible;
+import ku.cs.services.popup.PopupCallback;
+import ku.cs.services.popup.PopupHistory;
+import ku.cs.services.popup.PopupHistoryList;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class BasePopup<T> {
-    private T model;
+public class BasePopup<T> implements EventCompatible {
+    private Object model;
+    private PopupCallback callback;
+
+    private HashMap<String, ArrayList<EventCallback>> eventListeners = new HashMap<>();
+
+    public void setEventListeners(HashMap<String, ArrayList<EventCallback>> eventListeners) {
+        this.eventListeners = eventListeners;
+    }
 
     public String getPopupTitle() {
         return popupTitle;
@@ -36,11 +48,11 @@ public class BasePopup<T> {
     private Window popupRoot;
     private PopupHistoryList historyList = new PopupHistoryList();
 
-    public void setModel(T model){
+    public void setModel(Object model){
         this.model = model;
     }
     public T getModel(){
-        return model;
+        return (T)model;
     }
 
 
@@ -52,30 +64,43 @@ public class BasePopup<T> {
         this.historyList = historyList;
     }
 
-    public void changeScene(T popupModel, String fxmlPath, String title){
+    public void changeScene(Object popupModel, String fxmlPath, String title){
+        callback.onEvent("change-page",getModel());
         AnchorPane popupAnchorPane;
         FXMLLoader myPopUp = new FXMLLoader(getClass().getResource(fxmlPath));
         historyList.addHistory(new PopupHistory(popupFxmlPath,popupTitle));
-        try {
+        BasePopup<T> popupController;
+        try{
             popupAnchorPane = myPopUp.load();
-            BasePopup<T> popupController = myPopUp.getController();
-            popupController.setStage(stage);
-            popupController.setModel(popupModel);
-            popupController.setHistoryList(historyList);
-            popupController.setPopupTitle(title);
-            popupController.setPopupFxmlPath(fxmlPath);
-
-
-            this.setModel(popupModel);
-
-            popupController.onPopupOpen();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
+        catch (IOException e) {
+            throw new RuntimeException("error on loading popup: "+e);
+        }
+
+        popupController = myPopUp.getController();
+        popupController.setStage(stage);
+        popupController.setModel(popupModel);
+        popupController.setPopupCallback(callback);
+
+        popupController.setEventListeners(eventListeners);
+
+        popupController.setHistoryList(historyList);
+        popupController.setPopupTitle(title);
+        popupController.setPopupFxmlPath(fxmlPath);
+
+
+        this.setModel(popupModel);
+        popupController.onPopupOpen();
         //Stage oldStage = this.stage;
         //this.stage = new Stage();
         this.stage.setScene(new Scene(popupAnchorPane));
         this.stage.centerOnScreen();
+//        this.stage.setOnCloseRequest(event -> {
+//            if (callback != null) {
+//                callback.onEvent("close", null);
+//            }
+//        });
+
 
         //this.stage.initOwner(popupRoot);
         //oldStage.close();
@@ -86,6 +111,12 @@ public class BasePopup<T> {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        this.stage.setOnCloseRequest(event -> {
+            if (callback != null) {
+                callback.onEvent("close", getModel());
+                issueEvent("close", getModel());
+            }
+        });
     }
 
     public void back(){
@@ -94,10 +125,42 @@ public class BasePopup<T> {
     }
 
     public void close(){
+        callback.onEvent("close",getModel());
+        issueEvent("close", getModel());
         stage.close();
     }
 
     public void setPopupRoot(Window popupRoot) {
         this.popupRoot = popupRoot;
+    }
+
+    public void setPopupCallback(PopupCallback callback) {
+        this.callback = callback;
+    }
+
+    @Override
+    public void issueEvent(String eventName, Object eventData) {
+        if (eventListeners.containsKey(eventName)) {
+            for (EventCallback callback : eventListeners.get(eventName)) {
+                callback.onEvent(eventData);
+            }
+        }
+    }
+
+    @Override
+    public void issueEvent(String eventName) {
+        if (eventListeners.containsKey(eventName)) {
+            for (EventCallback callback : eventListeners.get(eventName)) {
+                callback.onEvent(null);
+            }
+        }
+    }
+
+    @Override
+    public void addEventListener(String eventName, EventCallback callback) {
+        if (!eventListeners.containsKey(eventName)) {
+            eventListeners.put(eventName, new ArrayList<>());
+        }
+        eventListeners.get(eventName).add(callback);
     }
 }
