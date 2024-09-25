@@ -2,6 +2,9 @@ module ku.cs {
     requires javafx.controls;
     requires javafx.fxml;
     requires bcrypt;
+    requires java.desktop;
+    requires javafx.swing;
+    requires org.apache.pdfbox;
 
     opens ku.cs.cs211671project to javafx.fxml;
     exports ku.cs.cs211671project;
@@ -35,4 +38,12 @@ module ku.cs {
 
     exports ku.cs.services to javafx.fxml;
     opens ku.cs.services to javafx.fxml;
+    exports ku.cs.services.datasource to javafx.fxml;
+    opens ku.cs.services.datasource to javafx.fxml;
+    exports ku.cs.services.popup to javafx.fxml;
+    opens ku.cs.services.popup to javafx.fxml;
+    exports ku.cs.controllers.components.tables;
+    opens ku.cs.controllers.components.tables to javafx.fxml;
+    exports ku.cs.controllers.components.navigationbars;
+    opens ku.cs.controllers.components.navigationbars to javafx.fxml;
 }
