@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorRequestFormConfirmationPopup">
+   <children>
+      <VBox alignment="CENTER" layoutY="3.0" prefHeight="293.0" prefWidth="800.0" spacing="20.0">
+         <children>
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="ดำเนินการใบคำร้อง">
+               <font>
+                  <Font name="TH SarabunPSK" size="48.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onDenyButtonClick" prefHeight="50.0" prefWidth="272.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onAcceptButtonClick" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ส่งต่อให้เจ้าหน้าที่ภาควิชา">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
