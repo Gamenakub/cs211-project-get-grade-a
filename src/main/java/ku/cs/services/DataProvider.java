@@ -1,9 +1,5 @@
 package ku.cs.services;
 
-import ku.cs.models.Department;
-import ku.cs.models.DepartmentApprover;
-import ku.cs.models.Faculty;
-import ku.cs.models.FacultyApprover;
 import ku.cs.models.collections.*;
 import ku.cs.models.requestforms.AbsenceRequestForm;
 import ku.cs.models.requestforms.AddDropRequestForm;
