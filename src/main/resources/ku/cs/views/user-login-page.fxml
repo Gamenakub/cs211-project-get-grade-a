@@ -1,67 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #4F4F4F;" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.UserLoginPageController">
    <children>
+      <ImageView fitHeight="720.0" fitWidth="1080.0" layoutX="8.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../images/user-login-background.jpg" />
+         </image>
+      </ImageView>
       <Pane layoutX="156.0" layoutY="28.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label layoutX="60.0" layoutY="76.0" styleClass="Header" text="ลงชื่อเข้าใช้">
+            <Label layoutX="59.0" layoutY="110.0" styleClass="header" text="ลงชื่อเข้าใช้">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
             </Label>
-            <Button layoutX="100.0" layoutY="445.0" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="50.0" prefWidth="200.0" styleClass="DefaultButton" text="ลงชื่อเข้าใช้" textFill="WHITE" />
-            <VBox layoutX="60.0" layoutY="200.0" prefHeight="200.0" prefWidth="280.0" spacing="40.0">
+            <Button layoutX="100.0" layoutY="441.0" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="ลงชื่อเข้าใช้" textFill="WHITE" />
+            <VBox layoutX="60.0" layoutY="226.0" prefHeight="180.0" prefWidth="280.0" spacing="20.0">
                <children>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="ชื่อผู้ใช้งาน">
+                        <Label styleClass="text-field-label" text="ชื่อผู้ใช้งาน">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="usernameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อผู้ใช้งาน" styleClass="TextFieldBox" />
+                        <TextField fx:id="usernameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อผู้ใช้งาน" styleClass="text-field-box" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="รหัสผ่าน">
+                        <Label styleClass="text-field-label" text="รหัสผ่าน">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="passwordTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสผ่าน" styleClass="TextFieldBox" />
+                        <PasswordField fx:id="passwordField" onKeyPressed="#pressEnter" promptText="กรอกรหัสผ่าน" styleClass="text-field-box" />
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <Label alignment="CENTER" layoutY="516.0" onMouseClicked="#onDeveloperInformationButton" prefHeight="62.0" prefWidth="400.0" styleClass="NormalText" text="คลิกเพื่อดูข้อมูลนิสิตผู้จัดทําโปรแกรม" underline="true">
+            <HBox alignment="CENTER" layoutY="497.0" prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" onMouseClicked="#onDeveloperInformationButton" prefHeight="62.0" prefWidth="260.0" style="-fx-cursor: hand;" styleClass="normal-text" text="คลิกเพื่อดูข้อมูลนิสิตผู้จัดทําโปรแกรม" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-11.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="53.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="114.0" layoutY="38.0" styleClass="sub-header" text="FormXpress">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="TH SarabunPSK Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </Pane>
       <Pane layoutX="556.0" layoutY="28.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #009F99;" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label layoutX="40.0" layoutY="188.0" styleClass="Header" text="นิสิต" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="188.0" text="นิสิต" textFill="WHITE">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
+               <styleClass>
+                  <String fx:value="header" />
+                  <String fx:value="white-label" />
+               </styleClass>
             </Label>
-            <Label layoutX="40.0" layoutY="253.0" styleClass="Header" text="ยังไม่ได้ลงทะเบียน ?" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="253.0" text="ยังไม่ได้ลงทะเบียน ?" textFill="WHITE">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
+               <styleClass>
+                  <String fx:value="white-label" />
+                  <String fx:value="header" />
+               </styleClass>
             </Label>
-            <Button layoutX="100.0" layoutY="362.0" mnemonicParsing="false" onAction="#onRegisterButton" prefHeight="50.0" prefWidth="200.0" styleClass="BorderButton" text="ลงทะเบียนเข้าใช้งาน" textFill="WHITE" />
+            <Button layoutX="100.0" layoutY="362.0" mnemonicParsing="false" onAction="#onRegisterButton" prefHeight="50.0" prefWidth="200.0" styleClass="border-button" text="ลงทะเบียนเข้าใช้งาน" textFill="WHITE" />
          </children>
       </Pane>
    </children>
