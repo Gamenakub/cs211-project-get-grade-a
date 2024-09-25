@@ -1,5 +1,8 @@
 package ku.cs.models;
 
+import ku.cs.models.requestforms.RequestForm;
+import ku.cs.models.users.User;
+
 public class FormDataModel {
     private String formHolder;
     private String acceptMessage;
@@ -7,12 +10,16 @@ public class FormDataModel {
     private String nisitId;
     private String topic;
     private String number;
-    public FormDataModel(String formHolder, String formType, String nisitId, String topic, String number) {
-        this.formHolder = formHolder;
-        this.formType = formType;
-        this.nisitId = nisitId;
-        this.topic = topic;
-        this.number = number;
+    private RequestForm formObject;
+    private boolean isReadonly;
+    private User user;
+    public FormDataModel(boolean isReadonly, User user, RequestForm formObject) {
+        this.formObject = formObject;
+        this.isReadonly = isReadonly;
+        this.user = user;
+    }
+    public boolean isReadonly() {
+        return isReadonly;
     }
     public String getFormHolder() {
         return formHolder;
@@ -27,15 +34,10 @@ public class FormDataModel {
         return formType;
     }
 
-    public String getNisitId() {
-        return nisitId;
+    public void setFormObject(RequestForm obj) {
+        this.formObject = obj;
     }
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public String getNumber() {
-        return number;
+    public RequestForm getFormObject() {
+        return formObject;
     }
 }
