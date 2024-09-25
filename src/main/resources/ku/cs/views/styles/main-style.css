@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'TH SarabunPSK';
     src: url('THSarabunBold.ttf');
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 @font-face {
@@ -22,21 +22,91 @@
 @font-face {
     font-family: 'TH Mali Grade 6';
     src: url('THMaliGrade6Bold.ttf');
-    font-weight: bold;
+    /*font-weight : bold;*/
 }
 
-.Background {
-    -fx-background-color: #f9f9f9;
+
+/* Define global styles for default theme */
+.root {
+    -fx-background-color: #F9F9F9;
+    -secondary-color: #FFFFFF;
+    -navbar-background-color: #ffffff;
+    -text-fill: #000000;
+    -accent: #FFFFFF; /* Used as inverse text color */
+    -border-color: #000000;
+    -default-button-color : #006B67;
+    -default-button-color-hover :#009890;
+    -navbar-button-hover-color : #e1e1e1;
+    -table-row-color : #efefef;
+    -drop-shadow : dropshadow(gaussian, rgba(81, 81, 81, 0.8), 4, 0, 2, 2);
 }
 
-.TextFieldBox,.SubjectInfoBox,.MenuButton {
+/* Define styles for dark theme */
+.dark-theme {
+    -fx-background-color: #222222;
+    -text-fill: #d1d1d1;
+    -secondary-color: #000000; /* Used as primary color */
+    -accent: #000000; /* Used as inverse text color */
+    -border-color: #FFFFFF;
+    -default-button-color : #009a21;
+    -navbar-background-color: #000000;
+    -default-button-color-hover : #00bc27;
+    -navbar-button-hover-color : #191919;
+    -table-row-color : #2e2e2e;
+    -drop-shadow : dropshadow(gaussian, rgba(89, 89, 89, 0.8), 5, 0, 2, 2);
+}
+
+
+.subject-container{
+    -fx-background-color: -secondary-color;
+    -fx-border-color: -border-color;
+
+}
+
+.profile-container{
+    -fx-background-color: -secondary-color;
+
+}
+
+
+
+.angsana-new-font .header,
+.angsana-new-font .popup-header,
+.angsana-new-font .sub-header,
+.angsana-new-font .white-label,
+.angsana-new-font .normal-text,
+.angsana-new-font .green-button,
+.angsana-new-font .deny-button,
+.angsana-new-font .back-button,
+.angsana-new-font .border-button,
+.angsana-new-font .navbar-button{
+    -fx-font-family: "Angsana New";
+}
+
+.mali-grade-font .header,
+.mali-grade-font .popup-header,
+.mali-grade-font .sub-header,
+.mali-grade-font .white-label,
+.mali-grade-font .normal-text,
+.mali-grade-font .green-button,
+.mali-grade-font .deny-button,
+.mali-grade-font .back-button,
+.mali-grade-font .border-button,
+.mali-grade-font .navbar-button,
+.mali-grade-font .menu-button,
+.mali-grade-font.table-text{
+    -fx-font-family: "TH Mali Grade 6";
+}
+
+
+.text-field-box, .subject-info-box, .menu-button {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: black;
     -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: normal;
 }
 
-.TextFieldBox {
+.text-field-box {
     -fx-background-radius: 12;
     -fx-border-color: black;
     -fx-border-radius: 12;
@@ -44,41 +114,100 @@
     -fx-font-size: 20;
 }
 
-.TextFieldLabel {
+.text-field-label {
     -fx-font-size: 18;
-    -fx-text-fill: black;
+    -fx-text-fill: -text-fill;
     -fx-font-family: "TH SarabunPSK";
 }
 
-.Header,.PopupHeader,.SubHeader,.NormalText
-{
+.table-text .button{
+    -fx-text-fill: -text-fill;
+}
+.alert-text-field-label .content{
+    -fx-font-size: 22;
+    -fx-text-fill: -text-fill;
+    -fx-font-family: "TH SarabunPSK";
+}
+
+.header, .popup-header, .sub-header, .white-label{
+    -fx-text-fill: -text-fill;
     -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: bold;
 }
 
-.Header {
+
+.header {
     -fx-font-size: 56;
 }
 
-.PopupHeader {
-    -fx-font-size: 48;
+.font-size-large .header {
+    -fx-font-size: 66;
 }
 
-.SubHeader {
+.font-size-small .header{
+    -fx-font-size: 46;
+}
+
+.popup-header {
+    -fx-font-size: 52;
+}
+
+.font-size-large .popup-header{
+    -fx-font-size: 62;
+}
+
+.font-size-small .popup-header{
+    -fx-font-size: 42;
+}
+
+.sub-header {
+    -fx-text-fill: -text-fill;
     -fx-font-size: 32;
 }
+.font-size-large .sub-header {
+    -fx-font-size: 42;
+}
 
-.NormalText {
+.font-size-small .sub-header {
+    -fx-font-size: 22;
+}
+
+.normal-text {
+    -fx-text-fill: -text-fill;
     -fx-font-size: 24;
+    -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: normal;
 }
 
-.NavBarButton {
-    -fx-border-color: #FFFFFF;
-    -fx-background-color: #FFFFFF;
+.font-size-large .normal-text{
+    -fx-font-size: 34;
 }
 
-.PopupDatePicker {
+.font-size-large .normal-text{
+    -fx-font-size: 14;
+}
+
+.navbar-background{
+    -fx-background-color: -navbar-background-color;
+    -fx-effect: -drop-shadow;
+}
+.navbar-button {
+    -fx-text-fill: -text-fill;
+    -fx-font-size: 18;
+    -fx-font-family: "TH SarabunPSK";
+    -fx-font-weight: normal;
+    -fx-background-color: -navbar-background-color;
+    -fx-cursor: hand;
+}
+
+
+.navbar-button:hover {
+    /*-fx-border-color: #cfcfcf; !* Change the border color on hover *!*/
+    -fx-background-color: -navbar-button-hover-color; /* Change the background color on hover */
+}
+
+
+.popup-date-picker {
     -fx-background-color: #FFFFFF;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
@@ -87,37 +216,160 @@
     -fx-font-size: 16;
 }
 
-.DefaultButton,.DenyButton,.BackButton,.BorderButton {
+.green-button, .deny-button, .back-button, .border-button {
     -fx-background-radius: 12;
     -fx-border-width: 1;
     -fx-font-family: "TH SarabunPSK";
     -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-text-alignment: center;
+    -fx-cursor: hand;
 }
 
-.BorderButton {
+.font-size-large .green-button,
+.font-size-large .back-button,
+.font-size-large .deny-button,
+.font-size-large .border-button,
+.font-size-large .menu-button,
+.font-size-large .navbar-button{
+    -fx-font-size: 25;
+}
+
+.font-size-small .green-button,
+.font-size-small .back-button,
+.font-size-small .deny-button,
+.font-size-small .border-button,
+.font-size-small .menu-button,
+.font-size-small .navbar-button{
+    -fx-font-size: 15;
+}
+
+.border-button {
     -fx-border-radius: 12;
-    -fx-border-color: white;
+    -fx-border-color: white; /* Replace with specific color if needed */
+    -fx-text-fill: white; /* Replace with specific color if needed */
     -fx-background-color: transparent;
 }
 
-.DefaultButton {
-    -fx-background-color: #006B67;
+.green-button {
+    -fx-background-color: -default-button-color;
+    -fx-text-fill: #FFFFFF;
 }
 
-.MenuButton {
+.table-row .green-button{
+    -fx-background-radius: 4;
+    -fx-font-size: 14;
+}
+
+.green-button:hover{
+    -fx-background-color: -default-button-color-hover;
+}
+
+
+
+.menu-button {
+    -fx-background-color: #ffffff;
     -fx-background-radius: 12;
     -fx-border-color: black;
     -fx-border-radius: 12;
     -fx-border-width: 1;
     -fx-font-size: 20;
+
 }
 
-.BackButton {
+.menu-button :hover {
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 12;
+}
+
+.back-button {
+    -fx-text-fill: black;
     -fx-background-color: #e3e3e3;
 }
 
-.DenyButton {
-    -fx-background-color: #DA3131;
+.white-label{
+    -fx-text-fill: #FFFFFF;
 }
+
+.black-label{
+    -fx-text-fill: #000000;
+}
+
+.deny-button {
+    -fx-background-color: #DA3131;
+    -fx-text-fill: #FFFFFF;
+}
+
+.deny-button:hover {
+    -fx-background-color: #dd3535;
+}
+
+.table{
+
+    -fx-background: -table-row-color;
+
+}
+
+.table-component-vbox{
+    -fx-background-color: -table-row-color;
+}
+
+.table-text{
+    -fx-font-family: "TH SarabunPSK";
+    -fx-text-fill: -text-fill;
+    -fx-font-size: 18;
+}
+
+.table-row{
+    -fx-border-style: none,none,solid,none; /* กำหนดให้มี border แค่ด้านล่าง */
+    -fx-border-color: #F9F9F9; /* สีของ border */
+    -fx-border-width: 1; /* ความหนาของ border */
+    -fx-background: -table-row-color; /* ทำให้พื้นหลังโปร่งใส */
+}
+
+.upload-area{
+    -fx-background-color: #e3e3e3;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-border-style:dashed;
+}
+
+.dashboard-all-form{
+    -fx-background-color: #c3c3c3;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+.dashboard-success-form{
+    -fx-background-color: #6dfb6f;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+.dashboard-in-process-form{
+    -fx-background-color: #ffdc22;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+.dashboard-refused-form{
+    -fx-background-color: #ff4444;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+.dashboard-user{
+    -fx-background-color: #96f8ff;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+.dashboard-container{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-effect: -drop-shadow;
+}
+
+
+
