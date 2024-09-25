@@ -1,55 +1,68 @@
 package ku.cs.models.requestforms;
 
-import ku.cs.models.Subject;
-import ku.cs.models.collections.SubjectList;
+import ku.cs.models.Course;
+import ku.cs.models.collections.CourseList;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class AbsenceRequestForm extends RequestForm {
-    private String course;
-    private String year;
+    private String program;
+    private String academicYear;
     private String phoneNumber;
     private String facebookID;
     private String lineID;
     private String absenceType;
-    private LocalDateTime absenceDateTimeFrom;
-    private LocalDateTime absenceDateTimeUntil;
-    private SubjectList subjects;
+    private LocalDate absenceDateTimeFrom;
+    private LocalDate absenceDateTimeUntil;
+    private CourseList courseList;
+    public static int latestRequestFormId = 2;
 
-    public AbsenceRequestForm(String requestFormId, Student student, Advisor advisor, int status, String course, String year, String phoneNumber, String facebookID, String lineID, String absenceType, LocalDateTime absenceDateTimeFrom, LocalDateTime absenceDateTimeUntil) {
+    public AbsenceRequestForm(String requestFormId, Student student, Advisor advisor, Status status, String program, String academicYear, String phoneNumber, String facebookID, String lineID, String absenceType, LocalDate absenceDateTimeFrom, LocalDate absenceDateTimeUntil) {
         super("ใบคำร้องขอลาป่วยหรือลากิจ",requestFormId, student, advisor, status);
-        this.course = course;
-        this.year = year;
+        this.program = program;
+        this.academicYear = academicYear;
         this.phoneNumber = phoneNumber;
         this.facebookID = facebookID;
         this.lineID = lineID;
         this.absenceType = absenceType;
         this.absenceDateTimeFrom = absenceDateTimeFrom;
         this.absenceDateTimeUntil = absenceDateTimeUntil;
-        this.subjects = new SubjectList();
+        this.courseList = new CourseList();
+    }
+    public AbsenceRequestForm(Student student, Advisor advisor, Status status, String program, String academicYear, String phoneNumber, String facebookID, String lineID, String absenceType, LocalDate absenceDateTimeFrom, LocalDate absenceDateTimeUntil) {
+        super("ใบคำร้องขอลาป่วยหรือลากิจ","ขร."+(++latestRequestFormId), student, advisor, status);
+        this.program = program;
+        this.academicYear = academicYear;
+        this.phoneNumber = phoneNumber;
+        this.facebookID = facebookID;
+        this.lineID = lineID;
+        this.absenceType = absenceType;
+        this.absenceDateTimeFrom = absenceDateTimeFrom;
+        this.absenceDateTimeUntil = absenceDateTimeUntil;
+        this.courseList = new CourseList();
     }
 
-    public void setCourse(String course) { this.course = course; }
-    public void setYear(String year) { this.year = year; }
+    public void setProgram(String program) { this.program = program; }
+    public void setAcademicYear(String academicYear) { this.academicYear = academicYear; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public void setFacebookID(String facebookID) { this.facebookID = facebookID;}
     public void setLineID(String lineID) {this.lineID = lineID; }
     public void setAbsenceType(String absenceType) { this.absenceType = absenceType; }
-    public void setAbsenceDateTimeFrom(LocalDateTime absenceDateTimeFrom) { this.absenceDateTimeFrom = absenceDateTimeFrom; }
-    public void setAbsenceDateTimeUntil(LocalDateTime absenceDateTimeUntil) { this.absenceDateTimeUntil = absenceDateTimeUntil; }
-    public void setSubjects(SubjectList subjects) { this.subjects = subjects; }
-    public void addSubject(Subject subject) { this.subjects.addSubject(subject); }
+    public void setAbsenceDateFrom(LocalDate absenceDateTimeFrom) { this.absenceDateTimeFrom = absenceDateTimeFrom; }
+    public void setAbsenceDateUntil(LocalDate absenceDateTimeUntil) { this.absenceDateTimeUntil = absenceDateTimeUntil; }
+    public void setCourseList(CourseList courseList) { this.courseList = courseList; }
+    public void addCourse(Course course) { this.courseList.addCourse(course); }
 
-    public String getCourse() { return course; }
-    public String getYear() { return year; }
+    public String getProgram() { return program; }
+    public String getAcademicYear() { return academicYear; }
     public String getPhoneNumber() { return phoneNumber; }
     public String getFacebookID() { return facebookID; }
     public String getLineID() { return lineID;}
     public String getAbsenceType() { return absenceType; }
-    public LocalDateTime getAbsenceDateTimeFrom() { return absenceDateTimeFrom; }
-    public LocalDateTime getAbsenceDateTimeUntil() { return absenceDateTimeUntil; }
-    public SubjectList getSubjects() { return subjects; }
+    public LocalDate getAbsenceDateFrom() { return absenceDateTimeFrom; }
+    public LocalDate getAbsenceDateUntil() { return absenceDateTimeUntil; }
+    public CourseList getCourseList() { return courseList; }
 }
 
