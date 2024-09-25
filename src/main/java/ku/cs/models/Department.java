@@ -1,11 +1,11 @@
 package ku.cs.models;
 
-public class Department {
+public class Department implements Comparable<Department> {
     private String name;
     private String id;
     private Faculty faculty;
 
-    public Department(String name, String id, Faculty faculty) {
+    Department(String name, String id, Faculty faculty) {
         this.name = name;
         this.id = id;
         this.faculty = faculty;
@@ -40,6 +40,12 @@ public class Department {
     }
 
     public boolean isId(String Id){
-        return this.name.equals(Id);
+        return this.id.equals(Id);
+    }
+
+
+    @Override
+    public int compareTo(Department o) {
+        return (this.getId()).compareTo(o.getId());
     }
 }
