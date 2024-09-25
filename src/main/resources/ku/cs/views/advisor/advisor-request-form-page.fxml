@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.advisor.AdvisorRequestFormController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="root" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.advisor.AdvisorRequestFormController">
    <children>
       <VBox layoutX="1.0" layoutY="191.0" prefHeight="528.0" prefWidth="1080.0" spacing="8.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
                <children>
-                  <TextField fx:id="SearchTextField" prefHeight="51.0" prefWidth="502.0" styleClass="TextFieldBox">
+                  <TextField fx:id="searchTextField" prefHeight="51.0" prefWidth="502.0" styleClass="text-field-box">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="104.0" styleClass="DefaultButton" text="search" />
-                  <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="MenuButton" text="filter">
+                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="51.0" prefWidth="104.0" styleClass="menu-button" text="search" />
+                  <MenuButton mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="menu-button" text="filter">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onOldToNewFilterClick" text="เก่า-ใหม่" />
                       <MenuItem mnemonicParsing="false" onAction="#onNewToOldFilterClick" text="ใหม่-เก่า" />
@@ -42,7 +42,7 @@
       <Pane fx:id="navBarPane" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="1078.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="Header" text="จัดการคำร้อง">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="จัดการคำร้อง">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
