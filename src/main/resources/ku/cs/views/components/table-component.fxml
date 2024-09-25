@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.TableComponentController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.tables.TableComponentController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0" spacing="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0" spacing="0.0" styleClass="table">
          <children>
-            <HBox fx:id="tableHeaderHBox" prefHeight="40.0" prefWidth="200.0"  spacing="0.0" style="-fx-border-style: hidden none solid none;" />
-            <ScrollPane fx:id="tableScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0">
+            <HBox fx:id="tableHeaderHBox" prefHeight="40.0" prefWidth="200.0" spacing="0.0" />
+            <ScrollPane fx:id="tableScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="200.0" prefWidth="200.0" styleClass="table">
                <content>
                   <VBox fx:id="tableComponentVBox" />
                </content>
