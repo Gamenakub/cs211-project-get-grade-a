@@ -1,7 +1,6 @@
 package ku.cs.services;
 
 import javafx.scene.control.Button;
-
 import javafx.scene.layout.HBox;
 import ku.cs.controllers.components.tables.EventCallback;
 

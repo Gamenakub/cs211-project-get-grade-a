@@ -1,7 +1,5 @@
 package ku.cs.controllers.components.tables;
 
-import javafx.util.Pair;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
