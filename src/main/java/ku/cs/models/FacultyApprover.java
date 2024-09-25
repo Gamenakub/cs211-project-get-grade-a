@@ -6,7 +6,7 @@ public class FacultyApprover {
     private String role;
     private Faculty faculty;
 
-    public FacultyApprover(String name, String surname, String role, Faculty faculty, Department department) {
+    public FacultyApprover(String name, String surname, String role, Faculty faculty) {
         this.name = name;
         this.surname = surname;
         this.role = role;
@@ -23,4 +23,15 @@ public class FacultyApprover {
         return this.name.equals(name);
     }
 
+    public void setName(String s) {
+        this.name = s;
+    }
+
+    public void setSurname(String s) {
+        this.surname = s;
+    }
+
+    public String getFullName() {
+        return name + " " + surname;
+    }
 }
