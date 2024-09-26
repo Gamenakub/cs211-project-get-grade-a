@@ -11,7 +11,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import ku.cs.controllers.components.SearchController;
 import ku.cs.controllers.components.tables.TableComponentController;
-import ku.cs.controllers.officer.RequestFormsTableDescriptor;
+import ku.cs.controllers.advisor.StudentRequestFormHistoryTableDescriptor;
 import ku.cs.models.FormDataModel;
 import ku.cs.models.requestforms.AbsenceRequestForm;
 import ku.cs.models.requestforms.AddDropRequestForm;
@@ -66,9 +66,9 @@ public class StudentRequestFormTrackingPageController {
             tableController.setDisplayRowCount(5);
 
             tableController.setTablePane(tablePane);
-            tableController.setTableHeadDescriptor(new RequestFormsTableDescriptor());
+            tableController.setTableHeadDescriptor(new StudentRequestFormHistoryTableDescriptor());
 
-            tableController.addEventListener("กดดำเนินการ", eventData -> {
+            tableController.addEventListener("ดูคำร้อง", eventData -> {
                 System.out.println("clicked");
                 RequestForm obj = (RequestForm) eventData;
                 FormDataModel formDataModel = new FormDataModel(true, Session.getSession().getLoggedInUser(),obj);
