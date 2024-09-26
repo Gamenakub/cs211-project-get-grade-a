@@ -42,7 +42,7 @@ public class StudentCreateRequestFormPopupController extends BasePopup<Student> 
     }
     @FXML public void onSelectDropRequestFormMenuItem() {
         formPath = "/ku/cs/views/request-forms/student-add-drop-request-form-popup-page1.fxml";
-        menuButton.setText("ใบคำร้องลงถอนรายวิชาล่าช้า");
+        menuButton.setText("ใบคำร้องถอนรายวิชาล่าช้า");
     }
     @FXML public void onSelectCoEnrollRequestFormMenuItem() {
         formPath = "/ku/cs/views/request-forms/student-co-enroll-request-form-popup-page1.fxml";
