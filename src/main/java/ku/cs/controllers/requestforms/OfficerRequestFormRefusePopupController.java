@@ -51,15 +51,15 @@ public class OfficerRequestFormRefusePopupController extends BasePopup<FormDataM
             DepartmentOfficer departmentOfficer = (DepartmentOfficer) Session.getSession().getLoggedInUser();
             RequestFormActionHistory requestFormActionHistory = new RequestFormActionHistory(requestForm.getRequestFormId(),departmentOfficer.getUsername(), RequestForm.Status.REFUSED_BY_DEPARTMENT, RequestFormActionHistory.ApproverType.DEPARTMENT);
             requestForm.setStatus(requestFormActionHistory);
-            requestForm.setTimeStamp(LocalDateTime.now());
-            ((DepartmentOfficer)Session.getSession().getLoggedInUser()).getRequestFormList().removeForm(requestForm);
+            //requestForm.setTimeStamp(LocalDateTime.now());
+            //((DepartmentOfficer)Session.getSession().getLoggedInUser()).getRequestFormList().removeForm(requestForm);
         }
         else if (Session.getSession().getLoggedInUser() instanceof FacultyOfficer){
             FacultyOfficer facultyOfficer = (FacultyOfficer) Session.getSession().getLoggedInUser();
             RequestFormActionHistory requestFormActionHistory = new RequestFormActionHistory(requestForm.getRequestFormId(),facultyOfficer.getUsername(), RequestForm.Status.REFUSED_BY_FACULTY, RequestFormActionHistory.ApproverType.FACULTY);
             requestForm.setStatus(requestFormActionHistory);
-            requestForm.setTimeStamp(LocalDateTime.now());
-            ((FacultyOfficer)Session.getSession().getLoggedInUser()).getRequestFormList().removeForm(requestForm);
+            // requestForm.setTimeStamp(LocalDateTime.now());
+            // ((FacultyOfficer)Session.getSession().getLoggedInUser()).getRequestFormList().removeForm(requestForm);
         }
         close();
     }
