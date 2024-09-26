@@ -18,13 +18,13 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
                <children>
-                  <TextField fx:id="studentHistorySearchTextField" prefHeight="51.0" prefWidth="502.0" styleClass="text-field-box">
+                  <TextField fx:id="searchTextField" prefHeight="51.0" prefWidth="502.0" styleClass="text-field-box">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </TextField>
                   <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="44.0" prefWidth="86.0" styleClass="green-button" stylesheets="@../styles/main-style.css" text="ค้นหา" />
-                  <MenuButton mnemonicParsing="false" styleClass="menu-button" text="ทั้งหมด">
+                  <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" styleClass="menu-button" text="ทั้งหมด">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onAllFilterButtonClick" text="ทั้งหมด" />
                       <MenuItem mnemonicParsing="false" onAction="#onSuccessFormFilterButtonClick" text="สำเร็จแล้ว" />
@@ -44,11 +44,20 @@
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1078.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="ประวัติการทำรายการของ">
-               <font>
-                  <Font name="TH SarabunPSK Bold" size="64.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label prefHeight="78.0" prefWidth="397.0" styleClass="header" text="ประวัติการทำรายการของ">
+                     <font>
+                        <Font name="TH SarabunPSK Bold" size="64.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="studentLabel" styleClass="header" text="Label">
+                     <font>
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets left="80.0" top="20.0" />

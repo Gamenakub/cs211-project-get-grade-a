@@ -37,7 +37,10 @@
                       <MenuItem fx:id="smallItem" mnemonicParsing="false" onAction="#onSmallItemClick" text="Small" />
                     </items>
                   </MenuButton>
-                  <ImageView fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onThemeButtonClick" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onThemeButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/navbar-icons/dark-mode-icon.png" />
+                     </image></ImageView>
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/navbar-icons/logout-icon.png" />

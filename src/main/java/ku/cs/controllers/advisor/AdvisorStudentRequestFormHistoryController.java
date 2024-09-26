@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -35,9 +36,16 @@ public class AdvisorStudentRequestFormHistoryController {
     @FXML
     private AnchorPane anchorPane;
 
+    @FXML
+    private MenuButton filterMenuButton;
+
+    @FXML
+    private Label studentLabel;
+
     private Student student;
 
     private SearchController searchController;
+    @FXML
     private TextField searchTextField;
 
     private TableComponentController tableController;
@@ -57,7 +65,7 @@ public class AdvisorStudentRequestFormHistoryController {
 
         Session.getSession().setNavbar(navBarPane);
         Session.getSession().getTheme().setTheme(anchorPane);
-
+        studentLabel.setText(student.getName()+" "+student.getSurname());
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
@@ -109,6 +117,39 @@ public class AdvisorStudentRequestFormHistoryController {
 
 
     }
+
+    @FXML
+    void onAllFilterButtonClick(){
+        filterMenuButton.setText("ทั้งหมด");
+        searchController.resetFilter();
+    }
+
+    @FXML
+    void onSuccessFormFilterButtonClick(){
+        filterMenuButton.setText("สำเร็จแล้ว");
+        searchController.setFilterContext("APPROVED");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onInProgressFormFilterButtonClick(){
+        filterMenuButton.setText("กำลังดำเนินการ");
+        searchController.setFilterContext("PENDING");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onRejectedFormFilterButtonClick(){
+        filterMenuButton.setText("ปฏิเสธ");
+        searchController.setFilterContext("REJECTED");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onSearchButtonClick() {
+        searchController.searchFilter();
+    }
+
 
 
 
