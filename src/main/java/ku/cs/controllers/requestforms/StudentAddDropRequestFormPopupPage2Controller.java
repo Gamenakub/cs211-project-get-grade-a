@@ -179,14 +179,14 @@ public class StudentAddDropRequestFormPopupPage2Controller extends BasePopup<For
             if (Session.getSession().getLoggedInUser() instanceof Student) {
                 changeScene(getModel(), "/ku/cs/views/request-forms/preview-pdf.fxml", "preview pdf");
             } else {
-                changeScene(getModel(), "ku/cs/views/request-forms/department-officer-form-confirmation-popup.fxml", "form"); // TODO: After implement
+                changeScene(getModel(), "/ku/cs/views/request-forms/department-officer-form-confirmation-popup.fxml", "form"); // TODO: After implement
             }
         }
         else if (addDropRequestForm.getStatus() == RequestForm.Status.PENDING_TO_FACULTY){
             if (Session.getSession().getLoggedInUser() instanceof Student) {
                 changeScene(getModel(), "/ku/cs/views/request-forms/preview-pdf.fxml", "preview pdf");
             } else {
-                changeScene(getModel(), "ku/cs/views/request-forms/faculty-officer-form-confirmation-popup.fxml", "form"); // TODO: After implement
+                changeScene(getModel(), "/ku/cs/views/request-forms/faculty-officer-form-confirmation-popup.fxml", "form"); // TODO: After implement
             }
         }
         else if (addDropRequestForm.getStatus() == RequestForm.Status.PENDING_TO_ADVISOR){

@@ -13,7 +13,7 @@
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="247.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label fx:id="requestAcceptLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="SubHeader" text="requestAcceptLabel">
+            <Label fx:id="requestAcceptLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="sub-header" text="requestAcceptLabel">
                <font>
                   <Font name="TH SarabunPSK Bold" size="40.0" />
                </font>
@@ -27,7 +27,7 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
                   <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="DefaultButton" text="รับทราบ" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="รับทราบ" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

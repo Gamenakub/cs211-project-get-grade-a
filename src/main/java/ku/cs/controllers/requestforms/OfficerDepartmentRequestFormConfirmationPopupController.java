@@ -24,12 +24,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class OfficerDepartmentRequestFormConfirmationPopupController extends BasePopup<FormDataModel> {
-    public ChoiceBox selectDepartmentApprover;
+
     @FXML
     private AnchorPane anchorPane;
     private FileUploader fileUploader;
     private DepartmentOfficer officer;
     private DepartmentApprover selectedApprover;
+
+    @FXML
+    private ChoiceBox<String> selectTargetDepartmentApprover;
 
     @FXML
     public void initialize() {
@@ -42,12 +45,13 @@ public class OfficerDepartmentRequestFormConfirmationPopupController extends Bas
         fileUploader = new FileUploader(ProfilePictureController.imagesPath);
         Session.getSession().getTheme().setTheme(anchorPane);
         officer = (DepartmentOfficer) Session.getSession().getLoggedInUser();
+        // selectDepartmentApprover = new ChoiceBox();
         for (DepartmentApprover approver : officer.getDepartmentApproverList().getApprovers()) {
-            selectDepartmentApprover.getItems().add(approver.getName()+" "+approver.getSurname());
+            selectTargetDepartmentApprover.getItems().add(approver.getName()+" "+approver.getSurname());
         }
-        selectDepartmentApprover.setOnAction(
+        selectTargetDepartmentApprover.setOnAction(
                 event -> {
-                    selectedApprover = officer.getDepartmentApproverList().getApprovers().get(selectDepartmentApprover.getSelectionModel().getSelectedIndex());
+                    selectedApprover = officer.getDepartmentApproverList().getApprovers().get(selectTargetDepartmentApprover.getSelectionModel().getSelectedIndex());
                 }
         );
     }
