@@ -43,7 +43,6 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             nameTextField.setText(advisor.getName());
             surnameTextField.setText(advisor.getSurname());
             usernameTextField.setText(advisor.getUsername());
-            defaultPasswordField.setText("Test");
             advisorIdTextField.setText(advisor.getAdvisorId());
             FacultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
         } else {
