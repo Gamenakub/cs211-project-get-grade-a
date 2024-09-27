@@ -16,7 +16,7 @@
          <children>
             <Pane prefHeight="80.0" prefWidth="1080.0">
                <children>
-                  <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBackToLoginButton" styleClass="BackButton" text="กลับไปหน้าลงชื่อเข้าใช้" />
+                  <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBackToLoginButton" styleClass="back-button" text="กลับไปหน้าลงชื่อเข้าใช้" />
                </children></Pane>
             <Label styleClass="HeadLabel" text="ข้อมูลนิสิตผู้จัดทำโปรแกรม">
                <font>
@@ -31,8 +31,8 @@
                            <image>
                               <Image url="@../../../images/developer-pictures/thaphon-picture.png" />
                            </image></ImageView>
-                        <Label styleClass="NormalText" text="ฐาพล ชินกรสกุล (ซัน)" />
-                        <Label styleClass="NormalText" text="6610401993" />
+                        <Label styleClass="normal-text" text="ฐาพล ชินกรสกุล (ซัน)" />
+                        <Label styleClass="normal-text" text="6610401993" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
@@ -41,8 +41,8 @@
                            <image>
                               <Image url="@../../../images/developer-pictures/tee-picture.png" />
                            </image></ImageView>
-                        <Label styleClass="NormalText" text="ธีร์ อนุสรณ์ศาสน์ (ตี้)" />
-                        <Label styleClass="NormalText" text="661040XXXX" />
+                        <Label styleClass="normal-text" text="ธีร์ อนุสรณ์ศาสน์ (ตี้)" />
+                        <Label styleClass="normal-text" text="661040XXXX" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
@@ -51,8 +51,8 @@
                            <image>
                               <Image url="@../../../images/developer-pictures/isarapong-picture.png" />
                            </image></ImageView>
-                        <Label styleClass="NormalText" text="อิสรพงษ์ เถื่อนสกุล (เกม)" />
-                        <Label styleClass="NormalText" text="6610402272" />
+                        <Label styleClass="normal-text" text="อิสรพงษ์ เถื่อนสกุล (เกม)" />
+                        <Label styleClass="normal-text" text="6610402272" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
@@ -61,8 +61,8 @@
                            <image>
                               <Image url="@../../../images/developer-pictures/jirat-picture.png" />
                            </image></ImageView>
-                        <Label styleClass="NormalText" text="จิรัฏฐ์ ค่องสกุล (เฟม)" />
-                        <Label styleClass="NormalText" text="6610405832" />
+                        <Label styleClass="normal-text" text="จิรัฏฐ์ ค่องสกุล (เฟม)" />
+                        <Label styleClass="normal-text" text="6610405832" />
                      </children>
                   </VBox>
                </children>

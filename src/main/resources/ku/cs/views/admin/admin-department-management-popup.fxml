@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,7 +14,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Label fx:id="titleLabel" styleClass="PopupHeader" text="แก้ไขข้อมูลภาควิชา">
+            <Label fx:id="titleLabel" styleClass="popup-header" text="แก้ไขข้อมูลภาควิชา">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -24,37 +23,32 @@
                <children>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="ชื่อภาควิชา">
+                        <Label styleClass="text-field-label" text="ชื่อภาควิชา">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="TextFieldBox" />
+                        <TextField fx:id="departmentNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="text-field-box" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="คณะที่สังกัด">
+                        <Label styleClass="text-field-label" text="คณะที่สังกัด">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="facultyNameMenuButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="359.0" styleClass="MenuButton" text="วิทยาศาสตร์">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
+                        <MenuButton fx:id="facultyMenuButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="359.0" styleClass="menu-button" text="เลือกคณะที่สังกัด" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="รหัสภาควิชา">
+                        <Label styleClass="text-field-label" text="รหัสภาควิชา">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="TextFieldBox" />
+                        <TextField fx:id="departmentIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="text-field-box" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" />
@@ -64,8 +58,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" styleClass="DenyButton" text="ยกเลิก" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="ยืนยัน" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" styleClass="deny-button" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE" />
                </children>
             </HBox>
          </children>

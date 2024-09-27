@@ -3,15 +3,17 @@ package ku.cs.controllers.officer.faculty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ku.cs.controllers.components.TableComponentController;
-import ku.cs.controllers.components.TableRowController;
+import ku.cs.controllers.components.SearchController;
+import ku.cs.controllers.components.tables.TableComponentController;
+import ku.cs.controllers.officer.RequestFormsTableDescriptor;
 import ku.cs.models.FormDataModel;
-import ku.cs.services.PopupComponent;
+import ku.cs.models.requestforms.RequestForm;
+import ku.cs.models.users.officers.FacultyOfficer;
+import ku.cs.services.Session;
+import ku.cs.services.popup.PopupComponent;
 
 import java.io.IOException;
 
@@ -25,8 +27,15 @@ public class FacultyOfficerRequestManagementPageController {
     @FXML
     private AnchorPane anchorPane;
 
+    SearchController searchController;
+
+    TableComponentController<RequestForm> tableController;
+
     @FXML
     public void initialize() {
+        Session session = Session.getSession();
+        session.setNavbar(navBarPane);
+        FacultyOfficer facultyOfficer = (FacultyOfficer) session.getLoggedInUser();
 
         anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
@@ -48,146 +57,33 @@ public class FacultyOfficerRequestManagementPageController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
-            TableComponentController tableController = fxmlLoader.getController();
+            tableController = fxmlLoader.getController();
             tableController.setHeadHeight(80);
             tableController.setRowHeight(50);
             tableController.setDisplayRowCount(5);
-            // สร้างหัว Table
-            tableController.addTableHead(new Label("เลขที่ใบคำร้อง"),150);
-            tableController.addTableHead(new Label("รหัสนิสิต/คณะ"),150);
-            tableController.addTableHead(new Label("หัวข้อเรื่อง"),150);
-            tableController.addTableHead(new Label("แก้ไขล่าสุด"),150);
-            tableController.addTableHead(new Label("สถานะ"),200);
-            tableController.addTableHead(new Label(),110);
+            tableController.setTablePane(tablePane);
+            tableController.setTableHeadDescriptor(new RequestFormsTableDescriptor());
 
+            tableController.addEventListener("กดดำเนินการ", eventData -> {
+                RequestForm obj = (RequestForm) eventData;
+                FormDataModel formDataModel = new FormDataModel(true, Session.getSession().getLoggedInUser(),obj);
 
-            for (int i=0;i<1;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
+                PopupComponent<FormDataModel> requestActionPopup = new PopupComponent<>(formDataModel,
+                        "/ku/cs/views/officer/officer-request-action-popup.fxml",
+                        "request-action-popup",
+                        tablePane.getScene().getWindow()
+                );
+                requestActionPopup.onEvent(
+                        (eventName, eventData1) -> {
+                            if (eventName.equals("close"))
+                                tableController.updateTable();
+                        });
+                requestActionPopup.show();
+            });
 
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label requestNumber = new Label("กข-101");
-                Label requestOwner = new Label("6610401993\nคณะวิทยาศาสตร์");
-                Label topic = new Label("ขอเพิกถอนรายวิชาล่าช้า");
-                Label date = new Label("10 ม.ค. 67");
-                Label stage = new Label("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องส่งต่อให้คณบดี");
-                Button actionButton = new Button("ดำเนินการ");
-
-                actionButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new FormDataModel("Faculty","drop-late",requestOwner.getText(),topic.getText(),requestNumber.getText()), "/ku/cs/views/officer/officer-request-action-popup.fxml","request-action-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(requestNumber);
-                tableRowController.addElement(requestOwner);
-                tableRowController.addElement(topic);
-                tableRowController.addElement(date);
-                tableRowController.addElement(stage);
-                tableRowController.addElement(actionButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
-
-            for (int i=0;i<1;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label requestNumber = new Label("กข-102");
-                Label requestOwner = new Label("6610401993\nคณะวิทยาศาสตร์");
-                Label topic = new Label("ขอเพิ่มรายวิชาล่าช้า");
-                Label date = new Label("10 ม.ค. 67");
-                Label stage = new Label("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องส่งต่อให้คณบดี");
-                Button actionButton = new Button("ดำเนินการ");
-
-                actionButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new FormDataModel("Faculty","add-late",requestOwner.getText(),topic.getText(),requestNumber.getText()), "/ku/cs/views/officer/officer-request-action-popup.fxml","request-action-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(requestNumber);
-                tableRowController.addElement(requestOwner);
-                tableRowController.addElement(topic);
-                tableRowController.addElement(date);
-                tableRowController.addElement(stage);
-                tableRowController.addElement(actionButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
-
-            for (int i=0;i<1;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label requestNumber = new Label("กข-103");
-                Label requestOwner = new Label("6610401993\nคณะวิทยาศาสตร์");
-                Label topic = new Label("ขอลาเรียน");
-                Label date = new Label("10 ม.ค. 67");
-                Label stage = new Label("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องส่งต่อให้คณบดี");
-                Button actionButton = new Button("ดำเนินการ");
-
-                actionButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new FormDataModel("Faculty","absence",requestOwner.getText(),topic.getText(),requestNumber.getText()), "/ku/cs/views/officer/officer-request-action-popup.fxml","request-action-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(requestNumber);
-                tableRowController.addElement(requestOwner);
-                tableRowController.addElement(topic);
-                tableRowController.addElement(date);
-                tableRowController.addElement(stage);
-                tableRowController.addElement(actionButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
-
-            for (int i=0;i<20;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Label requestNumber = new Label("กข-104");
-                Label requestOwner = new Label("6610401993\nคณะวิทยาศาสตร์");
-                Label topic = new Label("ขอเพิ่มรายวิชา");
-                Label date = new Label("10 ม.ค. 67");
-                Label stage = new Label("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องส่งต่อให้คณบดี");
-                Button actionButton = new Button("ดำเนินการ");
-
-                actionButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new FormDataModel("Faculty","add-join",requestOwner.getText(),topic.getText(),requestNumber.getText()), "/ku/cs/views/officer/officer-request-action-popup.fxml","request-action-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(requestNumber);
-                tableRowController.addElement(requestOwner);
-                tableRowController.addElement(topic);
-                tableRowController.addElement(date);
-                tableRowController.addElement(stage);
-                tableRowController.addElement(actionButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
+            tableController.setDisplayModels(facultyOfficer.getRequestFormList().getRequestForms());
+            tableController.updateTable();
+            searchController = new SearchController(searchTextField, tableController, facultyOfficer.getRequestFormList());
 
             tablePane.getChildren().add(table);
 
@@ -200,5 +96,6 @@ public class FacultyOfficerRequestManagementPageController {
     }
 
     public void onSearchButtonClick(ActionEvent actionEvent) {
+        searchController.searchFilter();
     }
 }

@@ -1,19 +1,29 @@
 package ku.cs.cs211671project;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import ku.cs.services.FXRouter;
+import ku.cs.services.Session;
 
 import java.io.IOException;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXRouter.bind(this, stage, "CS211 Project", 1080, 720);
+        stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/images/logo.png")));
+        stage.setResizable(false);
+
+        stage.setOnCloseRequest((WindowEvent event) -> {
+            if (Session.getSession().getLoggedInUser()!=null){
+                Session.getSession().clearSession();
+            }
+        });
+
+        FXRouter.bind(this, stage, "FormXpress", 1080, 720);
         configRoutes();
-        FXRouter.goTo("advisor-request-form");
+        FXRouter.goTo("user-login");
     }
 
     private void configRoutes() {

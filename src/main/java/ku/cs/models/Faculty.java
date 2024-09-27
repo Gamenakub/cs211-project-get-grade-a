@@ -1,15 +1,16 @@
 package ku.cs.models;
 
-import java.util.ArrayList;
+import ku.cs.models.collections.DepartmentList;
 
-public class Faculty {
+public class Faculty implements Comparable<Faculty> {
     private String name;
     private String id;
-    private ArrayList<Department> departments;
+    private DepartmentList departmentList;
 
     public Faculty(String name, String id) {
         this.name = name;
         this.id = id;
+        this.departmentList = new DepartmentList();
     }
 
     public String getName() {
@@ -28,14 +29,32 @@ public class Faculty {
         this.name = name;
     }
 
-    public ArrayList<Department> getDepartments() {
-        return this.departments;
+    public DepartmentList getDepartmentList() {
+        return this.departmentList;
     }
 
-    public void addDepartment(Department department) {
-        if (department != null) {
-            this.departments.add(department);
-        }
+    public Department addDepartment(String departmentName, String departmentId) {
+        Department department = new Department(departmentName, departmentId, this);
+        departmentList.addDepartment(department);
+        return department;
+    }
+
+    public Department addDepartment(Department department) {
+        departmentList.addDepartment(department);
+        department.setFaculty(this);
+        return department;
+    }
+
+    public void setDepartmentList(DepartmentList departmentList) {
+        this.departmentList = departmentList;
+    }
+
+    public void removeDepartment(Department department) {
+        departmentList.removeDepartment(department);
+    }
+
+    public Department findDepartmentByName(String departmentName) {
+        return departmentList.findDepartmentByName(departmentName);
     }
 
     public boolean isName(String name){
@@ -43,7 +62,11 @@ public class Faculty {
     }
 
     public boolean isId(String Id){
-        return this.name.equals(Id);
+        return this.id.equals(Id);
     }
 
+    @Override
+    public int compareTo(Faculty o) {
+        return (this.getId()).compareTo(o.getId());
+    }
 }

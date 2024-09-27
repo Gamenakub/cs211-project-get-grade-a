@@ -13,7 +13,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Label fx:id="titleLabel" styleClass="PopupHeader" text="แก้ไขข้อมูลคณะ">
+            <Label fx:id="titleLabel" styleClass="popup-header" text="แก้ไขข้อมูลคณะ">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -22,22 +22,22 @@
                <children>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="ชื่อคณะ">
+                        <Label styleClass="text-field-label" text="ชื่อคณะ">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="facultyNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อคณะ" styleClass="TextFieldBox" />
+                        <TextField fx:id="facultyNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อคณะ" styleClass="text-field-box" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
                      <children>
-                        <Label styleClass="TextFieldLabel" text="รหัสคณะ">
+                        <Label styleClass="text-field-label" text="รหัสคณะ">
                            <font>
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="facultyIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสคณะ" styleClass="TextFieldBox" />
+                        <TextField fx:id="facultyIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสคณะ" styleClass="text-field-box" />
                      </children>
                   </VBox>
                </children>
@@ -47,8 +47,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" styleClass="DenyButton" text="ยกเลิก" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="160.0" styleClass="DefaultButton" text="ยืนยัน" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="160.0" styleClass="deny-button" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE" />
                </children>
             </HBox>
          </children>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -7,15 +8,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.AdminNavigatorBarController">
+<AnchorPane fx:id="navBarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" styleClass="navbar-background" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.navigationbars.AdminNavigationBarController">
    <children>
-      <HBox alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="60.0" prefWidth="1077.0" spacing="20.0" style="-fx-background-color: white;">
+      <HBox alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="60.0" prefWidth="1077.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onPersonalInformationManagementButton" prefHeight="60.0" prefWidth="152.0" text="จัดการข้อมูลผู้ใช้ส่วนตัว" />
-            <HBox prefHeight="60.0" prefWidth="660.0" spacing="16.0">
+            <Circle fx:id="profilePictureCircle" fill="DODGERBLUE" onMouseClicked="#onPersonalInformationManagementButton" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Profile" />
+            <HBox prefHeight="60.0" prefWidth="638.0" spacing="16.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onAdminUserManagementButton" prefHeight="60.0" prefWidth="152.0" text="จัดการข้อมูลผู้ใช้" />
+                  <Button mnemonicParsing="false" onAction="#onAdminUserManagementButton" prefHeight="60.0" prefWidth="124.0" styleClass="navbar-button" text="จัดการข้อมูลผู้ใช้" />
                   <MenuButton mnemonicParsing="false" prefHeight="60.0" prefWidth="133.0" text="จัดการข้อมูลหน่วยงาน">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onFacultyManagementMenuItem" text="คณะ" />
@@ -29,13 +31,20 @@
                         <MenuItem mnemonicParsing="false" onAction="#onAdvisorManagementMenuItem" text="อาจารย์ที่ปรึกษา" />
                     </items>
                   </MenuButton>
-                  <Button mnemonicParsing="false" onAction="#onDashboardButton" prefHeight="60.0" prefWidth="152.0" text="แดชบอร์ด" />
+                  <Button mnemonicParsing="false" onAction="#onDashboardButton" prefHeight="60.0" prefWidth="111.0" styleClass="navbar-button" text="แดชบอร์ด" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="8.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="322.0" spacing="8.0">
                <children>
+                  <MenuButton fx:id="fontSizeMenuButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" text="Medium">
+                     <items>
+                        <MenuItem fx:id="largeItem" mnemonicParsing="false" onAction="#onLargeItemClick" text="Large" />
+                        <MenuItem fx:id="mediumItem" mnemonicParsing="false" onAction="#onMediumItemClick" text="Medium" />
+                        <MenuItem fx:id="smallItem" mnemonicParsing="false" onAction="#onSmallItemClick" text="Small" />
+                     </items>
+                  </MenuButton>
                   <ImageView fitHeight="41.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="41.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onThemeButtonClick" pickOnBounds="true" preserveRatio="true" />
                   <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../images/navbar-icons/logout-icon.png" />
@@ -43,6 +52,9 @@
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </HBox>
    </children>
 </AnchorPane>

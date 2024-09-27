@@ -2,37 +2,48 @@ package ku.cs.controllers.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import ku.cs.controllers.components.TableComponentController;
-import ku.cs.controllers.components.TableRowController;
-import ku.cs.services.PopupComponent;
+import ku.cs.controllers.components.SearchController;
+import ku.cs.controllers.components.tables.TableComponentController;
+import ku.cs.models.collections.UserList;
+import ku.cs.models.users.Admin;
+import ku.cs.services.AlertService;
+import ku.cs.services.Session;
+import ku.cs.services.SortDirection;
 
 import java.io.IOException;
 
 public class AdminUserManagementPageController {
     @FXML private Pane navBarPane;
     @FXML private Pane tablePane;
+    @FXML private TextField searchTextField;
+    @FXML private MenuButton filterMenuButton;
+    @FXML private MenuItem allRolesMenuItem;
+    @FXML private MenuItem studentRoleMenuItem;
+    @FXML private MenuItem advisorRoleMenuItem;
+    @FXML private MenuItem departmentOfficerRoleMenuItem;
+    @FXML private MenuItem facultyOfficerRoleMenuItem;
+
+
     @FXML private Circle searchButton;
     @FXML private AnchorPane anchorPane;
+    Admin admin;
+
+    SearchController searchController;
 
     @FXML
     public void initialize() {
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        navBarPane.getChildren().clear();
-        navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/admin-navbar.fxml"));
-        try {
-            AnchorPane adminNavbar = navBarFxmlLoader.load();
-            navBarPane.getChildren().add(adminNavbar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Session.getSession().setNavbar(navBarPane);
+        Session.getSession().getTheme().setTheme(anchorPane);
+        admin = (Admin) Session.getSession().getLoggedInUser();
+        UserList userList = admin.getUserList();
 
         Image searchIcon = new Image(getClass().getResource("/images/search-icon.png").toString());
         searchButton.setFill(new ImagePattern(searchIcon));
@@ -46,56 +57,58 @@ public class AdminUserManagementPageController {
             tableController.setHeadHeight(40);
             tableController.setRowHeight(60);
             tableController.setDisplayRowCount(5);
-            // สร้างหัว Table
-            tableController.addTableHead(new Label("โปรไฟล์"),80);
-            tableController.addTableHead(new Label("ชื่อผู้ใช้"),120);
-            tableController.addTableHead(new Label("ชื่อ"),180);
-            tableController.addTableHead(new Label("บทบาท"),140);
-            tableController.addTableHead(new Label("วันเวลาที่ใช้งาน"),160);
-            tableController.addTableHead(new Label("สถานะ"),120);
-            tableController.addTableHead(new Label(""),100);
 
-
-            for (int i=0;i<20;i++) {
-                // โหลด tableRowFXML มา
-                FXMLLoader tableRowFXMLLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-row-component.fxml"));
-                AnchorPane tableRowComponent = tableRowFXMLLoader.load();
-
-                TableRowController tableRowController = tableRowFXMLLoader.getController();
-
-                // สร้างแต่ละ Object ใน Column ไม่ต้องกังวลเรื่องขนาด เดี๋ยว table จัดให้ตรงกับ Head เอง
-                Circle profile = new Circle();
-                profile.setRadius(20);
-
-                Label username = new Label("fscijirat");
-                Label name = new Label("จิรัฏฐ์ ค่องสกุล");
-                Label role = new Label("อาจารย์ที่ปรึกษา");
-                Label date = new Label("12/12/2512 15:10:52");
-                Label status = new Label("ปกติ");
-                Button permissionManagementButton = new Button("จัดการสิทธิ์");
-
-                permissionManagementButton.setOnAction(actionEvent -> {
-                    PopupComponent<Object> requestActionPopup = new PopupComponent<>(new Object(), "/ku/cs/views/admin/admin-user-management-popup.fxml","admin-user-management-popup",(tablePane.getScene().getWindow()));
-                    requestActionPopup.show();
-                });
-
-                tableRowController.addElement(profile);
-                tableRowController.addElement(username);
-                tableRowController.addElement(name);
-                tableRowController.addElement(role);
-                tableRowController.addElement(date);
-                tableRowController.addElement(status);
-                tableRowController.addElement(permissionManagementButton);
-
-
-                // เพิ่ม row ไปใน table
-                tableController.addTableRowControllerAndComponent(tableRowController, tableRowComponent);
-            }
+            tableController.setTableHeadDescriptor(new UserTableDescriptor());
+            tableController.setTablePane(tablePane);
+            tableController.sortBy("วันเวลาที่ใช้งานล่าสุด", SortDirection.DESCENDING);
+            tableController.setDisplayModels(userList.getUsers());
 
             tablePane.getChildren().add(table);
 
+            searchController = new SearchController(searchTextField, tableController, admin.getUserList());
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(0);
         }
+    }
+
+    public void onSearchButtonClick(){
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onAllRolesMenuItem(){
+        filterMenuButton.setText(allRolesMenuItem.getText());
+        searchController.resetFilter();
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onStudentRoleMenuItem(){
+        filterMenuButton.setText(studentRoleMenuItem.getText());
+        searchController.setFilterContext("student");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onAdvisorRoleMenuItem(){
+        filterMenuButton.setText(advisorRoleMenuItem.getText());
+        searchController.setFilterContext("advisor");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onDepartmentOfficerRoleMenuItem(){
+        filterMenuButton.setText(departmentOfficerRoleMenuItem.getText());
+        searchController.setFilterContext("departmentOfficer");
+        searchController.searchFilter();
+    }
+
+    @FXML
+    void onFacultyOfficerRoleMenuItem(){
+        filterMenuButton.setText(facultyOfficerRoleMenuItem.getText());
+        searchController.setFilterContext("facultyOfficer");
+        searchController.searchFilter();
     }
 }

@@ -1,39 +1,43 @@
 package ku.cs.models.requestforms;
 
-import ku.cs.models.Subject;
-import ku.cs.models.collections.SubjectList;
+import ku.cs.models.Course;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 
 public class CoEnrollRequestForm extends RequestForm {
-    private String course;
+    public static int latestRequestFormId = 1;
+    private String program;
     private String address;
-    private SubjectList subjects;
-    private Advisor teacher;
+    private Course course;
+    private String teacher;
 
-    public CoEnrollRequestForm(String requestFormID, Student student, Advisor advisor, String course, int status, String address) {
+    public CoEnrollRequestForm(String requestFormID, Student student, Advisor advisor, String program, Status status, String address) {
         super("ใบคำร้องขอลงทะเบียนเรียนร่วม",requestFormID, student, advisor, status);
-        this.course = course;
+        this.program = program;
         this.address = address;
-        this.subjects = new SubjectList();
+        this.course = new Course();
     }
 
-    public void setCourse(String course) { this.course = course; }
+    public CoEnrollRequestForm(Student student, Advisor advisor, String program, Status status, String address) {
+        super("ใบคำร้องขอลงทะเบียนเรียนร่วม","ลร."+(++latestRequestFormId), student, advisor, status);
+        this.program = program;
+        this.address = address;
+        this.course = new Course();
+    }
+
+    public void setProgram(String program) { this.program = program; }
     public void setAddress(String address) { this.address = address; }
-    public void setSubjects(SubjectList subjects) { this.subjects = subjects; }
-    public void setTeacher(Advisor teacher) { this.teacher = teacher; }
-    public void addSubject(Subject subject) {
-        subjects.addSubject(subject);
-    }
+    public void setSubject(Course course) { this.course = course; }
+    public void setTeacher(String teacher) { this.teacher = teacher; }
 
-    public String getCourse() { return course; }
+    public String getProgram() { return program; }
     public String getAddress() {
         return address;
     }
-    public SubjectList getSubjects() {
-        return subjects;
+    public Course getSubject() {
+        return course;
     }
-    public Advisor getTeacher() {
+    public String getTeacher() {
         return teacher;
     }
 }
