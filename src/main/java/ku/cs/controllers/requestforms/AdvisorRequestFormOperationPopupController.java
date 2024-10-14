@@ -1,6 +1,5 @@
 package ku.cs.controllers.requestforms;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -11,56 +10,49 @@ import ku.cs.models.requestforms.AddDropRequestForm;
 import ku.cs.models.requestforms.CoEnrollRequestForm;
 import ku.cs.models.requestforms.RequestForm;
 import ku.cs.models.users.Student;
+import ku.cs.services.Session;
 
 public class AdvisorRequestFormOperationPopupController extends BasePopup<FormDataModel> {
-    @FXML
-    AnchorPane anchorPane;
-
-    @FXML
-    private Label formIdLabel;
-    @FXML
-    private Label formTitleLabel;
-    @FXML
-    private Label formStudentIdLabel;
+    @FXML AnchorPane anchorPane;
+    @FXML private Label formIdLabel;
+    @FXML private Label formTitleLabel;
+    @FXML private Label formStudentIdLabel;
 
     private RequestForm form;
-    private Student student;
-
-
 
     @Override
     public void onPopupOpen() {
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
-        super.onPopupOpen();
         form = getModel().getFormObject();
-        student = form.getStudent();
-        setNisitIdLabel(student.getStudentId());
+        Student student = form.getStudent();
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
+        setStudentIdLabel(student.getStudentId());
         setTopicLabel(form.getRequestFormTitle());
         setNumberLabel(form.getRequestFormId());
     }
 
-    @FXML protected void onViewDetailButtonClick(ActionEvent event) {
-        if (form instanceof CoEnrollRequestForm){
-            changeScene(getModel(), "/ku/cs/views/request-forms/student-co-enroll-request-form-popup-page1.fxml","form");
-        }
-        else if (form instanceof AddDropRequestForm){
-            if (((AddDropRequestForm) form).isAdd()){
-                changeScene(getModel(), "/ku/cs/views/request-forms/student-add-drop-request-form-popup-page1.fxml","form");}
-            else{
-                changeScene(getModel(), "/ku/cs/views/request-forms/student-add-drop-request-form-popup-page1.fxml","form");
+    @FXML
+    public void onViewDetailButton() {
+        if (form instanceof CoEnrollRequestForm) {
+            changeScene(getModel(), "/ku/cs/views/request-forms/co-enroll-request-form-popup-page1.fxml");
+        } else if (form instanceof AddDropRequestForm) {
+            if (((AddDropRequestForm) form).isAdd()) {
+                changeScene(getModel(), "/ku/cs/views/request-forms/add-drop-request-form-popup-page1.fxml");
+            } else {
+                changeScene(getModel(), "/ku/cs/views/request-forms/add-drop-request-form-popup-page1.fxml");
             }
-        }
-        else if (form instanceof AbsenceRequestForm){
-            changeScene(getModel(), "/ku/cs/views/request-forms/student-absence-request-form-popup-page1.fxml","form");
+        } else if (form instanceof AbsenceRequestForm) {
+            changeScene(getModel(), "/ku/cs/views/request-forms/absence-request-form-popup-page1.fxml");
         }
     }
 
-    public void setNisitIdLabel(String nisitId) {
-        formStudentIdLabel.setText(String.format("รหัสนิสิต %s", nisitId));
+    public void setStudentIdLabel(String studentId) {
+        formStudentIdLabel.setText(String.format("รหัสนิสิต %s", studentId));
     }
+
     public void setNumberLabel(String number) {
         formIdLabel.setText(String.format("เลขที่ใบคำร้อง %s", number));
     }
+
     public void setTopicLabel(String topic) {
         formTitleLabel.setText(String.format("เรื่อง %s", topic));
     }
