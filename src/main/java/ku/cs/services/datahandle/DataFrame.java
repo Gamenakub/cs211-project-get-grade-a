@@ -1,46 +1,29 @@
 package ku.cs.services.datahandle;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DataFrame {
-    public ArrayList<String> getHeader() {
-        return header;
-    }
+    private final ArrayList<String> header;
+    private final ArrayList<HashMap<String, String>> data;
 
-    public ArrayList<HashMap<String,String>> getData() {
-        return data;
-    }
-
-    private ArrayList<String> header;
-    private ArrayList<HashMap<String,String>> data;
     public DataFrame(ArrayList<String> header) {
         this.header = header;
         this.data = new ArrayList<>();
     }
 
-    public boolean isInTable(String column) {
-        for (int i = 0; i < header.size(); i++) {
-            if (header.get(i).equals(column)) {
-                return true;
-            }
-        }
-        return false;
+    public ArrayList<String> getHeader() {
+        return header;
     }
 
-    // check if row matched header
-    public boolean isMatch(ArrayList<String> row) {
-        for (int i = 0; i < header.size(); i++) {
-            if (!row.get(i).equals(header.get(i))) {
-                return false;
-            }
-        }
-        return true;
+    public ArrayList<HashMap<String, String>> getData() {
+        return data;
     }
 
-    public boolean isMatch(HashMap<String,String> row) {
-        for (int i = 0; i < header.size(); i++) {
-            if (!row.containsKey(header.get(i))) {
+    public boolean isMatch(HashMap<String, String> row) {
+        for (String s : header) {
+            if (!row.containsKey(s)) {
                 return false;
             }
         }
@@ -50,14 +33,13 @@ public class DataFrame {
 
     public ArrayList<String> getRowList(int index) {
         if (index < 0 || index >= data.size()) {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
         ArrayList<String> head = getHeader();
         ArrayList<String> row = new ArrayList<>();
-        ArrayList<HashMap<String,String>> data = getData();
-        // loop all header
-        for (int i = 0; i < head.size();i++){
-            String key = head.get(i);
+        ArrayList<HashMap<String, String>> data = getData();
+
+        for (String key : head) {
             String value = data.get(index).get(key);
             row.add(value);
         }
@@ -68,46 +50,25 @@ public class DataFrame {
         if (row.size() != header.size()) {
             throw new IllegalArgumentException("Row array size doesn't match header array size");
         }
-        HashMap<String ,String> newRow = new HashMap<>();
+        HashMap<String, String> newRow = new HashMap<>();
         for (int i = 0; i < header.size(); i++) {
             newRow.put(header.get(i), row.get(i));
         }
         data.add(newRow);
 
     }
+
     public void addRow(HashMap<String, String> row) {
-        System.out.println("xx "+row);
         if (isMatch(row)) {
             data.add(row);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Row incorrect format");
         }
     }
 
     public void addRow(String[] data) {
-        ArrayList<String> newRow = new ArrayList<>();
-        for (int i = 0; i < header.size(); i++) {
-            newRow.add(data[i]);
-        }
+        ArrayList<String> newRow = new ArrayList<>(Arrays.asList(data).subList(0, header.size()));
         addRow(newRow);
     }
 
-    public HashMap<String, String> findWhere(String selector, String value){
-        if (!isInTable(selector)) {
-            throw new IllegalArgumentException("selector doesn't exist");
-        }
-        for (int i = 0;i < data.size();i++) {
-            if (data.get(i).get(selector).equals(value)) {
-                return data.get(i);
-            }
-        }
-        return null;
-    }
-
-
-    public static interface Datasource<T> {
-        T readData();
-        void writeData(T data);
-    }
 }

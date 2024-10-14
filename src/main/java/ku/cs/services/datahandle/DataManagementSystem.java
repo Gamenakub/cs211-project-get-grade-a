@@ -6,20 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManagementSystem {
-    private String directoryName;
-    private String fileName;
+    private final String directoryName;
+    private final String fileName;
 
-    private static final String ROW_SPLIT = "\n";
-    private static final String COL_SPLIT = ",";
-
-    public DataManagementSystem(String directoryName, String fileName) {
+    public DataManagementSystem(String directoryName, String fileName) throws IOException {
         this.directoryName = directoryName;
         this.fileName = fileName;
         checkFileIsExisted();
     }
 
-    // ตรวจสอบว่ามีไฟล์ให้อ่านหรือไม่ ถ้าไม่มีให้สร้างไฟล์เปล่า
-    private void checkFileIsExisted() {
+
+    private void checkFileIsExisted() throws IOException {
         File file = new File(directoryName);
         if (!file.exists()) {
             file.mkdirs();
@@ -27,30 +24,20 @@ public class DataManagementSystem {
         String filePath = directoryName + File.separator + fileName;
         file = new File(filePath);
         if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            file.createNewFile();
         }
     }
 
-
-
-    public DataFrame readTable() {
+    public DataFrame readTable() throws IOException {
         DataFrame dataFrame = null;
 
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
-        // เตรียม object ที่ใช้ในการอ่านไฟล์
-        FileInputStream fileInputStream = null;
 
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        FileInputStream fileInputStream;
+
+        fileInputStream = new FileInputStream(file);
 
         InputStreamReader inputStreamReader = new InputStreamReader(
                 fileInputStream,
@@ -58,57 +45,60 @@ public class DataManagementSystem {
         );
         BufferedReader buffer = new BufferedReader(inputStreamReader);
 
-        String line = "";
-        Boolean foundHeader = false;
-        ArrayList<String> header = new ArrayList<>();
-        try {
-            // ใช้ while loop เพื่ออ่านข้อมูลรอบละบรรทัด
-            StringBuilder contentBuilder = new StringBuilder();
-            while ((line = buffer.readLine()) != null) {
-                contentBuilder.append(line);
-                if (ROW_SPLIT.equals("\n")) {
-                    contentBuilder.append("\n");
-                }
+        String line;
+        boolean foundHeader = false;
+
+
+        while ((line = buffer.readLine()) != null) {
+            if (line.isEmpty()) continue;
+            List<String> data = parseCSVLine(line);
+
+            if (!foundHeader) {
+                ArrayList<String> headerData = new ArrayList<>(data);
+                dataFrame = new DataFrame(headerData);
+                foundHeader = true;
+            } else {
+                dataFrame.addRow(data.toArray(new String[0]));
             }
-
-            String content = contentBuilder.toString();
-
-            String[] rows = content.split(ROW_SPLIT);
-
-            for (String row : rows) {
-                if (row.isEmpty()) continue;
-                String[] data = row.split(COL_SPLIT);
-
-                if (!foundHeader) {
-                    ArrayList<String> headerData = new ArrayList<>(List.of(data));
-                    dataFrame = new DataFrame(headerData);
-                    foundHeader = true;
-                } else {
-                    dataFrame.addRow(data);
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-        if (!foundHeader) {
-            throw new RuntimeException("No header found is the file empty? or set file path incorrect");
-        }
+
 
         return dataFrame;
     }
 
-    public void writeTable(DataFrame dataFrame) {
+    private List<String> parseCSVLine(String line) {
+        List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        boolean inQuotes = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '"') {
+                if (inQuotes && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+
+                    sb.append('"');
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (c == ',' && !inQuotes) {
+                result.add(sb.toString());
+                sb.setLength(0);
+            } else {
+                sb.append(c);
+            }
+        }
+        result.add(sb.toString());
+        return result;
+    }
+
+    public void writeTable(DataFrame dataFrame) throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
-        // เตรียม object ที่ใช้ในการเขียนไฟล์
-        FileOutputStream fileOutputStream = null;
 
-        try {
-            fileOutputStream = new FileOutputStream(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        FileOutputStream fileOutputStream;
+
+        fileOutputStream = new FileOutputStream(file);
 
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
                 fileOutputStream,
@@ -116,43 +106,42 @@ public class DataManagementSystem {
         );
         BufferedWriter buffer = new BufferedWriter(outputStreamWriter);
 
-        try {
-            // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
+        try{
             ArrayList<String> header = dataFrame.getHeader();
             for (int i = 0; i < header.size(); i++) {
-                buffer.append(header.get(i));
-                if (i != header.size() - 1) buffer.append(COL_SPLIT);
+                buffer.append(escapeCSVField(header.get(i)));
+                if (i != header.size() - 1) buffer.append(",");
             }
-            buffer.append(ROW_SPLIT);
+            buffer.append("\n");
 
             for (int row = 0; row < dataFrame.getData().size(); row++) {
                 StringBuilder line = new StringBuilder();
                 ArrayList<String> data = dataFrame.getRowList(row);
                 for (int j = 0; j < data.size(); j++) {
-                    if (j == data.size() - 1) {
-                        line.append(data.get(j));
+                    if (data.get(j) != null) {
+                        line.append(escapeCSVField(data.get(j)));
                     }
-                    else {
-                        line.append(data.get(j)).append(COL_SPLIT);
-                    }
+                    if (j != data.size() - 1) line.append(",");
                 }
                 buffer.append(line.toString());
-                buffer.append(ROW_SPLIT);
+                buffer.append("\n");
             }
-
         } catch (IOException e) {
-            throw new RuntimeException("Error reading file");
-        } catch (NullPointerException e){
-            System.out.println("null pointer exception");
+            throw new IOException(e);
+        } finally {
+            buffer.flush();
+            buffer.close();
         }
-        finally {
-            try {
-                buffer.flush();
-                buffer.close();
-            }
-            catch (IOException e){
-                throw new RuntimeException(e);
-            }
+    }
+
+    private String escapeCSVField(String field) {
+        boolean needQuotes = field.contains(",") || field.contains("\n") || field.contains("\"");
+        if (field.contains("\"")) {
+            field = field.replace("\"", "\"\"");
         }
+        if (needQuotes) {
+            field = "\"" + field + "\"";
+        }
+        return field;
     }
 }
