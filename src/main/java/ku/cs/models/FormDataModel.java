@@ -1,43 +1,31 @@
 package ku.cs.models;
 
 import ku.cs.models.requestforms.RequestForm;
-import ku.cs.models.users.User;
 
 public class FormDataModel {
-    private String formHolder;
     private String acceptMessage;
-    private String formType;
-    private String nisitId;
-    private String topic;
-    private String number;
-    private RequestForm formObject;
-    private boolean isReadonly;
-    private User user;
-    public FormDataModel(boolean isReadonly, User user, RequestForm formObject) {
+    private final RequestForm formObject;
+    private final boolean isReadOnly;
+
+    public FormDataModel(boolean isReadOnly, RequestForm formObject) {
         this.formObject = formObject;
-        this.isReadonly = isReadonly;
-        this.user = user;
+        this.isReadOnly = isReadOnly;
     }
-    public boolean isReadonly() {
-        return isReadonly;
+
+    public boolean isReadOnly() {
+        return isReadOnly;
     }
-    public String getFormHolder() {
-        return formHolder;
-    }
-    public void setAcceptMessage(String acceptMessage) {
-        this.acceptMessage = acceptMessage;
-    }
+
     public String getAcceptMessage() {
         return acceptMessage;
     }
-    public String getFormType() {
-        return formType;
+
+    public void setAcceptMessage(String acceptMessage) {
+        this.acceptMessage = acceptMessage;
     }
 
-    public void setFormObject(RequestForm obj) {
-        this.formObject = obj;
-    }
     public RequestForm getFormObject() {
         return formObject;
     }
+
 }

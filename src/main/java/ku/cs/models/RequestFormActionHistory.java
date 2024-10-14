@@ -5,23 +5,13 @@ import ku.cs.models.requestforms.RequestForm;
 import java.time.LocalDateTime;
 
 public class RequestFormActionHistory {
-    private String requestId;
-    private ApproverType approvedBy;
-    private LocalDateTime approvedAt;
-    private String approverIdentity;
-    private RequestForm.Status action;
+    private final String requestId;
+    private final String approvedBy;
+    private final LocalDateTime approvedAt;
+    private final String approverIdentity;
+    private final RequestForm.Status action;
 
-    public RequestForm.Status getAction() {
-        return action;
-    }
-
-    public enum ApproverType {
-        FACULTY,
-        DEPARTMENT,
-        STUDENT, ADVISOR
-    }
-
-    public RequestFormActionHistory(String requestId, String approverIdentity, RequestForm.Status action, ApproverType approvedBy) {
+    public RequestFormActionHistory(String requestId, String approverIdentity, RequestForm.Status action, String approvedBy) {
         this.requestId = requestId;
         this.action = action;
 
@@ -30,7 +20,7 @@ public class RequestFormActionHistory {
         this.approvedAt = LocalDateTime.now();
     }
 
-    public RequestFormActionHistory(String requestId, String approverIdentity, RequestForm.Status action, ApproverType approvedBy, LocalDateTime approvedAt) {
+    public RequestFormActionHistory(String requestId, String approverIdentity, RequestForm.Status action, String approvedBy, LocalDateTime approvedAt) {
         this.approverIdentity = approverIdentity;
         this.action = action;
         this.requestId = requestId;
@@ -38,11 +28,15 @@ public class RequestFormActionHistory {
         this.approvedAt = approvedAt;
     }
 
+    public RequestForm.Status getAction() {
+        return action;
+    }
+
     public String getRequestId() {
         return requestId;
     }
 
-    public ApproverType getApprovedByType() {
+    public String getApprovedByType() {
         return approvedBy;
     }
 
