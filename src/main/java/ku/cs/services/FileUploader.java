@@ -14,7 +14,7 @@ public final class FileUploader {
     private String fileTypeDescription;
     private String[] fileTypes;
     private int num_fileTypes;
-    private String destPath;
+    private final String destPath;
     private File file;
 
     public FileUploader(String destPath) {
@@ -27,20 +27,16 @@ public final class FileUploader {
         this.fileTypeDescription = fileTypeDescription;
     }
 
-    public void setDestPath(String destPath) {
-        this.destPath = destPath;
+    public File getFile() {
+        return file;
     }
 
     public void setFile(File file) {
         this.file = file;
     }
 
-    public File getFile() {
-        return file;
-    }
-
     public void addFileType(String type) {
-        String newFileTypes[] = new String[num_fileTypes + 1];
+        String[] newFileTypes = new String[num_fileTypes + 1];
         int i;
         for (i = 0; i < num_fileTypes; i++) {
             newFileTypes[i] = fileTypes[i];
@@ -60,7 +56,7 @@ public final class FileUploader {
     public void saveFile(String fileName) throws IOException {
         File destDir = new File(destPath);
         if (!destDir.exists()) destDir.mkdirs();
-        Path target = FileSystems.getDefault().getPath(destDir.getAbsolutePath() + System.getProperty("file.separator") + fileName);
+        Path target = FileSystems.getDefault().getPath(destDir.getAbsolutePath() + FileSystems.getDefault().getSeparator() + fileName);
         Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
     }
 }
