@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentCoEnrollRequestFormPopupPage2Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AbsenceRequestFormPopupPage3Controller">
    <children>
-      <VBox alignment="CENTER" layoutY="-1.0" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="สาเหตุที่ขอลงทะเบียนเรียนร่วม">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="สาเหตุที่ขอหยุดเรียน">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -25,16 +25,16 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="textAreaRequestFormCause" prefHeight="324.0" prefWidth="720.0" promptText="โปรดระบุสาเหตุที่ขอลงทะเบียนเรียนร่วม" styleClass="text-field-box" />
+            <TextArea fx:id="requestFormCauseTextArea" prefHeight="324.0" prefWidth="720.0" promptText="โปรดระบุสาเหตุที่ขอหยุดเรียน" styleClass="text-field-box" wrapText="true" />
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
                   <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage1" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onPreviousPageButton" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="endPopupButton" mnemonicParsing="false" onAction="#onCloseButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE">
+                  <Button fx:id="endPopupButton" mnemonicParsing="false" onAction="#onNextPageButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

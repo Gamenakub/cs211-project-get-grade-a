@@ -3,17 +3,19 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAddDropRequestFormPopupPage1Controller" >
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AddDropRequestFormPopupPage1Controller">
    <children>
-      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
+      <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0" styleClass="popup-pane">
          <children>
-            <Label fx:id="labelRequestFormMode" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="labelRequestFormMode">
+            <Label fx:id="requestFormModeLabel" maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="labelRequestFormMode">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
@@ -38,7 +40,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldTerm" promptText="1" styleClass="text-field-box">
+                              <TextField fx:id="semesterTextField" prefWidth="114.0" promptText="ต้น/ปลาย/ฤดูร้อน" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -58,7 +60,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldAcademicYear" promptText="2567" styleClass="text-field-box">
+                              <TextField fx:id="academicYearTextField" promptText="2567" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -78,7 +80,27 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldCampus" promptText="บางเขน" styleClass="text-field-box">
+                              <TextField fx:id="campusTextField" promptText="บางเขน" styleClass="text-field-box">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <VBox maxWidth="-Infinity" spacing="4.0">
+                           <children>
+                              <Label prefWidth="273.0" styleClass="text-field-label" text="เบอร์โทร">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="phoneTextField" prefWidth="114.0" promptText="0XXXXXXXXX" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -102,7 +124,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentNameTitle" promptText="นาย" styleClass="text-field-box">
+                              <TextField fx:id="studentNameTitleTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -122,7 +144,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentName" promptText="จิรัฏฐ์ ค่องสกุล" styleClass="text-field-box">
+                              <TextField fx:id="studentNameTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -142,7 +164,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentId" promptText="6612345678" styleClass="text-field-box">
+                              <TextField fx:id="studentIdTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -162,11 +184,12 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentProgram" promptText="ไทย" styleClass="text-field-box">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </TextField>
+                              <MenuButton fx:id="programMenuButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" styleClass="menu-button-custom" text="ไทย">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onThaiProgramMenuItem" text="ไทย" />
+                                  <MenuItem mnemonicParsing="false" onAction="#onInterProgramMenuItem" text="นานาชาติ" />
+                                </items>
+                              </MenuButton>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -186,7 +209,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentFaculty" promptText="วิทยาศาสตร์" styleClass="text-field-box">
+                              <TextField fx:id="studentFacultyTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -206,7 +229,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentDepartment" promptText="วิทยาการคอมพิวเตอร์" styleClass="text-field-box">
+                              <TextField fx:id="studentDepartmentTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -226,7 +249,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldStudentDepartmentId" promptText="D14" styleClass="text-field-box">
+                              <TextField fx:id="studentDepartmentIdTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -250,7 +273,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldAdvisorName" promptText="สุขุมาล กิติสิน" styleClass="text-field-box">
+                              <TextField fx:id="advisorNameTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -270,7 +293,7 @@
                                     <Font name="TH SarabunPSK" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="textFieldAdvisorId" promptText="D1425" styleClass="text-field-box">
+                              <TextField fx:id="advisorIdTextField" styleClass="text-field-box">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -287,9 +310,14 @@
                   <Insets bottom="20.0" />
                </padding>
             </VBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="720.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="120.0" prefWidth="720.0" spacing="12.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage2" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onPreviousPageButton" prefHeight="50.0" prefWidth="200.0" styleClass="back-button" text="ย้อนกลับ">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onNextPageButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="ถัดไป" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -1,28 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="ku.cs.controllers.components.FacultyApproverComponentController" alignment="CENTER" spacing="16" prefHeight="100" prefWidth="200" styleClass="text-field-box">
-    <padding>
-        <Insets top="0" right="20" bottom="0" left="20"/>
-    </padding>
-
-    <!-- VBox 1: Label and TextField -->
-    <VBox alignment="CENTER" spacing="8" prefHeight="98" prefWidth="400">
-        <Label text="เลือกบุคคล" prefWidth="432" prefHeight="17" styleClass="text-field-label"/>
-        <TextField fx:id="nameTextField" promptText="อาจารย์" prefWidth="432" prefHeight="25" styleClass="text-field"/>
-    </VBox>
-
-    <!-- VBox 2: Label and MenuButton -->
-    <VBox alignment="CENTER" spacing="8" prefHeight="98" prefWidth="400">
-        <Label text="เลือกตำแหน่ง" prefWidth="432" prefHeight="17" styleClass="text-field-label"/>
-        <TextField fx:id="roleTextField" promptText="อาจารย์" prefWidth="432" prefHeight="25" styleClass="text-field"/>
-    </VBox>
-
-    <!-- VBox 3: Button -->
-    <VBox alignment="CENTER" prefHeight="200" prefWidth="100">
-        <Button fx:id="deleteButton" text="ลบ" prefWidth="72" prefHeight="51" styleClass="deny-button" textFill="WHITE"/>
-    </VBox>
-</HBox>
+<VBox fx:id="vBox" prefHeight="226.0" prefWidth="672.0" styleClass="text-field-box" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.FacultyApproverComponentController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100" prefWidth="426.0" spacing="16" stylesheets="@../styles/main-style.css">
+          <padding>
+              <Insets bottom="0" left="20" right="20" top="0" />
+          </padding>
+         <VBox alignment="CENTER" prefHeight="100.0" prefWidth="74.0" spacing="8">
+            <children>
+               <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="คำนำหน้าชื่อ" />
+               <TextField fx:id="nameTitleTextField" maxWidth="141.0" minWidth="100.0" prefHeight="44.0" prefWidth="141.0" styleClass="text-field-box" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" prefHeight="98" prefWidth="400" spacing="8">
+            <children>
+               <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="ชื่อ" />
+               <TextField fx:id="nameTextField" prefHeight="25" prefWidth="432" styleClass="text-field-box" />
+            </children>
+         </VBox>
+      
+          <!-- VBox 1: Label and TextField -->
+          <VBox alignment="CENTER" prefHeight="98" prefWidth="400" spacing="8">
+              <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="นามสกุล" />
+              <TextField fx:id="surnameTextField" prefHeight="25" prefWidth="432" styleClass="text-field-box" />
+          </VBox>
+      
+          <!-- VBox 2: Label and MenuButton -->
+          <VBox alignment="CENTER" prefHeight="98" prefWidth="400" spacing="8">
+              <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="ตำแหน่ง" />
+            <MenuButton fx:id="roleMenuButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="432.0" styleClass="menu-button-custom" text="คณบดี">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onDeanMenuButton" text="คณบดี" />
+                <MenuItem mnemonicParsing="false" onAction="#onViceDeanMenuButton" text="รองคณบดี" />
+                  <MenuItem mnemonicParsing="false" onAction="#onSubDeanMenuButton" text="รักษาการณ์แทนคณบดี" />
+              </items>
+            </MenuButton>
+          </VBox>
+      
+          <!-- VBox 3: Button -->
+          <VBox alignment="CENTER" prefHeight="200" prefWidth="100" />
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100" prefWidth="426.0" spacing="16" stylesheets="@../styles/main-style.css">
+         <padding>
+            <Insets bottom="0" left="20" right="20" top="0" />
+         </padding>
+         <children>
+            <VBox alignment="CENTER" prefHeight="98" prefWidth="400" spacing="8">
+               <children>
+                  <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="ฝ่าย" />
+                  <TextField fx:id="factionTextField" disable="true" prefHeight="25" prefWidth="432" styleClass="text-field-box" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="98" prefWidth="400" spacing="8">
+               <children>
+                  <Label prefHeight="17" prefWidth="432" styleClass="text-field-label" text="คณะที่สังกัด" />
+                  <TextField fx:id="facultyTextField" prefHeight="25" prefWidth="432" promptText="คณะ" styleClass="text-field-box" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200" prefWidth="100" />
+              <Button fx:id="deleteButton" maxWidth="70.0" minWidth="70.0" prefHeight="51" prefWidth="70.0" styleClass="deny-button" text="ลบ" textFill="WHITE" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+   </padding>
+</VBox>

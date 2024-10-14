@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.StudentAddDropRequestFormPopupPage2Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="800.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AddDropRequestFormPopupPage2Controller">
    <children>
       <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
@@ -42,7 +42,7 @@
             </ScrollPane>
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Button fx:id="addCourseButton" mnemonicParsing="false" onAction="#onAddCourseButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="เพิ่ม" textFill="WHITE">
+                  <Button fx:id="addCourseButton" mnemonicParsing="false" onAction="#onAddCourseButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="เพิ่ม" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -50,13 +50,13 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage1" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
+                  <Pane prefHeight="84.0" prefWidth="96.0" />
+                  <Button mnemonicParsing="false" onAction="#onPreviousPageButton" prefHeight="50.0" prefWidth="200.0" styleClass="back-button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onCloseButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ถัดไป" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onNextPageButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
