@@ -10,57 +10,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerRequestManagementPageController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerRequestManagementPageController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="710.0" prefWidth="1066.0">
+      <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
+      <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
-            <VBox alignment="BOTTOM_LEFT" prefHeight="51.0">
-               <children>
-                  <Label prefHeight="51.0" styleClass="header" text="การจัดการคำร้องเจ้าหน้าที่ภาควิชา">
-                     <font>
-                        <Font name="TH SarabunPSK Bold" size="64.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="80.0" top="20.0" />
-               </VBox.margin>
-            </VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="1080.0" spacing="12.0" VBox.vgrow="NEVER">
-               <children>
-                  <TextField fx:id="searchTextField" prefHeight="49.0" prefWidth="608.0" promptText="ชื่อนิสิต/รหัสนิสิต/หัวข้อ/เลขที่ใบคำร้อง/คณะ/สาขา" styleClass="text-field-box">
-                     <font>
-                        <Font size="42.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button mnemonicParsing="false" onAction="#onDataSelectDropdownClick" prefHeight="44.0" prefWidth="162.0" styleClass="menu-button" text="12 ก.ค. 67 - 13 ม.ค 68">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="44.0" prefWidth="162.0" styleClass="menu-button" text="Search">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets left="80.0" right="80.0" />
-               </VBox.margin>
-            </HBox>
-            <Pane fx:id="tablePane" prefHeight="431.0" prefWidth="1080.0">
-               <VBox.margin>
-                  <Insets left="80.0" right="20.0" />
-               </VBox.margin>
-            </Pane>
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="การจัดการคำร้องเจ้าหน้าที่ภาควิชา">
+               <font>
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
+               </font>
+            </Label>
          </children>
+         <padding>
+            <Insets left="80.0" top="20.0" />
+         </padding>
       </VBox>
+      <HBox alignment="CENTER_LEFT" layoutY="157.0" prefHeight="100.0" prefWidth="1080.0" spacing="60.0" AnchorPane.leftAnchor="0.0">
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+         <children>
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="680.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
+         </children>
+      </HBox>
+      <Pane fx:id="tablePane" layoutX="80.0" layoutY="257.0" prefHeight="340.0" prefWidth="1080.0" />
    </children>
 </AnchorPane>

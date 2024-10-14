@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,7 +15,7 @@
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="HeadLabel" text="การจัดการข้อมูลผู้อนุมัติคำร้อง">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="การจัดการข้อมูลผู้อนุมัติคำร้อง">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -27,128 +25,20 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox layoutY="159.0" prefHeight="560.0" prefWidth="1080.0">
+      <ScrollPane layoutY="159.0" styleClass="table">
+         <content>
+            <VBox fx:id="approversVBox" prefHeight="420.0" prefWidth="1080.0" spacing="20.0">
+               <padding>
+                  <Insets bottom="40.0" left="80.0" right="80.0" top="40.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" layoutY="580.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="421.0" prefWidth="1080.0">
-               <content>
-                  <VBox fx:id="approversVBox" prefHeight="420.0" prefWidth="1080.0" spacing="20.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="text-field-box">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกบุคคล" />
-                                    <MenuButton fx:id="selectFirstApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="อาจารย์">
-                                      <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                                      </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกตำแหน่ง" />
-                                    <MenuButton fx:id="selectFirstApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="หัวหน้าภาควิชาวิทยาการคอมพิวเตอร์">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Action 1" />
-                                          <MenuItem mnemonicParsing="false" text="Action 2" />
-                                       </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="deleteFirstApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="deny-button" text="ลบ" textFill="WHITE" />
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="text-field-box">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกบุคคล" />
-                                    <MenuButton fx:id="selectSecondApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="อาจารย์">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Action 1" />
-                                          <MenuItem mnemonicParsing="false" text="Action 2" />
-                                       </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกตำแหน่ง" />
-                                    <MenuButton fx:id="selectSecondApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="รองหัวหน้าภาควิชาวิทยาการคอมพิวเตอร์">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Action 1" />
-                                          <MenuItem mnemonicParsing="false" text="Action 2" />
-                                       </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="deleteSecondApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="deny-button" text="ลบ" textFill="WHITE" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" styleClass="text-field-box">
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกบุคคล" />
-                                    <MenuButton fx:id="selectThirdApproverName" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="อาจารย์">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Action 1" />
-                                          <MenuItem mnemonicParsing="false" text="Action 2" />
-                                       </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="98.0" prefWidth="400.0" spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="17.0" prefWidth="432.0" styleClass="text-field-label" text="เลือกตำแหน่ง" />
-                                    <MenuButton fx:id="selectThirdApproverRole" mnemonicParsing="false" prefHeight="25.0" prefWidth="432.0" styleClass="menu-button" text="รองหัวหน้าภาควิชาวิทยาการคอมพิวเตอร์">
-                                       <items>
-                                          <MenuItem mnemonicParsing="false" text="Action 1" />
-                                          <MenuItem mnemonicParsing="false" text="Action 2" />
-                                       </items>
-                                    </MenuButton>
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="deleteThirdApprover" mnemonicParsing="false" prefHeight="51.0" prefWidth="72.0" styleClass="deny-button" text="ลบ" textFill="WHITE" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="40.0" left="80.0" right="80.0" top="40.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1080.0" spacing="40.0">
-               <children>
-                  <Button fx:id="addApproverButton" mnemonicParsing="false" onAction="#onAddApproverButtonClick" prefHeight="50.0" prefWidth="240.0" styleClass="back-button" text="เพิ่มข้อมูลผู้อนุมัติคำร้อง" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onSaveDataButtonClick" prefHeight="50.0" prefWidth="240.0" styleClass="green-button" text="บันทึกข้อมูล" textFill="WHITE" />
-               </children>
-            </HBox>
+            <Button fx:id="addApproverButton" mnemonicParsing="false" onAction="#onAddApproverButton" prefHeight="50.0" prefWidth="240.0" styleClass="back-button" text="เพิ่มข้อมูลผู้อนุมัติคำร้อง" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onSaveDataButton" prefHeight="50.0" prefWidth="240.0" styleClass="green-button" text="บันทึกข้อมูล" textFill="WHITE" />
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

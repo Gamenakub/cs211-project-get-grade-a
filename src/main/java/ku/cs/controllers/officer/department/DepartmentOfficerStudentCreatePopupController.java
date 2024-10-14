@@ -1,6 +1,5 @@
 package ku.cs.controllers.officer.department;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -11,80 +10,87 @@ import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.services.AlertService;
+import ku.cs.services.DataProvider;
+import ku.cs.services.Session;
 
 import java.util.ArrayList;
 
 public class DepartmentOfficerStudentCreatePopupController extends BasePopup<DepartmentOfficer> {
-
-    @FXML public TextField studentIdTextField;
-    @FXML public TextField nameTextField;
-    @FXML public TextField surnameTextField;
-    @FXML public TextField emailTextField;
-    @FXML public ChoiceBox advisorSelectDropdown;
-    @FXML
-    private AnchorPane anchorPane;
+    @FXML private TextField studentIdTextField;
+    @FXML private TextField nameTextField;
+    @FXML private TextField surnameTextField;
+    @FXML private TextField studentEmailTextField;
+    @FXML private ChoiceBox<String> advisorSelectChoiceBox;
+    @FXML private TextField nameTitleTextField;
+    @FXML private AnchorPane anchorPane;
     private ArrayList<Advisor> advisors;
-
-    private DepartmentOfficer departmentOfficer;
     private Advisor selectedAdvisor;
+
     @FXML
     public void initialize() {
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
         advisors = new ArrayList<>();
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        
     }
 
     @Override
     public void onPopupOpen() {
-        departmentOfficer = getModel();
+        DepartmentOfficer departmentOfficer = getModel();
         for (Advisor advisor : departmentOfficer.getAdvisorList().findAdvisorByDepartment(departmentOfficer.getDepartment()).getAdvisors()) {
             advisors.add(advisor);
-            advisorSelectDropdown.getItems().add(advisor.getName());
+            advisorSelectChoiceBox.getItems().add(advisor.getName());
         }
+
+        advisorSelectChoiceBox.getItems().addFirst("ไม่มี");
+        advisorSelectChoiceBox.getSelectionModel().select(0);
     }
 
-    public void onCancel(ActionEvent actionEvent) {
+    public void onCancelButton() {
         close();
     }
 
-    public void onConfirm(ActionEvent actionEvent) {
+    public void onConfirmButton() {
+        String emailPattern = "^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,3}$";
+        String studentIdPattern = "^\\d{10}$";
 
-        // ensure all field are filled
-        if (emailTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || studentIdTextField.getText().isEmpty()) {
+        if (studentEmailTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || studentIdTextField.getText().isEmpty() || nameTitleTextField.getText().isEmpty()) {
             AlertService.showError("กรุณากรอกข้อมูลให้ครบถ้วน");
             return;
         }
 
-        // if studentEmail is not valid
-        if (!emailTextField.getText().matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")) {
+        if (!studentEmailTextField.getText().matches(emailPattern)) {
             AlertService.showError("กรุณากรอกอีเมลให้ถูกต้อง");
             return;
         }
 
+        if (!studentIdTextField.getText().matches(studentIdPattern)) {
+            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (คัวเลข 10 หลัก)");
+            return;
+        }
 
-
+        if (DataProvider.getDataProvider().doesStudentIdExist(studentIdTextField.getText())) {
+            AlertService.showError("รหัสนิสิตนี้มีอยู่ในระบบแล้ว");
+            return;
+        }
 
         String studentId = studentIdTextField.getText();
+        String nameTitle = nameTitleTextField.getText();
         String name = nameTextField.getText();
         String surname = surnameTextField.getText();
-        String email = emailTextField.getText();
+        String email = studentEmailTextField.getText();
         DepartmentOfficer departmentOfficer = getModel();
         Department department = departmentOfficer.getDepartment();
 
         for (Advisor advisor : advisors) {
-            System.out.println(
-                    advisor.getName() + " " +
-                    advisor.getDepartment().getName() + " " +
-                    advisor.getDepartment().getFaculty().getName()
-            );
-            if (advisor.getName().equals(advisorSelectDropdown.getValue())) {
+            if (advisor.getName().equals(advisorSelectChoiceBox.getValue())) {
                 selectedAdvisor = advisor;
                 break;
             }
         }
 
         Student newStudent = new Student(
-                "b" + studentId,
-                "นาย",
+                null,
+                nameTitle,
                 name,
                 surname,
                 studentId,
