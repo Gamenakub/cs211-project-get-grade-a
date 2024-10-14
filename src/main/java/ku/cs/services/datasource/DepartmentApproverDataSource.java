@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class DepartmentApproverDataSource implements Writable<DepartmentApproverList, DepartmentApprover>, Readable<DepartmentApproverList, DepartmentApprover> {
 
-    private DepartmentList departmentList;
+    private final DepartmentList departmentList;
 
     public DepartmentApproverDataSource(DepartmentList departmentList) {
         this.departmentList = departmentList;
@@ -21,17 +21,18 @@ public class DepartmentApproverDataSource implements Writable<DepartmentApprover
 
     @Override
     public String getFileName() {
-        return "department-approver.csv"; // Example filename
+        return "department_approver.csv";
     }
 
     @Override
     public String getDirectory() {
-        return "data/"; // Example directory
+        return "data/";
     }
 
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> header = new ArrayList<>();
+        header.add("nameTitle");
         header.add("name");
         header.add("surname");
         header.add("role");
@@ -42,10 +43,11 @@ public class DepartmentApproverDataSource implements Writable<DepartmentApprover
     @Override
     public HashMap<String, String> modelToHashMap(DepartmentApprover departmentApprover) {
         HashMap<String, String> map = new HashMap<>();
+        map.put("nameTitle", departmentApprover.getNameTitle());
         map.put("name", departmentApprover.getName());
         map.put("surname", departmentApprover.getSurname());
         map.put("role", departmentApprover.getRole());
-        map.put("departmentId", departmentApprover.getDepartment().getId()); // Assuming Department has a getName() method
+        map.put("departmentId", departmentApprover.getDepartment().getId());
         return map;
     }
 
@@ -59,8 +61,9 @@ public class DepartmentApproverDataSource implements Writable<DepartmentApprover
         String name = row.get("name");
         String surname = row.get("surname");
         String role = row.get("role");
+        String nameTitle = row.get("nameTitle");
         Department department = departmentList.findDepartmentById(row.get("departmentId"));
-        return new DepartmentApprover(name, surname, role,  department);
+        return new DepartmentApprover(nameTitle, name, surname, role, department);
     }
 
     @Override
