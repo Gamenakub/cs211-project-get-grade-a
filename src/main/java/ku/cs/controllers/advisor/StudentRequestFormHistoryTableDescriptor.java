@@ -16,11 +16,9 @@ public class StudentRequestFormHistoryTableDescriptor extends RequestFormsTableD
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(RequestForm obj) {
-                Button actionButton = new Button("ดูคำร้อง");
+                Button actionButton = new Button("ดูรายละเอียด");
                 actionButton.getStyleClass().add("green-button");
-                actionButton.setOnAction(actionEvent -> {
-                    getTableComponentController().issueEvent("ดูคำร้อง", obj);
-                });
+                actionButton.setOnAction(actionEvent -> getTableComponentController().issueEvent("ดูคำร้อง", obj));
                 return actionButton;
             }
 
