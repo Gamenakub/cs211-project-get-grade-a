@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAcceptPopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="800.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormAcceptPopupController">
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="247.0" prefWidth="800.0" spacing="20.0">
          <children>
@@ -27,7 +27,7 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
                   <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="รับทราบ" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onConfirmationButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="รับทราบ" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
