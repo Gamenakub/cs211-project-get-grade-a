@@ -2,52 +2,53 @@ package ku.cs.services.popup;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.controllers.components.tables.EventCallback;
+import ku.cs.controllers.components.tables.EventCompatible;
 
 import java.io.IOException;
 
-public class PopupComponent<T> {
-    private String fxmlPath;
-    private String popupTitle;
-    private BasePopup<T> popupController;
-    private AnchorPane popupAnchorPane;
-    private Window popupRoot;
-    private Stage stage = new Stage();
-    private PopupCallback callback;
+public class PopupComponent<T> implements EventCompatible {
+    private final String popupTitle;
+    private final Window popupRoot;
+    private final Stage stage;
+    private final BasePopup<T> popupController;
+    private final AnchorPane popupAnchorPane;
 
-    public PopupComponent(T popupModel, String fxmlPath, String title, Window popupRoot) {
-        this.fxmlPath = fxmlPath;
-        // default callback
-        this.callback = (eventName, eventData) -> {return;};
-
+    public PopupComponent(T popupModel, String fxmlPath, String title, Window popupRoot) throws IOException {
         FXMLLoader myPopUp = new FXMLLoader(getClass().getResource(fxmlPath));
-
-        try {
-            popupAnchorPane = myPopUp.load();
-            popupController = myPopUp.getController();
-            popupController.setModel(popupModel);
-            popupController.setPopupCallback(callback);
-            popupController.setPopupTitle(title);
-            popupController.setPopupFxmlPath(fxmlPath);
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        stage = new Stage();
+        popupAnchorPane = myPopUp.load();
+        popupController = myPopUp.getController();
+        popupController.setModel(popupModel);
+        popupController.setPopupTitle(title);
+        popupController.setPopupFxmlPath(fxmlPath);
 
         this.popupTitle = title;
         this.popupRoot = popupRoot;
     }
 
-    public T getPopupModel() {
-        return popupController.getModel();
+    public PopupComponent(T popupModel, String fxmlPath, Window popupRoot) throws IOException {
+        this(popupModel, fxmlPath, "FormXpress", popupRoot);
     }
 
-    public void show(){
+
+    public PopupComponent(String fxmlPath, String title, Window popupRoot) throws IOException {
+        this(null, fxmlPath, title, popupRoot);
+    }
+
+    public PopupComponent(String fxmlPath, Window popupRoot) throws IOException {
+        this(null, fxmlPath, "FormXpress", popupRoot);
+    }
+
+    public void show() {
         stage.setScene(new Scene(popupAnchorPane));
+        stage.getIcons().add(new Image(PopupComponent.class.getResourceAsStream("/images/logo.png")));
         stage.setTitle(popupTitle);
         stage.setResizable(false);
 
@@ -62,31 +63,30 @@ public class PopupComponent<T> {
 
         popupController.onPopupOpen();
         popupController.setStage(stage);
-        popupController.setPopupRoot(popupRoot);
         stage.show();
-    }
-
-    public void close(){
-        callback.onEvent("close", null);
     }
 
     public BasePopup<T> getPopupController() {
         return popupController;
     }
 
-    public void callEvent(PopupCallback callback){
 
+    public void onEvent(String name, EventCallback callback) {
+        popupController.addEventListener(name, callback);
     }
 
-    public PopupCallback getCallback(){
-        return callback;
+    @Override
+    public void issueEvent(String eventName, Object eventData) {
+        popupController.issueEvent(eventName, eventData);
     }
 
-    @Deprecated
-    public void onEvent(PopupCallback callback){
-        popupController.setPopupCallback(callback);
+    @Override
+    public void issueEvent(String eventName) {
+        popupController.issueEvent(eventName);
     }
-    public void onEvent(String name,EventCallback callback){
-        popupController.addEventListener(name,callback);
+
+    @Override
+    public void addEventListener(String eventName, EventCallback eventListener) {
+        popupController.addEventListener(eventName, eventListener);
     }
 }
