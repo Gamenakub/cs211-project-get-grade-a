@@ -1,46 +1,36 @@
 package ku.cs.controllers.components.tables;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public abstract class TableHeaderDescriptor<MODEL>{
-    protected TableComponentController<MODEL> tableComponentController;
-    public void setTableComponentController(TableComponentController<MODEL> tableComponentController) {
-        this.tableComponentController = tableComponentController;
-    }
+public abstract class TableHeaderDescriptor<E> {
+    protected TableComponentController<E> tableComponentController;
 
-
-
-    public TableComponentController<MODEL> getTableComponentController() {
+    public TableComponentController<E> getTableComponentController() {
         return this.tableComponentController;
     }
 
-    public ArrayList<TableHeaderPayload<MODEL>> getCallables() {
-        // get all @TableColumn annotated methods sorted by order
-        ArrayList<TableHeaderPayload<MODEL>> callables = new ArrayList<>();
+    public void setTableComponentController(TableComponentController<E> tableComponentController) {
+        this.tableComponentController = tableComponentController;
+    }
+
+    public ArrayList<TableHeaderPayload<E>> getCallables() throws InvocationTargetException, IllegalAccessException {
+
+        ArrayList<TableHeaderPayload<E>> callables = new ArrayList<>();
 
         Method[] methods = this.getClass().getMethods();
         for (Method method : methods) {
             if (method.isAnnotationPresent(TableColumn.class)) {
-                try {
-                    TableColumn column = method.getAnnotation(TableColumn.class);
-                    ColumnFactory<MODEL> columnFactory = (ColumnFactory<MODEL>) method.invoke(this);
-                    Comparator<MODEL> comparator = columnFactory.getComparator();
-                    if (comparator == null && column.headerMode() == HeaderMode.SORTABLE) {
-                        throw new RuntimeException("Comparator is required for sortable columns");
-                    }
-                    callables.add(new TableHeaderPayload<>(columnFactory, comparator, column.name(), column.size(), column.order(),column.headerMode()));
-
-                } catch (Exception e) {
-                    // raise error if method is not a Callable
-                    e.printStackTrace();
-                    throw new RuntimeException("Method " + method.getName() + " is not a Callable");
-                }
+                TableColumn column = method.getAnnotation(TableColumn.class);
+                ColumnFactory<E> columnFactory = (ColumnFactory<E>) method.invoke(this);
+                Comparator<E> comparator = columnFactory.getComparator();
+                callables.add(new TableHeaderPayload<>(columnFactory, comparator, column.name(), column.size(), column.order(), column.headerMode()));
             }
         }
 
-        callables.sort(Comparator.comparingInt(TableHeaderPayload::getOrder));
+        callables.sort(Comparator.comparingInt(TableHeaderPayload::order));
 
         return callables;
     }

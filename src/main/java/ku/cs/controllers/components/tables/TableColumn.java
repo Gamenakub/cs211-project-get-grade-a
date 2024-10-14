@@ -9,7 +9,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TableColumn {
     int order();
+
     String name();
+
     int size();
+
     HeaderMode headerMode() default HeaderMode.USER_DEFINED;
 }
