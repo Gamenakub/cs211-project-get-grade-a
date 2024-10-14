@@ -1,4 +1,6 @@
-package ku.cs.controllers.components.tables;public interface EventCompatible {
+package ku.cs.controllers.components.tables;
+
+public interface EventCompatible {
     void issueEvent(String eventName, Object eventData);
 
     void issueEvent(String eventName);

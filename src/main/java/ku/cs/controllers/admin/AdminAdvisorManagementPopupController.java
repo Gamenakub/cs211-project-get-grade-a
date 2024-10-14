@@ -10,9 +10,11 @@ import ku.cs.controllers.components.BasePopup;
 import ku.cs.controllers.components.FacultyMenuButtonController;
 import ku.cs.controllers.components.PasswordFieldSkin;
 import ku.cs.models.Department;
+import ku.cs.models.Faculty;
 import ku.cs.models.users.Admin;
 import ku.cs.models.users.Advisor;
 import ku.cs.services.AlertService;
+import ku.cs.services.DataProvider;
 import ku.cs.services.Session;
 
 public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
@@ -29,15 +31,17 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
     private Admin admin;
     private Advisor advisor;
 
+    @Override
     public void onPopupOpen() {
-        Session.getSession().getTheme().setTheme(anchorPane);
-        defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
-        admin = (Admin) Session.getSession().getLoggedInUser();
-        advisor = getModel();
+        Session session = Session.getSession();
+        session.getThemeProvider().setTheme(anchorPane);
+        admin = (Admin) session.getLoggedInUser();
 
+        defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
         FacultyMenuButtonController.addItems(facultyMenuButton, departmentMenuButton, admin.getFacultyList().getFaculties());
 
-        if(advisor != null) {
+        if (this.hasModel()) {
+            advisor = getModel();
             titleLabel.setText("แก้ไขข้อมูลอาจารย์ที่ปรึกษา");
             nameTitleTextField.setText(advisor.getNameTitle());
             nameTextField.setText(advisor.getName());
@@ -45,48 +49,66 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             usernameTextField.setText(advisor.getUsername());
             advisorIdTextField.setText(advisor.getAdvisorId());
             FacultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
+            if (advisor.getActivated()) {
+                defaultPasswordField.setDisable(true);
+                defaultPasswordField.setPromptText("บัญชีนี้มีการแก้ไขรหัสผ่านแล้ว");
+            }
         } else {
             titleLabel.setText("เพิ่มข้อมูลอาจารย์ที่ปรึกษา");
         }
     }
 
-    public void onCancelButton(){
+    @FXML
+    public void onCancelButton() {
         AlertService.showWarning("ระบบไม่ได้บันทึกข้อมูล");
         this.close();
     }
 
     @FXML
-    public void onConfirmButton(){
+    public void onConfirmButton() {
         String nameTitle = nameTitleTextField.getText();
         String name = nameTextField.getText();
         String surname = surnameTextField.getText();
         String username = usernameTextField.getText();
         String password = defaultPasswordField.getText();
+        Faculty faculty = (Faculty) facultyMenuButton.getUserData();
         Department department = (Department) departmentMenuButton.getUserData();
         String advisorId = advisorIdTextField.getText();
 
-        if(nameTitle.isEmpty() || name.isEmpty() || surname.isEmpty() || username.isEmpty() || advisorId.isEmpty()) {
-            AlertService.showError("กรุณากรอกข้อมูลให้ครบถ้วน");
+        if (nameTitle.isEmpty()) {
+            AlertService.showError("กรุณากรอกคำนำหน้าชื่อให้ครบถ้วนและถูกต้อง");
+        } else if (name.isEmpty()) {
+            AlertService.showError("กรุณากรอกชื่อให้ครบถ้วนและถูกต้อง");
+        } else if (surname.isEmpty()) {
+            AlertService.showError("กรุณากรอกนามสกุลให้ครบถ้วนและถูกต้อง");
+        } else if (username.isEmpty()) {
+            AlertService.showError("กรุณากรอกชื่อผู้ใช้ให้ครบถ้วนและถูกต้อง");
+        } else if (DataProvider.getDataProvider().doesUsernameExist(username) && !(this.hasModel() && advisor.getUsername().equals(username))) {
+            AlertService.showError("ชื่อผู้ใข้นี้ถูกใช้งานแล้ว" + System.lineSeparator() + "กรุณาเปลี่ยนชื่อผู้ใช้");
+        } else if (faculty == null) {
+            AlertService.showError("กรุณาเลือกคณะ");
+        } else if (department == null) {
+            AlertService.showError("กรุณาเลือกภาควิชา");
+        } else if (advisorId.isEmpty()) {
+            AlertService.showError("กรุณากรอกรหัสอาจารย์ที่ปรึกษาให้ครบถ้วนและถูกต้อง");
         } else {
-            if(advisor == null){
-                Advisor advisor = new Advisor(username, password, nameTitle, name, surname, advisorId, department);
-                admin.getAdvisorList().addAdvisor(advisor);
-            } else {
+            if (this.hasModel()) {
                 advisor.setNameTitle(nameTitle);
                 advisor.setName(name);
                 advisor.setSurname(surname);
                 advisor.setUsername(username);
                 advisor.setAdvisorId(advisorId);
                 advisor.setDepartment(department);
-                if(!password.isEmpty()){
-                    if(AlertService.showConfirmation("คุณต้องการแก้ไขรหัสผ่านเริ่มต้นของ" + System.lineSeparator() + advisor.getName() + " " + advisor.getSurname())) {
-                        advisor.setPassword(password);
-                        AlertService.showInfo("แก้ไขรหัสผ่านเรียบร้อยแล้ว");
-                    } else {
-                        AlertService.showWarning("รหัสผ่านไม่ถูกแก้ไข");
+                if (!advisor.getStatus() && !password.isEmpty()) {
+                    if (AlertService.showConfirmation("คุณต้องการแก้ไขรหัสผ่านเริ่มต้นของ" + System.lineSeparator() + advisor.getName() + " " + advisor.getSurname())) {
+                        advisor.setDefaultPassword(password);
                     }
                 }
+            } else {
+                Advisor advisor = new Advisor(username, password, nameTitle, name, surname, advisorId, department);
+                admin.getAdvisorList().addAdvisor(advisor);
             }
+            DataProvider.getDataProvider().saveUser();
             AlertService.showInfo("บันทึกข้อมูลเรียบร้อยแล้ว");
             this.issueEvent("success");
             this.close();
