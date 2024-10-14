@@ -5,7 +5,7 @@ import ku.cs.models.RequestFormActionHistory;
 import java.util.ArrayList;
 
 public class RequestFormActionHistoryList {
-    private ArrayList<RequestFormActionHistory> requestFormApprovingHistories;
+    private final ArrayList<RequestFormActionHistory> requestFormApprovingHistories;
 
     public RequestFormActionHistoryList() {
         requestFormApprovingHistories = new ArrayList<>();
@@ -13,10 +13,6 @@ public class RequestFormActionHistoryList {
 
     public void addRequestFormApprovingHistory(RequestFormActionHistory requestFormActionHistory) {
         requestFormApprovingHistories.add(requestFormActionHistory);
-    }
-
-    public void setRequestFormApprovingHistories(ArrayList<RequestFormActionHistory> requestFormApprovingHistories) {
-        this.requestFormApprovingHistories = requestFormApprovingHistories;
     }
 
     public ArrayList<RequestFormActionHistory> getRequestFormApprovingHistories() {
@@ -33,11 +29,11 @@ public class RequestFormActionHistoryList {
         return relatedList;
     }
 
-    public RequestFormActionHistory getLatestRequestFormApprovingHistory(){
-        if (requestFormApprovingHistories.size() == 0) {
+    public RequestFormActionHistory getLatestRequestFormApprovingHistory() {
+        if (requestFormApprovingHistories.isEmpty()) {
             return null;
         }
-        RequestFormActionHistory latest = requestFormApprovingHistories.get(0);
+        RequestFormActionHistory latest = requestFormApprovingHistories.getFirst();
         for (RequestFormActionHistory requestFormActionHistory : requestFormApprovingHistories) {
             if (requestFormActionHistory.getApprovedAt().isAfter(latest.getApprovedAt())) {
                 latest = requestFormActionHistory;

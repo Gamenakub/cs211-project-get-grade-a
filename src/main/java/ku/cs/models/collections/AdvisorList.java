@@ -2,12 +2,11 @@ package ku.cs.models.collections;
 
 import ku.cs.models.Department;
 import ku.cs.models.users.Advisor;
-import ku.cs.models.users.User;
 
 import java.util.ArrayList;
 
 public class AdvisorList implements Searchable<Advisor> {
-    private ArrayList<Advisor> advisors;
+    private final ArrayList<Advisor> advisors;
 
     public AdvisorList(ArrayList<Advisor> advisors) {
         this.advisors = advisors;
@@ -25,18 +24,9 @@ public class AdvisorList implements Searchable<Advisor> {
         advisors.add(advisor);
     }
 
-    public Advisor findAdvisorByName(String name) {
-        for (Advisor advisor : advisors) {
-            if (advisor.getName().equals(name)) {
-                return advisor;
-            }
-        }
-        return null;
-    }
-
     public Advisor findAdvisorById(String id) {
         for (Advisor advisor : advisors) {
-            if(advisor.checkAdvisorById(id)){
+            if (advisor.checkAdvisorById(id)) {
                 return advisor;
             }
         }
@@ -54,14 +44,14 @@ public class AdvisorList implements Searchable<Advisor> {
     }
 
     @Override
-    public ArrayList<Advisor> search(String term) {
+    public ArrayList<Advisor> search(String keyword) {
         ArrayList<Advisor> targetAdvisors = new ArrayList<>();
-        for(Advisor advisor : advisors){
+        for (Advisor advisor : advisors) {
             String name = advisor.getNameTitle() + advisor.getName() + " " + advisor.getSurname();
             String id = advisor.getAdvisorId();
-            if(name.contains(term)){
+            if (name.contains(keyword)) {
                 targetAdvisors.add(advisor);
-            } else if (id.contains(term)){
+            } else if (id.contains(keyword)) {
                 targetAdvisors.add(advisor);
             }
         }
