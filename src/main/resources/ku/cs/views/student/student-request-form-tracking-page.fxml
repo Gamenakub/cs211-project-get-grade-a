@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.student.StudentRequestFormTrackingPageController">
@@ -28,28 +27,25 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="12.0">
          <children>
-            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="400.0" promptText="หัวข้อเรื่องหรือเลขที่ใบคำร้อง" styleClass="text-field-box">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="400.0" styleClass="text-field-box">
+               <font>
+                  <Font size="24.0" />
+               </font>
             </TextField>
-            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" onMouseClicked="#onSearchButtonClick" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-            <MenuButton fx:id="statusMenuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="145.0" text="สถานะคำร้อง">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#onPendingMenuButton" text="รอการอนุมัติ" />
-                <MenuItem mnemonicParsing="false" onAction="#onApprovedMenuButton" text="ได้รับการอนุมัติ" />
-                  <MenuItem mnemonicParsing="false" onAction="#onRejectedMenuButton" text="ได้รับการปฏิเสธ" />
-                  <MenuItem mnemonicParsing="false" onAction="#onAllStatusMenuButton" text="ทั้งหมด" />
-              </items>
+            <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="120.0" styleClass="green-button" text="ค้นหา" />
+            <MenuButton fx:id="statusMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="menu-button-custom" text="สถานะคำร้อง">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onPendingMenuItem" text="รอการอนุมัติ" />
+                  <MenuItem mnemonicParsing="false" onAction="#onApprovedMenuItem" text="ได้รับการอนุมัติ" />
+                  <MenuItem mnemonicParsing="false" onAction="#onRejectedMenuItem" text="ได้รับการปฏิเสธ" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAllStatusMenuItem" text="ทั้งหมด" />
+               </items>
             </MenuButton>
-            <Button mnemonicParsing="false" onAction="#onCreateFormButton" prefHeight="50.0" prefWidth="145.0" styleClass="green-button" text="เพิ่มคำร้อง" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#onCreateFormButton" prefHeight="50.0" prefWidth="150.0" styleClass="green-button" text="สร้างใบคำร้อง" textFill="WHITE" />
          </children>
-         <padding>
-            <Insets left="80.0" />
-         </padding>
       </HBox>
-      <Pane fx:id="tablePane" layoutX="80.0" layoutY="267.0" prefHeight="404.0" prefWidth="915.0" AnchorPane.leftAnchor="80.0" />
+      <Pane fx:id="tablePane" layoutX="80.0" layoutY="267.0" prefHeight="400.0" prefWidth="900.0" />
    </children>
 </AnchorPane>
