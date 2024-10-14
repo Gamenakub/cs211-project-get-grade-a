@@ -35,14 +35,9 @@ public class Department implements Comparable<Department> {
         this.faculty = faculty;
     }
 
-    public boolean isName(String name){
-        return this.name.equals(name);
-    }
-
-    public boolean isId(String Id){
+    public boolean isId(String Id) {
         return this.id.equals(Id);
     }
-
 
     @Override
     public int compareTo(Department o) {
