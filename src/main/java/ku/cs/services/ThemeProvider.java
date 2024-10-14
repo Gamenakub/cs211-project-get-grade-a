@@ -6,8 +6,9 @@ import javafx.util.Duration;
 
 public class ThemeProvider {
 
+
     boolean isDarkMode = false;
-    private String fontSize = "medium";
+    private String fontSize = "Medium";
     private String fontStyle = "Sarabun";
 
     public void setTheme(Parent anchorPane) {
@@ -18,10 +19,11 @@ public class ThemeProvider {
             anchorPane.getStyleClass().remove("dark-theme");
             anchorPane.getStyleClass().add("default-theme");
         }
-        changeFontSize(anchorPane,fontSize);
-        changeFontStyle(anchorPane,fontStyle);
+        changeFontSize(anchorPane, fontSize);
+        changeFontStyle(anchorPane, fontStyle);
     }
-    public void changeTheme(Parent anchorPane){
+
+    public void changeTheme(Parent anchorPane) {
         isDarkMode = !isDarkMode;
 
         FadeTransition fadeOut = new FadeTransition(Duration.millis(500), anchorPane);
@@ -41,56 +43,64 @@ public class ThemeProvider {
                 anchorPane.getStyleClass().add("default-theme");
             }
 
-            fadeIn.play(); // Start fading in the new theme
+            fadeIn.play();
         });
 
         fadeOut.play();
+    }
+
+    public boolean getMode() {
+        return isDarkMode;
+    }
+
+    public void changeFontSize(Parent anchorPane, String size) {
+        setFontSize(size);
+        switch (fontSize) {
+            case "Large" -> {
+                anchorPane.getStyleClass().remove("font-size-small");
+                anchorPane.getStyleClass().add("font-size-large");
+                fontSize = "Large";
+            }
+            case "Medium" -> {
+                anchorPane.getStyleClass().remove("font-size-small");
+                anchorPane.getStyleClass().remove("font-size-large");
+                fontSize = "Medium";
+            }
+            case "Small" -> {
+                anchorPane.getStyleClass().remove("font-size-large");
+                anchorPane.getStyleClass().add("font-size-small");
+                fontSize = "Small";
+            }
+        }
+    }
+
+    public String getFontSize() {
+        return fontSize;
     }
 
     public void setFontSize(String fontSize) {
         this.fontSize = fontSize;
     }
 
-    public void changeFontSize(Parent anchorPane,String size) {
-        setFontSize(size);
-        if (fontSize.equals("Large")) {
-            anchorPane.getStyleClass().remove("font-size-small");
-            anchorPane.getStyleClass().add("font-size-large");
-            fontSize = "Large";
-        }
-        else if(fontSize.equals("Medium")) {
-            anchorPane.getStyleClass().remove("font-size-small");
-            anchorPane.getStyleClass().remove("font-size-large");
-            fontSize = "Medium";
-        }
-        else if(fontSize.equals("Small")) {
-            anchorPane.getStyleClass().remove("font-size-large");
-            anchorPane.getStyleClass().add("font-size-small");
-            fontSize = "Small";
-        }
-    }
-    public String getFontSize() {
-        return fontSize;
-    }
-
-    public void changeFontStyle(Parent anchorPane,String style) {
+    public void changeFontStyle(Parent anchorPane, String style) {
         setFontStyle(style);
-        if (fontStyle.equals("Maligrade")) {
-            anchorPane.getStyleClass().remove("angsana-new-font");
-            anchorPane.getStyleClass().add("mali-grade-font");
-            fontStyle = "Maligrade";
+        switch (fontStyle) {
+            case "Maligrade" -> {
+                anchorPane.getStyleClass().remove("angsana-new-font");
+                anchorPane.getStyleClass().add("mali-grade-font");
+                fontStyle = "Maligrade";
+            }
+            case "Sarabun" -> {
+                anchorPane.getStyleClass().remove("angsana-new-font");
+                anchorPane.getStyleClass().remove("mali-grade-font");
+                fontStyle = "Sarabun";
+            }
+            case "Angsananew" -> {
+                anchorPane.getStyleClass().remove("mali-grade-font");
+                anchorPane.getStyleClass().add("angsana-new-font");
+                fontStyle = "Angsananew";
+            }
         }
-        else if(fontStyle.equals("Sarabun")) {
-            anchorPane.getStyleClass().remove("angsana-new-font");
-            anchorPane.getStyleClass().remove("mali-grade-font");
-            fontStyle = "Sarabun";
-        }
-        else if(fontStyle.equals("Angsananew")) {
-            anchorPane.getStyleClass().remove("mali-grade-font");
-            anchorPane.getStyleClass().add("angsana-new-font");
-            fontStyle = "Angsananew";
-        }
-        anchorPane.getStyleClass();
     }
 
 
