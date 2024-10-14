@@ -9,44 +9,50 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane fx:id="navBarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" styleClass="navbar-background" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.navigationbars.AdvisorNavigationBarController">
+<AnchorPane fx:id="navBarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" styleClass="navbar-background" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.navigationbars.AdvisorNavigationBarController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="60.0" prefWidth="1077.0" spacing="20.0">
          <children>
-            <Circle fx:id="profilePictureCircle" fill="DODGERBLUE" onMouseClicked="#onPersonalInformationManagementButton" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
-            <HBox prefHeight="60.0" prefWidth="754.0" spacing="16.0">
+            <Circle fx:id="profilePictureCircle" fill="DODGERBLUE" onMouseClicked="#onPersonalInformationManagementButton" radius="23.0" stroke="BLACK" strokeType="INSIDE" styleClass="profile" />
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="754.0" spacing="16.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onNisitListPageButtonClick" prefHeight="60.0" prefWidth="228.0" styleClass="navbar-button" text="รายชื่อนิสิตในที่ปรึกษา" />
-                  <Button mnemonicParsing="false" onAction="#onFormManagePageButtonClick" prefHeight="60.0" prefWidth="216.0" styleClass="navbar-button" text="จัดการคำร้อง" />
+                  <Button mnemonicParsing="false" onAction="#onStudentListPageButton" styleClass="navbar-button" text="รายชื่อนิสิตในที่ปรึกษา" />
+                  <Button mnemonicParsing="false" onAction="#onFormManagePageButton" styleClass="navbar-button" text="จัดการคำร้อง" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="370.0" spacing="8.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="222.0" spacing="8.0">
                <children>
-                  <MenuButton fx:id="fontStyleMenuButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" text="Sarabun">
+                  <MenuButton fx:id="fontStyleMenuButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="46.0" prefWidth="53.0" styleClass="navbar-button-icon" text="เปลี่ยนแบบอักษร">
                      <items>
-                        <MenuItem fx:id="sarabunItem" mnemonicParsing="false" onAction="#onSarabunItemClick" text="Sarabun" />
-                        <MenuItem fx:id="angsanaItem" mnemonicParsing="false" onAction="#onAngsanaNewItemClick" text="Angsananew" />
-                        <MenuItem fx:id="maligradeItem" mnemonicParsing="false" onAction="#onMaliGradeItemClick" text="Maligrade" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSarabunMenuItem" text="TH SarabunPSK" />
+                        <MenuItem mnemonicParsing="false" onAction="#onAngsanaNewMenuItem" text="Angsana New" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMaliGradeMenuItemClick" text="TH Mali Grade 6" />
                      </items>
                   </MenuButton>
-                  <MenuButton fx:id="fontSizeMenuButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" text="Medium">
-                    <items>
-                      <MenuItem fx:id="largeItem" mnemonicParsing="false" onAction="#onLargeItemClick" text="Large" />
-                        <MenuItem fx:id="mediumItem" mnemonicParsing="false" onAction="#onMediumItemClick" text="Medium" />
-                      <MenuItem fx:id="smallItem" mnemonicParsing="false" onAction="#onSmallItemClick" text="Small" />
-                    </items>
+                  <MenuButton fx:id="fontSizeMenuButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="42.0" prefWidth="34.0" styleClass="navbar-button-icon" text="มาตรฐาน">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onLargeMenuItem" text="ใหญ่" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMediumMenuItem" text="มาตรฐาน" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSmallMenuItem" text="เล็ก" />
+                     </items>
                   </MenuButton>
-                  <ImageView fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onThemeButtonClick" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="themeIcon" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#onThemeButton" pickOnBounds="true" preserveRatio="true" />
+                  <Line endX="100.0" startX="100.0" startY="-42.030189514160156" strokeWidth="2.0" styleClass="navbar-line">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </HBox.margin>
+                  </Line>
+                  <ImageView fx:id="logoutIcon" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../images/navbar-icons/dark-mode-icon.png" />
-                     </image></ImageView>
-                  <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../images/navbar-icons/logout-icon.png" />
+                        <Image url="@../../../../images/navbar-icons/logout-icon-light.png" />
                      </image>
                   </ImageView>
                </children>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
             </HBox>
          </children>
          <padding>
