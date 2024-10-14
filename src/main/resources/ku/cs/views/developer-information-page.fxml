@@ -12,62 +12,80 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DeveloperInformationPageController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="151.0" layoutY="7.0" prefHeight="720.0" prefWidth="1080.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="720.0" fitWidth="1080.0" layoutX="35.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="303.0" layoutY="107.0" styleClass="HeadLabel" text="ข้อมูลนิสิตผู้จัดทำโปรแกรม">
+         <font>
+            <Font name="TH SarabunPSK Bold" size="64.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="80.0" prefWidth="1080.0">
          <children>
-            <Pane prefHeight="80.0" prefWidth="1080.0">
+            <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBackToLoginButton" styleClass="back-button" text="กลับไปหน้าลงชื่อเข้าใช้" />
+         </children>
+      </Pane>
+      <HBox alignment="TOP_CENTER" layoutY="242.0" prefHeight="340.0" prefWidth="1080.0" spacing="20.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="240.0" spacing="20.0" style="-fx-border-color: black; -fx-background-color: white;">
                <children>
-                  <Button layoutX="464.0" layoutY="20.0" mnemonicParsing="false" onAction="#onBackToLoginButton" styleClass="back-button" text="กลับไปหน้าลงชื่อเข้าใช้" />
-               </children></Pane>
-            <Label styleClass="HeadLabel" text="ข้อมูลนิสิตผู้จัดทำโปรแกรม">
-               <font>
-                  <Font name="TH SarabunPSK Bold" size="64.0" />
-               </font>
-            </Label>
-            <HBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="1080.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+                  <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/developer-pictures/thaphon-picture.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/developer-pictures/thaphon-picture.png" />
-                           </image></ImageView>
                         <Label styleClass="normal-text" text="ฐาพล ชินกรสกุล (ซัน)" />
                         <Label styleClass="normal-text" text="6610401993" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="240.0" spacing="20.0" style="-fx-border-color: black; -fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/developer-pictures/tee-picture.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/developer-pictures/tee-picture.png" />
-                           </image></ImageView>
                         <Label styleClass="normal-text" text="ธีร์ อนุสรณ์ศาสน์ (ตี้)" />
-                        <Label styleClass="normal-text" text="661040XXXX" />
+                        <Label styleClass="normal-text" text="6610402116" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="240.0" spacing="20.0" style="-fx-border-color: black; -fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/developer-pictures/isarapong-picture.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/developer-pictures/isarapong-picture.png" />
-                           </image></ImageView>
                         <Label styleClass="normal-text" text="อิสรพงษ์ เถื่อนสกุล (เกม)" />
                         <Label styleClass="normal-text" text="6610402272" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="380.0" prefWidth="240.0">
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="340.0" prefWidth="240.0" spacing="20.0" style="-fx-border-color: black; -fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/developer-pictures/jirat-picture.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="240.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/developer-pictures/jirat-picture.png" />
-                           </image></ImageView>
                         <Label styleClass="normal-text" text="จิรัฏฐ์ ค่องสกุล (เฟม)" />
                         <Label styleClass="normal-text" text="6610405832" />
                      </children>
                   </VBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>
