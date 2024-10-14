@@ -9,47 +9,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 
-<AnchorPane fx:id="navBarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" styleClass="navbar-background" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.navigationbars.AdminNavigationBarController">
+<AnchorPane fx:id="navBarAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1080.0" styleClass="navbar-background" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.navigationbars.AdminNavigationBarController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutY="-1.0" prefHeight="60.0" prefWidth="1077.0" spacing="20.0">
          <children>
-            <Circle fx:id="profilePictureCircle" fill="DODGERBLUE" onMouseClicked="#onPersonalInformationManagementButton" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="Profile" />
-            <HBox prefHeight="60.0" prefWidth="638.0" spacing="16.0">
+            <Circle fx:id="profilePictureCircle" fill="DODGERBLUE" onMouseClicked="#onPersonalInformationManagementButton" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="profile" />
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="782.0" spacing="16.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onAdminUserManagementButton" prefHeight="60.0" prefWidth="124.0" styleClass="navbar-button" text="จัดการข้อมูลผู้ใช้" />
-                  <MenuButton mnemonicParsing="false" prefHeight="60.0" prefWidth="133.0" text="จัดการข้อมูลหน่วยงาน">
+                  <Button mnemonicParsing="false" onAction="#onAdminUserManagementButton" styleClass="navbar-button" text="จัดการข้อมูลผู้ใช้" />
+                  <MenuButton mnemonicParsing="false" styleClass="menu-button-custom" text="จัดการข้อมูลหน่วยงาน">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onFacultyManagementMenuItem" text="คณะ" />
                         <MenuItem mnemonicParsing="false" onAction="#onDepartmentManagementMenuItem" text="ภาควิชา" />
                      </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" prefHeight="60.0" prefWidth="133.0" text="จัดการข้อมูลบุคลากร">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#onFacultyOfficerManagementMenuItem" text="เจ้าหน้าที่คณะ" />
-                      <MenuItem mnemonicParsing="false" onAction="#onDepartmentOfficerManagementMenuItem" text="เจ้าหน้าที่ภาควิชา" />
-                        <MenuItem mnemonicParsing="false" onAction="#onAdvisorManagementMenuItem" text="อาจารย์ที่ปรึกษา" />
-                    </items>
-                  </MenuButton>
-                  <Button mnemonicParsing="false" onAction="#onDashboardButton" prefHeight="60.0" prefWidth="111.0" styleClass="navbar-button" text="แดชบอร์ด" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="322.0" spacing="8.0">
-               <children>
-                  <MenuButton fx:id="fontSizeMenuButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" text="Medium">
+                  <MenuButton mnemonicParsing="false" styleClass="menu-button-custom" text="จัดการข้อมูลบุคลากร">
                      <items>
-                        <MenuItem fx:id="largeItem" mnemonicParsing="false" onAction="#onLargeItemClick" text="Large" />
-                        <MenuItem fx:id="mediumItem" mnemonicParsing="false" onAction="#onMediumItemClick" text="Medium" />
-                        <MenuItem fx:id="smallItem" mnemonicParsing="false" onAction="#onSmallItemClick" text="Small" />
+                        <MenuItem mnemonicParsing="false" onAction="#onFacultyOfficerManagementMenuItem" text="เจ้าหน้าที่คณะ" />
+                        <MenuItem mnemonicParsing="false" onAction="#onDepartmentOfficerManagementMenuItem" text="เจ้าหน้าที่ภาควิชา" />
+                        <MenuItem mnemonicParsing="false" onAction="#onAdvisorManagementMenuItem" text="อาจารย์ที่ปรึกษา" />
                      </items>
                   </MenuButton>
-                  <ImageView fitHeight="41.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onThemeButtonClick" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../images/navbar-icons/logout-icon.png" />
-                     </image></ImageView>
+                  <Button mnemonicParsing="false" onAction="#onDashboardButton" styleClass="navbar-button" text="แดชบอร์ด" />
                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="191.0" spacing="8.0">
+               <children>
+                  <MenuButton fx:id="fontStyleMenuButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="46.0" prefWidth="53.0" styleClass="navbar-button-icon" text="Sarabun">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onSarabunMenuItem" text="TH SarabunPSK" />
+                        <MenuItem mnemonicParsing="false" onAction="#onAngsanaNewMenuItem" text="Angsana New" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMaliGradeMenuItemClick" text="TH Mali Grade 6" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="fontSizeMenuButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="42.0" prefWidth="34.0" styleClass="navbar-button-icon" text="Medium">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onLargeMenuItem" text="ใหญ่" />
+                        <MenuItem mnemonicParsing="false" onAction="#onMediumMenuItem" text="มาตรฐาน" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSmallMenuItem" text="เล็ก" />
+                     </items>
+                  </MenuButton>
+                  <ImageView fx:id="themeIcon" fitHeight="46.0" fitWidth="54.0" onMouseClicked="#onThemeButton" pickOnBounds="true" preserveRatio="true" />
+                  <Line endX="100.0" startX="100.0" startY="-42.030189514160156" strokeWidth="2.0" styleClass="navbar-line">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </HBox.margin>
+                  </Line>
+                  <ImageView fx:id="logoutIcon" accessibleRole="BUTTON" fitHeight="41.0" fitWidth="54.0" onMouseClicked="#onLogoutButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/navbar-icons/logout-icon-light.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
             </HBox>
          </children>
          <padding>

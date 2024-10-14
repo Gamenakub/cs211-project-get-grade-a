@@ -8,20 +8,23 @@ import ku.cs.models.users.Student;
 
 import java.util.ArrayList;
 
-public class RequestFormList implements Searchable<RequestForm>{
+public class RequestFormList implements Searchable<RequestForm> {
     private ArrayList<RequestForm> requestForms;
+
     public RequestFormList() {
         requestForms = new ArrayList<>();
     }
-    public void addRequestForm(RequestForm requestForm) { requestForms.add(requestForm); }
-    public ArrayList<RequestForm> getRequestForms() { return requestForms; }
 
-    public RequestForm findRequestFormById(String requestFormId) {
-        for (RequestForm requestForm : requestForms) {
-            if(requestForm.checkRequestFormById(requestFormId))
-                return requestForm;
-        }
-        return null;
+    public void addRequestForm(RequestForm requestForm) {
+        requestForms.add(requestForm);
+    }
+
+    public ArrayList<RequestForm> getRequestForms() {
+        return requestForms;
+    }
+
+    public void setRequestForms(ArrayList<RequestForm> requestForms) {
+        this.requestForms = requestForms;
     }
 
     public void applyRequestFormApprovingHistoryList(RequestFormActionHistoryList requestFormActionHistoryList) {
@@ -31,15 +34,14 @@ public class RequestFormList implements Searchable<RequestForm>{
         }
     }
 
-
     public RequestFormList findRequestFormsByDepartment(Department department) {
         ArrayList<RequestForm> targetRequestForms = new ArrayList<>();
         for (RequestForm requestForm : requestForms) {
-            if(requestForm.getStudent().getDepartment().getId().equals(department.getId())){
+            if (requestForm.getStudent().getDepartment().getId().equals(department.getId())) {
                 targetRequestForms.add(requestForm);
             }
         }
-        RequestFormList requestFormList= new RequestFormList();
+        RequestFormList requestFormList = new RequestFormList();
         requestFormList.setRequestForms(targetRequestForms);
         return requestFormList;
     }
@@ -51,11 +53,11 @@ public class RequestFormList implements Searchable<RequestForm>{
     public RequestFormList findRequestFormsByStatus(RequestForm.Status status) {
         ArrayList<RequestForm> targetRequestForms = new ArrayList<>();
         for (RequestForm requestForm : requestForms) {
-            if (requestForm.getStatus() == status){
+            if (requestForm.getStatus() == status) {
                 targetRequestForms.add(requestForm);
             }
         }
-        RequestFormList requestFormList= new RequestFormList();
+        RequestFormList requestFormList = new RequestFormList();
         requestFormList.setRequestForms(targetRequestForms);
         return requestFormList;
     }
@@ -63,44 +65,37 @@ public class RequestFormList implements Searchable<RequestForm>{
     public RequestFormList findRequestFormsByFaculty(Faculty faculty) {
         ArrayList<RequestForm> targetRequestForms = new ArrayList<>();
         for (RequestForm requestForm : requestForms) {
-            if(requestForm.getStudent().getFaculty().equals(faculty)){
+            if (requestForm.getStudent().getFaculty().equals(faculty)) {
                 targetRequestForms.add(requestForm);
             }
         }
-        RequestFormList requestFormList= new RequestFormList();
+        RequestFormList requestFormList = new RequestFormList();
         requestFormList.setRequestForms(targetRequestForms);
         return requestFormList;
     }
+
     public RequestFormList findRequestFormsByAdvisor(Advisor advisor) {
         ArrayList<RequestForm> targetRequestForms = new ArrayList<>();
         for (RequestForm requestForm : requestForms) {
-//            System.out.println(requestForm.ge);
-            if(requestForm.getAdvisor().equals(advisor)){
+            if (requestForm.getAdvisor().equals(advisor)) {
                 targetRequestForms.add(requestForm);
             }
         }
-        RequestFormList requestFormList= new RequestFormList();
+        RequestFormList requestFormList = new RequestFormList();
         requestFormList.setRequestForms(targetRequestForms);
         return requestFormList;
     }
-
-
 
     public RequestFormList findRequestFormsByStudent(Student student) {
         ArrayList<RequestForm> targetRequestForms = new ArrayList<>();
         for (RequestForm requestForm : requestForms) {
-            if(requestForm.getStudent().equals(student)){
+            if (requestForm.getStudent().equals(student)) {
                 targetRequestForms.add(requestForm);
             }
         }
-        RequestFormList requestFormList= new RequestFormList();
+        RequestFormList requestFormList = new RequestFormList();
         requestFormList.setRequestForms(targetRequestForms);
         return requestFormList;
-    }
-
-
-    public void setRequestForms(ArrayList<RequestForm> requestForms) {
-        this.requestForms = requestForms;
     }
 
     public void addRequestFormList(RequestFormList requestFormList) {
@@ -108,16 +103,14 @@ public class RequestFormList implements Searchable<RequestForm>{
     }
 
     @Override
-    public ArrayList<RequestForm> search(String keyword){
+    public ArrayList<RequestForm> search(String keyword) {
         ArrayList<RequestForm> targetForms = new ArrayList<>();
         for (RequestForm requestForm : this.requestForms) {
-            if(requestForm.getRequestFormId().contains(keyword)){
+            if (requestForm.getRequestFormId().contains(keyword)) {
                 targetForms.add(requestForm);
-            }
-            else if(requestForm.getRequestFormTitle().contains(keyword)){
+            } else if (requestForm.getRequestFormTitle().contains(keyword)) {
                 targetForms.add(requestForm);
-            }
-            else if((requestForm.getStatus()+"").contains(keyword)){
+            } else if ((requestForm.getStatus() + "").contains(keyword)) {
                 targetForms.add(requestForm);
             }
         }
@@ -125,10 +118,10 @@ public class RequestFormList implements Searchable<RequestForm>{
     }
 
     @Override
-    public ArrayList<RequestForm> filter(String term) {
+    public ArrayList<RequestForm> filter(String keyword) {
         ArrayList<RequestForm> targetForms = new ArrayList<>();
         for (RequestForm requestForm : this.requestForms) {
-            if((requestForm.getStatus()+"").contains(term)){
+            if ((requestForm.getStatus() + "").contains(keyword)) {
                 targetForms.add(requestForm);
             }
         }
