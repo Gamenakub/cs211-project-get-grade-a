@@ -5,106 +5,129 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import ku.cs.controllers.components.tables.EventCallback;
 import ku.cs.models.DepartmentApprover;
 import ku.cs.models.collections.DepartmentApproverList;
-import ku.cs.models.users.officers.DepartmentOfficer;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Objects;
 
 
-public class DepartmentApproverComponentController{
+public class DepartmentApproverComponentController {
 
-    @FXML
-    private TextField nameTextField;
+    @FXML private TextField surnameTextField;
+    @FXML private TextField nameTitleTextField;
+    @FXML private TextField nameTextField;
 
-    @FXML
-    private MenuButton roleMenuButton;
+    @FXML private MenuButton roleMenuButton;
 
-    @FXML
-    private Button deleteButton;
-
-    @FXML
-    private HBox hBox;
+    @FXML private Button deleteButton;
 
     private DepartmentApprover approver;
-    private DepartmentOfficer departmentOfficer;
     private DepartmentApproverList relatedDepartmentApproverList;
+    private DepartmentApproverList awaitDelete;
 
-    private EventCallback onUpdateCallback = (eventName) -> {};
+    private EventCallback onUpdateCallback;
 
-    private boolean newlyCreated = false;
+    private String departmentName;
 
-    public void onUpdate(EventCallback onUpdateCallback){
+    public void onUpdate(EventCallback onUpdateCallback) {
         this.onUpdateCallback = onUpdateCallback;
     }
 
-    public void initialize(DepartmentApproverList relatedDepartmentApproverList, DepartmentApprover approver, DepartmentOfficer departmentOfficer) {
+    public void initializeDepartmentApproverComponent(DepartmentApproverList relatedDepartmentApproverList, DepartmentApproverList awaitDelete, DepartmentApprover approver, String departmentName) {
         this.approver = approver;
         this.relatedDepartmentApproverList = relatedDepartmentApproverList;
-        this.departmentOfficer = departmentOfficer;
+        this.awaitDelete = awaitDelete;
+        this.departmentName = departmentName;
         reload();
     }
 
-    public void setNewlyCreated(boolean newlyCreated){
-        this.newlyCreated = newlyCreated;
-    }
-
-
     public void reload() {
-        // Implement logic to refresh the page based on the application context
-        nameTextField.setText(approver.getName() + " " + approver.getSurname());
-        roleMenuButton.getItems().clear();
 
-        // Populate MenuButton with roles
+
+        nameTextField.setText(approver.getName());
+        surnameTextField.setText(approver.getSurname());
+        nameTitleTextField.setText(approver.getNameTitle());
+        roleMenuButton.getItems().clear();
+        HashSet<String> roles = new HashSet<>();
+
+
         for (String role : relatedDepartmentApproverList.getAvailableRole()) {
-            String representation = role + "ภาควิชา" + departmentOfficer.getDepartment().getName();
-            MenuItem menuItem = new MenuItem(representation);
-            menuItem.setOnAction(event -> {
-                roleMenuButton.setText(representation);
-                onUpdateCallback.onEvent("update-role");
-            });
-            roleMenuButton.getItems().add(menuItem);
+            if (role.isEmpty()) {
+                continue;
+            }
+            String representation = role + "ภาควิชา" + departmentName;
+            roles.add(representation);
+        }
+
+        for (String role : awaitDelete.getAllRole()) {
+            if (role.isEmpty()) {
+                continue;
+            }
+            String representation = role + "ภาควิชา" + departmentName;
+            roles.add(representation);
+        }
+
+        for (String role : roles) {
+            addRoleToMenuItem(role, true);
         }
 
         for (String role : relatedDepartmentApproverList.getUnavailableRole()) {
-            String representation = role + "ภาควิชา" + departmentOfficer.getDepartment().getName();
-            if (!role.equals(approver.getRole())) {
-                MenuItem menuItem = new MenuItem(representation);
-                menuItem.setStyle("-fx-text-fill: grey;");
-                roleMenuButton.getItems().add(menuItem);
+            String representation = role + "ภาควิชา" + departmentName;
+            addRoleToMenuItem(representation, false);
+        }
+
+
+        deleteButton.setOnAction(event -> onUpdateCallback.onEvent("delete"));
+        if (!approver.getRole().isEmpty()) {
+            roleMenuButton.setText(approver.getRepresentativeRole());
+            if (approver.isLeaderOrSubLeader()) {
+                addRoleToMenuItem("รักษาการณ์หัวหน้าภาควิชา" + departmentName, true);
+                addRoleToMenuItem("หัวหน้าภาควิชา" + departmentName, true);
             }
         }
 
-        // Handle delete button action
-        deleteButton.setOnAction(event -> {
-            onUpdateCallback.onEvent("delete");
+    }
+
+    private void addRoleToMenuItem(String role, boolean enabled) {
+        MenuItem subLeaderMenuItem = new MenuItem(role);
+        if (!enabled) {
+
+
+            subLeaderMenuItem.setDisable(true);
+        }
+
+        subLeaderMenuItem.setOnAction(event -> {
+            roleMenuButton.setText(role);
+            onUpdateCallback.onEvent("update-role");
         });
 
-        roleMenuButton.setText(approver.getRepresentativeRole());
+
+        for (MenuItem menuItem : roleMenuButton.getItems()) {
+            if (Objects.equals(menuItem.getText(), role)) {
+                roleMenuButton.getItems().remove(menuItem);
+                break;
+            }
+        }
+        if (!enabled) roleMenuButton.getItems().addLast(subLeaderMenuItem);
+        else roleMenuButton.getItems().addFirst(subLeaderMenuItem);
     }
 
-    public void selectFirstRole(){
-        roleMenuButton.setText(relatedDepartmentApproverList.getAvailableRole().get(0) + "ภาควิชา" + departmentOfficer.getDepartment().getName());
-    }
-
-    public void confirm(){
-        String wholeName = nameTextField.getText();
-        // trim whole name
-        wholeName = wholeName.trim();
-        String[] name = wholeName.split(" ");
-        if (name.length > 0)
-        approver.setName(name[0]);
-        if (name.length > 1)
-        approver.setSurname(name[1]);
+    public void confirm() {
+        approver.setName(nameTextField.getText());
+        approver.setSurname(surnameTextField.getText());
+        approver.setNameTitle(nameTitleTextField.getText());
         String role = roleMenuButton.getText().split("ภาควิชา")[0];
         approver.setRole(role);
     }
 
-    public boolean isNewlyCreated() {
-        return newlyCreated;
-    }
+    public void confirmChecked() throws IOException {
 
-    public DepartmentApprover getApprover() {
-        return approver;
+        if (nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() || roleMenuButton.getText().isEmpty()) {
+            throw new IOException("กรุณากรอกข้อมูลให้ครบถ้วน");
+        }
+        confirm();
     }
 }

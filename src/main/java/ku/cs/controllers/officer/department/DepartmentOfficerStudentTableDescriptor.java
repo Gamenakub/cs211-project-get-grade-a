@@ -17,31 +17,22 @@ import java.util.Comparator;
 
 public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescriptor<Student> {
 
-    @TableColumn(order = 0, name = "โปรไฟล์", size = 80)
+    @TableColumn(order = 0, name = "รูปโพรไฟล์", size = 81, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> profileColumn() {
-        return new ColumnFactory<>() {
-            @Override
-            public Node getDisplayNode(Student obj) {
-                Circle profile = new Circle();
-                profile.setRadius(20);
-                ProfilePictureController.setImageToCircle(profile, obj.getProfilePictureFileName());
-                return profile;
-            }
-
-            @Override
-            public Node getHeadNode() {
-                Label label = new Label("โปรไฟล์");
-                return label;
-            }
+        return obj -> {
+            Circle profile = new Circle();
+            profile.setRadius(20);
+            ProfilePictureController.setImageToCircle(profile, obj.getProfilePictureFileName());
+            return profile;
         };
     }
 
-    @TableColumn(order = 1, name = "ชื่อ", size = 150,headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 1, name = "ชื่อ", size = 152, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> nameColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
-                // return new Label(obj.getName());
+
                 Label label = new Label(obj.getName());
                 label.getStyleClass().add("table-text");
                 return label;
@@ -54,12 +45,12 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 2, name = "ชื่อผู้ใช้", size = 160,headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 2, name = "ชื่อผู้ใช้", size = 152, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> usernameColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
-                // return new Label(obj.getUsername());
+
                 Label label = new Label(obj.getUsername());
                 label.getStyleClass().add("table-text");
                 return label;
@@ -72,12 +63,12 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 3, name = "รหัสนิสิต", size = 140,headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 3, name = "รหัสนิสิต", size = 142, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> studentIdColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
-                // return new Label(obj.getStudentId());
+
                 Label label = new Label(obj.getStudentId());
                 label.getStyleClass().add("table-text");
                 return label;
@@ -90,12 +81,12 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 4, name = "อีเมล", size = 100,headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 4, name = "อีเมล", size = 100, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> emailColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
-                //return new Label(obj.getStudentEmail());
+
                 Label label = new Label(obj.getStudentEmail());
                 label.getStyleClass().add("table-text");
                 return label;
@@ -108,7 +99,7 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 5, name = "อาจารย์ที่ปรึกษา", size = 140,headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 5, name = "อาจารย์ที่ปรึกษา", size = 142, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> advisorColumn() {
         return new ColumnFactory<>() {
             @Override
@@ -116,8 +107,7 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
                 Label label;
                 if (obj.getAdvisor() == null) {
                     label = new Label("ไม่มี");
-                }
-                else{
+                } else {
                     label = new Label(obj.getAdvisor().getName());
                 }
                 label.getStyleClass().add("table-text");
@@ -131,15 +121,16 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 6, name = "", size = 130)
+    @TableColumn(order = 6, name = "", size = 131)
     public ColumnFactory<Student> modifyButtonColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
-                Button modifyButton = new Button("แก้ไข");
-                modifyButton.setOnAction(actionEvent -> {
-                    tableComponentController.issueEvent("แก้ไข",obj);
-                });
+                Button modifyButton = new Button("แก้ไขข้อมูล");
+                modifyButton.getStyleClass().add("green-button");
+
+                modifyButton.setPrefWidth(100);
+                modifyButton.setOnAction(actionEvent -> tableComponentController.issueEvent("แก้ไข", obj));
                 return modifyButton;
             }
 
