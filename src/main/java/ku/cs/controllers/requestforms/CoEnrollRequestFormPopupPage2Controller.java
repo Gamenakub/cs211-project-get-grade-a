@@ -14,6 +14,7 @@ import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.services.AlertService;
 import ku.cs.services.DataProvider;
+import ku.cs.services.RequestFormNumberProvider;
 import ku.cs.services.Session;
 
 public class CoEnrollRequestFormPopupPage2Controller extends BasePopup<FormDataModel> {
