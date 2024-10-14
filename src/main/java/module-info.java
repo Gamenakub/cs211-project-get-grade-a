@@ -27,6 +27,21 @@ module ku.cs {
     exports ku.cs.controllers.requestforms;
     opens ku.cs.controllers.requestforms to javafx.fxml;
 
+    exports ku.cs.models.requestforms;
+    opens ku.cs.models.requestforms to javafx.fxml;
+
+    exports ku.cs.models.users;
+    opens ku.cs.models.users to javafx.fxml;
+
+    exports ku.cs.models.users.officers;
+    opens ku.cs.models.users.officers to javafx.fxml;
+
+    exports ku.cs.models.collections;
+    opens ku.cs.models.collections to javafx.fxml;
+
+    exports ku.cs.models;
+    opens ku.cs.models to javafx.fxml;
+
     exports ku.cs.controllers.officer.department;
     opens ku.cs.controllers.officer.department to javafx.fxml;
 
