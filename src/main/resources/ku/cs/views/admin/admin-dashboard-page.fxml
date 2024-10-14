@@ -25,9 +25,9 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="200.0" prefWidth="492.0" spacing="20.0" styleClass="dashboard-container">
+      <VBox alignment="CENTER" layoutX="69.0" layoutY="154.0" prefHeight="200.0" prefWidth="492.0" spacing="20.0" styleClass="dashboard-container">
          <children>
-            <Label text="คำร้องในระบบ">
+            <Label styleClass="sub-header" text="คำร้องในระบบ">
                <font>
                   <Font size="24.0" />
                </font>
@@ -36,12 +36,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-all-form">
                      <children>
-                        <Label text="ทั้งหมด">
+                        <Label styleClass="normal-text" text="ทั้งหมด">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalFormLabel" text="50">
+                        <Label fx:id="totalFormLabel" styleClass="normal-text" text="50">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -50,12 +50,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-success-form">
                      <children>
-                        <Label text="อนุมัติแล้ว">
+                        <Label styleClass="normal-text" text="อนุมัติแล้ว">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalSuccessFormLabel" text="30">
+                        <Label fx:id="totalSuccessFormLabel" styleClass="normal-text" text="30">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -64,12 +64,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-in-process-form">
                      <children>
-                        <Label text="รอพิจารณา">
+                        <Label styleClass="normal-text" text="รอพิจารณา">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalInProgressFormLabel" text="10">
+                        <Label fx:id="totalInProgressFormLabel" styleClass="normal-text" text="10">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -78,12 +78,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-refused-form">
                      <children>
-                        <Label text="ไม่อนุมัติ">
+                        <Label styleClass="normal-text" text="ถูกปฏิเสธ">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalRejectedFormLabel" text="10">
+                        <Label fx:id="totalRejectedFormLabel" styleClass="normal-text" text="10">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -94,82 +94,31 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" layoutX="62.0" layoutY="421.0" prefHeight="245.0" prefWidth="490.0" spacing="10.0" styleClass="dashboard-container">
+      <VBox alignment="CENTER" layoutX="62.0" layoutY="370.0" prefHeight="284.0" prefWidth="498.0" spacing="10.0" styleClass="dashboard-container">
          <children>
-            <Label text="คำร้องที่อนุมัติแล้ว">
+            <Label styleClass="sub-header" text="คำร้องที่อนุมัติแล้ว">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="446.0" spacing="16.0">
+            <VBox alignment="CENTER" fillWidth="false" prefWidth="410.0" spacing="10.0">
                <children>
-                  <VBox alignment="CENTER" spacing="3.0">
-                     <children>
-                        <Label text="คณะ" />
-                        <MenuButton fx:id="facultyFormMenuButton" mnemonicParsing="false" styleClass="MenuButtonFilter" text="ทั้งหมด">
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#onAllFacultyFormClick" text="ทั้งหมด" />
-                          </items>
-                        </MenuButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="3.0">
-                     <children>
-                        <Label text="สาขา" />
-                        <MenuButton fx:id="departmentFormMenuButton" mnemonicParsing="false" onAction="#onAllDepartmentFormClick" styleClass="MenuButtonFilter" text="ทั้งหมด">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="ทั้งหมด" />
-                           </items>
-                        </MenuButton>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="489.0" spacing="8.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-success-form">
-                     <children>
-                        <Label text="อนุมัติแล้ว">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="totalSuccessFormFilteredLabel" text="30">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="587.0" layoutY="189.0" prefHeight="478.0" prefWidth="446.0" spacing="10.0" styleClass="dashboard-container">
-         <children>
-            <Label text="จำนวนผู้ใช้งาน">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <VBox prefHeight="293.0" prefWidth="446.0" spacing="16.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="446.0" spacing="16.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="71.0" prefWidth="487.0" spacing="16.0">
                      <children>
                         <VBox alignment="CENTER" spacing="3.0">
                            <children>
-                              <Label text="คณะ" />
-                              <MenuButton fx:id="facultyUserMenuButton" mnemonicParsing="false" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                              <Label styleClass="text-field-label" text="คณะ" />
+                              <MenuButton fx:id="facultyFormMenuButton" maxWidth="220.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" styleClass="menu-button-custom" text="ทั้งหมด">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#onAllFacultyUserClick" text="ทั้งหมด" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onAllFacultyFormItem" text="ทั้งหมด" />
                                  </items>
                               </MenuButton>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" spacing="3.0">
                            <children>
-                              <Label text="สาขา" />
-                              <MenuButton fx:id="departmentUserMenuButton" mnemonicParsing="false" onAction="#onAllDepartmentUserClick" styleClass="MenuButtonFilter" text="ทั้งหมด">
+                              <Label styleClass="text-field-label" text="ภาควิชา" />
+                              <MenuButton fx:id="departmentFormMenuButton" maxWidth="220.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" styleClass="menu-button-custom" text="ทั้งหมด">
                                  <items>
                                     <MenuItem mnemonicParsing="false" text="ทั้งหมด" />
                                  </items>
@@ -178,72 +127,140 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                  <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="489.0" spacing="8.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="308.0" spacing="80.0" styleClass="dashboard-success-form">
                            <children>
-                              <Label text="เจ้าหน้าที่คณะ">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalFacultyOfficerLabel" text="5">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="238.0">
+                                 <children>
+                                    <Label styleClass="normal-text" text="อนุมัติแล้ว">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="162.0">
+                                 <children>
+                                    <Label fx:id="totalSuccessFormFilteredLabel" style="-fx-font-size: 40;" styleClass="black-label" text="30">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
-                           <children>
-                              <Label text="เจ้าหน้าที่สาขา">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalDepartmentOfficerLabel" text="5">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
-                           <children>
-                              <Label text="อาจารย์ที่ปรึกษา">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalAdvisorLabel" text="10">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="dashboard-user">
-                           <children>
-                              <Label text="นิสิต">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="totalStudentLabel" text="30000">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
             </VBox>
+         </children>
+         <padding>
+            <Insets top="-10.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" fillWidth="false" layoutX="584.0" layoutY="154.0" prefHeight="503.0" prefWidth="474.0" spacing="10.0" styleClass="dashboard-container">
+         <children>
+            <Label styleClass="sub-header" text="จำนวนผู้ใช้งาน">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="446.0" spacing="16.0">
+               <children>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label styleClass="text-field-label" text="คณะ" />
+                        <MenuButton fx:id="facultyUserMenuButton" maxWidth="220.0" mnemonicParsing="false" prefWidth="220.0" styleClass="menu-button-custom" text="ทั้งหมด">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#onAllFacultyUserMenuItem" text="ทั้งหมด" />
+                           </items>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label styleClass="text-field-label" text="ภาควิชา" />
+                        <MenuButton fx:id="departmentUserMenuButton" maxWidth="220.0" mnemonicParsing="false" prefWidth="220.0" styleClass="menu-button-custom" text="ทั้งหมด">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="ทั้งหมด" />
+                           </items>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="424.0" spacing="8.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="160.0" styleClass="dashboard-user">
+                     <children>
+                        <Label styleClass="normal-text" text="เจ้าหน้าที่คณะ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalFacultyOfficerLabel" styleClass="normal-text" text="5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="160.0" styleClass="dashboard-user">
+                     <children>
+                        <Label styleClass="normal-text" text="เจ้าหน้าที่ภาควิชา" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalDepartmentOfficerLabel" styleClass="normal-text" text="5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0" spacing="8.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="160.0" styleClass="dashboard-user">
+                     <children>
+                        <Label styleClass="normal-text" text="อาจารย์ที่ปรึกษา">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalAdvisorLabel" styleClass="normal-text" text="10">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="160.0" styleClass="dashboard-user">
+                     <children>
+                        <Label styleClass="normal-text" text="นิสิต">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalStudentLabel" styleClass="normal-text" text="30000">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
