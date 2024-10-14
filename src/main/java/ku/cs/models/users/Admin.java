@@ -2,18 +2,19 @@ package ku.cs.models.users;
 
 import ku.cs.models.collections.*;
 
+import java.time.LocalDateTime;
+
 public class Admin extends User {
-    DepartmentList departmentList;
-    FacultyList facultyList;
 
-    StudentList studentList;
-    AdvisorList advisorList;
-    DepartmentOfficerList departmentOfficerList;
-    FacultyOfficerList facultyOfficerList;
+    private DepartmentList departmentList;
+    private FacultyList facultyList;
+    private StudentList studentList;
+    private AdvisorList advisorList;
+    private DepartmentOfficerList departmentOfficerList;
+    private FacultyOfficerList facultyOfficerList;
+    private RequestFormList requestFormList;
 
-    RequestFormList requestFormList;
-
-    public Admin(String username, String password, String nameTitle, String name, String surname, String role, String recentTime, boolean status, boolean activated, String profilePictureFileName) {
+    public Admin(String username, String password, String nameTitle, String name, String surname, String role, LocalDateTime recentTime, boolean status, boolean activated, String profilePictureFileName) {
         super(username, password, nameTitle, name, surname, role, recentTime, status, activated, profilePictureFileName);
     }
 
@@ -81,4 +82,5 @@ public class Admin extends User {
         userList.addUsers(facultyOfficerList.getOfficers());
         return userList;
     }
+
 }
