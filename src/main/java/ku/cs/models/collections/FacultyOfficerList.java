@@ -6,20 +6,10 @@ import ku.cs.models.users.officers.Officer;
 import java.util.ArrayList;
 
 public class FacultyOfficerList extends OfficerList implements Searchable<FacultyOfficer> {
-    public ArrayList<FacultyOfficer> findByFacultyName(String facultyName){
-        ArrayList<FacultyOfficer> matchedOfficer = new ArrayList<FacultyOfficer>();
-        for (Officer officer : getOfficers()){
-            FacultyOfficer facultyOfficer = (FacultyOfficer) officer;
-            if (facultyOfficer.getFaculty().isName(facultyName)){
-                matchedOfficer.add(facultyOfficer);
-            }
-        }
-        return matchedOfficer;
-    }
 
-    public ArrayList<FacultyOfficer> getFacultyOfficers(){
+    public ArrayList<FacultyOfficer> getFacultyOfficers() {
         ArrayList<FacultyOfficer> facultyOfficers = new ArrayList<>();
-        for (Officer officer : getOfficers()){
+        for (Officer officer : getOfficers()) {
             FacultyOfficer facultyOfficer = (FacultyOfficer) officer;
             facultyOfficers.add(facultyOfficer);
         }
