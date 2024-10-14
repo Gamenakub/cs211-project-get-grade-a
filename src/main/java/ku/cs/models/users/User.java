@@ -1,6 +1,7 @@
 package ku.cs.models.users;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import ku.cs.config.Configuration;
 
 import java.time.LocalDateTime;
 
@@ -12,13 +13,12 @@ public class User {
     private String surname;
     private boolean status;
     private boolean activated;
-    private String role;
+    private final String role;
     private LocalDateTime recentTime;
     private String profilePictureFileName;
-    public static final String defaultProfilePictureFileName = "default-image.jpg";
 
-    //constructor สำหรับสร้าง object ใหม่
-    public User(String username, String password,String nameTitle, String name, String surname, String role) {
+
+    public User(String username, String password, String nameTitle, String name, String surname, String role) {
         this.username = username;
         this.hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         this.nameTitle = nameTitle;
@@ -27,19 +27,19 @@ public class User {
         this.status = true;
         this.activated = false;
         this.role = role;
-        this.recentTime = LocalDateTime.now();
-        this.profilePictureFileName = defaultProfilePictureFileName;
+        this.recentTime = null;
+        this.profilePictureFileName = Configuration.getConfiguration().getDefaultProfilePictureFileName();
     }
 
-    //constructor สำหรับดึง object เดิม
-    public User(String username, String hashedPassword,String nameTitle, String name, String surname, String role, String recentTimeString, boolean status, boolean activated, String profilePictureFileName) {
+
+    public User(String username, String hashedPassword, String nameTitle, String name, String surname, String role, LocalDateTime recentTime, boolean status, boolean activated, String profilePictureFileName) {
         this.username = username;
         this.hashedPassword = hashedPassword;
         this.nameTitle = nameTitle;
         this.name = name;
         this.surname = surname;
         this.role = role;
-        this.recentTime = LocalDateTime.parse(recentTimeString);
+        this.recentTime = recentTime;
         this.status = status;
         this.activated = activated;
         this.profilePictureFileName = profilePictureFileName;
@@ -50,6 +50,10 @@ public class User {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getHashedPassword() {
         return hashedPassword;
     }
@@ -58,12 +62,24 @@ public class User {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSurname() {
         return surname;
     }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public boolean getStatus() {
         return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getRole() {
@@ -71,47 +87,32 @@ public class User {
     }
 
     public String getRecentTimeString() {
-        return recentTime.toString();
+        if (this.recentTime != null) {
+            return recentTime.toString();
+        }
+        return "null";
     }
 
     public LocalDateTime getRecentTime() {
         return recentTime;
     }
 
-    public String getProfilePictureFileName() {
-        return profilePictureFileName;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public void setRecentTime(LocalDateTime recentTime) {
         this.recentTime = recentTime;
     }
 
-    public void setRecentTime(String recentTimeString) {
-        this.recentTime = LocalDateTime.parse(recentTimeString);
+    public String getProfilePictureFileName() {
+        return profilePictureFileName;
+    }
+
+    protected void setPassword(String password) {
+        this.hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    }
+
+    public void setDefaultPassword(String password) {
+        if (!this.activated) {
+            this.setPassword(password);
+        }
     }
 
     public void setProfilePictureFileName() {
@@ -128,7 +129,7 @@ public class User {
     }
 
     public void changePassword(String oldPassword, String newPassword) {
-        if(this.validatePassword(oldPassword)){
+        if (this.validatePassword(oldPassword)) {
             this.setPassword(newPassword);
         } else {
             throw new IllegalArgumentException("Invalid password");
@@ -152,6 +153,10 @@ public class User {
     }
 
     public void resetProfilePictureFileName() {
-        this.profilePictureFileName = defaultProfilePictureFileName;
+        this.profilePictureFileName = Configuration.getConfiguration().getDefaultProfilePictureFileName();
+    }
+
+    public final String getFullName() {
+        return nameTitle + name + " " + surname;
     }
 }

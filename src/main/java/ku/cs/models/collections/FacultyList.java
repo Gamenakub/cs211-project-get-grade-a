@@ -5,16 +5,16 @@ import ku.cs.models.Faculty;
 import java.util.ArrayList;
 
 public class FacultyList implements Searchable<Faculty> {
-    private ArrayList<Faculty> faculties;
+    private final ArrayList<Faculty> faculties;
+
     public FacultyList() {
-        faculties = new ArrayList<Faculty>();
+        faculties = new ArrayList<>();
     }
+
     public ArrayList<Faculty> getFaculties() {
         return faculties;
     }
-    public void setFaculties(ArrayList<Faculty> faculties) {
-        this.faculties = faculties;
-    }
+
     public void addFaculty(Faculty faculty) {
         faculties.add(faculty);
     }
@@ -38,14 +38,14 @@ public class FacultyList implements Searchable<Faculty> {
     }
 
     @Override
-    public ArrayList<Faculty> search(String term) {
+    public ArrayList<Faculty> search(String keyword) {
         ArrayList<Faculty> targetFaculties = new ArrayList<>();
-        for(Faculty faculty : faculties) {
+        for (Faculty faculty : faculties) {
             String name = faculty.getName();
             String id = faculty.getId();
-            if(name.contains(term)){
+            if (name.contains(keyword)) {
                 targetFaculties.add(faculty);
-            } else if (id.contains(term)){
+            } else if (id.contains(keyword)) {
                 targetFaculties.add(faculty);
             }
         }
