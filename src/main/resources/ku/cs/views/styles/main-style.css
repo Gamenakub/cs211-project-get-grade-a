@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'TH SarabunPSK';
     src: url('THSarabunBold.ttf');
-    /*font-weight: bold;*/
+
 }
 
 @font-face {
@@ -22,38 +22,44 @@
 @font-face {
     font-family: 'TH Mali Grade 6';
     src: url('THMaliGrade6Bold.ttf');
-    /*font-weight : bold;*/
+
 }
 
 
-/* Define global styles for default theme */
+
 .root {
     -fx-background-color: #F9F9F9;
+    -fx-font-family: "TH SarabunPSK";
+    -primary-color: #F9F9F9;
     -secondary-color: #FFFFFF;
-    -navbar-background-color: #ffffff;
+    -hover-color: #ececec;
     -text-fill: #000000;
-    -accent: #FFFFFF; /* Used as inverse text color */
+    -accent: #FFFFFF;
     -border-color: #000000;
     -default-button-color : #006B67;
     -default-button-color-hover :#009890;
-    -navbar-button-hover-color : #e1e1e1;
+    -navbar-button-hover-color : #ececec;
     -table-row-color : #efefef;
-    -drop-shadow : dropshadow(gaussian, rgba(81, 81, 81, 0.8), 4, 0, 2, 2);
+    -third-color : #F1F1F1;
+    -drop-shadow : dropshadow(gaussian, rgba(81, 81, 81, 0.8), 4, 0, 0, 2);
 }
 
-/* Define styles for dark theme */
+
 .dark-theme {
     -fx-background-color: #222222;
+    -primary-color: #222222;
     -text-fill: #d1d1d1;
-    -secondary-color: #000000; /* Used as primary color */
-    -accent: #000000; /* Used as inverse text color */
+    -hover-color: #515151;
+    -text-fill-hover : #000000;
+    -secondary-color: #000000;
+    -accent: #000000;
     -border-color: #FFFFFF;
     -default-button-color : #009a21;
-    -navbar-background-color: #000000;
     -default-button-color-hover : #00bc27;
-    -navbar-button-hover-color : #191919;
+    -navbar-button-hover-color : #515151;
     -table-row-color : #2e2e2e;
-    -drop-shadow : dropshadow(gaussian, rgba(89, 89, 89, 0.8), 5, 0, 2, 2);
+    -third-color : #2e2e2e;
+    -drop-shadow : dropshadow(gaussian, rgba(89, 89, 89, 0.8), 5, 0, 0, 2);
 }
 
 
@@ -69,55 +75,52 @@
 }
 
 
-
-.angsana-new-font .header,
-.angsana-new-font .popup-header,
-.angsana-new-font .sub-header,
-.angsana-new-font .white-label,
-.angsana-new-font .normal-text,
-.angsana-new-font .green-button,
-.angsana-new-font .deny-button,
-.angsana-new-font .back-button,
-.angsana-new-font .border-button,
-.angsana-new-font .navbar-button{
+.angsana-new-font .label,
+.angsana-new-font .button,
+.angsana-new-font  .table-header,
+.angsana-new-font .menu-button,
+.angsana-new-font .text-field-box
+{
     -fx-font-family: "Angsana New";
 }
 
-.mali-grade-font .header,
-.mali-grade-font .popup-header,
-.mali-grade-font .sub-header,
-.mali-grade-font .white-label,
-.mali-grade-font .normal-text,
-.mali-grade-font .green-button,
-.mali-grade-font .deny-button,
-.mali-grade-font .back-button,
-.mali-grade-font .border-button,
-.mali-grade-font .navbar-button,
+
+
+.mali-grade-font .label,
+.mali-grade-font .button,
+.mali-grade-font  .table-header,
 .mali-grade-font .menu-button,
-.mali-grade-font.table-text{
+.mali-grade-font .text-field-box{
     -fx-font-family: "TH Mali Grade 6";
 }
 
 
-.text-field-box, .subject-info-box, .menu-button {
-    -fx-background-color: #FFFFFF;
-    -fx-text-fill: black;
-    -fx-font-family: "TH SarabunPSK";
+.text-field-box, .subject-info-box {
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-text-fill: -text-fill;
+    -fx-border-color: -border-color;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
     -fx-font-weight: normal;
+    -fx-font-family: "TH SarabunPSK";
 }
 
 .text-field-box {
+    -fx-background-color: -primary-color;
     -fx-background-radius: 12;
-    -fx-border-color: black;
-    -fx-border-radius: 12;
-    -fx-border-width: 1;
     -fx-font-size: 20;
 }
+
+.text-field-box .content{
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 12;
+    -fx-font-size: 20;
+}
+
 
 .text-field-label {
     -fx-font-size: 18;
     -fx-text-fill: -text-fill;
-    -fx-font-family: "TH SarabunPSK";
 }
 
 .table-text .button{
@@ -126,12 +129,10 @@
 .alert-text-field-label .content{
     -fx-font-size: 22;
     -fx-text-fill: -text-fill;
-    -fx-font-family: "TH SarabunPSK";
 }
 
 .header, .popup-header, .sub-header, .white-label{
     -fx-text-fill: -text-fill;
-    -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: bold;
 }
 
@@ -141,11 +142,11 @@
 }
 
 .font-size-large .header {
-    -fx-font-size: 66;
+    -fx-font-size: 60;
 }
 
 .font-size-small .header{
-    -fx-font-size: 46;
+    -fx-font-size: 52;
 }
 
 .popup-header {
@@ -153,11 +154,11 @@
 }
 
 .font-size-large .popup-header{
-    -fx-font-size: 62;
+    -fx-font-size: 58;
 }
 
 .font-size-small .popup-header{
-    -fx-font-size: 42;
+    -fx-font-size: 46;
 }
 
 .sub-header {
@@ -168,6 +169,10 @@
     -fx-font-size: 42;
 }
 
+.text-field{
+    -fx-prompt-text-fill: rgba(151, 151, 151, 0.64);
+}
+
 .font-size-small .sub-header {
     -fx-font-size: 22;
 }
@@ -175,51 +180,70 @@
 .normal-text {
     -fx-text-fill: -text-fill;
     -fx-font-size: 24;
-    -fx-font-family: "TH SarabunPSK";
     -fx-font-weight: normal;
 }
 
-.font-size-large .normal-text{
-    -fx-font-size: 34;
+
+.upload-area .normal-text{
+    -fx-text-fill: black;
 }
 
 .font-size-large .normal-text{
-    -fx-font-size: 14;
+    -fx-font-size: 30;
+}
+
+.font-size-small .normal-text{
+    -fx-font-size: 18;
 }
 
 .navbar-background{
-    -fx-background-color: -navbar-background-color;
+    -fx-background-color: -secondary-color;
     -fx-effect: -drop-shadow;
 }
-.navbar-button {
+
+.navbar-button,
+.navbar-button .label{
     -fx-text-fill: -text-fill;
-    -fx-font-size: 18;
-    -fx-font-family: "TH SarabunPSK";
+    -fx-font-size: 20;
     -fx-font-weight: normal;
-    -fx-background-color: -navbar-background-color;
+    -fx-background-color: -secondary-color;
     -fx-cursor: hand;
+}
+
+.font-size-large .navbar-button{
+    -fx-font-size: 22;
 }
 
 
 .navbar-button:hover {
-    /*-fx-border-color: #cfcfcf; !* Change the border color on hover *!*/
-    -fx-background-color: -navbar-button-hover-color; /* Change the background color on hover */
+    -fx-text-fill: -text-fill;
+    -fx-background-color: -navbar-button-hover-color;
+    -fx-font-weight: bold;
 }
 
-
 .popup-date-picker {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: rgba(255, 255, 255, 0);
     -fx-border-radius: 6;
     -fx-background-radius: 6;
     -fx-border-width: 1;
-    -fx-border-color: #000000;
+    -fx-border-color: -border-color;
     -fx-font-size: 16;
+}
+
+.popup-date-picker:disabled {
+    -fx-opacity: 1.0;
+    -fx-text-fill: -text-fill;
+    -fx-background-color: rgba(255, 255, 255, 0);
+}
+
+.popup-date-picker .text-field{
+    -fx-text-fill: -text-fill;
+    -fx-background-color: rgba(255, 255, 255, 0);
 }
 
 .green-button, .deny-button, .back-button, .border-button {
     -fx-background-radius: 12;
     -fx-border-width: 1;
-    -fx-font-family: "TH SarabunPSK";
     -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-text-alignment: center;
@@ -229,25 +253,22 @@
 .font-size-large .green-button,
 .font-size-large .back-button,
 .font-size-large .deny-button,
-.font-size-large .border-button,
-.font-size-large .menu-button,
-.font-size-large .navbar-button{
-    -fx-font-size: 25;
+.font-size-large .border-button{
+    -fx-font-size: 24;
 }
 
 .font-size-small .green-button,
 .font-size-small .back-button,
 .font-size-small .deny-button,
 .font-size-small .border-button,
-.font-size-small .menu-button,
 .font-size-small .navbar-button{
     -fx-font-size: 15;
 }
 
 .border-button {
     -fx-border-radius: 12;
-    -fx-border-color: white; /* Replace with specific color if needed */
-    -fx-text-fill: white; /* Replace with specific color if needed */
+    -fx-border-color: white;
+    -fx-text-fill: white;
     -fx-background-color: transparent;
 }
 
@@ -267,24 +288,82 @@
 
 
 
-.menu-button {
-    -fx-background-color: #ffffff;
+.menu-button-custom {
     -fx-background-radius: 12;
-    -fx-border-color: black;
+    -fx-border-color: -border-color ;
     -fx-border-radius: 12;
     -fx-border-width: 1;
+    -fx-text-fill: -text-fill;
     -fx-font-size: 20;
-
+    -fx-font-weight: normal;
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-cursor: hand;
+}
+.font-size-large .navbar-background .menu-button-custom {
+    -fx-font-size: 20;
 }
 
-.menu-button :hover {
-    -fx-background-color: #eaeaea;
-    -fx-background-radius: 12;
+.menu-button-custom .label{
+    -fx-text-fill: -text-fill;
 }
+
+.menu-button-custom:hover{
+    -fx-background-color: -hover-color;
+}
+
+.context-menu {
+    -fx-background-color: -primary-color;
+}
+
+.menu-item{
+    -fx-font-size: 18;
+    -fx-background-color: -primary-color;
+}
+.menu-item .label{
+    -fx-background-color: -primary-color;
+    -fx-text-fill: -text-fill;
+}
+.menu-item .label{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-font-weight: normal;
+}
+.menu-item:focused .label{
+    -fx-font-weight: bold;
+}
+
+.menu-item:hover ,
+.menu-item:focused,
+.menu-item:focused .label{
+    -fx-background-color: -hover-color;
+}
+
+.font-size-large .popup-pane .menu-button-custom .label,
+.font-size-large .popup-pane .text-field-box{
+    -fx-font-size: 20;
+}
+
+font-size-large .popup-pane .menu-button-custom .content {
+    -fx-font-size: 20;
+}
+
+font-size-large .popup-pane .menu-button-custom {
+    -fx-font-size: 20;
+}
+
+.font-size-small .popup-pane .menu-button-custom .label,
+.font-size-small .popup-pane .text-field-box{
+    -fx-font-size: 20;
+}
+
+
 
 .back-button {
     -fx-text-fill: black;
     -fx-background-color: #e3e3e3;
+}
+
+.back-button:hover {
+    -fx-background-color: #d6d6d6;
 }
 
 .white-label{
@@ -301,7 +380,17 @@
 }
 
 .deny-button:hover {
-    -fx-background-color: #dd3535;
+    -fx-background-color: #b12b2b;
+}
+
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: rgba(255, 0, 0, 0);
+}
+
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: -border-color;
 }
 
 .table{
@@ -310,33 +399,53 @@
 
 }
 
+.table-row{
+    -fx-border-width: 0.8;
+    -fx-border-color: -primary-color;
+}
+
 .table-component-vbox{
     -fx-background-color: -table-row-color;
 }
 
+
 .table-text{
-    -fx-font-family: "TH SarabunPSK";
     -fx-text-fill: -text-fill;
     -fx-font-size: 18;
 }
 
-.table-row{
-    -fx-border-style: none,none,solid,none; /* กำหนดให้มี border แค่ด้านล่าง */
-    -fx-border-color: #F9F9F9; /* สีของ border */
-    -fx-border-width: 1; /* ความหนาของ border */
-    -fx-background: -table-row-color; /* ทำให้พื้นหลังโปร่งใส */
+.table-header{
+    -fx-text-fill: -text-fill;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+
+.font-size-large .table-text ,
+.font-size-large .table-header{
+    -fx-font-size: 22;
+}
+
+.font-size-small .table-text ,
+.font-size-small .table-header{
+    -fx-font-size: 14;
 }
 
 .upload-area{
-    -fx-background-color: #e3e3e3;
+    -fx-background-color: rgba(239, 239, 239, 0.52);
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-width: 1;
     -fx-border-style:dashed;
+    -fx-cursor: hand;
+}
+
+.upload-area:hover{
+    -fx-background-color: #dcdcdc;
 }
 
 .dashboard-all-form{
-    -fx-background-color: #c3c3c3;
+    -fx-background-color: #d6d6d6;
     -fx-background-radius: 15;
     -fx-effect: -drop-shadow;
 }
@@ -346,6 +455,7 @@
     -fx-background-radius: 15;
     -fx-effect: -drop-shadow;
 }
+
 
 .dashboard-in-process-form{
     -fx-background-color: #ffdc22;
@@ -360,16 +470,79 @@
 }
 
 .dashboard-user{
-    -fx-background-color: #96f8ff;
+    -fx-background-color: #95e6ce;
     -fx-background-radius: 15;
     -fx-effect: -drop-shadow;
 }
 
 .dashboard-container{
-    -fx-background-color: #ffffff;
+    -fx-background-color: -third-color;
     -fx-background-radius: 15;
     -fx-effect: -drop-shadow;
 }
+
+.dashboard-container .normal-text{
+    -fx-text-fill: black;
+}
+
+.dashboard-box-container{
+    -fx-background-color: -secondary-color;
+}
+
+.navbar-button-icon{
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-border-color: rgba(255, 255, 255, 0);
+    -fx-cursor: hand;
+}
+
+.navbar-button-icon:hover{
+    -fx-background-color: -hover-color;
+}
+
+
+.navbar-button-icon .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: -15;
+    -fx-end-margin: 0;
+    -fx-start-margin: 0;
+    -fx-shape: "";
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+    -fx-opacity: 0;
+}
+
+.navbar-line {
+    -fx-stroke: -border-color;
+}
+
+.font-size-small .menu-item{
+    -fx-font-size: 12;
+}
+
+.font-size-large .menu-item{
+    -fx-font-size: 22;
+}
+
+.navbar-background .menu-button-custom{
+    -fx-border-width: 0;
+    -fx-background-radius: 5;
+}
+
+.navbar-background .menu-button-custom:hover{
+    -fx-font-weight: bold;
+}
+
+
+.navbar-background .circle,
+.navbar-background .image-view{
+    -fx-cursor: hand;
+}
+
+.profile{
+    -fx-cursor: hand;
+}
+
+
 
 
 
