@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="400.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminFacultyOfficerManagementPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="400.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminFacultyOfficerManagementPopupController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="420.0" prefWidth="600.0" spacing="20.0">
          <children>
-            <Label fx:id="titleLabel" styleClass="popup-header" text="แก้ไขข้อมูลเจ้าหน้าที่คณะ">
+            <Label fx:id="titleLabel" alignment="CENTER" prefHeight="71.0" prefWidth="692.0" styleClass="popup-header" text="แก้ไขข้อมูลเจ้าหน้าที่คณะ">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -87,7 +87,7 @@
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="facultyMenuButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="520.0" styleClass="menu-button" text="เลือกคณะที่สังกัด" />
+                        <MenuButton fx:id="facultyMenuButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="44.0" prefWidth="520.0" styleClass="menu-button-custom" text="เลือกคณะที่สังกัด" />
                      </children>
                   </VBox>
                </children>

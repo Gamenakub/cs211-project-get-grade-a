@@ -8,45 +8,29 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 
 public class TableRowController {
+    private final ArrayList<HBox> componentsDisplayList = new ArrayList<>();
     @FXML
     public HBox tableRowHBox;
 
-    private int elementCount = 0;
-
-    private ArrayList<Node> components = new ArrayList<>();
-
-    private ArrayList<HBox> componentsDisplayList = new ArrayList<>();
-
-    public void clearRow(){
-        tableRowHBox.getChildren().clear();
-        elementCount = 0;
-    }
-
-    public void addElement(Node widget){
-        elementCount++;
-        components.add(widget);
+    public void addElement(Node widget) {
 
         HBox componentHBox = new HBox();
         componentHBox.setAlignment(Pos.CENTER);
         componentHBox.getChildren().add(widget);
-        //componentHBox.setBackground(Background.fill(Paint.valueOf("red")));
         componentsDisplayList.add(componentHBox);
 
         tableRowHBox.getChildren().add(componentHBox);
     }
 
-    public Node getComponent(int index){
-        return components.get(index);
+    public void setRowHeight(int rowHeight) {
+        tableRowHBox.setMinHeight(rowHeight);
+        tableRowHBox.setPrefHeight(rowHeight);
+        tableRowHBox.setMaxHeight(rowHeight);
     }
 
-    public void setRowHeight(int width){
-        tableRowHBox.setMinHeight(width);
-        tableRowHBox.setPrefHeight(width);
-        tableRowHBox.setMaxHeight(width);
-    }
-
-    public void setElementPrefWidth(int index, int width){
+    public void setElementPrefWidth(int index, int width) {
         componentsDisplayList.get(index).setMinWidth(width);
+        componentsDisplayList.get(index).setPrefWidth(width);
         componentsDisplayList.get(index).setMaxWidth(width);
     }
 }

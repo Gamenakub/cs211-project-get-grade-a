@@ -1,16 +1,11 @@
 package ku.cs.services.popup;
 
-public class PopupHistory {
-    private String fxmlPath;
-    private String title;
-    public PopupHistory(String fxmlPath, String title) {
-        this.fxmlPath = fxmlPath;
-    }
-
+public record PopupHistory(String fxmlPath, String title) {
     public String getFxmlPath() {
         return fxmlPath;
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return title;
     }
 }
