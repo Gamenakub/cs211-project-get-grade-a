@@ -10,31 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.advisor.AdvisorStudentInformationPageController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.advisor.AdvisorStudentInformationPageController">
    <children>
-      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="1.0" layoutY="184.0" prefHeight="540.0" prefWidth="1080.0" spacing="12.0">
+      <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" AnchorPane.topAnchor="0.0" />
+      <VBox alignment="CENTER_LEFT" layoutY="80.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.topAnchor="60.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="692.0" spacing="12.0">
-               <children>
-                  <TextField fx:id="searchTextField" prefHeight="51.0" prefWidth="478.0" styleClass="text-field-box">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </TextField>
-                  <Button mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="44.0" prefWidth="108.0" styleClass="menu-button" text="search" />
-               </children>
-            </HBox>
-            <Pane fx:id="tablePane" prefHeight="326.0" prefWidth="822.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Pane>
-         </children>
-      </VBox>
-      <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1078.0" AnchorPane.topAnchor="0.0" />
-      <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="80.0" prefWidth="1080.0" AnchorPane.leftAnchor="0.0">
-         <children>
-            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" stylesheets="@../styles/main-style.css" text="รายชื่อนิสิตในที่ปรึกษา">
+            <Label prefHeight="80.0" prefWidth="1059.0" styleClass="header" text="รายชื่อนิสิตในที่ปรึกษา">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -44,5 +25,19 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
+      <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="60.0" AnchorPane.leftAnchor="0.0">
+         <padding>
+            <Insets left="80.0" />
+         </padding>
+         <children>
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="680.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
+         </children>
+      </HBox>
+      <Pane fx:id="tablePane" layoutX="81.0" layoutY="267.0" prefHeight="404.0" prefWidth="910.0" />
    </children>
 </AnchorPane>
