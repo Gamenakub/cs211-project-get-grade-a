@@ -12,50 +12,50 @@ public class FacultyDataSource implements Writable<FacultyList, Faculty>, Readab
 
     @Override
     public String getFileName() {
-        return "faculty.csv";  // Assuming the data is stored in CSV format
+        return "faculty.csv";
     }
 
     @Override
     public String getDirectory() {
-        return "data";  // Directory where the file is located
+        return "data";
     }
 
     @Override
     public Faculty hashMapToModel(HashMap<String, String> row) {
         String name = row.get("facultyName");
         String id = row.get("facultyId");
-        return new Faculty(name, id);  // Create a Faculty model from the row data
+        return new Faculty(name, id);
     }
 
     @Override
     public FacultyList collectionInitializer() {
-        return new FacultyList();  // Initialize an empty FacultyList
+        return new FacultyList();
     }
 
     @Override
     public void addModelToList(FacultyList list, Faculty model) {
-        list.addFaculty(model);  // Add a Faculty model to the FacultyList
+        list.addFaculty(model);
     }
 
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> header = new ArrayList<>();
-        header.add("facultyName");  // Name of the faculty
-        header.add("facultyId");    // ID of the faculty
-        return header;  // Return the table header for CSV
+        header.add("facultyName");
+        header.add("facultyId");
+        return header;
     }
 
     @Override
     public HashMap<String, String> modelToHashMap(Faculty model) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("facultyName", model.getName());  // Map the faculty name
-        map.put("facultyId", model.getId());      // Map the faculty ID
+        map.put("facultyName", model.getName());
+        map.put("facultyId", model.getId());
         return map;
     }
 
     @Override
     public ArrayList<Faculty> getCollectionArrayList(FacultyList collection) {
-        return collection.getFaculties();  // Return the list of faculties from FacultyList
+        return collection.getFaculties();
     }
 }
 

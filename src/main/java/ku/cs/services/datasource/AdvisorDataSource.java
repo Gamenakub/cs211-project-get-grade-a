@@ -7,12 +7,13 @@ import ku.cs.models.users.Advisor;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writable<AdvisorList, Advisor> {
 
-    private DepartmentList departmentList;
+    private final DepartmentList departmentList;
 
     public AdvisorDataSource(DepartmentList departmentList) {
         this.departmentList = departmentList;
@@ -32,11 +33,11 @@ public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writab
     public Advisor hashMapToModel(HashMap<String, String> row) {
         String username = row.get("username");
         String hashedPassword = row.get("hashedPassword");
-        String nameTitle= row.get("nameTitle");
+        String nameTitle = row.get("nameTitle");
         String name = row.get("name");
         String surname = row.get("surname");
         String advisorId = row.get("advisorId");
-        String recentTime = row.get("recentTime");
+        LocalDateTime recentTime = row.get("recentTime").equals("null") ? null : LocalDateTime.parse(row.get("recentTime"));
         String role = row.get("role");
         boolean status = Boolean.parseBoolean(row.get("status"));
         boolean activated = Boolean.parseBoolean(row.get("activated"));
@@ -44,10 +45,9 @@ public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writab
         Department department = departmentList.findDepartmentById(row.get("department"));
 
 
-        // Assuming the requestForms and students are handled elsewhere
-        Advisor advisor = new Advisor(username, hashedPassword,nameTitle, name, surname,role,recentTime,status,activated,profilePictureFileName,advisorId, department);
 
-        return advisor;
+
+        return new Advisor(username, hashedPassword, nameTitle, name, surname, role, recentTime, status, activated, profilePictureFileName, advisorId, department);
     }
 
     @Override
@@ -78,25 +78,6 @@ public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writab
         return headers;
     }
 
-//    @Override
-//    public ArrayList<String> getTableHeader() {
-//        ArrayList<String> headers = new ArrayList<>();
-//        headers.add("advisorId");
-//        headers.add("role");
-//        headers.add("recentTime");
-//        headers.add("hashedPassword");
-//        headers.add("surname");
-//        headers.add("name");
-//        headers.add("department");
-//        headers.add("username");
-//
-//        headers.add("status");
-//        headers.add("profilePictureFileName");
-//
-//        headers.add("faculty");
-//        return headers;
-//    }
-
     @Override
     public HashMap<String, String> modelToHashMap(Advisor advisor) {
         HashMap<String, String> data = new HashMap<>();
@@ -106,8 +87,8 @@ public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writab
         data.put("name", advisor.getName());
         data.put("surname", advisor.getSurname());
         data.put("advisorId", advisor.getAdvisorId());
-        data.put("status",String.valueOf(advisor.getStatus()));
-        data.put("activated",String.valueOf(advisor.getActivated()));
+        data.put("status", String.valueOf(advisor.getStatus()));
+        data.put("activated", String.valueOf(advisor.getActivated()));
         data.put("role", advisor.getRole());
         data.put("recentTime", advisor.getRecentTimeString());
         data.put("department", advisor.getDepartment().getId());

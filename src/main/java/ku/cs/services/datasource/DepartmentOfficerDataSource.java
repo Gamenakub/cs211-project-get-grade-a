@@ -9,13 +9,14 @@ import ku.cs.models.users.officers.Officer;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DepartmentOfficerDataSource implements Readable<DepartmentOfficerList, DepartmentOfficer>, Writable<DepartmentOfficerList, DepartmentOfficer> {
 
-    private DepartmentList departmentList;
-    private StudentList studentList;
+    private final DepartmentList departmentList;
+    private final StudentList studentList;
 
     public DepartmentOfficerDataSource(DepartmentList departmentList, StudentList studentList) {
         this.departmentList = departmentList;
@@ -47,7 +48,7 @@ public class DepartmentOfficerDataSource implements Readable<DepartmentOfficerLi
                 row.get("name"),
                 row.get("surname"),
                 row.get("role"),
-                row.get("recentTime"),
+                row.get("recentTime").equals("null") ? null : LocalDateTime.parse(row.get("recentTime")),
                 Boolean.parseBoolean(row.get("status")),
                 Boolean.parseBoolean(row.get("activated")),
                 row.get("profilePictureFileName"),
@@ -66,7 +67,7 @@ public class DepartmentOfficerDataSource implements Readable<DepartmentOfficerLi
         list.addOfficer(model);
     }
 
-    // Writable interface methods
+
 
     @Override
     public ArrayList<String> getTableHeader() {
