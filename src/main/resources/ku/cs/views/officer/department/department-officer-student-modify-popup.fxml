@@ -4,112 +4,113 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="547.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerStudentModifyPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="480.0" prefWidth="400.0" styleClass="popup-pane" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerStudentModifyPopupController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="7.0" layoutY="7.0" prefHeight="587.0" prefWidth="388.0" stylesheets="@../../styles/main-style.css">
+      <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="600.0" spacing="20.0">
          <children>
-            <Label styleClass="popup-header" text="แก้ไขข้อมูลนิสิต">
+            <Label fx:id="titleLabel" alignment="CENTER" prefHeight="71.0" prefWidth="726.0" styleClass="popup-header" text="แก้ไขข้อมูลนิสิต">
                <font>
-                  <Font size="28.0" />
+                  <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="28.0" top="32.0" />
-               </VBox.margin>
             </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="280.0" spacing="20.0">
                <children>
-                  <VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label styleClass="text-field-label" text="รหัสนิสิต">
-                           <VBox.margin>
-                              <Insets bottom="4.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="studentIdTextField" styleClass="text-field-box" text="6610401993" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="4.0" top="4.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <HBox spacing="12.0">
-                     <VBox.margin>
-                        <Insets bottom="32.0" top="32.0" />
-                     </VBox.margin>
-                     <children>
-                        <VBox>
+                        <VBox prefHeight="49.0" prefWidth="219.0">
+                           <children>
+                              <Label styleClass="text-field-label" text="คำนำหน้าชื่อ">
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nameTitleTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกคำนำหน้าชื่อ" styleClass="text-field-box" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="38.0" prefWidth="280.0">
                            <children>
                               <Label styleClass="text-field-label" text="ชื่อ">
-                                 <VBox.margin>
-                                    <Insets bottom="4.0" />
-                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <TextField fx:id="nameTextField" prefHeight="39.0" prefWidth="185.0" styleClass="text-field-box" text="ฐาพล" />
+                              <TextField fx:id="nameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อ" styleClass="text-field-box" />
                            </children>
-                           <padding>
-                              <Insets bottom="8.0" />
-                           </padding>
                         </VBox>
-                        <VBox>
+                        <VBox prefHeight="38.0" prefWidth="280.0">
                            <children>
                               <Label styleClass="text-field-label" text="นามสกุล">
-                                 <VBox.margin>
-                                    <Insets bottom="4.0" />
-                                 </VBox.margin>
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
                               </Label>
-                              <TextField fx:id="surnameTextField" prefHeight="39.0" prefWidth="198.0" styleClass="text-field-box" text="ชินกรสกุล" />
+                              <TextField fx:id="surnameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกนามสกุล" styleClass="text-field-box" />
                            </children>
-                           <padding>
-                              <Insets bottom="8.0" />
-                           </padding>
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label styleClass="text-field-label" text="อีเมล">
-                           <VBox.margin>
-                              <Insets bottom="4.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="studentEmailTextField" styleClass="text-field-box" text="thaphon.c@ku.th" />
+                        <VBox prefHeight="38.0" prefWidth="280.0">
+                           <children>
+                              <Label styleClass="text-field-label" text="รหัสนิสิต">
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="studentIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสนิสิต" styleClass="text-field-box" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="38.0" prefWidth="280.0">
+                           <children>
+                              <Label styleClass="text-field-label" text="อีเมล">
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="studentEmailTextField" promptText="กรอกอีเมล" styleClass="text-field-box" />
+                           </children>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets bottom="8.0" />
-                     </padding>
-                  </VBox>
-                  <VBox>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Label styleClass="text-field-label" text="อาจารย์ที่ปรึกษา">
-                           <VBox.margin>
-                              <Insets bottom="4.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ChoiceBox fx:id="advisorSelectDropdown" prefHeight="39.0" prefWidth="454.0" styleClass="menu-button" />
+                        <VBox prefHeight="67.0" prefWidth="520.0">
+                           <children>
+                              <Label styleClass="text-field-label" text="อาจารย์ที่ปรึกษา">
+                                 <font>
+                                    <Font name="TH SarabunPSK Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="advisorSelectChoiceBox" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="528.0" styleClass="menu-button-custom" />
+                           </children>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets bottom="8.0" />
-                     </padding>
-                  </VBox>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets bottom="4.0" top="4.0" />
-               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="420.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onCancel" prefHeight="49.0" prefWidth="152.0" styleClass="deny-button" text="ยกเลิก" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#onConfirm" prefHeight="49.0" prefWidth="152.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" prefHeight="50.0" prefWidth="200.0" styleClass="deny-button" text="ยกเลิก" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmButton" prefHeight="50.0" prefWidth="200.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE" />
                </children>
             </HBox>
          </children>
          <padding>
-            <Insets left="12.0" right="12.0" />
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
          </padding>
       </VBox>
    </children>

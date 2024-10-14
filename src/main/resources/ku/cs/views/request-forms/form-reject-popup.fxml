@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerRequestFormRefusePopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.RequestFormRejectPopupController">
    <children>
       <VBox alignment="CENTER" layoutY="-1.0" prefHeight="380.0" prefWidth="800.0" spacing="20.0">
          <children>
@@ -38,12 +38,12 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
                   <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onButtonBackPage" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
+                  <Button mnemonicParsing="false" onAction="#onBackPageButton" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onConfirmationPage" prefHeight="50.0" prefWidth="272.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
+                  <Button fx:id="confirmationButton" mnemonicParsing="false" onAction="#onConfirmationPageButton" prefHeight="50.0" prefWidth="272.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
