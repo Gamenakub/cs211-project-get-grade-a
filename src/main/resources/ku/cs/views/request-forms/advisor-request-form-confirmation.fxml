@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorRequestFormConfirmationPopup">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="800.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.AdvisorRequestFormConfirmationPopup">
    <children>
       <VBox alignment="CENTER" layoutY="3.0" prefHeight="293.0" prefWidth="800.0" spacing="20.0">
          <children>
@@ -25,17 +25,17 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onButtonToPage3" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
+                  <Button mnemonicParsing="false" onAction="#onPreviousPageButton" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onDenyButtonClick" prefHeight="50.0" prefWidth="272.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onRejectButton" prefHeight="50.0" prefWidth="272.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onAcceptButtonClick" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ส่งต่อให้เจ้าหน้าที่ภาควิชา">
+                  <Button mnemonicParsing="false" onAction="#onAcceptButton" prefHeight="50.0" prefWidth="272.0" styleClass="green-button" text="ส่งต่อให้เจ้าหน้าที่ภาควิชา">
                      <font>
                         <Font size="14.0" />
                      </font>
