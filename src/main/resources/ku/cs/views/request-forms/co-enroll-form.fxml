@@ -8,269 +8,147 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="2340.0" prefWidth="1654.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.CoEnrollFormController">
+<AnchorPane prefHeight="2340.0" prefWidth="1654.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.CoEnrollFormController">
    <children>
       <ImageView fitHeight="2340.0" fitWidth="1654.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../images/co-enroll-form.png" />
          </image>
       </ImageView>
-      <Label layoutX="874.0" layoutY="396.0" prefHeight="46.0" prefWidth="65.0" text="dateLabel">
+      <Label fx:id="dateLabel" layoutX="874.0" layoutY="396.0" prefHeight="46.0" prefWidth="65.0" text="dateLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1018.0" layoutY="396.0" prefHeight="46.0" prefWidth="221.0" text="monthLabel">
+      <Label fx:id="monthLabel" layoutX="1018.0" layoutY="396.0" prefHeight="46.0" prefWidth="221.0" text="monthLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1307.0" layoutY="396.0" prefHeight="46.0" prefWidth="91.0" text="yearLabel">
+      <Label fx:id="yearLabel" layoutX="1307.0" layoutY="396.0" prefHeight="46.0" prefWidth="91.0" text="yearLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="525.0" layoutY="488.0" prefHeight="46.0" prefWidth="181.0" text="courseNameLabel">
+      <Label fx:id="headerCourseNameLabel" layoutX="525.0" layoutY="488.0" prefHeight="46.0" prefWidth="181.0" text="headerCourseNameLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="836.0" layoutY="488.0" prefHeight="46.0" prefWidth="80.0" text="courseSectionLabel">
+      <Label fx:id="headerCourseSectionLabel" layoutX="836.0" layoutY="488.0" prefHeight="46.0" prefWidth="80.0" text="headerCourseSectionLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="208.0" layoutY="581.0" prefHeight="46.0" prefWidth="480.0" text="advisorNameLabel">
+      <Label fx:id="advisorNameLabel" layoutX="208.0" layoutY="581.0" prefHeight="46.0" prefWidth="480.0" text="advisorNameLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="688.0" layoutY="706.0" prefHeight="46.0" prefWidth="706.0" text="studentNameLabel">
+      <Label fx:id="studentNameLabel" layoutX="688.0" layoutY="706.0" prefHeight="46.0" prefWidth="706.0" text="studentNameLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="304.0" layoutY="774.0" prefHeight="46.0" prefWidth="278.0" text="studentIdLabel">
+      <Label fx:id="studentIdLabel" layoutX="304.0" layoutY="774.0" prefHeight="46.0" prefWidth="278.0" text="studentIdLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="736.0" layoutY="774.0" prefHeight="46.0" prefWidth="80.0" text="studentYearLabel">
+      <Label fx:id="studentYearLabel" layoutX="736.0" layoutY="774.0" prefHeight="46.0" prefWidth="80.0" text="studentYearLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="978.0" layoutY="774.0" prefHeight="46.0" prefWidth="422.0" text="departmentLabel">
+      <Label fx:id="studentDepartmentLabel" layoutX="978.0" layoutY="774.0" prefHeight="46.0" prefWidth="422.0" text="studentDepartmentLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="204.0" layoutY="833.0" prefHeight="46.0" prefWidth="363.0" text="facultyLabel">
+      <Label fx:id="facultyLabel" layoutX="204.0" layoutY="833.0" prefHeight="46.0" prefWidth="363.0" text="facultyLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1018.0" layoutY="843.0" prefHeight="46.0" prefWidth="375.0" text="addressLabel">
+      <Label fx:id="addressLabel" layoutX="140.0" layoutY="903.0" prefHeight="46.0" prefWidth="1254.0" text="addressLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="140.0" layoutY="903.0" prefHeight="46.0" prefWidth="1254.0" text="addressLabel2">
+      <Label fx:id="addressLabel2" layoutX="140.0" layoutY="965.0" prefHeight="46.0" prefWidth="467.0" text="addressLabel2">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="140.0" layoutY="965.0" prefHeight="46.0" prefWidth="467.0" text="addressLabel3">
+      <Label fx:id="phoneLabel" layoutX="946.0" layoutY="974.0" prefHeight="46.0" prefWidth="450.0" text="phoneLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="946.0" layoutY="974.0" prefHeight="46.0" prefWidth="450.0" text="phoneLabel">
+      <Label fx:id="courseNameLabel" layoutX="691.0" layoutY="1041.0" prefHeight="46.0" prefWidth="699.0" text="courseNameLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="691.0" layoutY="1041.0" prefHeight="46.0" prefWidth="699.0" text="courseNameLabel">
+      <Label fx:id="courseIdLabel" layoutX="244.0" layoutY="1105.0" prefHeight="46.0" prefWidth="201.0" text="courseIdLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="244.0" layoutY="1105.0" prefHeight="46.0" prefWidth="201.0" text="courseIdLabel">
+      <Label fx:id="courseSectionLabel" layoutX="603.0" layoutY="1106.0" prefHeight="46.0" prefWidth="129.0" text="courseSectionLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="603.0" layoutY="1106.0" prefHeight="46.0" prefWidth="129.0" text="courseSectionLabel">
+      <Label fx:id="courseTeacherLabel" layoutX="940.0" layoutY="1108.0" prefHeight="46.0" prefWidth="444.0" text="courseTeacherLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="940.0" layoutY="1108.0" prefHeight="46.0" prefWidth="444.0" text="courseTeacherLabel">
+      <Label fx:id="teacherDepartmentLabel" layoutX="323.0" layoutY="1163.0" prefHeight="46.0" prefWidth="317.0" text="teacherDepartmentLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="323.0" layoutY="1163.0" prefHeight="46.0" prefWidth="317.0" text="teacherDepartmentLabel">
+      <Label fx:id="teacherFacultyLabel" layoutX="707.0" layoutY="1170.0" prefHeight="46.0" prefWidth="278.0" text="teacherFacultyLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="707.0" layoutY="1170.0" prefHeight="46.0" prefWidth="278.0" text="teacherFacultyLabel">
+      <Label fx:id="semesterLabel" layoutX="1074.0" layoutY="1170.0" prefHeight="46.0" prefWidth="102.0" text="termLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1074.0" layoutY="1170.0" prefHeight="46.0" prefWidth="102.0" text="termLabel">
+      <Label fx:id="academicYearLabel" layoutX="1317.0" layoutY="1170.0" prefHeight="46.0" prefWidth="111.0" text="academicYearLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="1317.0" layoutY="1170.0" prefHeight="46.0" prefWidth="111.0" text="academicYearLabel">
+      <Label fx:id="reasonLabel" layoutX="140.0" layoutY="1287.0" prefHeight="46.0" prefWidth="1254.0" text="reasonLabel">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="140.0" layoutY="1287.0" prefHeight="46.0" prefWidth="1254.0" text="reasonLabel2">
+      <Label fx:id="reasonLabel2" layoutX="140.0" layoutY="1352.0" prefHeight="46.0" prefWidth="1254.0" text="reasonLabel2">
          <font>
             <Font name="TH SarabunPSK" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="140.0" layoutY="1352.0" prefHeight="46.0" prefWidth="1254.0" text="reasonLabel3">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="836.0" layoutY="1229.0" prefHeight="46.0" prefWidth="551.0" text="reasonLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="853.0" layoutY="1607.0" prefHeight="46.0" prefWidth="450.0" text="studentNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="223.0" layoutY="1881.0" prefHeight="46.0" prefWidth="406.0" text="advisorNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="223.0" layoutY="2203.0" prefHeight="46.0" prefWidth="391.0" text="teacherNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1053.0" layoutY="1730.0" prefHeight="46.0" prefWidth="363.0" text="courseNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="385.0" layoutY="2044.0" prefHeight="46.0" prefWidth="375.0" text="headDepartmentNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="865.0" layoutY="2203.0" prefHeight="46.0" prefWidth="363.0" text="headDepartmentNameLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="871.0" layoutY="1887.0" prefHeight="46.0" prefWidth="318.0" text="headInterLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="233.0" layoutY="2097.0" prefHeight="46.0" prefWidth="14.0" text="/">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="407.0" layoutY="2097.0" prefHeight="46.0" prefWidth="14.0" text="/">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="873.0" layoutY="2100.0" prefHeight="46.0" prefWidth="14.0" text="/">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1045.0" layoutY="2099.0" prefHeight="46.0" prefWidth="14.0" text="/">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="331.0" layoutY="1942.0" prefHeight="46.0" prefWidth="66.0" text="dateLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="412.0" layoutY="1942.0" prefHeight="46.0" prefWidth="66.0" text="monthLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="492.0" layoutY="1942.0" prefHeight="46.0" prefWidth="66.0" text="yearLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="305.0" layoutY="2257.0" prefHeight="46.0" prefWidth="80.0" text="dateLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="402.0" layoutY="2257.0" prefHeight="46.0" prefWidth="80.0" text="monthLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="492.0" layoutY="2257.0" prefHeight="46.0" prefWidth="102.0" text="yearLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="939.0" layoutY="1997.0" prefHeight="46.0" prefWidth="66.0" text="dateLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1020.0" layoutY="1997.0" prefHeight="46.0" prefWidth="66.0" text="monthLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1095.0" layoutY="1997.0" prefHeight="46.0" prefWidth="66.0" text="yearLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="940.0" layoutY="2263.0" prefHeight="46.0" prefWidth="57.0" text="dateLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1012.0" layoutY="2263.0" prefHeight="46.0" prefWidth="66.0" text="monthLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="1092.0" layoutY="2263.0" prefHeight="46.0" prefWidth="66.0" text="yearLabel">
-         <font>
-            <Font name="TH SarabunPSK" size="36.0" />
-         </font>
-      </Label>
-      <Line endX="-36.79998779296875" layoutX="528.0" layoutY="737.0" startX="-95.20001220703125" strokeWidth="3.0" />
-      <Line endX="29.20001220703125" endY="-11.0" layoutX="538.0" layoutY="747.0" startX="-36.79998779296875" startY="-11.0" strokeWidth="3.0" />
-      <Line endX="130.4000244140625" endY="-21.0" layoutX="548.0" layoutY="757.0" startX="29.20001220703125" startY="-21.0" strokeWidth="3.0" />
+      <Line fx:id="mrLine" endX="-36.79998779296875" layoutX="528.0" layoutY="737.0" startX="-95.20001220703125" strokeWidth="3.0" />
+      <Line fx:id="mrsLine" endX="29.20001220703125" endY="-11.0" layoutX="538.0" layoutY="747.0" startX="-36.79998779296875" startY="-11.0" strokeWidth="3.0" />
+      <Line fx:id="msLine" endX="130.4000244140625" endY="-21.0" layoutX="548.0" layoutY="757.0" startX="29.20001220703125" startY="-21.0" strokeWidth="3.0" />
       <Pane layoutX="134.0" layoutY="319.0" prefHeight="72.0" prefWidth="1266.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="7.0" prefHeight="59.0" prefWidth="1266.0" text="departmentLabel" textAlignment="CENTER">
+            <Label fx:id="departmentLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="7.0" prefHeight="59.0" prefWidth="1266.0" text="departmentLabel" textAlignment="CENTER">
                <font>
-                  <Font name="TH SarabunPSK Bold" size="48.0" />
+                  <Font name="Angsana New Bold" size="48.0" />
                </font>
             </Label>
          </children>
       </Pane>
+      <Pane layoutX="420.0" layoutY="1726.0" prefHeight="54.0" prefWidth="162.0" style="-fx-background-color: #FFFFFF;" />
+      <Pane layoutX="1074.0" layoutY="2053.0" prefHeight="54.0" prefWidth="162.0" style="-fx-background-color: #FFFFFF;" />
+      <Pane layoutX="1053.0" layoutY="1938.0" prefHeight="54.0" prefWidth="246.0" style="-fx-background-color: #FFFFFF;" />
    </children>
 </AnchorPane>

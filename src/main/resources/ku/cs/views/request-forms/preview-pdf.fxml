@@ -6,20 +6,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.PreviewPDFController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.PreviewPdfPopupPageController">
    <children>
       <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="720.0" prefWidth="1080.0">
          <children>
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="640.0" prefWidth="820.0">
               <content>
-                <AnchorPane fx:id="pdf" minHeight="0.0" minWidth="0.0" prefHeight="1130.0" prefWidth="800.0" />
+                <AnchorPane fx:id="pdfAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="1130.0" prefWidth="800.0" />
               </content>
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1080.0" spacing="40.0">
                <children>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onCancelButtonClicked" styleClass="deny-button" text="ยกเลิก" textFill="WHITE" />
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onSaveButtonClicked" styleClass="green-button" text="บันทึก" />
+                  <Button mnemonicParsing="false" onAction="#onClosePopupButton" prefHeight="42.0" prefWidth="160.0" styleClass="back-button" text="ปิด">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSaveButtonClicked" prefHeight="42.0" prefWidth="160.0" styleClass="green-button" text="บันทึก" />
                </children>
             </HBox>
          </children>

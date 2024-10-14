@@ -8,87 +8,109 @@ import ku.cs.controllers.components.tables.EventCallback;
 import ku.cs.models.Course;
 import ku.cs.models.collections.CourseList;
 
-import static ku.cs.services.AlertService.showWarning;
-
 public class AddDropCourseComponentController {
-    @FXML private TextField textFieldCourseNo;
-    @FXML private TextField textFieldCourseId;
-    @FXML private TextField textFieldCourseYear;
-    @FXML private TextField textFieldCourseLectureSection;
-    @FXML private TextField textFieldCoursePracticeSection;
-    @FXML private TextField textFieldCourseName;
-    @FXML private TextField textFieldCourseLectureCredit;
-    @FXML private TextField textFieldCoursePracticeCredit;
-    @FXML private MenuButton menuButtonEnrollType;
+    @FXML private TextField courseNoTextField;
+    @FXML private TextField courseIdTextField;
+    @FXML private TextField courseYearTextField;
+    @FXML private TextField courseLectureSectionTextField;
+    @FXML private TextField coursePracticeSectionTextField;
+    @FXML private TextField courseNameTextField;
+    @FXML private TextField courseLectureCreditTextField;
+    @FXML private TextField coursePracticeCreditTextField;
+    @FXML private MenuButton enrollTypeMenuButton;
     @FXML private Button deleteButton;
-
-    private String enrollType = "Credit";
 
     private Course course;
     private CourseList courseList;
-    private EventCallback onUpdateCallback = (eventName) -> {};
+    private EventCallback onUpdateCallback;
 
-    public void onUpdate(EventCallback onUpdateCallback){
+    public void onUpdate(EventCallback onUpdateCallback) {
         this.onUpdateCallback = onUpdateCallback;
     }
-    
-    public void initialize(CourseList courseList, Course course) {
+
+    public void initialize(CourseList courseList, Course course, boolean readOnly) {
         this.course = course;
         this.courseList = courseList;
         setTextField();
-        deleteButton.setOnAction(event -> {
-            onUpdateCallback.onEvent("delete");
-        });
+        if (readOnly) {
+            deleteButton.setVisible(false);
+            return;
+        }
+        deleteButton.setOnAction(event -> onUpdateCallback.onEvent("delete"));
     }
 
-    public boolean confirm(){
-        String courseId = textFieldCourseId.getText();
-        String courseYear = textFieldCourseYear.getText();
-        String courseLectureSection = textFieldCourseLectureSection.getText();
-        String coursePracticeSection = textFieldCoursePracticeSection.getText();
-        String courseName = textFieldCourseName.getText();
-        String courseLectureCredit = textFieldCourseLectureCredit.getText();
-        String subjectPracticeCredit = textFieldCoursePracticeCredit.getText();
-        String enrollType = menuButtonEnrollType.getText();
-        if(courseId.isEmpty() || courseYear.isEmpty() || courseLectureSection.isEmpty() || coursePracticeSection.isEmpty() || courseName.isEmpty()
-                || courseLectureCredit.isEmpty() || subjectPracticeCredit.isEmpty()){
-            showWarning("กรุณาใส่ข้อมูลให้ครบก่อนเพิ่มรายวิชา\nหรือเปลี่ยนไปหน้าถัดไป");
-            return false;
+    public void confirm() {
+        String courseId = courseIdTextField.getText();
+        String courseYear = courseYearTextField.getText();
+        String courseLectureSection = courseLectureSectionTextField.getText();
+        String coursePracticeSection = coursePracticeSectionTextField.getText();
+        String courseName = courseNameTextField.getText();
+        String courseLectureCredit = courseLectureCreditTextField.getText();
+        String coursePracticeCredit = coursePracticeCreditTextField.getText();
+        String enrollType = enrollTypeMenuButton.getText();
+
+        if (courseId.isEmpty() || courseYear.isEmpty() || courseLectureSection.isEmpty() || courseName.isEmpty() || courseLectureCredit.isEmpty() || enrollType.isEmpty()) {
+            throw new IllegalArgumentException("กรุณาใส่ข้อมูลรายวิชาให้ครบถ้วน");
         }
+
+        if (isNotNumeric(courseYear)) {
+            throw new IllegalArgumentException("ปีรายวิชาต้องเป็นตัวเลขจำนวนเต็ม");
+        }
+
+        if (isNotNumeric(courseLectureSection)) {
+            throw new IllegalArgumentException("หมู่บรรยายต้องเป็นตัวเลขจำนวนเต็ม");
+        }
+
+        if (isNotNumeric(courseLectureCredit)) {
+            throw new IllegalArgumentException("หน่วยกิตบรรยายต้องเป็นตัวเลข");
+        }
+
+        if (!enrollType.equals("Credit") && !enrollType.equals("Audit")) {
+            throw new IllegalArgumentException("ประเภทการลงทะเบียนต้องเป็น Credit หรือ Audit");
+        }
+
         course.setCourseId(courseId);
         course.setCourseYear(courseYear);
         course.setLectureSection(courseLectureSection);
         course.setPracticeSection(coursePracticeSection);
         course.setCourseName(courseName);
         course.setLectureCredit(courseLectureCredit);
-        course.setPracticeCredit(subjectPracticeCredit);
+        course.setPracticeCredit(coursePracticeCredit);
         course.setCourseType(enrollType);
-        return true;
+    }
+
+    private boolean isNotNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
     }
 
     public void setTextField() {
-        textFieldCourseNo.setText(courseList.getCourseListSize()+"");
-        textFieldCourseId.setText(course.getCourseId());
-        textFieldCourseYear.setText(course.getCourseYear());
-        textFieldCourseLectureSection.setText(course.getLectureSection());
-        textFieldCoursePracticeSection.setText(course.getPracticeSection());
-        textFieldCourseName.setText(course.getCourseName());
-        textFieldCourseLectureCredit.setText(course.getLectureCredit());
-        textFieldCoursePracticeCredit.setText(course.getPracticeCredit());
-        menuButtonEnrollType.setText(course.getCourseType());
+        courseNoTextField.setText(courseList.getCourseListSize() + "");
+        courseIdTextField.setText(course.getCourseId());
+        courseYearTextField.setText(course.getCourseYear());
+        courseLectureSectionTextField.setText(course.getLectureSection());
+        coursePracticeSectionTextField.setText(course.getPracticeSection());
+        courseNameTextField.setText(course.getCourseName());
+        courseLectureCreditTextField.setText(course.getLectureCredit());
+        coursePracticeCreditTextField.setText(course.getPracticeCredit());
+        enrollTypeMenuButton.setText(course.getCourseType());
     }
 
     public Course getCourse() {
         return course;
     }
 
-    public void onMenuButtonEnrollTypeCredit() {
-        enrollType = "Credit";
-        menuButtonEnrollType.setText("Credit");
+    @FXML
+    public void onEnrollTypeCreditMenuItem() {
+        enrollTypeMenuButton.setText("Credit");
     }
 
-    public void onMenuButtonEnrollTypeAudit() {
-        enrollType = "Audit";
-        menuButtonEnrollType.setText("Audit");
+    @FXML
+    public void onEnrollTypeAuditMenuItem() {
+        enrollTypeMenuButton.setText("Audit");
     }
 }

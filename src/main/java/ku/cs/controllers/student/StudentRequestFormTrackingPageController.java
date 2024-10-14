@@ -4,88 +4,66 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+import ku.cs.controllers.advisor.StudentRequestFormHistoryTableDescriptor;
 import ku.cs.controllers.components.SearchController;
 import ku.cs.controllers.components.tables.TableComponentController;
-import ku.cs.controllers.advisor.StudentRequestFormHistoryTableDescriptor;
 import ku.cs.models.FormDataModel;
-import ku.cs.models.requestforms.AbsenceRequestForm;
-import ku.cs.models.requestforms.AddDropRequestForm;
-import ku.cs.models.requestforms.CoEnrollRequestForm;
 import ku.cs.models.requestforms.RequestForm;
 import ku.cs.models.users.Student;
+import ku.cs.services.AlertService;
 import ku.cs.services.Session;
+import ku.cs.services.SortDirection;
 import ku.cs.services.popup.PopupComponent;
 
 import java.io.IOException;
+
+import static ku.cs.services.AlertService.showError;
 
 public class StudentRequestFormTrackingPageController {
     @FXML private AnchorPane anchorPane;
     @FXML private Pane tablePane;
     @FXML private Pane navBarPane;
     @FXML private TextField searchTextField;
-    @FXML private Circle searchButton;
     @FXML private MenuButton statusMenuButton;
-    private TableComponentController tableController;
-    private SearchController searchController;
+    private TableComponentController<RequestForm> tableController;
+    private SearchController<RequestForm> searchController;
     private Student student;
 
-    @FXML public void initialize() throws IOException {
+    @FXML
+    public void initialize() {
         Session session = Session.getSession();
         student = (Student) session.getLoggedInUser();
 
-
-        FXMLLoader navBarFxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/student-navbar.fxml"));
-        try {
-            AnchorPane studentNavbar = navBarFxmlLoader.load();
-            navBarPane.getChildren().add(studentNavbar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Image searchIcon = new Image(getClass().getResource("/images/search-icon.png").toString());
-        searchButton.setFill(new ImagePattern(searchIcon));
-
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         navBarPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
         tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
 
-        Session.getSession().setNavbar(navBarPane);
-        Session.getSession().getTheme().setTheme(anchorPane);
+        Session.getSession().setNavbarByUserRole(navBarPane);
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
             tableController = fxmlLoader.getController();
-            tableController.setHeadHeight(80);
-            tableController.setRowHeight(60);
-            tableController.setDisplayRowCount(5);
-
-            tableController.setTablePane(tablePane);
-            tableController.setTableHeadDescriptor(new StudentRequestFormHistoryTableDescriptor());
+            tableController.setTableAttributes(tablePane, 40, 60, 6, new StudentRequestFormHistoryTableDescriptor());
+            tableController.sortBy("แก้ไขล่าสุด", SortDirection.DESCENDING);
 
             tableController.addEventListener("ดูคำร้อง", eventData -> {
-                System.out.println("clicked");
                 RequestForm obj = (RequestForm) eventData;
-                FormDataModel formDataModel = new FormDataModel(true, Session.getSession().getLoggedInUser(),obj);
+                FormDataModel formDataModel = new FormDataModel(true, obj);
 
-                String fxmlPath = "/ku/cs/views/request-forms/";
-                if(obj instanceof AddDropRequestForm) {
-                    fxmlPath = fxmlPath + "student-add-drop-request-form-popup-page1.fxml";
-                } else if(obj instanceof AbsenceRequestForm) {
-                    fxmlPath = fxmlPath + "student-absence-request-form-popup-page1.fxml";
-                } else if(obj instanceof CoEnrollRequestForm) {
-                    fxmlPath = fxmlPath + "student-co-enroll-request-form-popup-page1.fxml";
+                String fxmlPath = "/ku/cs/views/request-forms/request-form-history.fxml";
+                PopupComponent<FormDataModel> requestActionPopup = null;
+                try {
+                    requestActionPopup = new PopupComponent<>(formDataModel,
+                            fxmlPath,
+                            tablePane.getScene().getWindow()
+                    );
+                } catch (IOException e) {
+                    AlertService.showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
+                    System.exit(1);
                 }
-                PopupComponent<FormDataModel> requestActionPopup = new PopupComponent<>(formDataModel,
-                        fxmlPath,
-                        "request-form",
-                        tablePane.getScene().getWindow()
-                );
                 requestActionPopup.show();
             });
             tableController.setDisplayModels(student.getRequestFormList().getRequestForms());
@@ -93,33 +71,54 @@ public class StudentRequestFormTrackingPageController {
 
             tablePane.getChildren().add(table);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
         }
-        searchController=new SearchController<>(searchTextField,tableController,student.getRequestFormList());
+        searchController = new SearchController<>(searchTextField, tableController, student.getRequestFormList());
     }
-    @FXML public void onCreateFormButton(){
-        PopupComponent<Object> popup = new PopupComponent<>(new Object(), "/ku/cs/views/request-forms/student-create-request-form-popup.fxml","create form",navBarPane.getScene().getWindow());
+
+    @FXML
+    public void onCreateFormButton() {
+        PopupComponent<Object> popup = null;
+        try {
+            popup = new PopupComponent<>("/ku/cs/views/request-forms/create-request-form-popup.fxml", navBarPane.getScene().getWindow());
+        } catch (IOException e) {
+            AlertService.showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(1);
+        }
+        popup.addEventListener("close", eventData1 -> {
+            tableController.setDisplayModels(student.getRequestFormList().getRequestForms());
+        });
         popup.show();
     }
-    @FXML public void onSearchButtonClick(){
+
+    @FXML
+    public void onSearchButton() {
         searchController.searchFilter();
     }
-    @FXML public void onPendingMenuButton(){
+
+    @FXML
+    public void onPendingMenuItem() {
         statusMenuButton.setText("รอการอนุมัติ");
         searchController.setFilterContext("PENDING");
         searchController.searchFilter();
     }
-    @FXML public void onApprovedMenuButton(){
+
+    @FXML
+    public void onApprovedMenuItem() {
         statusMenuButton.setText("ได้รับการอนุมัติ");
         searchController.setFilterContext("APPROVED");
         searchController.searchFilter();
     }
-    @FXML public void onRejectedMenuButton(){
+
+    @FXML
+    public void onRejectedMenuItem() {
         statusMenuButton.setText("ได้รับการปฏิเสธ");
         searchController.setFilterContext("REJECTED");
         searchController.searchFilter();
     }
-    @FXML public void onAllStatusMenuButton(){
+
+    @FXML
+    public void onAllStatusMenuItem() {
         statusMenuButton.setText("สถานะคำร้อง");
         searchController.resetFilter();
     }
