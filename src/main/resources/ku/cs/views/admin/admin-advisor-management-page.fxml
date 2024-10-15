@@ -27,7 +27,7 @@
       </VBox>
       <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="440.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="440.0" promptText="ค้นหาข้อมูลอาจารย์ที่ปรึกษา" styleClass="text-field-box">
                <font>
                   <Font size="24.0" />
                </font>
