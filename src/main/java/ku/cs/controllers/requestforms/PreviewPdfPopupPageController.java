@@ -1,5 +1,6 @@
 package ku.cs.controllers.requestforms;
 
+import javafx.animation.PauseTransition;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import ku.cs.config.Configuration;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.models.FormDataModel;
@@ -45,8 +47,10 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
             displayPDF(outputPdfFile);
         } else {
             generatePDF();
+            PauseTransition pause = new PauseTransition(Duration.seconds(3));
+            pause.setOnFinished(event -> savePdfBySystem());
+            pause.play();
         }
-        savePdfBySystem();
     }
 
     @FXML
@@ -134,12 +138,12 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
         fxmlLoader.getController();
         AnchorPane loadedPane;
         try {
-            loadedPane = fxmlLoader.load();
             RequestFormController controller = fxmlLoader.getController();
             if (controller != null) {
                 controller.prepareDataForPDF(requestForm);
                 controller.initializeForm();
             }
+            loadedPane = fxmlLoader.load();
         } catch (IOException e) {
             AlertService.showError("พบข้อผิดพลาดในการแสดง PDF");
             return;
