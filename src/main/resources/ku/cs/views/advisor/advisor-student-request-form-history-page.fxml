@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -41,13 +42,17 @@
                      </font>
                   </TextField>
                   <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
-                  <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" styleClass="menu-button-custom" text="ตัวกรอง">
+                  <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="ตัวกรอง">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onAllFilterMenuButton" text="ทั้งหมด" />
                         <MenuItem mnemonicParsing="false" onAction="#onSuccessFormMenuItem" text="สำเร็จแล้ว" />
                         <MenuItem mnemonicParsing="false" onAction="#onInProgressFormMenuItem" text="กำลังดำเนินการ" />
                         <MenuItem mnemonicParsing="false" onAction="#onRejectedFormMenuItem" text="ถูกปฏิเสธ" />
                      </items>
+                     <styleClass>
+                        <String fx:value="menu-button-custom" />
+                        <String fx:value="unfixed-size" />
+                     </styleClass>
                   </MenuButton>
                </children>
             </HBox>
