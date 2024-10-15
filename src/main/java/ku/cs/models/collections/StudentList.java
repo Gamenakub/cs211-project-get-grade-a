@@ -1,7 +1,6 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.users.Student;
-
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 

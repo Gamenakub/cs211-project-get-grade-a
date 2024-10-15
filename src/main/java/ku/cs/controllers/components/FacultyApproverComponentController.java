@@ -14,7 +14,6 @@ public class FacultyApproverComponentController {
     @FXML public TextField nameTitleTextField;
     @FXML public TextField surnameTextField;
     @FXML public TextField facultyTextField;
-    @FXML private VBox vBox;
     @FXML private TextField nameTextField;
     @FXML private MenuButton roleMenuButton;
     @FXML private TextField factionTextField;
@@ -34,8 +33,6 @@ public class FacultyApproverComponentController {
     }
 
     public void reload() {
-
-
         nameTextField.setText(approver.getName());
         surnameTextField.setText(approver.getSurname());
         nameTitleTextField.setText(approver.getNameTitle());
@@ -47,13 +44,10 @@ public class FacultyApproverComponentController {
         } else {
             roleMenuButton.setText(approver.getRole());
         }
-
         facultyTextField.setText("คณะ" + approver.getFaculty().getName());
         facultyTextField.setEditable(false);
 
-
         deleteButton.setOnAction(event -> onUpdateCallback.onEvent("delete"));
-
     }
 
     public void confirm() throws IOException {
@@ -82,6 +76,7 @@ public class FacultyApproverComponentController {
         factionTextField.setText("");
         factionTextField.setDisable(true);
     }
+
     @FXML
     private void onViceDeanMenuButton() {
         roleMenuButton.setText("รองคณบดี");
