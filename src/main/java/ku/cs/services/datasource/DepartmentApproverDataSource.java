@@ -6,12 +6,10 @@ import ku.cs.models.collections.DepartmentApproverList;
 import ku.cs.models.collections.DepartmentList;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DepartmentApproverDataSource implements Writable<DepartmentApproverList, DepartmentApprover>, Readable<DepartmentApproverList, DepartmentApprover> {
-
     private final DepartmentList departmentList;
 
     public DepartmentApproverDataSource(DepartmentList departmentList) {

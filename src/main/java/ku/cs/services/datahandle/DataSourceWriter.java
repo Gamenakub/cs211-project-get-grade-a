@@ -1,6 +1,5 @@
 package ku.cs.services.datahandle;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ public class DataSourceWriter<C, E> {
     public DataSourceWriter(Writable<C, E> dataSource) {
         this.dataSource = dataSource;
     }
-
     
     public ArrayList<HashMap<String, String>> getRowOfModel(C userList) {
         ArrayList<HashMap<String, String>> table = new ArrayList<>();

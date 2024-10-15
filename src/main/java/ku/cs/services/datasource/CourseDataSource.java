@@ -4,10 +4,8 @@ import ku.cs.models.Course;
 import ku.cs.models.collections.CourseList;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class CourseDataSource implements Writable<CourseList, Course>, Readable<CourseList, Course> {
 

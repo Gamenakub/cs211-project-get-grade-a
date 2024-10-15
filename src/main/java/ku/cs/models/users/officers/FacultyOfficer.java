@@ -2,7 +2,6 @@ package ku.cs.models.users.officers;
 
 import ku.cs.models.Faculty;
 import ku.cs.models.collections.FacultyApproverList;
-
 import java.time.LocalDateTime;
 
 public class FacultyOfficer extends Officer {

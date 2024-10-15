@@ -15,12 +15,12 @@ import ku.cs.services.Session;
 import java.io.IOException;
 
 public class DepartmentOfficerNavigationBarController {
-    @FXML AnchorPane navBarAnchorPane;
-    @FXML Circle profilePictureCircle;
-    @FXML MenuButton fontSizeMenuButton;
-    @FXML MenuButton fontStyleMenuButton;
-    @FXML ImageView logoutIcon;
-    @FXML ImageView themeIcon;
+    @FXML private AnchorPane navBarAnchorPane;
+    @FXML private Circle profilePictureCircle;
+    @FXML private MenuButton fontSizeMenuButton;
+    @FXML private MenuButton fontStyleMenuButton;
+    @FXML private ImageView logoutIcon;
+    @FXML private ImageView themeIcon;
 
     IconController iconThemeController;
 

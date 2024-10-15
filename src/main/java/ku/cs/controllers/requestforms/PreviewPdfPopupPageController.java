@@ -23,7 +23,6 @@ import ku.cs.services.PdfManager;
 import ku.cs.services.Session;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -124,7 +123,6 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
             AlertService.showError("ไม่สามารถดาวน์โหลดไฟล์ PDF ได้: " + e.getMessage());
         }
     }
-
 
     private void generatePDF() {
         switch (requestForm) {

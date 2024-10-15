@@ -6,14 +6,11 @@ import ku.cs.models.collections.FacultyApproverList;
 import ku.cs.models.collections.FacultyList;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FacultyApproverDataSource implements Writable<FacultyApproverList, FacultyApprover>, Readable<FacultyApproverList, FacultyApprover> {
-
     private final FacultyList facultyList;
-
 
     public FacultyApproverDataSource(FacultyList facultyList) {
         this.facultyList = facultyList;

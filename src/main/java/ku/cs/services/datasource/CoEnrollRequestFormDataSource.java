@@ -9,7 +9,6 @@ import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,19 +24,16 @@ public class CoEnrollRequestFormDataSource implements Readable<RequestFormList, 
 
     @Override
     public String getFileName() {
-
         return "co_enroll_request_forms.csv";
     }
 
     @Override
     public String getDirectory() {
-
         return "data/request-forms/";
     }
 
     @Override
     public CoEnrollRequestForm hashMapToModel(HashMap<String, String> row) {
-
         String requestFormID = row.get("requestFormID");
         String studentYear = row.get("studentYear");
         RequestForm.Status status = RequestForm.Status.valueOf(row.get("status"));
@@ -55,25 +51,21 @@ public class CoEnrollRequestFormDataSource implements Readable<RequestFormList, 
         String requestFormCause = row.get("requestFormCause");
         String rejectedCause = row.get("rejectedCause");
 
-
         return new CoEnrollRequestForm(requestFormID, student, advisor, studentYear, status, address, phoneNumber, courseName, courseId, courseSection, semester, academicYear, teacherName, requestFormCause, rejectedCause);
     }
 
     @Override
     public RequestFormList collectionInitializer() {
-
         return new RequestFormList();
     }
 
     @Override
     public void addModelToList(RequestFormList list, CoEnrollRequestForm model) {
-
         list.addRequestForm(model);
     }
 
     @Override
     public ArrayList<String> getTableHeader() {
-
         ArrayList<String> header = new ArrayList<>();
         header.add("requestFormID");
         header.add("studentId");
@@ -95,7 +87,6 @@ public class CoEnrollRequestFormDataSource implements Readable<RequestFormList, 
 
     @Override
     public HashMap<String, String> modelToHashMap(CoEnrollRequestForm model) {
-
         HashMap<String, String> row = new HashMap<>();
         row.put("requestFormID", model.getRequestFormId());
         row.put("studentId", model.getStudent().getStudentId());
@@ -117,7 +108,6 @@ public class CoEnrollRequestFormDataSource implements Readable<RequestFormList, 
 
     @Override
     public ArrayList<CoEnrollRequestForm> getCollectionArrayList(RequestFormList collection) {
-
         ArrayList<CoEnrollRequestForm> list = new ArrayList<>();
         for (RequestForm form : collection.getRequestForms()) {
             if (form instanceof CoEnrollRequestForm) {

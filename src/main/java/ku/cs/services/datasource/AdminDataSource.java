@@ -5,11 +5,9 @@ import ku.cs.models.users.Admin;
 import ku.cs.models.users.User;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class AdminDataSource implements Readable<UserList, Admin>, Writable<UserList, Admin> {
     private final StudentList studentList;
@@ -20,7 +18,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
     private final FacultyOfficerList facultyOfficers;
 
     public AdminDataSource(StudentList studentList, DepartmentList departments, FacultyList faculty, AdvisorList advisors, DepartmentOfficerList departmentOfficers, FacultyOfficerList facultyOfficers) {
-
         this.studentList = studentList;
         this.departments = departments;
         this.faculty = faculty;
@@ -41,7 +38,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public Admin hashMapToModel(HashMap<String, String> row) {
-
         Admin admin = new Admin(
                 row.get("username"),
                 row.get("hashedPassword"),
@@ -76,7 +72,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public ArrayList<String> getTableHeader() {
-
         ArrayList<String> header = new ArrayList<>();
         header.add("username");
         header.add("hashedPassword");
@@ -93,7 +88,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public HashMap<String, String> modelToHashMap(Admin model) {
-
         HashMap<String, String> map = new HashMap<>();
         map.put("username", model.getUsername());
         map.put("hashedPassword", model.getHashedPassword());
@@ -110,7 +104,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public ArrayList<Admin> getCollectionArrayList(UserList collection) {
-
         ArrayList<Admin> admins = new ArrayList<>();
         for (User user : collection.getUsers()) {
             if (user instanceof Admin) {

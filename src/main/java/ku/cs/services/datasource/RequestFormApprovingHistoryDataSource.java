@@ -6,7 +6,6 @@ import ku.cs.models.collections.RequestFormActionHistoryList;
 import ku.cs.models.requestforms.RequestForm;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +21,6 @@ public class RequestFormApprovingHistoryDataSource implements Writable<RequestFo
         return "data";
     }
 
-
     @Override
     public RequestFormActionHistory hashMapToModel(HashMap<String, String> row) {
         String requestId = row.get("requestId");
@@ -34,18 +32,15 @@ public class RequestFormApprovingHistoryDataSource implements Writable<RequestFo
         return new RequestFormActionHistory(requestId, approverIdentity, action, approvedBy, approvedAt);
     }
 
-
     @Override
     public RequestFormActionHistoryList collectionInitializer() {
         return new RequestFormActionHistoryList();
     }
 
-
     @Override
     public void addModelToList(RequestFormActionHistoryList list, RequestFormActionHistory model) {
         list.addRequestFormApprovingHistory(model);
     }
-
 
     @Override
     public HashMap<String, String> modelToHashMap(RequestFormActionHistory model) {
@@ -58,7 +53,6 @@ public class RequestFormApprovingHistoryDataSource implements Writable<RequestFo
         return map;
     }
 
-
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> header = new ArrayList<>();
@@ -69,7 +63,6 @@ public class RequestFormApprovingHistoryDataSource implements Writable<RequestFo
         header.add("approvedAt");
         return header;
     }
-
 
     @Override
     public ArrayList<RequestFormActionHistory> getCollectionArrayList(RequestFormActionHistoryList collection) {

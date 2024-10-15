@@ -1,7 +1,6 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.RequestFormActionHistory;
-
 import java.util.ArrayList;
 
 public class RequestFormActionHistoryList {

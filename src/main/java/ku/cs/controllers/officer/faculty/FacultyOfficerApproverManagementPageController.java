@@ -12,7 +12,6 @@ import ku.cs.models.collections.FacultyApproverList;
 import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.services.AlertService;
 import ku.cs.services.Session;
-
 import java.io.IOException;
 import java.util.ArrayList;
 

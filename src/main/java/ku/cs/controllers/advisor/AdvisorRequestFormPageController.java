@@ -30,7 +30,6 @@ public class AdvisorRequestFormPageController {
     private SearchController<RequestForm> searchController;
     private TableComponentController<RequestForm> tableController;
 
-
     @FXML
     public void initialize() {
         user = (Advisor) Session.getSession().getLoggedInUser();

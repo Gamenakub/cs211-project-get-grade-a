@@ -6,7 +6,6 @@ import ku.cs.models.collections.DepartmentList;
 import ku.cs.models.collections.FacultyList;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
