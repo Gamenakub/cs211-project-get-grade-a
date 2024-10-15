@@ -33,7 +33,6 @@ public class OfficerDepartmentRequestFormActionPopupController extends BasePopup
     @FXML
     public void onRejectRequestButton() {
         DepartmentOfficer officer = (DepartmentOfficer) Session.getSession().getLoggedInUser();
-        officer.getRequestFormList().removeForm(getModel().getFormObject());
         DataProvider.getDataProvider().saveUser();
         changeScene(getModel(), "/ku/cs/views/request-forms/form-reject-popup.fxml");
     }
