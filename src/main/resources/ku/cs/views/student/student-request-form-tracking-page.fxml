@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -29,19 +30,23 @@
       </VBox>
       <HBox alignment="CENTER" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="12.0">
          <children>
-            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="400.0" styleClass="text-field-box">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="450.0" promptText="ค้นหาใบคำร้อง" styleClass="text-field-box">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
             <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="120.0" styleClass="green-button" text="ค้นหา" />
-            <MenuButton fx:id="statusMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="menu-button-custom" text="สถานะคำร้อง">
+            <MenuButton fx:id="statusMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="สถานะคำร้อง">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onPendingMenuItem" text="รอการอนุมัติ" />
                   <MenuItem mnemonicParsing="false" onAction="#onApprovedMenuItem" text="ได้รับการอนุมัติ" />
                   <MenuItem mnemonicParsing="false" onAction="#onRejectedMenuItem" text="ได้รับการปฏิเสธ" />
                   <MenuItem mnemonicParsing="false" onAction="#onAllStatusMenuItem" text="ทั้งหมด" />
                </items>
+               <styleClass>
+                  <String fx:value="menu-button-custom" />
+                  <String fx:value="unfixed-size" />
+               </styleClass>
             </MenuButton>
             <Button mnemonicParsing="false" onAction="#onCreateFormButton" prefHeight="50.0" prefWidth="150.0" styleClass="green-button" text="สร้างใบคำร้อง" textFill="WHITE" />
          </children>
