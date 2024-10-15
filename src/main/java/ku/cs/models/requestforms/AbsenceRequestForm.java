@@ -3,7 +3,6 @@ package ku.cs.models.requestforms;
 import ku.cs.models.collections.CourseList;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
-
 import java.time.LocalDate;
 
 public class AbsenceRequestForm extends RequestForm {

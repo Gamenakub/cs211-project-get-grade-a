@@ -3,7 +3,6 @@ package ku.cs.models.users;
 import ku.cs.models.Department;
 import ku.cs.models.Faculty;
 import ku.cs.models.collections.RequestFormList;
-
 import java.time.LocalDateTime;
 
 public class Student extends User {

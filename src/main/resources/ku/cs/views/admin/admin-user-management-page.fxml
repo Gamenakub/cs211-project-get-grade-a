@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -35,7 +36,7 @@
                </font>
             </TextField>
             <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
-            <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="260.0" styleClass="menu-button-custom" text="ทุกบทบาท" textAlignment="CENTER" textFill="WHITE">
+            <MenuButton fx:id="filterMenuButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="260.0" text="ทุกบทบาท" textAlignment="CENTER" textFill="WHITE">
                <items>
                   <MenuItem fx:id="allRolesMenuItem" mnemonicParsing="false" onAction="#onAllRolesMenuItem" text="ทุกบทบาท" />
                   <MenuItem fx:id="studentRoleMenuItem" mnemonicParsing="false" onAction="#onStudentRoleMenuItem" text="นิสิต" />
@@ -43,6 +44,10 @@
                   <MenuItem fx:id="facultyOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onFacultyOfficerRoleMenuItem" text="เจ้าหน้าที่คณะ" />
                   <MenuItem fx:id="departmentOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onDepartmentOfficerRoleMenuItem" text="เจ้าหน้าที่ภาควิชา" />
                </items>
+               <styleClass>
+                  <String fx:value="menu-button-custom" />
+                  <String fx:value="unfixed-size" />
+               </styleClass>
             </MenuButton>
          </children>
          <padding>

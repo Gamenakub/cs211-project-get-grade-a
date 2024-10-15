@@ -5,7 +5,6 @@ import ku.cs.models.Faculty;
 import ku.cs.models.requestforms.RequestForm;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
-
 import java.util.ArrayList;
 
 public class RequestFormList implements Searchable<RequestForm> {
