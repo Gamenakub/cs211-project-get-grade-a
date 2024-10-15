@@ -15,7 +15,7 @@ public class ProfilePictureController {
         File imageFile = new File(Configuration.getConfiguration().getImagesPath() + File.separator + imageName);
 
         if (!imageFile.exists() || !imageFile.isFile()) {
-            setImageToCircle(profilePictureCircle, new Image("file:" + Configuration.getConfiguration().getDefaultImagePath()));
+            setImageToCircle(profilePictureCircle, new Image(Configuration.getConfiguration().getDefaultImagePath()));
         } else {
             setImageToCircle(profilePictureCircle, new Image("file:" + imageFile.getPath()));
         }

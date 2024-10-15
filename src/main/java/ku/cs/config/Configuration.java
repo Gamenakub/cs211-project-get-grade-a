@@ -12,7 +12,7 @@ public class Configuration {
     private Configuration() {
         defaultProfilePictureFileName = "default-image.jpg";
         imagesPath = "data" + File.separator + "profile-pictures";
-        defaultImagePath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "default-image.jpg";
+        defaultImagePath = getClass().getResource( "/images/" + defaultProfilePictureFileName).toExternalForm();
         requestFormsPdfPath = "data" + File.separator + "request-forms-pdf";
     }
 
