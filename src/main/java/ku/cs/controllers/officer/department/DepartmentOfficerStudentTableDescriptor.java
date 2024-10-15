@@ -27,13 +27,13 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         };
     }
 
-    @TableColumn(order = 1, name = "ชื่อ", size = 152, headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 1, name = "ชื่อ-นามสกุล", size = 152, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> nameColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(Student obj) {
 
-                Label label = new Label(obj.getName());
+                Label label = new Label(obj.getName()+" "+obj.getSurname());
                 label.getStyleClass().add("table-text");
                 return label;
             }
