@@ -428,6 +428,7 @@ public class DataProvider {
         DepartmentApproverList newDepartmentApproverList = new DepartmentApproverList();
         for (DepartmentOfficer departmentOfficer : getDepartmentOfficerList().getDepartmentOfficers()){
             for (DepartmentApprover departmentApprover : departmentOfficer.getDepartmentApproverList().getApprovers()){
+                if (newDepartmentApproverList.getApprovers().contains(departmentApprover)) continue;
                 newDepartmentApproverList.addApprover(departmentApprover);
             }
         }
@@ -440,6 +441,7 @@ public class DataProvider {
         FacultyApproverList newFacultyApproverList = new FacultyApproverList();
         for (FacultyOfficer facultyOfficer : getFacultyOfficerList().getFacultyOfficers()){
             for (FacultyApprover facultyApprover : facultyOfficer.getFacultyApproverList().getApprovers()){
+                if (newFacultyApproverList.getApprovers().contains(facultyApprover)) continue;
                 newFacultyApproverList.addApprover(facultyApprover);
             }
         }
@@ -458,6 +460,7 @@ public class DataProvider {
         StudentList newStudentList = new StudentList();
         for (DepartmentOfficer departmentOfficer : getDepartmentOfficerList().getDepartmentOfficers()) {
             for (Student student : departmentOfficer.getStudentList().getStudents()) {
+                if (newStudentList.getStudents().contains(student)) continue;
                 newStudentList.addStudent(student);
             }
         }
