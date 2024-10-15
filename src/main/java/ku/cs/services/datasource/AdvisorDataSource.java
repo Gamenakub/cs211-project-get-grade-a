@@ -6,13 +6,11 @@ import ku.cs.models.collections.DepartmentList;
 import ku.cs.models.users.Advisor;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdvisorDataSource implements Readable<AdvisorList, Advisor>, Writable<AdvisorList, Advisor> {
-
     private final DepartmentList departmentList;
 
     public AdvisorDataSource(DepartmentList departmentList) {

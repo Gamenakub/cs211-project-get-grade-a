@@ -2,7 +2,6 @@ package ku.cs.models.collections;
 
 import ku.cs.models.Faculty;
 import ku.cs.models.FacultyApprover;
-
 import java.util.ArrayList;
 
 public class FacultyApproverList {

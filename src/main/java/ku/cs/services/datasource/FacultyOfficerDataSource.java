@@ -6,13 +6,11 @@ import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.models.users.officers.Officer;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, FacultyOfficer>, Writable<FacultyOfficerList, FacultyOfficer> {
-
     private final FacultyList facultyList;
 
     public FacultyOfficerDataSource(FacultyList facultyList) {
@@ -56,8 +54,6 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         list.addOfficer(model);
     }
 
-
-
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> headers = new ArrayList<>();
@@ -72,7 +68,6 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         headers.add("activated");
         headers.add("profilePictureFileName");
         headers.add("faculty");
-
         return headers;
     }
 

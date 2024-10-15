@@ -2,7 +2,6 @@ package ku.cs.models.collections;
 
 import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.models.users.officers.Officer;
-
 import java.util.ArrayList;
 
 public class FacultyOfficerList extends OfficerList implements Searchable<FacultyOfficer> {

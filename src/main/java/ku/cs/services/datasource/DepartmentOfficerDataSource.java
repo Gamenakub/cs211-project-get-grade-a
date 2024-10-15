@@ -8,7 +8,6 @@ import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.models.users.officers.Officer;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;

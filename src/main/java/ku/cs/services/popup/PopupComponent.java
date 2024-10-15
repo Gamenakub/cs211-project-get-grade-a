@@ -10,7 +10,6 @@ import javafx.stage.Window;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.controllers.components.tables.EventCallback;
 import ku.cs.controllers.components.tables.EventCompatible;
-
 import java.io.IOException;
 
 public class PopupComponent<T> implements EventCompatible {

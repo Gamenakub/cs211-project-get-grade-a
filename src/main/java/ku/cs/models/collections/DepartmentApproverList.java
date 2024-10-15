@@ -32,7 +32,6 @@ public class DepartmentApproverList {
 
     public ArrayList<String> getAvailableRole() {
         ArrayList<String> roles = new ArrayList<>();
-
         boolean hasHead = false;
         for (DepartmentApprover approver : getApprovers()) {
             if (approver.getRole().equals("หัวหน้า")) {

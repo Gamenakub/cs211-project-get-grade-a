@@ -1,7 +1,6 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.Course;
-
 import java.util.ArrayList;
 
 public class CourseList {

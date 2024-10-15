@@ -2,7 +2,6 @@ package ku.cs.models.users.officers;
 
 import ku.cs.models.collections.RequestFormList;
 import ku.cs.models.users.User;
-
 import java.time.LocalDateTime;
 
 public class Officer extends User {
