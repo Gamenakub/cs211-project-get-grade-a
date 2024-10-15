@@ -138,12 +138,12 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
         fxmlLoader.getController();
         AnchorPane loadedPane;
         try {
+            loadedPane = fxmlLoader.load();
             RequestFormController controller = fxmlLoader.getController();
             if (controller != null) {
                 controller.prepareDataForPDF(requestForm);
                 controller.initializeForm();
             }
-            loadedPane = fxmlLoader.load();
         } catch (IOException e) {
             AlertService.showError("พบข้อผิดพลาดในการแสดง PDF");
             return;
