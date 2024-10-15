@@ -62,6 +62,4 @@ public class AdvisorStudentInformationPageController {
     public void onSearchButton() {
         searchController.searchFilter();
     }
-
-
 }

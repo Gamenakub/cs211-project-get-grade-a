@@ -15,14 +15,14 @@ import ku.cs.services.Session;
 import java.io.IOException;
 
 public class AdvisorNavigationBarController {
-    @FXML AnchorPane navBarAnchorPane;
-    @FXML MenuButton fontSizeMenuButton;
-    @FXML MenuButton fontStyleMenuButton;
-    @FXML ImageView logoutIcon;
-    @FXML ImageView themeIcon;
-    @FXML Circle profilePictureCircle;
+    @FXML private AnchorPane navBarAnchorPane;
+    @FXML private MenuButton fontSizeMenuButton;
+    @FXML private MenuButton fontStyleMenuButton;
+    @FXML private ImageView logoutIcon;
+    @FXML private ImageView themeIcon;
+    @FXML private Circle profilePictureCircle;
 
-    IconController iconThemeController;
+    private IconController iconThemeController;
 
     public void initialize() {
         ProfilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());
@@ -72,7 +72,6 @@ public class AdvisorNavigationBarController {
             System.exit(1);
         }
     }
-
 
     @FXML
     public void onThemeButton() {

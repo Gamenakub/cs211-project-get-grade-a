@@ -6,7 +6,6 @@ import javafx.util.Duration;
 
 public class ThemeProvider {
 
-
     boolean isDarkMode = false;
     private String fontSize = "Medium";
     private String fontStyle = "Sarabun";
@@ -102,7 +101,6 @@ public class ThemeProvider {
             }
         }
     }
-
 
     public void setFontStyle(String fontStyle) {
         this.fontStyle = fontStyle;

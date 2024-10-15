@@ -120,7 +120,6 @@ public class AdminDashboardPageController {
         departmentFormMenuButton.getItems().clear();
         setSuccessFormFilteredDefault();
         dashBoardMenuButtonController.clearFormFilter();
-
     }
 
     public void updateData() {

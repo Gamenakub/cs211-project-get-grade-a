@@ -8,7 +8,6 @@ import ku.cs.controllers.components.BasePopup;
 import ku.cs.services.AlertService;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,7 +16,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-
 
 public class UserGuidePopupPageController extends BasePopup<Object> {
     @FXML private Pane pdfDisplayPane;

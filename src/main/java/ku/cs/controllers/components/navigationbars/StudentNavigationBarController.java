@@ -11,22 +11,18 @@ import ku.cs.controllers.components.ProfilePictureController;
 import ku.cs.services.AlertService;
 import ku.cs.services.FXRouter;
 import ku.cs.services.Session;
-import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 
 public class StudentNavigationBarController {
 
-    @FXML AnchorPane navBarAnchorPane;
+    @FXML private AnchorPane navBarAnchorPane;
+    @FXML private Circle profilePictureCircle;
+    @FXML private MenuButton fontSizeMenuButton;
+    @FXML private MenuButton fontStyleMenuButton;
+    @FXML private ImageView logoutIcon;
+    @FXML private ImageView themeIcon;
 
-    @FXML Circle profilePictureCircle;
-
-    @FXML MenuButton fontSizeMenuButton;
-    @FXML MenuButton fontStyleMenuButton;
-    @FXML ImageView logoutIcon;
-    @FXML ImageView themeIcon;
-
-    IconController iconThemeController;
+    private IconController iconThemeController;
 
     public void initialize() {
         ProfilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());

@@ -11,8 +11,6 @@ public class Session {
     private static Session session = null;
     private ThemeProvider themeProvider;
     private User loggedInUser;
-
-
     private Session() {
         themeProvider = new ThemeProvider();
     }
@@ -33,8 +31,6 @@ public class Session {
     public ThemeProvider getThemeProvider() {
         return themeProvider;
     }
-
-
     public User getLoggedInUser() {
         return loggedInUser;
     }
@@ -63,14 +59,10 @@ public class Session {
             System.exit(1);
         }
     }
-
-
     public synchronized void clearSession() {
         DataProvider.getDataProvider().saveUser();
         DataProvider.getDataProvider().clearDataProvider();
         themeProvider=new ThemeProvider();
         loggedInUser = null;
     }
-
-
 }

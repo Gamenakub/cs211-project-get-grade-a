@@ -62,7 +62,6 @@
     -drop-shadow : dropshadow(gaussian, rgba(89, 89, 89, 0.8), 5, 0, 0, 2);
 }
 
-
 .subject-container{
     -fx-background-color: -secondary-color;
     -fx-border-color: -border-color;
@@ -74,7 +73,6 @@
 
 }
 
-
 .angsana-new-font .label,
 .angsana-new-font .button,
 .angsana-new-font  .table-header,
@@ -84,8 +82,6 @@
     -fx-font-family: "Angsana New";
 }
 
-
-
 .mali-grade-font .label,
 .mali-grade-font .button,
 .mali-grade-font  .table-header,
@@ -94,9 +90,8 @@
     -fx-font-family: "TH Mali Grade 6";
 }
 
-
 .text-field-box, .subject-info-box {
-    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-background: rgba(255, 255, 255, 0);
     -fx-text-fill: -text-fill;
     -fx-border-color: -border-color;
     -fx-border-radius: 12;
@@ -106,17 +101,16 @@
 }
 
 .text-field-box {
-    -fx-background-color: -primary-color;
+    -fx-background-color: rgba(255, 255, 255, 0);
     -fx-background-radius: 12;
     -fx-font-size: 20;
 }
 
 .text-field-box .content{
-    -fx-background-color: -primary-color;
+    -fx-background-color: rgba(255, 255, 255, 0);
     -fx-background-radius: 12;
     -fx-font-size: 20;
 }
-
 
 .text-field-label {
     -fx-font-size: 18;
@@ -135,7 +129,6 @@
     -fx-text-fill: -text-fill;
     -fx-font-weight: bold;
 }
-
 
 .header {
     -fx-font-size: 56;
@@ -165,6 +158,7 @@
     -fx-text-fill: -text-fill;
     -fx-font-size: 32;
 }
+
 .font-size-large .sub-header {
     -fx-font-size: 42;
 }
@@ -182,7 +176,6 @@
     -fx-font-size: 24;
     -fx-font-weight: normal;
 }
-
 
 .upload-area .normal-text{
     -fx-text-fill: black;
@@ -213,7 +206,6 @@
 .font-size-large .navbar-button{
     -fx-font-size: 22;
 }
-
 
 .navbar-button:hover {
     -fx-text-fill: -text-fill;
@@ -262,7 +254,7 @@
 .font-size-small .deny-button,
 .font-size-small .border-button,
 .font-size-small .navbar-button{
-    -fx-font-size: 15;
+    -fx-font-size: 16;
 }
 
 .border-button {
@@ -299,9 +291,23 @@
     -fx-background-color: rgba(255, 255, 255, 0);
     -fx-cursor: hand;
 }
-.font-size-large .navbar-background .menu-button-custom {
-    -fx-font-size: 20;
+
+.font-size-large .navbar-background .menu-button-custom{
+    -fx-font-size: 22;
 }
+
+.font-size-small .navbar-background .menu-button-custom{
+    -fx-font-size: 18;
+}
+
+.font-size-large .menu-button-custom.unfixed-size{
+    -fx-font-size: 24;
+}
+
+.font-size-small .menu-button-custom.unfixed-size{
+    -fx-font-size: 16;
+}
+
 
 .menu-button-custom .label{
     -fx-text-fill: -text-fill;
@@ -354,8 +360,6 @@ font-size-large .popup-pane .menu-button-custom {
 .font-size-small .popup-pane .text-field-box{
     -fx-font-size: 20;
 }
-
-
 
 .back-button {
     -fx-text-fill: black;
@@ -498,7 +502,6 @@ font-size-large .popup-pane .menu-button-custom {
 .navbar-button-icon:hover{
     -fx-background-color: -hover-color;
 }
-
 
 .navbar-button-icon .arrow-button {
     -fx-background-color: transparent;

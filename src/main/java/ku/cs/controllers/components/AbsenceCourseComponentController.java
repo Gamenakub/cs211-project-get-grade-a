@@ -62,7 +62,6 @@ public class AbsenceCourseComponentController {
         }
     }
 
-
     public void setTextField() {
         courseNameTextField.setText(course.getCourseName());
         courseIdTextField.setText(course.getCourseId());
