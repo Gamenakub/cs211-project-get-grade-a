@@ -16,7 +16,8 @@ public class StudentTableDescriptor extends TableHeaderDescriptor<Student> {
     public ColumnFactory<Student> studentProfileColumn() {
         return obj -> {
             Circle profilePictureCircle = new Circle(15);
-            ProfilePictureController.setImageToCircle(profilePictureCircle, obj.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, obj.getProfilePictureFileName());
             return profilePictureCircle;
         };
     }

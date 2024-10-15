@@ -23,7 +23,8 @@ public class AdvisorTableDescriptor extends TableHeaderDescriptor<Advisor> {
         return advisor -> {
             Circle profilePictureCircle = new Circle();
             profilePictureCircle.setRadius(20);
-            ProfilePictureController.setImageToCircle(profilePictureCircle, advisor.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, advisor.getProfilePictureFileName());
             return profilePictureCircle;
         };
     }

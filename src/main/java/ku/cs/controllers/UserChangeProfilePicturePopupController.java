@@ -35,7 +35,8 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
     public void onPopupOpen() {
         Session.getSession().getThemeProvider().setTheme(anchorPane);
         user = Session.getSession().getLoggedInUser();
-        ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
         profilePictureUploader = new FileUploader(Configuration.getConfiguration().getImagesPath());
         user = getModel();
     }
@@ -64,7 +65,8 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
                 if (AlertService.showConfirmation("ระบบจะทำการลบรูปโพรไฟล์ออกจากระบบ และใช้รูปโพรไฟล์พื้นฐาน")) {
                     Files.delete(Path.of(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
                     user.resetProfilePictureFileName();
-                    ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+                    ProfilePictureController profilePictureController = new ProfilePictureController();
+                    profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
                     DataProvider.getDataProvider().saveUser();
                     fileNameLabel.setText("ยังไม่ได้อัพโหลดไฟล์");
                     issueEvent("success");
@@ -96,7 +98,8 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
             profilePictureUploader.setFile(file);
             FileInputStream inputStream = new FileInputStream(file);
             Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
-            ProfilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
             fileNameLabel.setText(file.getName());
         } catch (IOException e) {
             AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
@@ -112,7 +115,8 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
             try {
                 FileInputStream inputStream = new FileInputStream(file);
                 Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
-                ProfilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+                ProfilePictureController profilePictureController = new ProfilePictureController();
+                profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
                 fileNameLabel.setText(file.getName());
             } catch (FileNotFoundException e) {
                 AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");

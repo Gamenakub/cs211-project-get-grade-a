@@ -26,7 +26,8 @@ public class UserTableDescriptor extends TableHeaderDescriptor<User> {
         return user -> {
             Circle profilePictureCircle = new Circle();
             profilePictureCircle.setRadius(20);
-            ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
             return profilePictureCircle;
         };
     }

@@ -37,8 +37,8 @@ public class UserPersonalInformationManagementPageController {
         Session.getSession().setNavbarByUserRole(navBarPane);
         session.getThemeProvider().setTheme(anchorPane);
         user = Session.getSession().getLoggedInUser();
-
-        ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
 
         nameLabel.setText(user.getNameTitle() + " " + user.getName());
         surnameLabel.setText(user.getSurname());
@@ -80,7 +80,8 @@ public class UserPersonalInformationManagementPageController {
         requestActionPopup.show();
 
         requestActionPopup.addEventListener("success", eventData -> {
-            ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
             Session.getSession().setNavbarByUserRole(anchorPane);
         });
     }

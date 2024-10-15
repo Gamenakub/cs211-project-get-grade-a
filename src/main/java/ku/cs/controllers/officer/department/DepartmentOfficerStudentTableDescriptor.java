@@ -11,6 +11,7 @@ import ku.cs.controllers.components.tables.TableColumn;
 import ku.cs.controllers.components.tables.TableHeaderDescriptor;
 import ku.cs.models.users.Student;
 import ku.cs.models.users.User;
+import ku.cs.services.Session;
 
 import java.util.Comparator;
 
@@ -22,7 +23,8 @@ public class DepartmentOfficerStudentTableDescriptor extends TableHeaderDescript
         return obj -> {
             Circle profile = new Circle();
             profile.setRadius(20);
-            ProfilePictureController.setImageToCircle(profile, obj.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profile, obj.getProfilePictureFileName());
             return profile;
         };
     }

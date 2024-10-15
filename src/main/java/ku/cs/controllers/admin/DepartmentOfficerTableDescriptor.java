@@ -24,7 +24,8 @@ public class DepartmentOfficerTableDescriptor extends TableHeaderDescriptor<Depa
         return officer -> {
             Circle profilePictureCircle = new Circle();
             profilePictureCircle.setRadius(20);
-            ProfilePictureController.setImageToCircle(profilePictureCircle, officer.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, officer.getProfilePictureFileName());
             return profilePictureCircle;
         };
     }

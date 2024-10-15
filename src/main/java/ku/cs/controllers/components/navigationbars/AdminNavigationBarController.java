@@ -25,7 +25,8 @@ public class AdminNavigationBarController {
     private IconController iconThemeController;
 
     public void initialize() {
-        ProfilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());
         iconThemeController = new IconController(logoutIcon, themeIcon, fontSizeMenuButton, fontStyleMenuButton);
         iconThemeController.updateNavBar();
     }

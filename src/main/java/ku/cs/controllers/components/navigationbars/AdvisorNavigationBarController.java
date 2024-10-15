@@ -25,11 +25,11 @@ public class AdvisorNavigationBarController {
     private IconController iconThemeController;
 
     public void initialize() {
-        ProfilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, Session.getSession().getLoggedInUser().getProfilePictureFileName());
         fontSizeMenuButton.setText(Session.getSession().getThemeProvider().getFontSize());
         iconThemeController = new IconController(logoutIcon, themeIcon, fontSizeMenuButton, fontStyleMenuButton);
         iconThemeController.updateNavBar();
-
     }
 
     @FXML

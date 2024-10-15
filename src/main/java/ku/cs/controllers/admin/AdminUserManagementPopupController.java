@@ -26,7 +26,8 @@ public class AdminUserManagementPopupController extends BasePopup<User> {
         Session.getSession().getThemeProvider().setTheme(anchorPane);
         if (this.hasModel()){
             user = getModel();
-            ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
             usernameLabel.setText(user.getUsername());
             nameSurnameLabel.setText(user.getName() + " " + user.getSurname());
             if (user.getStatus()) {
