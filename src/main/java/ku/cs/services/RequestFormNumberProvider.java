@@ -83,7 +83,7 @@ public class RequestFormNumberProvider {
     }
 
     public AbsenceRequestForm createAbsenceRequestFormNumber(Student student) {
-        return new AbsenceRequestForm(student, student.getAdvisor(), RequestForm.Status.CREATING, "", "", "", "", "", LocalDate.now(), LocalDate.now(), new CourseList(), "", "");
+        return new AbsenceRequestForm(student, student.getAdvisor(), RequestForm.Status.CREATING, "", "", "", "", "ลาป่วย", LocalDate.now(), LocalDate.now(), new CourseList(), "", "");
     }
 
     public CoEnrollRequestForm createCoEnrollRequestFormNumber(Student student) {

@@ -132,18 +132,23 @@ public class AbsenceFormController implements RequestFormController {
         String requestFormCause = absenceRequestForm.getRequestFormCause();
 
         if (requestFormCause != null && !requestFormCause.isEmpty()) {
-            int midpoint = requestFormCause.length() / 2;
-            int splitIndex = requestFormCause.lastIndexOf(" ", midpoint);
+            if (requestFormCause.length() > 80) {
+                int midpoint = requestFormCause.length() / 2;
+                int splitIndex = requestFormCause.lastIndexOf(" ", midpoint);
 
-            if (splitIndex == -1) {
-                splitIndex = requestFormCause.length();
+                if (splitIndex == -1) {
+                    splitIndex = requestFormCause.length();
+                }
+
+                String part1 = requestFormCause.substring(0, splitIndex).trim();
+                String part2 = requestFormCause.substring(splitIndex).trim();
+
+                absenceReasonLabel.setText(part1);
+                absenceReasonLabel2.setText(part2);
+            } else {
+                absenceReasonLabel.setText(requestFormCause);
+                absenceReasonLabel2.setText("");
             }
-
-            String part1 = requestFormCause.substring(0, splitIndex).trim();
-            String part2 = requestFormCause.substring(splitIndex).trim();
-
-            absenceReasonLabel.setText(part1);
-            absenceReasonLabel2.setText(part2);
         } else {
             absenceReasonLabel.setText("");
             absenceReasonLabel2.setText("");

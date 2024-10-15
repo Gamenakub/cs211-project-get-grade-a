@@ -30,7 +30,6 @@ public class AbsenceRequestFormPopupPage1Controller extends BasePopup<FormDataMo
     @FXML private DatePicker absenceFromDatePicker;
     @FXML private DatePicker absenceUntilDatePicker;
 
-    private String absenceType = "ลาป่วย";
     private AbsenceRequestForm absenceRequestForm;
 
     @Override
@@ -41,7 +40,6 @@ public class AbsenceRequestFormPopupPage1Controller extends BasePopup<FormDataMo
         convert(absenceFromDatePicker);
         convert(absenceUntilDatePicker);
         setText();
-        onAbsenceTypeSickMenuItem();
         if (readOnly) {
             FormAccessibilityController.setUnEditable(anchorPane);
         }
@@ -68,13 +66,11 @@ public class AbsenceRequestFormPopupPage1Controller extends BasePopup<FormDataMo
 
     @FXML
     public void onAbsenceTypeSickMenuItem() {
-        absenceType = "ลาป่วย";
         absenceTypeMenuButton.setText("ลาป่วย");
     }
 
     @FXML
     public void onAbsenceTypePersonalMenuItem() {
-        absenceType = "ลากิจ";
         absenceTypeMenuButton.setText("ลากิจ");
     }
 
@@ -124,7 +120,7 @@ public class AbsenceRequestFormPopupPage1Controller extends BasePopup<FormDataMo
             absenceRequestForm.setPhoneNumber(phoneNumber);
             absenceRequestForm.setFacebookID(facebookId);
             absenceRequestForm.setLineID(lineId);
-            absenceRequestForm.setAbsenceType(absenceType);
+            absenceRequestForm.setAbsenceType(absenceTypeMenuButton.getText());
             absenceRequestForm.setAbsenceDateFrom(absenceFromDate);
             absenceRequestForm.setAbsenceDateUntil(absenceUntilDate);
             return true;

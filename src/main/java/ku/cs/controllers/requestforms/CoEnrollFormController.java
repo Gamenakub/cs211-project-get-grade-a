@@ -98,19 +98,25 @@ public class CoEnrollFormController implements RequestFormController {
         semesterLabel.setText(coEnrollRequestForm.getSemester());
         academicYearLabel.setText(coEnrollRequestForm.getAcademicYear());
         String requestFormCause = coEnrollRequestForm.getRequestFormCause();
+
         if (requestFormCause != null && !requestFormCause.isEmpty()) {
-            int midpoint = requestFormCause.length() / 2;
-            int splitIndex = requestFormCause.lastIndexOf(" ", midpoint);
+            if (requestFormCause.length() > 80) {
+                int midpoint = requestFormCause.length() / 2;
+                int splitIndex = requestFormCause.lastIndexOf(" ", midpoint);
 
-            if (splitIndex == -1) {
-                splitIndex = requestFormCause.length();
+                if (splitIndex == -1) {
+                    splitIndex = requestFormCause.length();
+                }
+
+                String part1 = requestFormCause.substring(0, splitIndex).trim();
+                String part2 = requestFormCause.substring(splitIndex).trim();
+
+                reasonLabel.setText(part1);
+                reasonLabel2.setText(part2);
+            } else {
+                reasonLabel.setText(requestFormCause);
+                reasonLabel2.setText("");
             }
-
-            String part1 = requestFormCause.substring(0, splitIndex).trim();
-            String part2 = requestFormCause.substring(splitIndex).trim();
-
-            reasonLabel.setText(part1);
-            reasonLabel2.setText(part2);
         } else {
             reasonLabel.setText("");
             reasonLabel2.setText("");
