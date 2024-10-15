@@ -35,7 +35,8 @@ public class AdminFacultyOfficerManagementPopupController extends BasePopup<Facu
         session.getThemeProvider().setTheme(anchorPane);
         admin = (Admin) session.getLoggedInUser();
         defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
-        FacultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
+        FacultyMenuButtonController facultyMenuButtonController = new FacultyMenuButtonController();
+        facultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
         if (this.hasModel()) {
             facultyOfficer = getModel();
             titleLabel.setText("แก้ไขข้อมูลเจ้าหน้าที่คณะ");
@@ -43,7 +44,7 @@ public class AdminFacultyOfficerManagementPopupController extends BasePopup<Facu
             nameTextField.setText(facultyOfficer.getName());
             surnameTextField.setText(facultyOfficer.getSurname());
             usernameTextField.setText(facultyOfficer.getUsername());
-            FacultyMenuButtonController.setMenuButton(facultyMenuButton, facultyOfficer.getFaculty());
+            facultyMenuButtonController.setMenuButton(facultyMenuButton, facultyOfficer.getFaculty());
             if (facultyOfficer.getActivated()) {
                 defaultPasswordField.setDisable(true);
                 defaultPasswordField.setPromptText("บัญชีนี้มีการแก้ไขรหัสผ่านแล้ว");

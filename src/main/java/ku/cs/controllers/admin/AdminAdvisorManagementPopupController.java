@@ -37,7 +37,8 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
         session.getThemeProvider().setTheme(anchorPane);
         admin = (Admin) session.getLoggedInUser();
         defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
-        FacultyMenuButtonController.addItems(facultyMenuButton, departmentMenuButton, admin.getFacultyList().getFaculties());
+        FacultyMenuButtonController facultyMenuButtonController = new FacultyMenuButtonController();
+        facultyMenuButtonController.addItems(facultyMenuButton, departmentMenuButton, admin.getFacultyList().getFaculties());
         if (this.hasModel()) {
             advisor = getModel();
             titleLabel.setText("แก้ไขข้อมูลอาจารย์ที่ปรึกษา");
@@ -46,7 +47,7 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             surnameTextField.setText(advisor.getSurname());
             usernameTextField.setText(advisor.getUsername());
             advisorIdTextField.setText(advisor.getAdvisorId());
-            FacultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
+            facultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
             if (advisor.getActivated()) {
                 defaultPasswordField.setDisable(true);
                 defaultPasswordField.setPromptText("บัญชีนี้มีการแก้ไขรหัสผ่านแล้ว");

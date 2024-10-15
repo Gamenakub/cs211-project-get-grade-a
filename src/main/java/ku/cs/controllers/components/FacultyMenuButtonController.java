@@ -9,9 +9,8 @@ import ku.cs.models.Faculty;
 import java.util.ArrayList;
 
 public class FacultyMenuButtonController {
-
     @FXML
-    public static void addItems(MenuButton facultyMenuButton, ArrayList<Faculty> faculties) {
+    public void addItems(MenuButton facultyMenuButton, ArrayList<Faculty> faculties) {
         if (faculties.isEmpty()) {
             setDefaultMenuButton(facultyMenuButton);
         } else {
@@ -25,7 +24,7 @@ public class FacultyMenuButtonController {
     }
 
     @FXML
-    public static void addItems(MenuButton facultyMenuButton, MenuButton departmentMenuButton, ArrayList<Faculty> faculties) {
+    public void addItems(MenuButton facultyMenuButton, MenuButton departmentMenuButton, ArrayList<Faculty> faculties) {
         if (faculties.isEmpty()) {
             setDefaultMenuButton(facultyMenuButton, departmentMenuButton);
         } else {
@@ -39,31 +38,34 @@ public class FacultyMenuButtonController {
     }
 
     @FXML
-    public static void setMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton, Faculty faculty, Department department) {
+    public void setMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton, Faculty faculty, Department department) {
         setMenuButton(facultyMenuButton, faculty);
-        DepartmentMenuButtonController.setMenuButton(departmentMenuButton, department);
+        DepartmentMenuButtonController departmentMenuButtonController = new DepartmentMenuButtonController();
+        departmentMenuButtonController.setMenuButton(departmentMenuButton, department);
     }
 
     @FXML
-    public static void setMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton, Faculty faculty) {
+    public void setMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton, Faculty faculty) {
         setMenuButton(facultyMenuButton, faculty);
-        DepartmentMenuButtonController.addItems(departmentMenuButton, faculty.getDepartmentList().getDepartments());
+        DepartmentMenuButtonController departmentMenuButtonController = new DepartmentMenuButtonController();
+        departmentMenuButtonController.addItems(departmentMenuButton, faculty.getDepartmentList().getDepartments());
     }
 
     @FXML
-    public static void setMenuButton(MenuButton facultyMenuButton, Faculty faculty) {
+    public void setMenuButton(MenuButton facultyMenuButton, Faculty faculty) {
         facultyMenuButton.setText(faculty.getName());
         facultyMenuButton.setUserData(faculty);
     }
 
     @FXML
-    private static void setDefaultMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton) {
+    private void setDefaultMenuButton(MenuButton facultyMenuButton, MenuButton departmentMenuButton) {
         setDefaultMenuButton(facultyMenuButton);
-        DepartmentMenuButtonController.setDefaultMenuButton(departmentMenuButton);
+        DepartmentMenuButtonController departmentMenuButtonController = new DepartmentMenuButtonController();
+        departmentMenuButtonController.setDefaultMenuButton(departmentMenuButton);
     }
 
     @FXML
-    private static void setDefaultMenuButton(MenuButton facultyMenuButton) {
+    private void setDefaultMenuButton(MenuButton facultyMenuButton) {
         facultyMenuButton.setText("ไม่พบคณะในฐานข้อมูล");
         facultyMenuButton.setUserData(null);
     }

@@ -8,16 +8,15 @@ import ku.cs.models.Department;
 import java.util.ArrayList;
 
 public class DepartmentMenuButtonController {
-
     @FXML
-    public static void setMenuButton(MenuButton departmentMenuButton, Department department) {
+    public void setMenuButton(MenuButton departmentMenuButton, Department department) {
         departmentMenuButton.getItems().clear();
         departmentMenuButton.setText(department.getName());
         departmentMenuButton.setUserData(department);
     }
 
     @FXML
-    public static void addItems(MenuButton departmentMenuButton, ArrayList<Department> departments) {
+    public void addItems(MenuButton departmentMenuButton, ArrayList<Department> departments) {
         if (departments.isEmpty()) {
             setDefaultMenuButton(departmentMenuButton);
         } else {
@@ -32,7 +31,7 @@ public class DepartmentMenuButtonController {
     }
 
     @FXML
-    public static void setDefaultMenuButton(MenuButton departmentMenuButton) {
+    public void setDefaultMenuButton(MenuButton departmentMenuButton) {
         departmentMenuButton.getItems().clear();
         departmentMenuButton.setText("ไม่พบภาควิชาในฐานข้อมูล");
         departmentMenuButton.setUserData(null);
