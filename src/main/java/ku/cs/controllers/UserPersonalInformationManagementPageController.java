@@ -16,11 +16,9 @@ import ku.cs.services.AlertService;
 import ku.cs.services.Session;
 import ku.cs.services.ThaiStringConverter;
 import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 
 public class UserPersonalInformationManagementPageController {
-    User user;
     @FXML private Pane navBarPane;
     @FXML private AnchorPane anchorPane;
     @FXML private Circle profilePictureCircle;
@@ -31,6 +29,7 @@ public class UserPersonalInformationManagementPageController {
     @FXML private Label facultyLabel;
     @FXML private Label departmentLabel;
     @FXML private Label IdLabel;
+    private User user;
 
     @FXML
     public void initialize() {

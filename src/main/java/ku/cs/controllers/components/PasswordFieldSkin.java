@@ -4,7 +4,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.skin.TextFieldSkin;
 
 public class PasswordFieldSkin extends TextFieldSkin {
-
     public PasswordFieldSkin(PasswordField control) {
         super(control);
     }

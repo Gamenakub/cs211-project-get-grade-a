@@ -11,12 +11,9 @@ import ku.cs.services.AlertService;
 import ku.cs.services.FXRouter;
 import ku.cs.services.Session;
 import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
-
-import static ku.cs.services.AlertService.showError;
 
 public class UserLoginPageController {
     @FXML private TextField usernameTextField;
@@ -49,14 +46,14 @@ public class UserLoginPageController {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         if (username.isEmpty() || password.isEmpty()) {
-            showError("กรุณากรอกข้อมูลให้ครบถ้วน");
+            AlertService.showError("กรุณากรอกข้อมูลให้ครบถ้วน");
         } else {
             Session session = Session.getSession();
             try {
                 session.setUser(usernameTextField.getText(), passwordField.getText());
                 User user = session.getLoggedInUser();
                 if (!user.getStatus()) {
-                    showError("บัญชีนี้ถูกระงับสิทธิ์การใช้งาน");
+                    AlertService.showError("บัญชีนี้ถูกระงับสิทธิ์การใช้งาน");
                 } else if (!user.getActivated()) {
                     AlertService.showInfo("การเข้าใช้งานครั้งแรก จะต้องเปลี่ยนรหัสผ่านก่อนเท่านั้น");
                     PopupComponent<User> popup = null;

@@ -1,7 +1,6 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.Department;
-
 import java.util.ArrayList;
 
 public class DepartmentList implements Searchable<Department> {

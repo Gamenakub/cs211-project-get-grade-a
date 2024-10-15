@@ -13,7 +13,6 @@ public class ProfilePictureController {
     @FXML
     public static void setImageToCircle(Circle profilePictureCircle, String imageName) {
         File imageFile = new File(Configuration.getConfiguration().getImagesPath() + File.separator + imageName);
-
         if (!imageFile.exists() || !imageFile.isFile()) {
             setImageToCircle(profilePictureCircle, new Image(Configuration.getConfiguration().getDefaultImagePath()));
         } else {

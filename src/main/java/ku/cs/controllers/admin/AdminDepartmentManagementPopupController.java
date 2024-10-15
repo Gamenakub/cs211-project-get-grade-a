@@ -27,9 +27,7 @@ public class AdminDepartmentManagementPopupController extends BasePopup<Departme
     public void onPopupOpen() {
         Session.getSession().getThemeProvider().setTheme(anchorPane);
         admin = (Admin) Session.getSession().getLoggedInUser();
-
         FacultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
-
         if (this.hasModel()) {
             department = getModel();
             titleLabel.setText("แก้ไขข้อมูลภาควิชา");
@@ -52,7 +50,6 @@ public class AdminDepartmentManagementPopupController extends BasePopup<Departme
         String departmentName = departmentNameTextField.getText();
         String departmentId = departmentIdTextField.getText();
         Faculty faculty = (Faculty) facultyMenuButton.getUserData();
-
         if (departmentName.isEmpty()) {
             AlertService.showError("กรุณากรอกชื่อภาควิชาให้ครบถ้วนและถูกต้อง");
         } else if (departmentId.isEmpty()) {

@@ -2,7 +2,6 @@ package ku.cs.models.users;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import ku.cs.config.Configuration;
-
 import java.time.LocalDateTime;
 
 public class User {
@@ -17,7 +16,6 @@ public class User {
     private LocalDateTime recentTime;
     private String profilePictureFileName;
 
-
     public User(String username, String password, String nameTitle, String name, String surname, String role) {
         this.username = username;
         this.hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
@@ -31,7 +29,6 @@ public class User {
         this.profilePictureFileName = Configuration.getConfiguration().getDefaultProfilePictureFileName();
     }
 
-
     public User(String username, String hashedPassword, String nameTitle, String name, String surname, String role, LocalDateTime recentTime, boolean status, boolean activated, String profilePictureFileName) {
         this.username = username;
         this.hashedPassword = hashedPassword;
@@ -44,7 +41,6 @@ public class User {
         this.activated = activated;
         this.profilePictureFileName = profilePictureFileName;
     }
-
 
     public String getUsername() {
         return username;

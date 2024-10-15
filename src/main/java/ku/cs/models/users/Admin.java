@@ -1,11 +1,9 @@
 package ku.cs.models.users;
 
 import ku.cs.models.collections.*;
-
 import java.time.LocalDateTime;
 
 public class Admin extends User {
-
     private DepartmentList departmentList;
     private FacultyList facultyList;
     private StudentList studentList;

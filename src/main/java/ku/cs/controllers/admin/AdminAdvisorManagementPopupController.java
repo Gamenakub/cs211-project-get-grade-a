@@ -36,10 +36,8 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
         Session session = Session.getSession();
         session.getThemeProvider().setTheme(anchorPane);
         admin = (Admin) session.getLoggedInUser();
-
         defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
         FacultyMenuButtonController.addItems(facultyMenuButton, departmentMenuButton, admin.getFacultyList().getFaculties());
-
         if (this.hasModel()) {
             advisor = getModel();
             titleLabel.setText("แก้ไขข้อมูลอาจารย์ที่ปรึกษา");
@@ -74,7 +72,6 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
         Faculty faculty = (Faculty) facultyMenuButton.getUserData();
         Department department = (Department) departmentMenuButton.getUserData();
         String advisorId = advisorIdTextField.getText();
-
         if (nameTitle.isEmpty()) {
             AlertService.showError("กรุณากรอกคำนำหน้าชื่อให้ครบถ้วนและถูกต้อง");
         } else if (name.isEmpty()) {

@@ -35,10 +35,8 @@ public class AdminDepartmentOfficerManagementPopupController extends BasePopup<D
         Session session = Session.getSession();
         session.getThemeProvider().setTheme(anchorPane);
         admin = (Admin) session.getLoggedInUser();
-
         defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
         FacultyMenuButtonController.addItems(facultyMenuButton, departmentMenuButton, admin.getFacultyList().getFaculties());
-
         if (this.hasModel()) {
             departmentOfficer = getModel();
             titleLabel.setText("แก้ไขข้อมูลเจ้าหน้าที่ภาควิชา");
@@ -72,7 +70,6 @@ public class AdminDepartmentOfficerManagementPopupController extends BasePopup<D
         String password = defaultPasswordField.getText();
         Faculty faculty = (Faculty) facultyMenuButton.getUserData();
         Department department = (Department) departmentMenuButton.getUserData();
-
         if (nameTitle.isEmpty()) {
             AlertService.showError("กรุณากรอกคำนำหน้าชื่อให้ครบถ้วนและถูกต้อง");
         } else if (name.isEmpty()) {

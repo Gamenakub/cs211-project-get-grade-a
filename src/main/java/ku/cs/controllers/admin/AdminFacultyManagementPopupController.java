@@ -24,7 +24,6 @@ public class AdminFacultyManagementPopupController extends BasePopup<Faculty> {
     public void onPopupOpen() {
         Session.getSession().getThemeProvider().setTheme(anchorPane);
         admin = (Admin) Session.getSession().getLoggedInUser();
-
         if (this.hasModel()) {
             faculty = getModel();
             titleLabel.setText("แก้ไขข้อมูลคณะ");
@@ -45,7 +44,6 @@ public class AdminFacultyManagementPopupController extends BasePopup<Faculty> {
     public void onConfirmButton() {
         String facultyName = facultyNameTextField.getText();
         String facultyId = facultyIdTextField.getText();
-
         if (facultyName.isEmpty()) {
             AlertService.showError("กรุณากรอกชื่อคณะให้ครบถ้วนและถูกต้อง");
         } else if (facultyId.isEmpty()) {

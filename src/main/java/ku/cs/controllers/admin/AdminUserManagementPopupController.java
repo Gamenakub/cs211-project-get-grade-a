@@ -29,7 +29,6 @@ public class AdminUserManagementPopupController extends BasePopup<User> {
             ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
             usernameLabel.setText(user.getUsername());
             nameSurnameLabel.setText(user.getName() + " " + user.getSurname());
-
             if (user.getStatus()) {
                 statusLabel.setText("ปกติ");
                 statusPane.setStyle("-fx-background-color: #009A21;");

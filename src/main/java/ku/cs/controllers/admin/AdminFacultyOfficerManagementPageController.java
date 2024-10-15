@@ -14,7 +14,6 @@ import ku.cs.services.AlertService;
 import ku.cs.services.Session;
 import ku.cs.services.SortDirection;
 import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 
 public class AdminFacultyOfficerManagementPageController {
@@ -32,9 +31,7 @@ public class AdminFacultyOfficerManagementPageController {
         session.setNavbarByUserRole(navBarPane);
         session.getThemeProvider().setTheme(anchorPane);
         Admin admin = (Admin) session.getLoggedInUser();
-
         facultyOfficerList = admin.getFacultyOfficerList();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
@@ -44,7 +41,6 @@ public class AdminFacultyOfficerManagementPageController {
             tableController.setDisplayModels(facultyOfficerList.getFacultyOfficers());
             tablePane.getChildren().add(table);
             searchController = new SearchController<>(searchTextField, tableController, admin.getFacultyOfficerList());
-
         } catch (IOException e) {
             AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
             System.exit(1);

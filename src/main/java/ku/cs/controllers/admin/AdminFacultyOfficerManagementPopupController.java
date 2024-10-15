@@ -34,10 +34,8 @@ public class AdminFacultyOfficerManagementPopupController extends BasePopup<Facu
         Session session = Session.getSession();
         session.getThemeProvider().setTheme(anchorPane);
         admin = (Admin) session.getLoggedInUser();
-
         defaultPasswordField.setSkin(new PasswordFieldSkin(defaultPasswordField));
         FacultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
-
         if (this.hasModel()) {
             facultyOfficer = getModel();
             titleLabel.setText("แก้ไขข้อมูลเจ้าหน้าที่คณะ");
@@ -69,7 +67,6 @@ public class AdminFacultyOfficerManagementPopupController extends BasePopup<Facu
         String username = usernameTextField.getText();
         String password = defaultPasswordField.getText();
         Faculty faculty = (Faculty) facultyMenuButton.getUserData();
-
         if (nameTitle.isEmpty()) {
             AlertService.showError("กรุณากรอกคำนำหน้าชื่อให้ครบถ้วนและถูกต้อง");
         } else if (name.isEmpty()) {

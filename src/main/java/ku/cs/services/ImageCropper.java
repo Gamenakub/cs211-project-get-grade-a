@@ -2,14 +2,12 @@ package ku.cs.services;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public final class ImageCropper {
-
     public static void cropImageFileToSquare(File imageFile) throws IOException {
         BufferedImage image = ImageIO.read(imageFile);
         if (image == null) {

@@ -15,7 +15,6 @@ import ku.cs.models.users.User;
 import ku.cs.services.AlertService;
 import ku.cs.services.Session;
 import ku.cs.services.SortDirection;
-
 import java.io.IOException;
 
 public class AdminUserManagementPageController {
@@ -37,9 +36,7 @@ public class AdminUserManagementPageController {
         session.setNavbarByUserRole(navBarPane);
         session.getThemeProvider().setTheme(anchorPane);
         Admin admin = (Admin) session.getLoggedInUser();
-
         UserList userList = admin.getUserList();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
@@ -61,35 +58,35 @@ public class AdminUserManagementPageController {
     }
 
     @FXML
-    void onAllRolesMenuItem() {
+    public void onAllRolesMenuItem() {
         filterMenuButton.setText(allRolesMenuItem.getText());
         searchController.resetFilter();
         searchController.searchFilter();
     }
 
     @FXML
-    void onStudentRoleMenuItem() {
+    public void onStudentRoleMenuItem() {
         filterMenuButton.setText(studentRoleMenuItem.getText());
         searchController.setFilterContext("student");
         searchController.searchFilter();
     }
 
     @FXML
-    void onAdvisorRoleMenuItem() {
+    public void onAdvisorRoleMenuItem() {
         filterMenuButton.setText(advisorRoleMenuItem.getText());
         searchController.setFilterContext("advisor");
         searchController.searchFilter();
     }
 
     @FXML
-    void onDepartmentOfficerRoleMenuItem() {
+    public void onDepartmentOfficerRoleMenuItem() {
         filterMenuButton.setText(departmentOfficerRoleMenuItem.getText());
         searchController.setFilterContext("departmentOfficer");
         searchController.searchFilter();
     }
 
     @FXML
-    void onFacultyOfficerRoleMenuItem() {
+    public void onFacultyOfficerRoleMenuItem() {
         filterMenuButton.setText(facultyOfficerRoleMenuItem.getText());
         searchController.setFilterContext("facultyOfficer");
         searchController.searchFilter();

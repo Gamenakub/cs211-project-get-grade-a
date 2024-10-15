@@ -8,7 +8,6 @@ import ku.cs.controllers.components.BasePopup;
 import ku.cs.services.AlertService;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;

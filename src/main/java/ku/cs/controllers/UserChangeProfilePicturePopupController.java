@@ -28,7 +28,6 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
     @FXML private AnchorPane anchorPane;
     @FXML private Circle profilePictureCircle;
     @FXML private Label fileNameLabel;
-
     private FileUploader profilePictureUploader;
     private User user;
 
@@ -79,7 +78,6 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
         } else {
             AlertService.showInfo("รูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานแล้ว");
         }
-
         this.close();
     }
 
@@ -93,7 +91,6 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
         profilePictureUploader.addFileType("*.PNG");
         profilePictureUploader.addFileType("*.JPEG");
         profilePictureUploader.addFileType("*.JPG");
-
         try {
             File file = profilePictureUploader.fileChooserUpload(source);
             profilePictureUploader.setFile(file);

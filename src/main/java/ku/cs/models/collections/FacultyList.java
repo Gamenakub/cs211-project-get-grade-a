@@ -1,7 +1,6 @@
 package ku.cs.models.collections;
 
 import ku.cs.models.Faculty;
-
 import java.util.ArrayList;
 
 public class FacultyList implements Searchable<Faculty> {

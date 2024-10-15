@@ -14,7 +14,6 @@ import ku.cs.services.AlertService;
 import ku.cs.services.Session;
 import ku.cs.services.SortDirection;
 import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 
 public class AdminDepartmentOfficerManagementPageController {
@@ -32,9 +31,7 @@ public class AdminDepartmentOfficerManagementPageController {
         session.setNavbarByUserRole(navBarPane);
         session.getThemeProvider().setTheme(anchorPane);
         Admin admin = (Admin) session.getLoggedInUser();
-
         departmentOfficerList = admin.getDepartmentOfficerList();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
