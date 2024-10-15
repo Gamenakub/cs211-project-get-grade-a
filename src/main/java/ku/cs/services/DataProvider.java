@@ -88,8 +88,6 @@ public class DataProvider {
             default -> null;
         };
     }
-
-
     private User setAdvisorData(Advisor user) {
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByAdvisor(user).findRequestFormsByStatus(RequestForm.Status.PENDING_TO_ADVISOR);
         user.setRequestFormList(requestFormList);
@@ -172,8 +170,6 @@ public class DataProvider {
         admin.setRequestFormList(requestFormList);
         return admin;
     }
-
-
     private DepartmentApproverList getDepartmentApproverList() {
         if (departmentApproverList == null) departmentApproverList = loadDepartmentApproverList();
         return departmentApproverList;
@@ -371,8 +367,6 @@ public class DataProvider {
         allRequestFormList.addRequestFormList(coEnrollRequestForms);
         allRequestFormList.applyRequestFormApprovingHistoryList(getRequestFormApprovingHistoryList());
     }
-
-
 
     public void saveUser() {
         User user = Session.getSession().getLoggedInUser();

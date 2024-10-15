@@ -11,7 +11,6 @@ import ku.cs.controllers.components.tables.TableColumn;
 import ku.cs.controllers.components.tables.TableHeaderDescriptor;
 import ku.cs.models.users.Student;
 
-
 public class StudentTableDescriptor extends TableHeaderDescriptor<Student> {
     @TableColumn(order = 0, name = "โปรไฟล์", size = 225, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<Student> studentProfileColumn() {

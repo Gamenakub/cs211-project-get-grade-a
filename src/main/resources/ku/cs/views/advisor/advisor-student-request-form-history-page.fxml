@@ -42,7 +42,7 @@
                      </font>
                   </TextField>
                   <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
-                  <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="ตัวกรอง">
+                  <MenuButton fx:id="filterMenuButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="160.0" text="ทั้งหมด">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onAllFilterMenuButton" text="ทั้งหมด" />
                         <MenuItem mnemonicParsing="false" onAction="#onSuccessFormMenuItem" text="สำเร็จแล้ว" />

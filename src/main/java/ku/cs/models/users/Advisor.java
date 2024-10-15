@@ -26,7 +26,6 @@ public class Advisor extends User {
         this.department = department;
     }
 
-
     public String getAdvisorId() {
         return advisorId;
     }
