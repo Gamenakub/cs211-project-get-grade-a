@@ -307,6 +307,10 @@
     -fx-font-size: 22;
 }
 
+.font-size-small .navbar-background .menu-button-custom{
+    -fx-font-size: 18;
+}
+
 .font-size-large .menu-button-custom.unfixed-size{
     -fx-font-size: 24;
 }
