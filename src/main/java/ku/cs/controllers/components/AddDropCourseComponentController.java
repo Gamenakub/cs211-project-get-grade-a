@@ -90,6 +90,7 @@ public class AddDropCourseComponentController {
 
     public void setTextField() {
         courseNoTextField.setText(courseList.getCourseListSize() + "");
+        courseNoTextField.setEditable(false);
         courseIdTextField.setText(course.getCourseId());
         courseYearTextField.setText(course.getCourseYear());
         courseLectureSectionTextField.setText(course.getLectureSection());
