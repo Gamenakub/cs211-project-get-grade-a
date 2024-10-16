@@ -78,10 +78,9 @@ public class Student extends User {
         return this.getNameTitle().equals(studentNameTitle) && this.getName().equals(studentName) && this.getSurname().equals(studentSurname) && this.studentId.equals(studentId) && this.studentEmail.equals(studentEmail);
     }
 
-    @Override
-    public void setPassword(String password) {
+    public void setStudentPassword(String password) {
         if (!this.getActivated()) {
-            super.setPassword(password);
+            this.setPassword(password);
         }
     }
 }

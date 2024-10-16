@@ -60,22 +60,22 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
 
     @FXML
     public void onResetProfilePictureFileNameButton() {
+        ProfilePictureController profilePictureController = new ProfilePictureController();
         if (!(user.getProfilePictureFileName().equals(Configuration.getConfiguration().getDefaultProfilePictureFileName()))) {
             try {
                 if (AlertService.showConfirmation("ระบบจะทำการลบรูปโพรไฟล์ออกจากระบบ และใช้รูปโพรไฟล์พื้นฐาน")) {
-                    Files.delete(Path.of(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
                     user.resetProfilePictureFileName();
-                    ProfilePictureController profilePictureController = new ProfilePictureController();
                     profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
                     DataProvider.getDataProvider().saveUser();
                     fileNameLabel.setText("ยังไม่ได้อัพโหลดไฟล์");
+                    Files.delete(Path.of(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
                     issueEvent("success");
                     AlertService.showInfo("เปลี่ยนรูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานเรียบร้อยแล้ว");
                 } else {
                     AlertService.showWarning("การดำเนินการถูกยกเลิก");
                 }
             } catch (IOException e) {
-                AlertService.showError("การลบรูปรูปโพรไฟล์เดิมผิดพลาด กรุณาลองใหม่อีกครั้ง");
+                AlertService.showInfo("ไฟล์รูปโพรไฟล์ไม่มีอยู่ในระบบแล้ว");
             }
         } else {
             AlertService.showInfo("รูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานแล้ว");
@@ -95,12 +95,16 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
         profilePictureUploader.addFileType("*.JPG");
         try {
             File file = profilePictureUploader.fileChooserUpload(source);
-            profilePictureUploader.setFile(file);
-            FileInputStream inputStream = new FileInputStream(file);
-            Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
-            ProfilePictureController profilePictureController = new ProfilePictureController();
-            profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
-            fileNameLabel.setText(file.getName());
+            if (file == null) {
+                AlertService.showWarning("การอัปโหลดถูกยกเลิก" + System.lineSeparator() + "เนื่องจากไม่มีการเลือกไฟล์");
+            } else {
+                profilePictureUploader.setFile(file);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
+                ProfilePictureController profilePictureController = new ProfilePictureController();
+                profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+                fileNameLabel.setText(file.getName());
+            }
         } catch (IOException e) {
             AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
         }

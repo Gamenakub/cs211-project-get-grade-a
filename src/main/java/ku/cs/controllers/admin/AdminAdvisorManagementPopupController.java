@@ -47,6 +47,10 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             surnameTextField.setText(advisor.getSurname());
             usernameTextField.setText(advisor.getUsername());
             advisorIdTextField.setText(advisor.getAdvisorId());
+            advisorIdTextField.setEditable(false);
+            advisorIdTextField.setOnMouseClicked(event -> {
+                AlertService.showInfo("รหัสอาจารย์ที่ปรึกษาที่ถูกสร้างขึ้นมาแล้ว" + System.lineSeparator() + "ไม่สามารถเปลี่ยนแปลงได้");
+            });
             facultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
             if (advisor.getActivated()) {
                 defaultPasswordField.setDisable(true);
