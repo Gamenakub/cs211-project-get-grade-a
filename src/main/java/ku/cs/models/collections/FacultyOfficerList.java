@@ -20,9 +20,10 @@ public class FacultyOfficerList extends OfficerList implements Searchable<Facult
     public ArrayList<FacultyOfficer> search(String term) {
         ArrayList<FacultyOfficer> targetFacultyOfficers = new ArrayList<>();
         for (FacultyOfficer facultyOfficer : getFacultyOfficers()) {
-            String name = facultyOfficer.getNameTitle() + facultyOfficer.getName() + " " + facultyOfficer.getSurname();
             String facultyName = facultyOfficer.getFaculty().getName();
-            if (name.contains(term)) {
+            if (facultyOfficer.getFullName().contains(term)) {
+                targetFacultyOfficers.add(facultyOfficer);
+            } else if (facultyOfficer.getUsername().contains(term)) {
                 targetFacultyOfficers.add(facultyOfficer);
             } else if (facultyName.contains(term)) {
                 targetFacultyOfficers.add(facultyOfficer);

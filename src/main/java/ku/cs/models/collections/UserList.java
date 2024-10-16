@@ -44,8 +44,9 @@ public class UserList implements Searchable<User> {
     public ArrayList<User> search(String keyword) {
         ArrayList<User> targetUsers = new ArrayList<>();
         for (User user : users) {
-            String name = user.getNameTitle() + user.getName() + " " + user.getSurname();
-            if (name.contains(keyword)) {
+            if (user.getFullName().contains(keyword)) {
+                targetUsers.add(user);
+            } else if (user.getUsername().contains(keyword)) {
                 targetUsers.add(user);
             }
         }
