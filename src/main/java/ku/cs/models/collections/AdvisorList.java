@@ -47,11 +47,11 @@ public class AdvisorList implements Searchable<Advisor> {
     public ArrayList<Advisor> search(String keyword) {
         ArrayList<Advisor> targetAdvisors = new ArrayList<>();
         for (Advisor advisor : advisors) {
-            String name = advisor.getNameTitle() + advisor.getName() + " " + advisor.getSurname();
-            String id = advisor.getAdvisorId();
-            if (name.contains(keyword)) {
+            if (advisor.getFullName().contains(keyword)) {
                 targetAdvisors.add(advisor);
-            } else if (id.contains(keyword)) {
+            } else if (advisor.getUsername().contains(keyword)) {
+                targetAdvisors.add(advisor);
+            } else if (advisor.getAdvisorId().contains(keyword)) {
                 targetAdvisors.add(advisor);
             }
         }

@@ -31,7 +31,6 @@ public class OfficerFacultyRequestFormActionPopupController extends BasePopup<Fo
     @FXML
     public void onRejectRequestButton() {
         FacultyOfficer officer = (FacultyOfficer) Session.getSession().getLoggedInUser();
-        officer.getRequestFormList().removeForm(getModel().getFormObject());
         changeScene(getModel(), "/ku/cs/views/request-forms/form-reject-popup.fxml");
     }
 }
