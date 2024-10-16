@@ -282,7 +282,7 @@ public class DataProvider {
     }
 
     private FacultyApproverList loadFacultyApproverList() {
-        FacultyApproverDataSource facultyApproverDataSource = new FacultyApproverDataSource(facultyList);
+        FacultyApproverDataSource facultyApproverDataSource = new FacultyApproverDataSource(getFacultyList());
         DataSourceReader<FacultyApproverList, FacultyApprover> facultyApproverDataSourceReader = new DataSourceReader<>(facultyApproverDataSource);
         return facultyApproverDataSourceReader.readData();
     }

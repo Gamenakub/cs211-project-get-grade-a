@@ -3,6 +3,7 @@ package ku.cs.controllers.admin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ku.cs.controllers.components.DashboardMenuButtonController;
@@ -97,6 +98,9 @@ public class AdminDashboardPageController {
     public void onAllFacultyUserMenuItem() {
         facultyUserMenuButton.setText("ทั้งหมด");
         departmentUserMenuButton.setText("ทั้งหมด");
+        MenuItem allFormMenuItem = new MenuItem("ทั้งหมด");
+        departmentFormMenuButton.getItems().clear();
+        departmentFormMenuButton.getItems().add(allFormMenuItem);
         setUserDefault();
         dashBoardMenuButtonController.clearUserFilter();
     }
@@ -117,7 +121,9 @@ public class AdminDashboardPageController {
     public void onAllFacultyFormItem() {
         facultyFormMenuButton.setText("ทั้งหมด");
         departmentFormMenuButton.setText("ทั้งหมด");
+        MenuItem allFormMenuItem = new MenuItem("ทั้งหมด");
         departmentFormMenuButton.getItems().clear();
+        departmentFormMenuButton.getItems().add(allFormMenuItem);
         setSuccessFormFilteredDefault();
         dashBoardMenuButtonController.clearFormFilter();
     }
@@ -137,6 +143,6 @@ public class AdminDashboardPageController {
     }
 
     public void setFormData(int totalForm) {
-        totalFormLabel.setText(String.valueOf(totalForm));
+        totalSuccessFormFilteredLabel.setText(String.valueOf(totalForm));
     }
 }
