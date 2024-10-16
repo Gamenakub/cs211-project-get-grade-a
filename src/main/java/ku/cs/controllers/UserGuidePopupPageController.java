@@ -40,8 +40,8 @@ public class UserGuidePopupPageController extends BasePopup<Object> {
             pdfDocument = PDDocument.load(pdfStream);
             maxIndexPage = pdfDocument.getNumberOfPages() - 1;
             pdfImageView = new ImageView();
-            pdfImageView.setFitHeight(360);
-            pdfImageView.setFitWidth(720);
+            pdfImageView.setFitHeight(480);
+            pdfImageView.setFitWidth(854);
             pdfDisplayPane.getChildren().add(pdfImageView);
         } catch (IOException e) {
             AlertService.showError("พบข้อผิดพลาดในการโหลกไฟล์ Pdf: " + e.getMessage());
@@ -70,7 +70,7 @@ public class UserGuidePopupPageController extends BasePopup<Object> {
     }
 
     public void onHandbookButton() {
-        openHandbookPdf("user-guide.pdf");
+        openHandbookPdf("user-mannual.pdf");
     }
 
     private void openHandbookPdf(String pdfFileName) {
