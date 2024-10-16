@@ -47,6 +47,7 @@ public class DashboardMenuButtonController {
         departmentMenuButton.getItems().clear();
         departmentMenuButton.getItems().add(allDepartmentMenuItem);
         departmentMenuButton.setText("ทั้งหมด");
+
         for (Department department : departments) {
             MenuItem departmentItem = new MenuItem(department.getName());
             departmentMenuButton.getItems().add(departmentItem);
