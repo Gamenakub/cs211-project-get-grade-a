@@ -82,7 +82,7 @@ public class StudentRegisterPageController {
                         student.setUsername(username);
                         student.setStudentEmail(email);
                         if (password.equals(confirmNewPassword)) {
-                            student.setPassword(password);
+                            student.setStudentPassword(password);
                             student.setActivated(true);
                             student.setRecentTime(LocalDateTime.now());
                             DataProvider.getDataProvider().saveStudent();

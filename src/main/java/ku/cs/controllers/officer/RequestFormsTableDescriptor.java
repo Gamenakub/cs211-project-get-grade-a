@@ -15,7 +15,7 @@ import ku.cs.services.ThaiStringConverter;
 import java.util.Comparator;
 
 public class RequestFormsTableDescriptor extends TableHeaderDescriptor<RequestForm> {
-    @TableColumn(order = 0, name = "เลขที่ใบคำร้อง", size = 148, headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 0, name = "เลขที่ใบคำร้อง", size = 140, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<RequestForm> requestIdColumn() {
         return new ColumnFactory<>() {
             @Override
@@ -32,27 +32,15 @@ public class RequestFormsTableDescriptor extends TableHeaderDescriptor<RequestFo
         };
     }
 
-    @TableColumn(order = 1, name = "รหัสนิสิต/คณะ", size = 148, headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 1, name = "รหัสนิสิต", size = 140, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<RequestForm> studentIdColumn() {
         return new ColumnFactory<>() {
             @Override
             public Node getDisplayNode(RequestForm obj) {
-                Label label = new Label(obj.getStudent().getStudentId() + "\n" + obj.getStudent().getFaculty().getName());
+                Label label = new Label(obj.getStudent().getStudentId());
                 label.getStyleClass().add("table-text");
-
-                label.setLineSpacing(-9.0);
-                Insets currentPadding = label.getPadding();
-                Insets newPadding = new Insets(
-                        currentPadding.getTop(),
-                        currentPadding.getRight(),
-                        currentPadding.getBottom() + 2,
-                        currentPadding.getLeft()
-                );
-                label.setPadding(newPadding);
-
                 return label;
             }
-
 
             @Override
             public Comparator<RequestForm> getComparator() {
@@ -61,7 +49,7 @@ public class RequestFormsTableDescriptor extends TableHeaderDescriptor<RequestFo
         };
     }
 
-    @TableColumn(order = 2, name = "หัวข้อเรื่อง", size = 148, headerMode = HeaderMode.DEFAULT)
+    @TableColumn(order = 2, name = "หัวข้อเรื่อง", size = 164, headerMode = HeaderMode.DEFAULT)
     public ColumnFactory<RequestForm> requestFormTitleColumn() {
         return new ColumnFactory<>() {
             @Override
@@ -70,7 +58,6 @@ public class RequestFormsTableDescriptor extends TableHeaderDescriptor<RequestFo
                 label.getStyleClass().add("table-text");
                 return label;
             }
-
 
             @Override
             public Comparator<RequestForm> getComparator() {
