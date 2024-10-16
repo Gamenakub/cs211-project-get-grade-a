@@ -174,7 +174,7 @@
                         <Font name="TH SarabunPSK" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="courseNameTextField" prefHeight="40.0" prefWidth="371.0" promptText="Software Construction" styleClass="text-field-box">
+                  <TextField fx:id="courseNameTextField" prefHeight="40.0" prefWidth="371.0" promptText="การสร้างซอฟต์แวร์" styleClass="text-field-box">
                      <font>
                         <Font size="18.0" />
                      </font>
