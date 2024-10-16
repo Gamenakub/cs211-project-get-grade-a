@@ -3,6 +3,7 @@ package ku.cs.models.users;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import ku.cs.config.Configuration;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class User {
     private String nameTitle;
@@ -112,7 +113,7 @@ public class User {
     }
 
     public void setProfilePictureFileName() {
-        this.profilePictureFileName = this.username + "-image.jpg";
+        this.profilePictureFileName = UUID.randomUUID() + "-image.jpg";
     }
 
     public boolean isUsername(String username) {

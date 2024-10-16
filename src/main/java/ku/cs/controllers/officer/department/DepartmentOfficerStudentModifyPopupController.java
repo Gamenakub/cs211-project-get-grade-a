@@ -39,6 +39,10 @@ public class DepartmentOfficerStudentModifyPopupController extends BasePopup<Stu
             surnameTextField.setText(student.getSurname());
             nameTextField.setText(student.getName());
             studentIdTextField.setText(student.getStudentId());
+            studentIdTextField.setEditable(false);
+            studentIdTextField.setOnMouseClicked(event -> {
+                AlertService.showInfo("รหัสนิสิตที่ถูกสร้างขึ้นมาแล้ว" + System.lineSeparator() + "ไม่สามารถเปลี่ยนแปลงได้");
+            });
             nameTitleTextField.setText(student.getNameTitle());
             AdvisorList usingAdvisorList = advisorList.findAdvisorByDepartment(student.getDepartment());
             for (int i = 0; i < usingAdvisorList.getAdvisors().size(); i++) {
