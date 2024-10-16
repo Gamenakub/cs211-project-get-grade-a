@@ -586,4 +586,11 @@ public class DataProvider {
         return false;
     }
 
+    public boolean doesAdvisorIdExist(String advisorId) {
+        for (Advisor advisor : getAdvisorList().getAdvisors()) {
+            if (advisor.getAdvisorId().equals(advisorId)) return true;
+        }
+        return false;
+    }
+
 }
