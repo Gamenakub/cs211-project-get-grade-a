@@ -299,6 +299,7 @@ public class DataProvider {
         facultyOfficerList = facultyOfficerDataSourceReader.readData();
         getFacultyApproverList();
         for(FacultyOfficer facultyOfficer : facultyOfficerList.getFacultyOfficers()){
+            facultyOfficer.getFacultyApproverList().getApprovers().clear();
             for(FacultyApprover facultyApprover : facultyApproverList.getApprovers()) {
                 if(facultyApprover.getFaculty().equals(facultyOfficer.getFaculty()) && !facultyOfficer.getFacultyApproverList().getApprovers().contains(facultyApprover)) {
                     facultyOfficer.getFacultyApproverList().addApprover(facultyApprover);
@@ -313,6 +314,7 @@ public class DataProvider {
         departmentOfficerList = departmentOfficerDataSourceReader.readData();
         getDepartmentApproverList();
         for(DepartmentOfficer departmentOfficer : departmentOfficerList.getDepartmentOfficers()){
+            departmentOfficer.getDepartmentApproverList().clear();
             for(DepartmentApprover departmentApprover : departmentApproverList.getApprovers()){
                 if(departmentOfficer.getDepartment().equals(departmentApprover.getDepartment()) && !departmentOfficer.getDepartmentApproverList().getApprovers().contains(departmentApprover)){
                     departmentOfficer.getDepartmentApproverList().addApprover(departmentApprover);
@@ -425,12 +427,19 @@ public class DataProvider {
 
     private void saveDepartmentApprover() throws IOException {
         DepartmentApproverList newDepartmentApproverList = new DepartmentApproverList();
+        DepartmentOfficer currentDepartmentOfficer = (DepartmentOfficer)Session.getSession().getLoggedInUser();
         for (DepartmentOfficer departmentOfficer : getDepartmentOfficerList().getDepartmentOfficers()){
             for (DepartmentApprover departmentApprover : departmentOfficer.getDepartmentApproverList().getApprovers()){
-                if (newDepartmentApproverList.getApprovers().contains(departmentApprover)) continue;
+                if (newDepartmentApproverList.getApprovers().contains(departmentApprover) || departmentOfficer.getDepartment().equals(currentDepartmentOfficer.getDepartment())) continue;
                 newDepartmentApproverList.addApprover(departmentApprover);
             }
         }
+
+        for (DepartmentApprover departmentApprover : currentDepartmentOfficer.getDepartmentApproverList().getApprovers()){
+            if (newDepartmentApproverList.getApprovers().contains(departmentApprover)) {continue;}
+            newDepartmentApproverList.addApprover(departmentApprover);
+        }
+
         DepartmentApproverDataSource departmentApproverDataSource = new DepartmentApproverDataSource(departmentList);
         DataSourceWriter<DepartmentApproverList, DepartmentApprover> departmentApproverDataSourceWriter = new DataSourceWriter<>(departmentApproverDataSource);
         departmentApproverDataSourceWriter.writeData(newDepartmentApproverList);

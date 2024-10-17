@@ -72,9 +72,11 @@ public class RequestFormRejectPopupController extends BasePopup<FormDataModel> {
         } else if (Session.getSession().getLoggedInUser() instanceof DepartmentOfficer departmentOfficer) {
             RequestFormActionHistory requestFormActionHistory = new RequestFormActionHistory(requestForm.getRequestFormId(), departmentOfficer.getFullName(), RequestForm.Status.REJECTED_BY_DEPARTMENT, "หัวหน้าภาควิชา" + getModel().getFormObject().getStudent().getDepartment().getName());
             requestForm.setStatus(requestFormActionHistory);
+            departmentOfficer.getRequestFormList().removeForm(requestForm);
         } else if (Session.getSession().getLoggedInUser() instanceof FacultyOfficer facultyOfficer) {
             RequestFormActionHistory requestFormActionHistory = new RequestFormActionHistory(requestForm.getRequestFormId(), facultyOfficer.getFullName(), RequestForm.Status.REJECTED_BY_FACULTY, "คณบดีคณะ" + getModel().getFormObject().getStudent().getFaculty().getName());
             requestForm.setStatus(requestFormActionHistory);
+            facultyOfficer.getRequestFormList().removeForm(requestForm);
         }
         DataProvider.getDataProvider().saveUser();
         close();
