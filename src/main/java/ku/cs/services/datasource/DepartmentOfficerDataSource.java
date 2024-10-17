@@ -40,6 +40,7 @@ public class DepartmentOfficerDataSource implements Readable<DepartmentOfficerLi
                 studentList.addStudent(student);
             }
         }
+
         return new DepartmentOfficer(
                 row.get("username"),
                 row.get("hashedPassword"),
@@ -72,8 +73,8 @@ public class DepartmentOfficerDataSource implements Readable<DepartmentOfficerLi
     public ArrayList<String> getTableHeader() {
         ArrayList<String> headers = new ArrayList<>();
         headers.add("username");
-        headers.add("nameTitle");
         headers.add("hashedPassword");
+        headers.add("nameTitle");
         headers.add("name");
         headers.add("surname");
         headers.add("role");

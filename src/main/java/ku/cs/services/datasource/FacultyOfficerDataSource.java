@@ -57,9 +57,9 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> headers = new ArrayList<>();
-        headers.add("nameTitle");
         headers.add("username");
         headers.add("hashedPassword");
+        headers.add("nameTitle");
         headers.add("name");
         headers.add("surname");
         headers.add("role");

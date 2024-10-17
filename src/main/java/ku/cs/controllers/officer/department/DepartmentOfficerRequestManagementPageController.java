@@ -71,11 +71,8 @@ public class DepartmentOfficerRequestManagementPageController {
             AlertService.showError("เกิดข้อผิดพลาดในการดึงข่้อมูลใบคำร้องใหม่");
         }
 
-
         tableController.updateTable();
         tableController.sortBy("แก้ไขล่าสุด", SortDirection.DESCENDING);
-
-
     }
 
     public void onSearchButton() {
