@@ -36,7 +36,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="900.0" spacing="12.0">
                <children>
-                  <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="562.0" styleClass="text-field-box">
+                  <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="562.0" promptText="ค้นหาข้อมูลคำร้อง" styleClass="text-field-box">
                      <font>
                         <Font size="24.0" />
                      </font>
