@@ -22,7 +22,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#onPreviousPageButton" styleClass="green-button" text="&lt;" />
                   <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#onHandbookButton" styleClass="green-button" text="คู่มือการใช้งาน" />
+                  <Button mnemonicParsing="false" onAction="#onManualButton" styleClass="green-button" text="คู่มือการใช้งาน" />
                   <Pane prefHeight="200.0" prefWidth="200.0" />
                   <Button mnemonicParsing="false" onAction="#onNextPageButton" styleClass="green-button" text="&gt;" />
                </children>

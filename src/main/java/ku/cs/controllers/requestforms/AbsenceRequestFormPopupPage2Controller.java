@@ -49,7 +49,7 @@ public class AbsenceRequestFormPopupPage2Controller extends BasePopup<FormDataMo
     @FXML
     public void onAddCourseButton() {
         if (isAddCourseButtonDisabled) {
-            AlertService.showWarning("ท่านสามารถใส่รายวิชาได้สูงสุด 9 รายการ");
+            AlertService.showWarning("ท่านสามารถใส่รายวิชาได้สูงสุด 9 รายวิชา");
             return;
         }
         if (!absenceCourseComponentControllers.isEmpty()) {
@@ -86,7 +86,7 @@ public class AbsenceRequestFormPopupPage2Controller extends BasePopup<FormDataMo
                         courseListVBox.getChildren().remove(finalVBox);
                         reloadVBox();
                     } else {
-                        AlertService.showWarning("ต้องมีรายวิชาอย่างน้อย 1 รายการ");
+                        AlertService.showWarning("ต้องมีรายวิชาอย่างน้อย 1 รายวิชา");
                     }
                 }
             });
@@ -133,7 +133,7 @@ public class AbsenceRequestFormPopupPage2Controller extends BasePopup<FormDataMo
     @FXML
     public void onNextPageButton() {
         if (relatedCourseList.getCourses().isEmpty()) {
-            AlertService.showWarning("กรุณาใส่รายวิชาอย่างน้อย 1 รายการ");
+            AlertService.showWarning("กรุณาใส่รายวิชาอย่างน้อย 1 รายวิชา");
             return;
         }
         if (!absenceCourseComponentControllers.isEmpty()) {

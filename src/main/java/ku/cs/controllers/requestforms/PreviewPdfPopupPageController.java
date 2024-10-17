@@ -83,7 +83,7 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
                 if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().browse(outputPdfFile.toURI());
                 } else {
-                    AlertService.showWarning("ไม่สามารถเปิดไฟล์ PDF ผ่านบราวเซอร์ได้");
+                    AlertService.showWarning("ไม่สามารถเปิดไฟล์ PDF บนบราวเซอร์ได้");
                 }
             }
         } catch (IOException e) {
@@ -143,7 +143,7 @@ public class PreviewPdfPopupPageController extends BasePopup<FormDataModel> {
                 controller.initializeForm();
             }
         } catch (IOException e) {
-            AlertService.showError("พบข้อผิดพลาดในการแสดง PDF");
+            AlertService.showError("พบข้อผิดพลาดในการแสดงผล PDF");
             return;
         }
 
