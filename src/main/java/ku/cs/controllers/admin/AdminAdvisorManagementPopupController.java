@@ -89,7 +89,7 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             AlertService.showError("กรุณาเลือกภาควิชา");
         } else if (advisorId.isEmpty()) {
             AlertService.showError("กรุณากรอกรหัสประจำตัวอาจารย์ที่ปรึกษา" + System.lineSeparator() + "ให้ครบถ้วนและถูกต้อง");
-        } else if (DataProvider.getDataProvider().doesAdvisorIdExist(advisorId)) {
+        } else if (DataProvider.getDataProvider().doesAdvisorIdExist(advisorId) && !(this.hasModel() && advisor.getAdvisorId().equals(advisorId))) {
             AlertService.showError("รหัสประจำตัวอาจารย์ที่ปรึกษา " + advisorId + System.lineSeparator() + "มีอยู่ในระบบแล้ว" );
         } else {
             if (this.hasModel()) {
