@@ -109,7 +109,7 @@ public class RequestFormList implements Searchable<RequestForm> {
                 targetForms.add(requestForm);
             } else if (requestForm.getRequestFormTitle().contains(keyword)) {
                 targetForms.add(requestForm);
-            } else if ((requestForm.getStatus() + "").contains(keyword)) {
+            } else if ((requestForm.getStudent().getStudentId()).contains(keyword)) {
                 targetForms.add(requestForm);
             }
         }
