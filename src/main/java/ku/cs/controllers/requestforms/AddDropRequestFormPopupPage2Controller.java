@@ -58,7 +58,7 @@ public class AddDropRequestFormPopupPage2Controller extends BasePopup<FormDataMo
     @FXML
     public void onAddCourseButton() {
         if (isAddCourseButtonDisabled) {
-            AlertService.showWarning("ท่านสามารถใส่รายวิชาได้สูงสุด 6 รายการ");
+            AlertService.showWarning("ท่านสามารถใส่รายวิชาได้สูงสุด 6 รายวิชา");
             return;
         }
         if (!addDropCourseComponentControllers.isEmpty()) {
@@ -96,7 +96,7 @@ public class AddDropRequestFormPopupPage2Controller extends BasePopup<FormDataMo
                         courseListVBox.getChildren().remove(finalVBox);
                         reloadVBox();
                     } else {
-                        AlertService.showWarning("ต้องมีรายวิชาอย่างน้อย 1 รายการ");
+                        AlertService.showWarning("ต้องมีรายวิชาอย่างน้อย 1 รายวิชา");
                     }
 
                 }
@@ -166,7 +166,7 @@ public class AddDropRequestFormPopupPage2Controller extends BasePopup<FormDataMo
         }
         if (addDropRequestForm.getStatus() == RequestForm.Status.CREATING) {
             if (relatedCourseList.getCourses().isEmpty()) {
-                AlertService.showWarning("กรุณาใส่รายวิชาอย่างน้อย 1 รายการ");
+                AlertService.showWarning("กรุณาใส่รายวิชาอย่างน้อย 1 รายวิชา");
                 return;
             }
             Student student = (Student) Session.getSession().getLoggedInUser();

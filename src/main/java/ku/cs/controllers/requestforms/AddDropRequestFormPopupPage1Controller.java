@@ -74,7 +74,7 @@ public class AddDropRequestFormPopupPage1Controller extends BasePopup<FormDataMo
         } else if (phoneNumber.isEmpty()) {
             AlertService.showError("กรุณากรอกหมายเลขโทรศัพท์ให้ครบถ้วน");
             return false;
-        } else if (program.isEmpty() || program.equals("เลือกหลักสูตร")) {
+        } else if (program.isEmpty()) {
             AlertService.showError("กรุณาเลือกหลักสูตรการเรียนให้ครบถ้วน");
             return false;
         }

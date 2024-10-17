@@ -65,7 +65,7 @@ public class CreateRequestFormPopupPageController extends BasePopup<Student> {
         if (student.getAdvisor() != null) {
             changeScene(formDataModel, formPath);
         } else {
-            AlertService.showWarning("คุณไม่สามารถสร้างใบคำร้องได้ \nเนื่องจากคุณยังไม่มีอาจารย์ที่ปรึกษา");
+            AlertService.showWarning("ไม่สามารถสร้างใบคำร้องได้ \nเนื่องจากท่านยังไม่มีอาจารย์ที่ปรึกษา");
             this.close();
         }
     }

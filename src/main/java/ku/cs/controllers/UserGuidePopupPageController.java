@@ -77,7 +77,7 @@ public class UserGuidePopupPageController extends BasePopup<Object> {
             pdfImageView.setFitWidth(854);
             pdfDisplayPane.getChildren().add(pdfImageView);
         } catch (IOException e) {
-            AlertService.showError("พบข้อผิดพลาดในการโหลดไฟล์ Pdf: " + e.getMessage());
+            AlertService.showError("พบข้อผิดพลาดในการแสดงผลไฟล์ Pdf: " + e.getMessage());
         }
     }
 
@@ -98,9 +98,9 @@ public class UserGuidePopupPageController extends BasePopup<Object> {
     }
 
     private void openManualPdf() {
-        try (InputStream pdfStream = getClass().getClassLoader().getResourceAsStream("user-mannual.pdf")) {
+        try (InputStream pdfStream = getClass().getClassLoader().getResourceAsStream("user-manual.pdf")) {
             if (pdfStream == null) {
-                AlertService.showError("ไม่พบไฟล์ Pdf: " + "user-mannual.pdf");
+                AlertService.showError("ไม่พบไฟล์ Pdf: " + "user-manual.pdf");
                 return;
             }
             Path tempFile = Files.createTempFile("tempPdf", ".pdf");
@@ -110,7 +110,7 @@ public class UserGuidePopupPageController extends BasePopup<Object> {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(pdfFile.toURI());
             } else {
-                AlertService.showError("ระบบนี้ไม่รองรับการแสดงผลไฟล์ Pdf ผ่านบราวเซอร์");
+                AlertService.showError("ระบบนี้ไม่รองรับการแสดงผลไฟล์ Pdf บนบราวเซอร์");
             }
         } catch (IOException e) {
             AlertService.showError("พบข้อผิดพลาดในการแสดงผลไฟล์ Pdf:" + e.getMessage());
