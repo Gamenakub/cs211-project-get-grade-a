@@ -47,10 +47,6 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             surnameTextField.setText(advisor.getSurname());
             usernameTextField.setText(advisor.getUsername());
             advisorIdTextField.setText(advisor.getAdvisorId());
-            advisorIdTextField.setEditable(false);
-            advisorIdTextField.setOnMouseClicked(event -> {
-                AlertService.showInfo("รหัสประจำตัวอาจารย์ที่ปรึกษาที่ถูกสร้างขึ้นมาแล้ว" + System.lineSeparator() + "ไม่สามารถเปลี่ยนแปลงได้");
-            });
             facultyMenuButtonController.setMenuButton(facultyMenuButton, departmentMenuButton, advisor.getFaculty(), advisor.getDepartment());
             if (advisor.getActivated()) {
                 defaultPasswordField.setDisable(true);
@@ -93,7 +89,7 @@ public class AdminAdvisorManagementPopupController extends BasePopup<Advisor> {
             AlertService.showError("กรุณาเลือกภาควิชา");
         } else if (advisorId.isEmpty()) {
             AlertService.showError("กรุณากรอกรหัสประจำตัวอาจารย์ที่ปรึกษา" + System.lineSeparator() + "ให้ครบถ้วนและถูกต้อง");
-        } else if (DataProvider.getDataProvider().doesAdvisorIdExist(advisorId)) {
+        } else if (DataProvider.getDataProvider().doesAdvisorIdExist(advisorId) && !(this.hasModel() && advisor.getAdvisorId().equals(advisorId))) {
             AlertService.showError("รหัสประจำตัวอาจารย์ที่ปรึกษา " + advisorId + System.lineSeparator() + "มีอยู่ในระบบแล้ว" );
         } else {
             if (this.hasModel()) {
