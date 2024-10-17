@@ -49,7 +49,7 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
                 profilePictureUploader.saveFile(user.getProfilePictureFileName());
                 ImageCropper.cropImageFileToSquare(new File(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
             } catch (IOException e) {
-                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
+                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
             }
         }
         DataProvider.getDataProvider().saveUser();
@@ -67,7 +67,7 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
                     user.resetProfilePictureFileName();
                     profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
                     DataProvider.getDataProvider().saveUser();
-                    fileNameLabel.setText("ยังไม่ได้อัพโหลดไฟล์");
+                    fileNameLabel.setText("ยังไม่ได้อัปโหลดไฟล์");
                     Files.delete(Path.of(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
                     issueEvent("success");
                     AlertService.showInfo("เปลี่ยนรูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานเรียบร้อยแล้ว");
@@ -106,7 +106,7 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
                 fileNameLabel.setText(file.getName());
             }
         } catch (IOException e) {
-            AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
+            AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
         }
     }
 
@@ -123,7 +123,7 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
                 profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
                 fileNameLabel.setText(file.getName());
             } catch (FileNotFoundException e) {
-                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
+                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
             }
         }
     }

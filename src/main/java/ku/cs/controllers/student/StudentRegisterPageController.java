@@ -67,7 +67,7 @@ public class StudentRegisterPageController {
         } else if (confirmNewPassword.isEmpty()) {
             AlertService.showError("กรุณากรอกยืนยันรหัสผ่านให้ครบถ้วนและถูกต้อง");
         } else if (studentId.isEmpty() || !studentId.matches(studentIdPattern)) {
-            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (คัวเลข 10 หลัก)");
+            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (ตัวเลข 10 หลัก)");
         } else if (email.isEmpty() || !email.matches(emailPattern)) {
             AlertService.showError("กรุณากรอกอีเมลให้ครบถ้วนและอยู่ในรูปแบบที่ถูกต้อง");
         } else {

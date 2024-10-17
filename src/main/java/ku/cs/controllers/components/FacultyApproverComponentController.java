@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import ku.cs.controllers.components.tables.EventCallback;
 import ku.cs.models.FacultyApprover;
 

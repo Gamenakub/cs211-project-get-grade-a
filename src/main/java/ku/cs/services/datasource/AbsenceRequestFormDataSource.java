@@ -47,7 +47,7 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
         String academicYear = row.get("studentYear");
         CourseList absenseCourseList = courseList.getCourseByRelatedRequestFormId(requestFormId);
         String phoneNumber = row.get("phoneNumber");
-        String facebookID = row.get("facebookID");
+        String facebookID = row.get("facebook");
         String lineID = row.get("lineID");
         String absenceType = row.get("absenceType");
         LocalDate absenceDateFrom = LocalDate.parse(row.get("absenceDateFrom"));
@@ -77,7 +77,7 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
         header.add("status");
         header.add("studentYear");
         header.add("phoneNumber");
-        header.add("facebookID");
+        header.add("facebook");
         header.add("lineID");
         header.add("absenceType");
         header.add("absenceDateFrom");
@@ -96,7 +96,7 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
         map.put("status", String.valueOf(model.getStatus()));
         map.put("studentYear", model.getStudentYear());
         map.put("phoneNumber", model.getPhoneNumber());
-        map.put("facebookID", model.getFacebookID());
+        map.put("facebook", model.getFacebookID());
         map.put("lineID", model.getLineID());
         map.put("absenceType", model.getAbsenceType());
         map.put("absenceDateFrom", model.getAbsenceDateFrom().toString());

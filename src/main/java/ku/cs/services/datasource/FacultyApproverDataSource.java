@@ -33,7 +33,7 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
         String name = row.get("name");
         String surname = row.get("surname");
         String role = row.get("role");
-        Faculty faculty = facultyList.findFacultyById(row.get("faculty"));
+        Faculty faculty = facultyList.findFacultyById(row.get("facultyId"));
         return new FacultyApprover(nameTitle, name, surname, role, faculty);
     }
 
@@ -54,7 +54,7 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
         headers.add("name");
         headers.add("surname");
         headers.add("role");
-        headers.add("faculty");
+        headers.add("facultyId");
         return headers;
     }
 
@@ -65,7 +65,7 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
         row.put("name", model.getName());
         row.put("surname", model.getSurname());
         row.put("role", model.getRole());
-        row.put("faculty", model.getFaculty().getId());
+        row.put("facultyId", model.getFaculty().getId());
         return row;
     }
 

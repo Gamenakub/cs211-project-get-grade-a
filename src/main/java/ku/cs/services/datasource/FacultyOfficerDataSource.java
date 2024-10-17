@@ -40,7 +40,7 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
                 Boolean.parseBoolean(row.get("status")),
                 Boolean.parseBoolean(row.get("activated")),
                 row.get("profilePictureFileName"),
-                this.facultyList.findFacultyById(row.get("faculty"))
+                this.facultyList.findFacultyById(row.get("facultyId"))
         );
     }
 
@@ -67,7 +67,7 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         headers.add("status");
         headers.add("activated");
         headers.add("profilePictureFileName");
-        headers.add("faculty");
+        headers.add("facultyId");
         return headers;
     }
 
@@ -84,7 +84,7 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         row.put("status", String.valueOf(model.getStatus()));
         row.put("activated", String.valueOf(model.getActivated()));
         row.put("profilePictureFileName", model.getProfilePictureFileName());
-        row.put("faculty", model.getFaculty().getId());
+        row.put("facultyId", model.getFaculty().getId());
 
         return row;
     }

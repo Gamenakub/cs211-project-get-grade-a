@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerRequestManagementPageController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.department.DepartmentOfficerRequestManagementPageController">
    <children>
       <Pane fx:id="navBarPane" prefHeight="60.0" prefWidth="1080.0" />
       <VBox alignment="CENTER_LEFT" layoutY="60.0" prefHeight="80.0" prefWidth="1080.0">
@@ -30,7 +30,7 @@
             <Insets left="80.0" />
          </padding>
          <children>
-            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="680.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="680.0" promptText="ค้นหาคำร้อง" styleClass="text-field-box">
                <font>
                   <Font size="24.0" />
                </font>

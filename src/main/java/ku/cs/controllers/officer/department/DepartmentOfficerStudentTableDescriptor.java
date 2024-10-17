@@ -11,7 +11,6 @@ import ku.cs.controllers.components.tables.TableColumn;
 import ku.cs.controllers.components.tables.TableHeaderDescriptor;
 import ku.cs.models.users.Student;
 import ku.cs.models.users.User;
-import ku.cs.services.Session;
 
 import java.util.Comparator;
 

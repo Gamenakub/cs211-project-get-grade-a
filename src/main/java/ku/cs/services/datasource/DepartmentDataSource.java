@@ -31,7 +31,7 @@ public class DepartmentDataSource implements Writable<DepartmentList, Department
     public Department hashMapToModel(HashMap<String, String> row) {
         String name = row.get("departmentName");
         String id = row.get("departmentId");
-        String facultyName = row.get("FacultyName");
+        String facultyName = row.get("facultyName");
 
         Faculty faculty = facultyList.findFacultyByName(facultyName);
         return faculty.addDepartment(name, id);
@@ -52,7 +52,7 @@ public class DepartmentDataSource implements Writable<DepartmentList, Department
         ArrayList<String> header = new ArrayList<>();
         header.add("departmentName");
         header.add("departmentId");
-        header.add("FacultyName");
+        header.add("facultyName");
         return header;
     }
 
@@ -61,7 +61,7 @@ public class DepartmentDataSource implements Writable<DepartmentList, Department
         HashMap<String, String> map = new HashMap<>();
         map.put("departmentName", model.getName());
         map.put("departmentId", model.getId());
-        map.put("FacultyName", model.getFaculty().getName());
+        map.put("facultyName", model.getFaculty().getName());
         return map;
     }
 

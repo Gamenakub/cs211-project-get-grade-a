@@ -82,7 +82,7 @@ public class DepartmentOfficerStudentModifyPopupController extends BasePopup<Stu
         }
 
         if (!studentIdTextField.getText().matches(studentIdPattern)) {
-            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (คัวเลข 10 หลัก)");
+            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (ตัวเลข 10 หลัก)");
             return;
         }
 

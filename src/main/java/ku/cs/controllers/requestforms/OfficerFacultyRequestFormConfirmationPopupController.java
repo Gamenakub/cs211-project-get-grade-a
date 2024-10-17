@@ -95,7 +95,7 @@ public class OfficerFacultyRequestFormConfirmationPopupController extends BasePo
         }
         try {
             if (!onSaveButton()) {
-                AlertService.showError("กรุณาอัพโหลดไฟล์ PDF ก่อนกดยืนยัน");
+                AlertService.showError("กรุณาอัปโหลดไฟล์ PDF ก่อนกดยืนยัน");
                 return true;
             }
         } catch (IOException e) {
