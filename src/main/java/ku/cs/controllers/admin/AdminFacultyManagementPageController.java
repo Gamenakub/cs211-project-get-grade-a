@@ -63,7 +63,7 @@ public class AdminFacultyManagementPageController {
         }
         requestActionPopup.show();
         requestActionPopup.getPopupController().addEventListener(
-                "success", eventData -> {
+                "close", eventData -> {
                     tableController.setDisplayModels(facultyList.getFaculties());
                     searchController.searchFilter();
                 }

@@ -1,4 +1,4 @@
-package ku.cs.controllers.advisor;
+package ku.cs.controllers.requestforms;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import ku.cs.controllers.components.tables.ColumnFactory;
 import ku.cs.controllers.components.tables.HeaderMode;
 import ku.cs.controllers.components.tables.TableColumn;
-import ku.cs.controllers.officer.RequestFormsTableDescriptor;
 import ku.cs.models.requestforms.RequestForm;
 
 public class StudentRequestFormHistoryTableDescriptor extends RequestFormsTableDescriptor {

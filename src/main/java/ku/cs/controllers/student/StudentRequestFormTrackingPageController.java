@@ -6,7 +6,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import ku.cs.controllers.advisor.StudentRequestFormHistoryTableDescriptor;
+import ku.cs.controllers.requestforms.StudentRequestFormHistoryTableDescriptor;
 import ku.cs.controllers.components.SearchController;
 import ku.cs.controllers.components.tables.TableComponentController;
 import ku.cs.models.FormDataModel;
