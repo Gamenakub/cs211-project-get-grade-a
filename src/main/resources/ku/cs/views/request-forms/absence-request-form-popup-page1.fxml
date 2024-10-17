@@ -17,7 +17,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
-            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="คำร้องขอลากิจหรือลาป่วย">
+            <Label maxHeight="880.0" mnemonicParsing="true" prefWidth="720.0" styleClass="popup-header" text="ใบคำร้องขอลาป่วยหรือลากิจ">
                <font>
                   <Font name="TH SarabunPSK" size="48.0" />
                </font>
