@@ -10,22 +10,23 @@ import java.util.ArrayList;
 public class DepartmentMenuButtonController {
     @FXML
     public void setMenuButton(MenuButton departmentMenuButton, Department department) {
-        departmentMenuButton.getItems().clear();
         departmentMenuButton.setText(department.getName());
         departmentMenuButton.setUserData(department);
     }
 
     @FXML
     public void addItems(MenuButton departmentMenuButton, ArrayList<Department> departments) {
+        departmentMenuButton.getItems().clear();
         if (departments.isEmpty()) {
             setDefaultMenuButton(departmentMenuButton);
         } else {
-            departmentMenuButton.getItems().clear();
             setMenuButton(departmentMenuButton, departments.getFirst());
             for (Department department : departments) {
                 MenuItem departmentItem = new MenuItem(department.getName());
                 departmentMenuButton.getItems().add(departmentItem);
-                departmentItem.setOnAction(event -> setMenuButton(departmentMenuButton, department));
+                departmentItem.setOnAction(event -> {
+                    setMenuButton(departmentMenuButton, department);
+                });
             }
         }
     }
