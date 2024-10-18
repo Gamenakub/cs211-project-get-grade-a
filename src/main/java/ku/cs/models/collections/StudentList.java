@@ -2,7 +2,6 @@ package ku.cs.models.collections;
 
 import ku.cs.models.users.Student;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class StudentList implements Searchable<Student> {
     private ArrayList<Student> students;

@@ -13,7 +13,6 @@ import ku.cs.services.Session;
 import ku.cs.services.popup.PopupComponent;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 
 public class UserLoginPageController {
     @FXML private TextField usernameTextField;

@@ -11,7 +11,6 @@ import ku.cs.services.DataProvider;
 import ku.cs.services.FXRouter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 
 public class StudentRegisterPageController {
     @FXML private TextField nameTitleTextField;
