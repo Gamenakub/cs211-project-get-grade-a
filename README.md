@@ -181,6 +181,10 @@
 #### 3. กดเลือก FormXpress.jar
 <img width="300" alt="install1" src="https://github.com/user-attachments/assets/c0b3a0f2-d088-4786-b6cb-9711e2509149">
 
+#### หรือ run ผ่าน command
+```bash
+java -jar Event-Hub.jar
+```
 
 
 ### MacOs Installation
@@ -208,17 +212,14 @@
 ## การวางโครงสร้างไฟล์ของโครงงาน
 <pre>
 ───cs211-project-get-grade-a
-    ├───data
-    │   ├───profile-pictures
-    │   ├───request-forms
-    │   ├───request-forms-pdf
-    │   └───users
-    └───src
+    ├───data (เก็บข้อมูลที่ใช้ภายในระบบ)
+    │   
+    └───src (เก็บ Source code ทั้งหมดของโปรแกรม)
         └───main
             ├───java
             │   └───ku
             │       └───cs
-            │           ├───config
+            │           ├───config (เก็บค่าตัวแปรคงที่)
             │           ├───controllers
             │           │   ├───admin (เก็บ Controller ของ Admin)
             │           │   ├───advisor (เก็บ Controller ของ Advisor)
