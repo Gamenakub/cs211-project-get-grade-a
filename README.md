@@ -188,13 +188,13 @@ java -jar FormXpress.jar
 ### macOS Installation
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+<img width="763" alt="image" src="https://github.com/user-attachments/assets/b84e3dcf-ef8b-4cb0-8dee-17c28cbc7acb">
 
 #### 2. เข้าไปที่ FormXpress-mac-m1-m2 Folder
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+<img width="762" alt="image" src="https://github.com/user-attachments/assets/c3638487-8808-447d-9ff0-480e02f0d47b">
 
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+<img width="764" alt="image" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
 
 ## UML
 >ไฟล์รูป UML อยู่ใน Directory project-info/uml
