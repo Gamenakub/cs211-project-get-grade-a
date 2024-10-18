@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import ku.cs.controllers.components.SearchController;
 import ku.cs.controllers.components.tables.TableComponentController;
-import ku.cs.controllers.officer.RequestFormsTableDescriptor;
+import ku.cs.controllers.requestforms.RequestFormsTableDescriptor;
 import ku.cs.models.FormDataModel;
 import ku.cs.models.collections.RequestFormList;
 import ku.cs.models.requestforms.RequestForm;
