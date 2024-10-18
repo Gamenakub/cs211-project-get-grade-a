@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vBox" prefHeight="212.0" prefWidth="696.0" spacing="8.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.AbsenceCourseComponentController">
+<VBox fx:id="vBox" prefHeight="212.0" prefWidth="696.0" spacing="8.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.components.AbsenceCourseComponentController">
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
    </padding>
