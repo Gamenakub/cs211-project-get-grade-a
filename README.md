@@ -1,13 +1,14 @@
-![logo](https://github.com/user-attachments/assets/a244b8fe-130b-4cd3-be12-4d02cbe582b1)
+<h1 align="center">
+<img width="100" alt="install1" src="https://github.com/user-attachments/assets/a244b8fe-130b-4cd3-be12-4d02cbe582b1">
+</h1>
 
 <h1 align="center">
-  <br>
     <span style="color: #3be8ac;">CS211 Project FormXpress</span>
   <br>
 </h1>
 
 <p align="center">
-    <b>โปรเจกต์นี้เป็นส่วนหนึ่งของ รายวิชา 01418211 - การสร้างซอฟต์แวร์ (Software Construction)</b> <br>
+    <b>เป็นส่วนหนึ่งของ รายวิชา 01418211 - การสร้างซอฟต์แวร์ (Software Construction)</b> <br>
     <b>ภาคต้น ปีการศึกษา 2567</b> <br>
 </p>
 
@@ -165,13 +166,14 @@
    * สร้างข้อมูลจำลอง
    
 ## วิธีการติดตั้งและรันโปรแกรม
-## Download
+### ดาวน์โหลดโปรแกรม
 #### Jar file for Windows
 >Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
 #### Jar file for macOS M1
 >Download <b>FormXpress-for-macOS.zip</b> from [Release](<link>) or [Click](<link>)
 
-## Installation
+-----------
+### การติดตั้งโปรแกรม
 ### การติดตั้งโปรแกรมสำหรับ Windows
 #### 1. แตกไฟล์ FormXpress.zip
 <img width="300" alt="install1" src="https://github.com/user-attachments/assets/0407cc77-2de0-48b4-85bd-daa4a2169450">
@@ -182,12 +184,7 @@
 #### 3. กดเลือก FormXpress.jar
 <img width="300" alt="install1" src="https://github.com/user-attachments/assets/c0b3a0f2-d088-4786-b6cb-9711e2509149">
 
-#### หรือ run ผ่าน command
-```bash
-java -jar FormXpress.jar
-```
-
-### macOS Installation
+### การติดตั้งโปรแกรมสำหรับ macOS
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
 <img width="763" alt="image" src="https://github.com/user-attachments/assets/b84e3dcf-ef8b-4cb0-8dee-17c28cbc7acb">
@@ -198,6 +195,11 @@ java -jar FormXpress.jar
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
 <img width="764" alt="image" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
 
+### หรือรันผ่านคำสั่ง
+```bash
+java -jar FormXpress.jar
+```
+
 ## UML
 >ไฟล์รูป UML อยู่ใน Directory project-info/uml
 
@@ -206,13 +208,13 @@ java -jar FormXpress.jar
 
 ## ตัวอย่างข้อมูลผู้ใช้ระบบ
 
-| username    |   password    | role               |
+| ชื่อผู้ใช้  |   รหัสผ่าน    | บทบาท              |
 |-------------|:-------------:|--------------------|
-| admin       | admin12345678 | admin              |
-| fscikes     |    kzf695     | faculty officer    |
-| fscicho     |    gfs475     | department officer |
-| fscinuc     |    sqc805     | advisor            |
-| b6610458991 |    zxe508     | student            |
+| admin       | admin12345678 | ผู้ดูแลระบบ        |
+| fscikes     |    kzf695     | เจ้าหน้าที่คณะ     |
+| fscicho     |    gfs475     | เจ้าหน้าที่ภาควิชา |
+| fscinuc     |    sqc805     | อาจารย์ที่ปรึกษา   |
+| b6610458991 |    zxe508     | นิสิต              |
 
 ## การวางโครงสร้างไฟล์ของโครงงาน
 <pre>
