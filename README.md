@@ -1,3 +1,5 @@
+![logo](https://github.com/user-attachments/assets/a244b8fe-130b-4cd3-be12-4d02cbe582b1)
+
 <h1 align="center">
   <br>
     <span style="color: #3be8ac;">CS211 Project FormXpress</span>
@@ -113,9 +115,9 @@
    * ทำให้ระบบบังคับเปลี่ยนรหัสผ่านในการใช้งานครั้งแรกได้
    * ทำให้หน้า student-register สามารถรับค่า และเช็คกับข้อมูลนิสิตในระบบได้
    * ทำให้ผู้ใช้สามารถเปลี่ยนรหัสผ่านได้
-   * ทำให้ผู้ใช้สามารถเปลี่ยนรูปโปรไฟล์ และครอบตัดไฟล์รูปภาพเป็นจัตุรัสได้
+   * ทำให้ผู้ใช้สามารถเปลี่ยนรูปโพรไฟล์ และครอบตัดไฟล์รูปภาพเป็นจัตุรัสได้
    * ทำให้สามารถค้นหาและคัดกรองข้อมูลให้กับตารางที่รับผิดชอบ (อ้างอิงจากความก้าวหน้าของระบบครั้งที่ 1)
-   * ทำให้หน้าจอหลัก ตาราง และป๊อปอัพ สามารถแสดงผลร่วมกับระบบเปลี่ยนธีมได้
+   * ทำให้หน้าจอหลัก ตาราง และหน้าต่างแบบผุดขึ้น สามารถแสดงผลร่วมกับระบบเปลี่ยนธีมได้
    * จัดการ exception และข้อผิดพลาดต่าง ๆ โดยการแจ้งให้ user ทราบ ด้วย AlertService ใน Controller ส่วนที่รับผิดชอบ (อ้างอิงจากความก้าวหน้าของระบบครั้งที่ 1)
 4. จิรัฏฐ์ ค่องสกุล (เฟม)
    * ทำให้หน้าติดตามคำร้องแสดงใบคำร้องทั้งหมดที่สร้างขึ้นมาได้ โดยแสดงรายละเอียดต่างๆ และยังสามารถดูใบคำร้องที่สร้างไปแล้วได้อีกด้วย
@@ -163,12 +165,11 @@
    * สร้างข้อมูลจำลอง
    
 ## วิธีการติดตั้งและรันโปรแกรม
-รวมถึงที่อยู่ของไฟล์ pdf
 ## Download
 #### Jar file for Windows
 >Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
-#### Jar file for MacOs M1
->Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
+#### Jar file for macOS M1
+>Download <b>FormXpress-for-macOS.zip</b> from [Release](<link>) or [Click](<link>)
 
 ## Installation
 ### การติดตั้งโปรแกรมสำหรับ Windows
@@ -186,8 +187,7 @@
 java -jar FormXpress.jar
 ```
 
-
-### MacOs Installation
+### macOS Installation
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
 <img width="763" alt="image" src="https://github.com/user-attachments/assets/b84e3dcf-ef8b-4cb0-8dee-17c28cbc7acb">
@@ -198,6 +198,11 @@ java -jar FormXpress.jar
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
 <img width="764" alt="image" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
 
+## UML
+>ไฟล์รูป UML อยู่ใน Directory project-info/uml
+
+## PDF วิธีการใช้งาน
+>ไฟล์ user-manual.pdf (วิธีการใช้งาน) อยู่ใน Directory project-info
 
 ## ตัวอย่างข้อมูลผู้ใช้ระบบ
 
@@ -211,51 +216,52 @@ java -jar FormXpress.jar
 
 ## การวางโครงสร้างไฟล์ของโครงงาน
 <pre>
-───cs211-project-get-grade-a
-    ├───data (เก็บข้อมูลที่ใช้ภายในระบบ)
-    │   
-    └───src (เก็บ Source code ทั้งหมดของโปรแกรม)
-        └───main
-            ├───java
-            │   └───ku
-            │       └───cs
-            │           ├───config (เก็บค่าตัวแปรคงที่)
-            │           ├───controllers
-            │           │   ├───admin (เก็บ Controller ของ Admin)
-            │           │   ├───advisor (เก็บ Controller ของ Advisor)
-            │           │   ├───components (เก็บ Controller ที่มีการเรียกใช้งานร่วมกัน)
-            │           │   │   ├───navigationbars (เก็บ Controller ที่ควบคุม Navigationbar)
-            │           │   │   └───tables (เก็บ Controller ที่ควบคุม Table)
-            │           │   ├───officer
-            │           │   │   ├───department (เก็บ Controller ของ Department)
-            │           │   │   └───faculty (เก็บ Controller ของ Faculty)
-            │           │   ├───requestforms (เก็บ Controller ของ Requestform)
-            │           │   └───student (เก็บ Controller ของ Student)
-            │           ├───cs211671project
-            │           ├───models (เก็บโมเดล)
-            │           │   ├───collections (เก็บ collection)
-            │           │   ├───requestforms (เก็บ Model ของ Requestform ทุกประเภท)
-            │           │   └───users (เก็บ Model ของ User ทุกบทบาท)
-            │           │      
-            │           └───services
-            │               ├───datahandle (เก็บ Service และ Interface ที่เกี่ยวข้องกับจัดการข้อมูล CSV)
-            │               ├───datasource (เก็บ DataSource ทั้งหมดในโปรแกรม)
-            │               └───popup (เก็บ Service ที่ใช้ในการจัดการหน้าต่างแบบผุดขึ้น)
-            └───resources
-                ├───images (เก็บรูปภาพที่ใช้ในโปรแกรม)
-                │   ├───developer-pictures
-                │   └───navbar-icons (เก็บภาพของ Icon ที่ใช้ใน Navigationbar)
-                └───ku
-                    └───cs
-                        └───views
-                            ├───admin (เก็บไฟล์ fxml ของ Admin)
-                            ├───advisor (เก็บไฟล์ fxml ของ Advisor)
-                            ├───components (เก็บไฟล์ fxml ของ component ที่มีการเรียกใช้งานร่วมกัน)
-                            ├───officer (เก็บไฟล์ fxml ของ Officer)
-                            │   ├───department
-                            │   └───faculty
-                            ├───request-forms (เก็บไฟล์ fxml ของ Requestform)
-                            ├───student (เก็บไฟล์ fxml ของ Student)
-                            └───styles (เก็บไฟล์ CSS หรือสไตล์ที่ใช้ในโปรแกรม)
+cs211-project-get-grade-a
+├───data (เก็บข้อมูลที่ใช้ภายในระบบ)
+├───project-info
+│   └───uml
+└───src (เก็บ Source code ทั้งหมดของโปรแกรม)
+    └───main
+        ├───java
+        │   └───ku
+        │       └───cs
+        │           ├───config (เก็บค่าตัวแปรคงที่)
+        │           ├───controllers (เก็บ Controller)
+        │           │   ├───admin (เก็บ Controller ของ Admin)
+        │           │   ├───advisor (เก็บ Controller ของ Advisor)
+        │           │   ├───components (เก็บ Controller ที่มีการเรียกใช้งานร่วมกัน)
+        │           │   │   ├───navigationbars (เก็บ Controller ที่ควบคุม Navigation bar)
+        │           │   │   └───tables (เก็บ Controller ที่ควบคุม Table)
+        │           │   ├───officer (เก็บ Controller ของ Officer)
+        │           │   │   ├───department (เก็บ Controller ของ Department Officer)
+        │           │   │   └───faculty (เก็บ Controller ของ Faculty Officer)
+        │           │   ├───requestforms (เก็บ Controller ของ Request Form)
+        │           │   └───student (เก็บ Controller ของ Student)
+        │           ├───cs211671project (เก็บ MainApplication)
+        │           ├───models (เก็บโมเดล)
+        │           │   ├───collections (เก็บ collection)
+        │           │   ├───requestforms (เก็บ Model ของ Request Form ทุกประเภท)
+        │           │   └───users (เก็บ Model ของ User ทุกบทบาท)
+        │           │       └───officers (เก็บ Model ของ Officers ในระบบ)
+        │           └───services (เก็บเซอร์วิส)
+        │               ├───datahandle (เก็บ Service และ Interface ที่เกี่ยวข้องกับจัดการข้อมูล CSV)
+        │               ├───datasource (เก็บ DataSource ทั้งหมดในโปรแกรม)
+        │               └───popup (เก็บ Service ที่ใช้ในการจัดการหน้าต่างแบบผุดขึ้น)
+        └───resources
+            ├───documents (เก็บไฟล์เอกสารคำแนะนำการใช้งานเพื่อแสดงในระบบ)
+            ├───images (เก็บรูปภาพที่ใช้ในโปรแกรม)
+            │   ├───developer-pictures (เก็บรูปที่แสดงหน้าตา (หน้ายิ้ม) ที่ชัดเจน)
+            │   └───navbar-icons (เก็บภาพของ Icon ที่ใช้ใน Navigation bar)
+            └───ku
+                └───cs
+                    └───views
+                        ├───admin (เก็บไฟล์ fxml ของ Admin)
+                        ├───advisor (เก็บไฟล์ fxml ของ Advisor)
+                        ├───components (เก็บไฟล์ fxml ของ component ที่มีการเรียกใช้งานร่วมกัน)
+                        ├───officer (เก็บไฟล์ fxml ของ Officer)
+                        │   ├───department (เก็บไฟล์ fxml ของ Department Officer)
+                        │   └───faculty (เก็บไฟล์ fxml ของ Faculty Officer)
+                        ├───request-forms (เก็บไฟล์ fxml ของ Request Form)
+                        ├───student (เก็บไฟล์ fxml ของ Student)
+                        └───styles (เก็บไฟล์ CSS หรือสไตล์ที่ใช้ในโปรแกรม)
 </pre>
-
