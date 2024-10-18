@@ -163,12 +163,11 @@
    * สร้างข้อมูลจำลอง
    
 ## วิธีการติดตั้งและรันโปรแกรม
-รวมถึงที่อยู่ของไฟล์ pdf
 ## Download
 #### Jar file for Windows
 >Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
-#### Jar file for MacOs M1
->Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
+#### Jar file for macOS M1
+>Download <b>FormXpress-for-macOS.zip</b> from [Release](<link>) or [Click](<link>)
 
 ## Installation
 ### การติดตั้งโปรแกรมสำหรับ Windows
@@ -183,11 +182,10 @@
 
 #### หรือ run ผ่าน command
 ```bash
-java -jar Event-Hub.jar
+java -jar FormXpress.jar
 ```
 
-
-### MacOs Installation
+### macOS Installation
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
 <img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
@@ -197,6 +195,12 @@ java -jar Event-Hub.jar
 
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
 <img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+## UML
+>ไฟล์รูป UML อยู่ใน Directory project-info/uml
+
+## PDF วิธีการใช้งาน
+>ไฟล์ user-manual.pdf (วิธีการใช้งาน) อยู่ใน Directory project-info
 
 
 ## ตัวอย่างข้อมูลผู้ใช้ระบบ
