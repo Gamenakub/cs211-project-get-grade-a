@@ -48,6 +48,8 @@ public class AdminFacultyManagementPopupController extends BasePopup<Faculty> {
             AlertService.showError("กรุณากรอกชื่อคณะให้ครบถ้วนและถูกต้อง");
         } else if (facultyId.isEmpty()) {
             AlertService.showError("กรุณากรอกรหัสคณะให้ครบถ้วนและถูกต้อง");
+        } else if (!doesFacultyCanBeModifyOrCreateTo(faculty, facultyName, facultyId)) {
+            AlertService.showError("คณะที่คุณต้องการสร้างหรือแก้ไขมีอยู่แล้วในระบบ");
         } else {
             if (this.hasModel()) {
                 faculty.setName(facultyNameTextField.getText());
@@ -61,5 +63,14 @@ public class AdminFacultyManagementPopupController extends BasePopup<Faculty> {
             this.issueEvent("success");
             this.close();
         }
+    }
+    public boolean doesFacultyCanBeModifyOrCreateTo(Faculty facultyReference, String newFacultyName, String newFacultyId) {
+        for (Faculty faculty : admin.getFacultyList().getFaculties()) {
+            if (faculty.equals(facultyReference)) {
+                continue;
+            }
+            if (faculty.getName().equals(newFacultyName) || faculty.getId().equals(newFacultyId)) return false;
+        }
+        return true;
     }
 }

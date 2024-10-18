@@ -57,6 +57,8 @@ public class AdminDepartmentManagementPopupController extends BasePopup<Departme
             AlertService.showError("กรุณากรอกรหัสภาควิชาให้ครบถ้วน");
         } else if (faculty == null) {
             AlertService.showError("กรุณาเลือกคณะ");
+        } else if (!doesDepartmentCanBeModifyOrCreateTo(department, departmentName, departmentId)) {
+            AlertService.showError("ภาควิชานี้มีอยู่ในระบบอยู่แล้ว");
         } else {
             if (this.hasModel()) {
                 if (!faculty.equals(department.getFaculty())) {
@@ -77,5 +79,13 @@ public class AdminDepartmentManagementPopupController extends BasePopup<Departme
             this.issueEvent("success");
             this.close();
         }
+    }
+
+    public boolean doesDepartmentCanBeModifyOrCreateTo(Department departmentReference, String newDepartmentName, String newDepartmentId) {
+        for (Department department : admin.getDepartmentList().getDepartments()) {
+            if (department.equals(departmentReference)) continue;
+            if (department.getName().equals(newDepartmentName) || department.getId().equals(newDepartmentId)) return false;
+        }
+        return true;
     }
 }
