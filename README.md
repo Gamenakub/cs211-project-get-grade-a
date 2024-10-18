@@ -189,13 +189,13 @@ java -jar Event-Hub.jar
 
 ### MacOs Installation
 
-#### 1. Double click Event-Hub.zip
+#### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
 <img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
 
-#### 2. Open Event-Hub folder
+#### 2. เข้าไปที่ FormXpress-mac-m1-m2 Folder
 <img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
 
-#### 3. Double click Event-Hub.jar
+#### 3. กดเลือก FormXpress-mac-m1-m2.jar
 <img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
 
 
@@ -238,9 +238,9 @@ java -jar Event-Hub.jar
             │           │   └───users (เก็บ Model ของ User ทุกบทบาท)
             │           │      
             │           └───services
-            │               ├───datahandle
-            │               ├───datasource
-            │               └───popup
+            │               ├───datahandle (เก็บ Service และ Interface ที่เกี่ยวข้องกับจัดการข้อมูล CSV)
+            │               ├───datasource (เก็บ DataSource ทั้งหมดในโปรแกรม)
+            │               └───popup (เก็บ Service ที่ใช้ในการจัดการหน้าต่างแบบผุดขึ้น)
             └───resources
                 ├───images (เก็บรูปภาพที่ใช้ในโปรแกรม)
                 │   ├───developer-pictures
