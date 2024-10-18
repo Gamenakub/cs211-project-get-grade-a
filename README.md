@@ -168,9 +168,9 @@
 ## วิธีการติดตั้งและรันโปรแกรม
 ### ดาวน์โหลดโปรแกรม
 #### Jar file for Windows
->Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
+>ดาวน์โหลด <b>FormXpress-windows.zip</b> จาก [Release](<link>) หรือ [Click](<link>)
 #### Jar file for macOS M1
->Download <b>FormXpress-for-macOS.zip</b> from [Release](<link>) or [Click](<link>)
+>ดาวน์โหลด <b>FormXpress-mac-m1-m2.zip</b> จาก [Release](<link>) หรือ [Click](<link>)
 
 -----------
 ### การติดตั้งโปรแกรม
@@ -184,6 +184,11 @@
 #### 3. กดเลือก FormXpress.jar
 <img width="300" alt="window-install3" src="https://github.com/user-attachments/assets/d75a3671-7c33-4392-887b-0b532a27dbc0">
 
+#### หรือรันผ่านคำสั่ง
+```bash
+java -jar FormXpress-windows.jar
+```
+
 ### การติดตั้งโปรแกรมสำหรับ macOS
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
@@ -195,9 +200,9 @@
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
 <img width="764" alt="mac-install3" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
 
-### หรือรันผ่านคำสั่ง
+#### หรือรันผ่านคำสั่ง
 ```bash
-java -jar FormXpress.jar
+java -jar FormXpress-mac-m1-m2.jar
 ```
 
 ## UML
