@@ -1,4 +1,14 @@
-# CS211 Project ภาคต้น 2567
+<h1 align="center">
+  <br>
+    <span style="color: #3be8ac;">CS211 Project FormXpress</span>
+  <br>
+</h1>
+
+<p align="center">
+    <b>โปรเจกต์นี้เป็นส่วนหนึ่งของ รายวิชา 01418211 - การสร้างซอฟต์แวร์ (Software Construction)</b> <br>
+    <b>ภาคต้น ปีการศึกษา 2567</b> <br>
+</p>
+
 
 ## ชื่อทีม get-grade-a
 
@@ -16,7 +26,7 @@
 | ความก้าวหน้าของระบบครั้งที่ 1 | 9 ส.ค. 2567 17:00 น.  | https://youtu.be/7DHbP0pETzA?si=2GtJZ2wo1RFebmbg |
 | ความก้าวหน้าของระบบครั้งที่ 2 | 6 ก.ย. 2567 17:00 น.  | https://youtu.be/y2gTjFuIMzY?si=rd1wRr-JimpZvbcf |
 | ความก้าวหน้าของระบบครั้งที่ 3 | 27 ก.ย. 2567 17:00 น. | https://youtu.be/Ra9TADI_Kwg |
-| โครงงานที่สมบูรณ์             | 18 ต.ค. 2567 17:00 น. | ____________ |
+| โครงงานที่สมบูรณ์             | 18 ต.ค. 2567 17:00 น. | https://youtu.be/puubVeLjLiI |
 
 ## สรุปสิ่งที่พัฒนาในแต่ละครั้ง
 ### ความก้าวหน้าของระบบครั้งที่ 1
@@ -119,21 +129,121 @@
 
 ### โครงงานที่สมบูรณ์
 1. ฐาพล ชินกรสกุล (ซัน)
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
+   * จัดทำ PDF วิธีการใช้งานระบบ
+   * ตัดต่อวิดีโอนำเสนอโครงงานที่สมบูรณ์
+   * จัดระเบียบให้กับโค้ด
+   * แก้ไข ปรับปรุง และพัฒนา feature ที่เกี่ยวข้องกับระบบของผู้ใช้ และระบบของผู้ดูแลระบบ ให้ถูกต้องและสมบูรณ์
 2. ธีร์ อนุสรณ์ศาสน์ (ตี้)
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
+   * จัดทำ PDF วิธีการใช้งานระบบ
+   * ตัดต่อวิดีโอนำเสนอโครงงานที่สมบูรณ์
+   * จัดระเบียบให้กับโค้ด
+   * แก้ไข ปรับปรุง และพัฒนา feature ที่เกี่ยวข้องกับระบบของผู้ใช้ และระบบของผู้ดูแลระบบ ให้ถูกต้องและสมบูรณ์
 3. อิสรพงษ์ เถื่อนสกุล (เกม)
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
+   * จัดทำ PDF วิธีการใช้งานระบบ
+   * ตัดต่อวิดีโอนำเสนอโครงงานที่สมบูรณ์
+   * จัดระเบียบให้กับโค้ด
+   * แก้ไข ปรับปรุง และพัฒนา feature ที่เกี่ยวข้องกับระบบของผู้ใช้ และระบบของผู้ดูแลระบบ ให้ถูกต้องและสมบูรณ์
 4. จิรัฏฐ์ ค่องสกุล (เฟม)
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
-   * อธิบายสิ่งที่เป็นประโยชน์ต่อระบบ และทำให้ทีมภูมิใจ ไม่จำกัดจำนวนข้อย่อย
+   * จัดทำ PDF วิธีการใช้งานระบบ 
+   * ตัดต่อวิดีโอนำเสนอโครงงานที่สมบูรณ์ 
+   * จัดระเบียบให้กับโค้ด 
+   * แก้ไข ปรับปรุง feature ที่เกี่ยวข้องกับระบบของผู้ใช้ และระบบของผู้ดูแลระบบ ให้ถูกต้องและสมบูรณ์ 
+   * พัฒนา feature การสร้างและการแสดงผลไฟล์ pdf ให้ทำงานได้ถูกต้องและสมบูรณ์
+   * สร้างหน้าคำแนะนำการใช้งาน
 
 ## วิธีการติดตั้งและรันโปรแกรม
-อธิบายวิธีการติดตั้ง และวิธีการรันโปรแกรม รวมถึงที่อยู่ของไฟล์ pdf
+รวมถึงที่อยู่ของไฟล์ pdf
+## Download
+#### Jar file for Windows
+>Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
+#### Jar file for MacOs M1
+>Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
 
-## ตัวอย่างข้อมูลผู้ใช้ระบบ (username, password)
+## Installation[![](https://raw.githubusercontent.com/aregtech/areg-sdk/master/docs/img/pin.svg)](#introduction)
+### Windows Installation
+#### 1. Extract Zip File
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+#### 2. Select <Name> Folder
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+#### 3. Double Click <Name>.jar
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+
+
+### MacOs Installation
+
+#### 1. Double click Event-Hub.zip
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+#### 2. Open Event-Hub folder
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+#### 3. Double click Event-Hub.jar
+<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+
+
+## ตัวอย่างข้อมูลผู้ใช้ระบบ
+
+| username    |   password    | role               |
+|-------------|:-------------:|--------------------|
+| admin       | admin12345678 | admin              |
+| fscikes     |    kzf695     | faculty officer    |
+| fscicho     |    gfs475     | department officer |
+| fscinuc     |    sqc805     | advisor            |
+| b6610458991 |    zxe508     | student            |
 
 ## การวางโครงสร้างไฟล์ของโครงงาน
+<pre>
+───cs211-project-get-grade-a
+    ├───data
+    │   ├───profile-pictures
+    │   ├───request-forms
+    │   ├───request-forms-pdf
+    │   └───users
+    └───src
+        └───main
+            ├───java
+            │   └───ku
+            │       └───cs
+            │           ├───config
+            │           ├───controllers
+            │           │   ├───admin (เก็บ Controller ของ Admin)
+            │           │   ├───advisor (เก็บ Controller ของ Advisor)
+            │           │   ├───components (เก็บ Controller ที่มีการเรียกใช้งานร่วมกัน)
+            │           │   │   ├───navigationbars (เก็บ Controller ที่ควบคุม Navigationbar)
+            │           │   │   └───tables (เก็บ Controller ที่ควบคุม Table)
+            │           │   ├───officer
+            │           │   │   ├───department (เก็บ Controller ของ Department)
+            │           │   │   └───faculty (เก็บ Controller ของ Faculty)
+            │           │   ├───requestforms (เก็บ Controller ของ Requestform)
+            │           │   └───student (เก็บ Controller ของ Student)
+            │           ├───cs211671project
+            │           ├───models (เก็บโมเดล)
+            │           │   ├───collections (เก็บ collection)
+            │           │   ├───requestforms (เก็บ Model ของ Requestform ทุกประเภท)
+            │           │   └───users (เก็บ Model ของ User ทุกบทบาท)
+            │           │      
+            │           └───services
+            │               ├───datahandle
+            │               ├───datasource
+            │               └───popup
+            └───resources
+                ├───images (เก็บรูปภาพที่ใช้ในโปรแกรม)
+                │   ├───developer-pictures
+                │   └───navbar-icons (เก็บภาพของ Icon ที่ใช้ใน Navigationbar)
+                └───ku
+                    └───cs
+                        └───views
+                            ├───admin (เก็บไฟล์ fxml ของ Admin)
+                            ├───advisor (เก็บไฟล์ fxml ของ Advisor)
+                            ├───components (เก็บไฟล์ fxml ของ component ที่มีการเรียกใช้งานร่วมกัน)
+                            ├───officer (เก็บไฟล์ fxml ของ Officer)
+                            │   ├───department
+                            │   └───faculty
+                            ├───request-forms (เก็บไฟล์ fxml ของ Requestform)
+                            ├───student (เก็บไฟล์ fxml ของ Student)
+                            └───styles (เก็บไฟล์ CSS หรือสไตล์ที่ใช้ในโปรแกรม)
+</pre>
+
