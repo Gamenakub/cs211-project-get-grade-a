@@ -29,7 +29,7 @@ public class StudentList implements Searchable<Student> {
                 return student;
             }
         }
-        throw new NoSuchElementException("Student with ID " + studentId + " not found.");
+        return null;
     }
 
     @Override

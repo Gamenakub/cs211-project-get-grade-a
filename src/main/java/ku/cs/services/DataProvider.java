@@ -18,7 +18,6 @@ import ku.cs.services.datasource.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class DataProvider {
 
@@ -75,7 +74,7 @@ public class DataProvider {
         reloadData();
         User user = allUsers.login(username, password);
         if (user == null) {
-            throw new NoSuchElementException("ไม่มีผู้ใช้ในระบบ");
+            return null;
         }
         String role = user.getRole();
 

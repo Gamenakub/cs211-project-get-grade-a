@@ -25,6 +25,9 @@ public class Session {
     public void setUser(String username, String password) {
         User user;
         user = DataProvider.getDataProvider().setDataByRole(username, password);
+        if (user == null) {
+            return;
+        }
         this.loggedInUser = user;
     }
 

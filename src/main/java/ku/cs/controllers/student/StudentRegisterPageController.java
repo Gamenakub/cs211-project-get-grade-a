@@ -75,29 +75,32 @@ public class StudentRegisterPageController {
             Student student;
             try {
                 student = studentList.findStudentById(studentId);
-                if (student.checkStudentRegister(nameTitle, name, surname, studentId, email)) {
-                    if (student.getActivated()) {
-                        AlertService.showError("บัญชีนี้ได้มีการลงทะเบียนแล้ว");
-                    } else {
-                        student.setUsername(username);
-                        student.setStudentEmail(email);
-                        if (password.equals(confirmNewPassword)) {
-                            student.setStudentPassword(password);
-                            student.setActivated(true);
-                            student.setRecentTime(LocalDateTime.now());
-                            DataProvider.getDataProvider().saveStudent();
-                            AlertService.showInfo("การลงทะเบียนใช้งานเสร็จสิ้น" + System.lineSeparator() + "นิสิตสามารถลงชื่อเข้าใช้งานได้ทันที");
-                            FXRouter.goTo("user-login");
-                        }
-                    }
-                } else {
+                if (student == null) {
                     AlertService.showError("ไม่พบข้อมูลนิสิตที่ตรงกัน");
+                }
+                else {
+                    if (student.checkStudentRegister(nameTitle, name, surname, studentId, email)) {
+                        if (student.getActivated()) {
+                            AlertService.showError("บัญชีนี้ได้มีการลงทะเบียนแล้ว");
+                        } else {
+                            student.setUsername(username);
+                            student.setStudentEmail(email);
+                            if (password.equals(confirmNewPassword)) {
+                                student.setStudentPassword(password);
+                                student.setActivated(true);
+                                student.setRecentTime(LocalDateTime.now());
+                                DataProvider.getDataProvider().saveStudent();
+                                AlertService.showInfo("การลงทะเบียนใช้งานเสร็จสิ้น" + System.lineSeparator() + "นิสิตสามารถลงชื่อเข้าใช้งานได้ทันที");
+                                FXRouter.goTo("user-login");
+                            }
+                        }
+                    } else {
+                        AlertService.showError("ไม่พบข้อมูลนิสิตที่ตรงกัน");
+                    }
                 }
             } catch (IOException e) {
                 AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
                 System.exit(1);
-            } catch (NoSuchElementException e) {
-                AlertService.showError("ไม่พบข้อมูลนิสิตที่ตรงกัน");
             }
         }
     }
