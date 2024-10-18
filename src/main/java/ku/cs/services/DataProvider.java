@@ -1,6 +1,5 @@
 package ku.cs.services;
 
-import ku.cs.controllers.components.BasePopup;
 import ku.cs.models.*;
 import ku.cs.models.collections.*;
 import ku.cs.models.requestforms.AbsenceRequestForm;
@@ -17,9 +16,10 @@ import ku.cs.services.datahandle.DataSourceReader;
 import ku.cs.services.datahandle.DataSourceWriter;
 import ku.cs.services.datasource.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class DataProvider{
+public class DataProvider {
 
     private static DataProvider dataProvider;
     private DepartmentList departmentList;
@@ -32,58 +32,69 @@ public class DataProvider{
     private DepartmentApproverList departmentApproverList;
     private FacultyApproverList facultyApproverList;
     private UserList allUsers;
+    private CourseList courseList;
 
-
-    public DataProvider() {
-        this.facultyList = getFacultyList();
-        this.departmentList = getDepartmentList();
-        this.studentList = getStudentList();
-        this.allUsers=loadUserList();
-        this.allRequestFormList = getRequestFormList();
+    private DataProvider() {
+        facultyList = getFacultyList();
+        departmentList = getDepartmentList();
+        studentList = getStudentList();
+        allUsers = getUserList();
+        allRequestFormList = getRequestFormList();
+        advisorList = getAdvisorList();
+        departmentOfficerList = getDepartmentOfficerList();
+        facultyApproverList = getFacultyApproverList();
+        departmentApproverList=getDepartmentApproverList();
+        facultyOfficerList = getFacultyOfficerList();
+        courseList = getCourseList();
     }
 
-    public static DataProvider getDataProvider(){
-        if (dataProvider==null){
-            dataProvider=new DataProvider();
+    private void reloadData(){
+        facultyList = getFacultyList();
+        departmentList = getDepartmentList();
+        studentList = getStudentList();
+        allUsers = getUserList();
+        advisorList = getAdvisorList();
+        allRequestFormList = getRequestFormList();
+        departmentOfficerList = getDepartmentOfficerList();
+        facultyApproverList = getFacultyApproverList();
+        departmentApproverList=getDepartmentApproverList();
+        facultyOfficerList = getFacultyOfficerList();
+        courseList = getCourseList();
+    }
+
+    public static DataProvider getDataProvider() {
+        if (dataProvider == null) {
+            dataProvider = new DataProvider();
         }
         return dataProvider;
 
     }
 
-    public User setDataByRole(String username,String password) throws Exception {
+    public User setDataByRole(String username, String password) {
+        reloadData();
         User user = allUsers.login(username, password);
-        if (user==null) throw (new Exception("ไม่มีผู้ใช้ในระบบ"));
-        else if (user.getStatus()==false) throw (new Exception("ไม่มีสิทธิ์เข้าใช้งาน"));
+        if (user == null) {
+            return null;
+        }
         String role = user.getRole();
 
-        switch (role) {
-            case "admin":
-                return setAdminData((Admin) user);
-            case "advisor": {
-                return setAdvisorData((Advisor) user);
-            }
-            case "student": {
-                return setStudentData((Student) user);
-            }
-            case "departmentOfficer": {
-                return setDepartmentOfficerData((DepartmentOfficer) user);
-            }
-            case "facultyOfficer": {
-                return setFacultyOfficerData((FacultyOfficer) user);
-            }
-        }
-        return null;
+        return switch (role) {
+            case "admin" -> setAdminData((Admin) user);
+            case "advisor" -> setAdvisorData((Advisor) user);
+            case "student" -> setStudentData((Student) user);
+            case "departmentOfficer" -> setDepartmentOfficerData((DepartmentOfficer) user);
+            case "facultyOfficer" -> setFacultyOfficerData((FacultyOfficer) user);
+            default -> null;
+        };
     }
-
-    // set data
-    private User setAdvisorData(Advisor user){
+    private User setAdvisorData(Advisor user) {
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByAdvisor(user).findRequestFormsByStatus(RequestForm.Status.PENDING_TO_ADVISOR);
         user.setRequestFormList(requestFormList);
         StudentList allStudent = getStudentList();
-        ArrayList<Student> students= new ArrayList<>();
-        for (Student student:allStudent.getStudents()){
-            if (student.getAdvisor()==null) continue;
-            if(student.getAdvisor().equals(user)){
+        ArrayList<Student> students = new ArrayList<>();
+        for (Student student : allStudent.getStudents()) {
+            if (student.getAdvisor() == null) continue;
+            if (student.getAdvisor().equals(user)) {
                 students.add(student);
             }
         }
@@ -94,35 +105,24 @@ public class DataProvider{
         return user;
     }
 
-    private Student setStudentData(Student user){
+    private Student setStudentData(Student user) {
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByStudent(user);
         user.setRequestFormList(requestFormList);
-
         return user;
     }
 
-    private DepartmentOfficer setDepartmentOfficerData(DepartmentOfficer departmentOfficer){
+    private DepartmentOfficer setDepartmentOfficerData(DepartmentOfficer departmentOfficer) {
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByDepartment(departmentOfficer.getDepartment());
-
         RequestFormList targetRequestForms = requestFormList.findRequestFormsByStatus(RequestForm.Status.PENDING_TO_DEPARTMENT);
-
         StudentList studentList = getStudentList();
-
         StudentList studentInDepartment = new StudentList();
         for (Student student : studentList.getStudents()) {
             if (student.getDepartment().equals(departmentOfficer.getDepartment())) {
                 studentInDepartment.addStudent(student);
             }
         }
-
-        departmentOfficer.setStudentList(studentList);
-        departmentOfficer.setStudentListWriter(new PermissionControlledCollection<>(studentList.getStudents(),studentList.getStudents()));
-
-
+        departmentOfficer.setStudentList(studentInDepartment);
         departmentOfficer.setRequestFormList(targetRequestForms);
-
-        DepartmentApproverList departmentApproverList=getDepartmentApproverList();
-        departmentOfficer.setDepartmentApproverList(departmentApproverList);
 
         AdvisorList newAdvisorList = new AdvisorList();
         for (Advisor advisor : advisorList.getAdvisors()) {
@@ -135,24 +135,20 @@ public class DataProvider{
         return departmentOfficer;
     }
 
-    private FacultyOfficer setFacultyOfficerData(FacultyOfficer facultyOfficer){
+    private FacultyOfficer setFacultyOfficerData(FacultyOfficer facultyOfficer) {
         RequestFormList requestFormList = getRequestFormList().findRequestFormsByFaculty(facultyOfficer.getFaculty()).findRequestFormsByStatus(RequestForm.Status.PENDING_TO_FACULTY);
         facultyOfficer.setRequestFormList(requestFormList);
-        FacultyApproverList facultyApproverList=getFacultyApproverList();
-
-        facultyOfficer.setFacultyApproverList(facultyApproverList);
         return facultyOfficer;
     }
 
-    private Admin setAdminData(Admin admin){
-        FacultyOfficerList facultyOfficerList=getFacultyOfficerList();
-        DepartmentOfficerList departmentOfficerList=getDepartmentOfficerList();
-        StudentList studentList=getStudentList();
-        AdvisorList advisorList=getAdvisorList();
-        DepartmentList departmentList=getDepartmentList();
-        FacultyList facultyList=getFacultyList();
-        RequestFormList requestFormList=getRequestFormList();
-
+    private Admin setAdminData(Admin admin) {
+        FacultyOfficerList facultyOfficerList = getFacultyOfficerList();
+        DepartmentOfficerList departmentOfficerList = getDepartmentOfficerList();
+        StudentList studentList = getStudentList();
+        AdvisorList advisorList = getAdvisorList();
+        DepartmentList departmentList = getDepartmentList();
+        FacultyList facultyList = getFacultyList();
+        RequestFormList requestFormList = getRequestFormList();
         admin.setFacultyOfficerList(facultyOfficerList);
         admin.setDepartmentOfficerList(departmentOfficerList);
         admin.setStudentList(studentList);
@@ -162,19 +158,17 @@ public class DataProvider{
         admin.setRequestFormList(requestFormList);
         return admin;
     }
-
-    //get data
-    private DepartmentApproverList getDepartmentApproverList(){
-        if (departmentApproverList==null) departmentApproverList=loadDepartmentApproverList();
+    private DepartmentApproverList getDepartmentApproverList() {
+        if (departmentApproverList == null) departmentApproverList = loadDepartmentApproverList();
         return departmentApproverList;
     }
 
-    private FacultyApproverList getFacultyApproverList(){
-        if (facultyApproverList==null) facultyApproverList=loadFacultyApproverList();
+    private FacultyApproverList getFacultyApproverList() {
+        if (facultyApproverList == null) facultyApproverList = loadFacultyApproverList();
         return facultyApproverList;
     }
 
-    public RequestFormList getRequestFormList() {
+    private RequestFormList getRequestFormList() {
         if (allRequestFormList == null) {
             loadRequestFormList();
         }
@@ -186,6 +180,13 @@ public class DataProvider{
             loadAdvisorList();
         }
         return advisorList;
+    }
+
+    private UserList getUserList() {
+        if (allUsers == null) {
+            loadUserList();
+        }
+        return allUsers;
     }
 
     public StudentList getStudentList() {
@@ -209,7 +210,6 @@ public class DataProvider{
         return departmentOfficerList;
     }
 
-
     private FacultyList getFacultyList() {
         if (facultyList == null) {
             loadFacultyList();
@@ -224,20 +224,26 @@ public class DataProvider{
         return departmentList;
     }
 
+    private CourseList getCourseList() {
+        if (courseList == null) {
+            loadCourseList();
+        }
+        return courseList;
+    }
 
-    private UserList loadUserList(){
-        allUsers=loadAdmin();
-        StudentList studentList=getStudentList();
-        AdvisorList advisorList=getAdvisorList();
-        FacultyOfficerList facultyOfficerList=getFacultyOfficerList();
-        DepartmentOfficerList departmentOfficerList=getDepartmentOfficerList();
+    private void loadUserList() {
+        loadAdmin();
+        StudentList studentList = getStudentList();
+        AdvisorList advisorList = getAdvisorList();
+        FacultyOfficerList facultyOfficerList = getFacultyOfficerList();
+        DepartmentOfficerList departmentOfficerList = getDepartmentOfficerList();
         allUsers.addUsers(studentList.getStudents());
         allUsers.addUsers(advisorList.getAdvisors());
         allUsers.addUsers(facultyOfficerList.getOfficers());
         allUsers.addUsers(departmentOfficerList.getOfficers());
-        return allUsers;
     }
-    private UserList loadAdmin(){
+
+    private void loadAdmin() {
         AdminDataSource adminDataSource = new AdminDataSource(
                 getStudentList(),
                 getDepartmentList(),
@@ -246,79 +252,91 @@ public class DataProvider{
                 getDepartmentOfficerList(),
                 getFacultyOfficerList());
         DataSourceReader<UserList, Admin> adminDataSourceReader = new DataSourceReader<>(adminDataSource);
-        UserList admin = adminDataSourceReader.readData();
-        return admin;
+        allUsers = adminDataSourceReader.readData();
     }
-    private AdvisorList loadAdvisorList(){
-        AdvisorDataSource advisorDataSource = new AdvisorDataSource(departmentList);
+
+    private void loadAdvisorList() {
+        AdvisorDataSource advisorDataSource = new AdvisorDataSource(getDepartmentList());
         DataSourceReader<AdvisorList, Advisor> advisorDataSourceReader = new DataSourceReader<>(advisorDataSource);
         advisorList = advisorDataSourceReader.readData();
-        return  advisorList;
     }
 
     private RequestFormActionHistoryList getRequestFormApprovingHistoryList() {
         RequestFormApprovingHistoryDataSource requestFormApprovingHistoryDataSource = new RequestFormApprovingHistoryDataSource();
         DataSourceReader<RequestFormActionHistoryList, RequestFormActionHistory> requestFormApprovingHistoryDataSourceReader = new DataSourceReader<>(requestFormApprovingHistoryDataSource);
-        RequestFormActionHistoryList requestFormActionHistoryList = requestFormApprovingHistoryDataSourceReader.readData();
-        return requestFormActionHistoryList;
+        return requestFormApprovingHistoryDataSourceReader.readData();
     }
 
-    private void loadStudentList(){
-        AdvisorList advisorList=getAdvisorList();
-        DepartmentList departmentList=getDepartmentList();
-        StudentDataSource studentDataSource = new StudentDataSource(advisorList,departmentList);
+    private void loadStudentList() {
+        AdvisorList advisorList = getAdvisorList();
+        DepartmentList departmentList = getDepartmentList();
+        StudentDataSource studentDataSource = new StudentDataSource(advisorList, departmentList);
         DataSourceReader<StudentList, Student> studentDataSourceReader = new DataSourceReader<>(studentDataSource);
         studentList = studentDataSourceReader.readData();
 
-        for (Student student:studentList.getStudents()){
-            RequestFormList target=getRequestFormList().findRequestFormsByStudent(student);
+        for (Student student : studentList.getStudents()) {
+            RequestFormList target = getRequestFormList().findRequestFormsByStudent(student);
             student.setRequestFormList(target);
         }
     }
 
-    private FacultyApproverList loadFacultyApproverList(){
-        FacultyApproverDataSource facultyApproverDataSource = new FacultyApproverDataSource(facultyList);
+    private FacultyApproverList loadFacultyApproverList() {
+        FacultyApproverDataSource facultyApproverDataSource = new FacultyApproverDataSource(getFacultyList());
         DataSourceReader<FacultyApproverList, FacultyApprover> facultyApproverDataSourceReader = new DataSourceReader<>(facultyApproverDataSource);
-        FacultyApproverList facultyApproverList = facultyApproverDataSourceReader.readData();
-        return facultyApproverList;
+        return facultyApproverDataSourceReader.readData();
     }
 
-    private DepartmentApproverList loadDepartmentApproverList(){
+    private DepartmentApproverList loadDepartmentApproverList() {
         DepartmentApproverDataSource departmentApproverDataSource = new DepartmentApproverDataSource(departmentList);
         DataSourceReader<DepartmentApproverList, DepartmentApprover> departmentApproverDataSourceReader = new DataSourceReader<>(departmentApproverDataSource);
-        DepartmentApproverList departmentApproverList = departmentApproverDataSourceReader.readData();
-        return departmentApproverList;
+        return departmentApproverDataSourceReader.readData();
     }
 
-    private void loadFacultyOfficerList(){
-        FacultyOfficerDataSource facultyOfficerDataSource=new FacultyOfficerDataSource(facultyList);
-        DataSourceReader<FacultyOfficerList,FacultyOfficer> facultyOfficerDataSourceReader = new DataSourceReader<>(facultyOfficerDataSource);
+    private void loadFacultyOfficerList() {
+        FacultyOfficerDataSource facultyOfficerDataSource = new FacultyOfficerDataSource(getFacultyList());
+        DataSourceReader<FacultyOfficerList, FacultyOfficer> facultyOfficerDataSourceReader = new DataSourceReader<>(facultyOfficerDataSource);
         facultyOfficerList = facultyOfficerDataSourceReader.readData();
+        getFacultyApproverList();
+        for(FacultyOfficer facultyOfficer : facultyOfficerList.getFacultyOfficers()){
+            facultyOfficer.getFacultyApproverList().getApprovers().clear();
+            for(FacultyApprover facultyApprover : facultyApproverList.getApprovers()) {
+                if(facultyApprover.getFaculty().equals(facultyOfficer.getFaculty()) && !facultyOfficer.getFacultyApproverList().getApprovers().contains(facultyApprover)) {
+                    facultyOfficer.getFacultyApproverList().addApprover(facultyApprover);
+                }
+            }
+        }
     }
 
-    private void loadDepartmentOfficerList(){
-        StudentList studentList=getStudentList();
-        DepartmentList departmentList=getDepartmentList();
-        DepartmentOfficerDataSource departmentOfficerDataSource = new DepartmentOfficerDataSource(departmentList,studentList);
-        DataSourceReader<DepartmentOfficerList,DepartmentOfficer> departmentOfficerDataSourceReader = new DataSourceReader<>(departmentOfficerDataSource);
+    private void loadDepartmentOfficerList() {
+        DepartmentOfficerDataSource departmentOfficerDataSource = new DepartmentOfficerDataSource(getDepartmentList(), getStudentList());
+        DataSourceReader<DepartmentOfficerList, DepartmentOfficer> departmentOfficerDataSourceReader = new DataSourceReader<>(departmentOfficerDataSource);
         departmentOfficerList = departmentOfficerDataSourceReader.readData();
+        getDepartmentApproverList();
+        for(DepartmentOfficer departmentOfficer : departmentOfficerList.getDepartmentOfficers()){
+            departmentOfficer.getDepartmentApproverList().clear();
+            for(DepartmentApprover departmentApprover : departmentApproverList.getApprovers()){
+                if(departmentOfficer.getDepartment().equals(departmentApprover.getDepartment()) && !departmentOfficer.getDepartmentApproverList().getApprovers().contains(departmentApprover)){
+                    departmentOfficer.getDepartmentApproverList().addApprover(departmentApprover);
+                }
+            }
+        }
     }
 
-    private void loadFacultyList(){
+    private void loadFacultyList() {
         FacultyDataSource facultyDataSource = new FacultyDataSource();
         DataSourceReader<FacultyList, Faculty> facultyDataSourceReader = new DataSourceReader<>(facultyDataSource);
         facultyList = facultyDataSourceReader.readData();
     }
 
-    private void loadDepartmentList(){
-        FacultyList facultyList=getFacultyList();
+    private void loadDepartmentList() {
+        FacultyList facultyList = getFacultyList();
         DepartmentDataSource departmentDataSource = new DepartmentDataSource(facultyList);
         DataSourceReader<DepartmentList, Department> departmentDataSourceReader = new DataSourceReader<>(departmentDataSource);
         departmentList = departmentDataSourceReader.readData();
 
-        for (Faculty faculty:facultyList.getFaculties()) {
-            DepartmentList targetDepartmentList=new DepartmentList();
-            for (Department department:departmentList.getDepartments()) {
+        for (Faculty faculty : facultyList.getFaculties()) {
+            DepartmentList targetDepartmentList = new DepartmentList();
+            for (Department department : departmentList.getDepartments()) {
                 if (department.getFaculty().equals(faculty)) {
                     targetDepartmentList.addDepartment(department);
                 }
@@ -327,181 +345,260 @@ public class DataProvider{
         }
     }
 
-    private void loadRequestFormList(){
-        allRequestFormList=new RequestFormList();
-        StudentList studentList=getStudentList();
-        AdvisorList advisorList=getAdvisorList();
-        AbsenceRequestFormDataSource absenceDataSource=new AbsenceRequestFormDataSource(studentList,advisorList);
+    private void loadCourseList() {
+        courseList = new CourseList();
+        CourseDataSource courseDataSource = new CourseDataSource();
+        DataSourceReader<CourseList, Course> courseDataSourceReader = new DataSourceReader<>(courseDataSource);
+        courseList = courseDataSourceReader.readData();
+    }
+
+    private void loadRequestFormList() {
+        allRequestFormList = new RequestFormList();
+        StudentList studentList = getStudentList();
+        AdvisorList advisorList = getAdvisorList();
+        AbsenceRequestFormDataSource absenceDataSource = new AbsenceRequestFormDataSource(studentList, advisorList, getCourseList());
         DataSourceReader<RequestFormList, AbsenceRequestForm> absenceFormDataSourceReader = new DataSourceReader<>(absenceDataSource);
-        RequestFormList absenseRequestForms=absenceFormDataSourceReader.readData();
+        RequestFormList absenseRequestForms = absenceFormDataSourceReader.readData();
 
-        AddDropRequestFormDataSource addDropDataSource=new AddDropRequestFormDataSource(studentList,advisorList,new CourseList());
+        AddDropRequestFormDataSource addDropDataSource = new AddDropRequestFormDataSource(studentList, advisorList, getCourseList());
         DataSourceReader<RequestFormList, AddDropRequestForm> addDropFormDataSourceReader = new DataSourceReader<>(addDropDataSource);
-        RequestFormList addDropRequestForms=addDropFormDataSourceReader.readData();
+        RequestFormList addDropRequestForms = addDropFormDataSourceReader.readData();
 
-        CoEnrollRequestFormDataSource coEnrollDataSource=new CoEnrollRequestFormDataSource(studentList,advisorList);
-        DataSourceReader<RequestFormList,CoEnrollRequestForm> coEnrollFormDataSourceReader = new DataSourceReader<>(coEnrollDataSource);
-        RequestFormList coEnrollRequestForms=coEnrollFormDataSourceReader.readData();
+        CoEnrollRequestFormDataSource coEnrollDataSource = new CoEnrollRequestFormDataSource(studentList, advisorList);
+        DataSourceReader<RequestFormList, CoEnrollRequestForm> coEnrollFormDataSourceReader = new DataSourceReader<>(coEnrollDataSource);
+        RequestFormList coEnrollRequestForms = coEnrollFormDataSourceReader.readData();
+
         allRequestFormList.addRequestFormList(absenseRequestForms);
         allRequestFormList.addRequestFormList(addDropRequestForms);
         allRequestFormList.addRequestFormList(coEnrollRequestForms);
         allRequestFormList.applyRequestFormApprovingHistoryList(getRequestFormApprovingHistoryList());
-
-        AppDataSource appDataSource = new AppDataSource();
-        DataSourceReader<AddDataList, AppData> dataSourceReader = new DataSourceReader<>(appDataSource);
-        AddDataList addDataList = dataSourceReader.readData();
-        for (AppData appData : addDataList.getDataList()) {
-            if (appData.isKey("absenceFormNumber")) {
-                AbsenceRequestForm.latestRequestFormId = Integer.parseInt(appData.getValue());
-            } else if (appData.isKey("addDropFormNumber")) {
-                AddDropRequestForm.latestRequestFormId = Integer.parseInt(appData.getValue());
-            } else if (appData.isKey("coEnrollFormNumber")) {
-                CoEnrollRequestForm.latestRequestFormId = Integer.parseInt(appData.getValue());
-            }
-        }
-
     }
 
-
-    //save
-    public void saveUser(User user){
+    public void saveUser() {
+        User user = Session.getSession().getLoggedInUser();
         String role = user.getRole();
+        try {
+            switch (role) {
+                case "advisor": {
+                    saveAdvisor();
+                    saveForms();
+                    break;
+                }
+                case "student": {
+                    saveStudent();
+                    saveForms();
+                    RequestFormNumberProvider.getInstance().saveData();
+                    break;
+                }
+                case "departmentOfficer": {
+                    saveDepartmentOfficer();
+                    saveDepartmentApprover();
+                    saveForms();
+                    saveStudent();
+                    saveAdvisor();
+                    break;
+                }
+                case "facultyOfficer": {
+                    saveFacultyOfficer();
+                    saveFacultyApprover();
+                    saveForms();
+                    break;
+                }
+                case "admin": {
+                    saveAdmin();
+                    saveAdvisor();
+                    saveStudent();
+                    saveDepartmentOfficer();
+                    saveFacultyOfficer();
+                    saveDepartmentList();
+                    saveFacultyList();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            reloadData();
+            getCourseList();
+            getDepartmentApproverList();
+            saveUser();
+            System.exit(1);
+        }
+    }
 
-        switch (role) {
-            case "advisor": {
-                saveAdvisor();
-                saveForms();
-                break;
-            }
-            case "student": {
-                saveStudent();
-                saveForms();
-                break;
-            }
-            case "departmentOfficer": {
-                saveDepartmentOfficer();
-                saveDepartmentApprover();
-                saveForms();
-                saveStudent();
-                saveAdvisor();
-                break;
-            }
-            case "facultyOfficer": {
-                saveFacultyOfficer();
-                saveFacultyApprover();
-                saveForms();
-                break;
-            }
-            case "admin":{
-                saveAdmin();
-                saveAdvisor();
-                saveStudent();
-                saveDepartmentOfficer();
-                saveFacultyOfficer();
-                saveDepartmentList();
-                saveFacultyList();
-                break;
+    private void saveDepartmentApprover() throws IOException {
+        DepartmentApproverList newDepartmentApproverList = new DepartmentApproverList();
+        DepartmentOfficer currentDepartmentOfficer = (DepartmentOfficer)Session.getSession().getLoggedInUser();
+        for (DepartmentOfficer departmentOfficer : getDepartmentOfficerList().getDepartmentOfficers()){
+            for (DepartmentApprover departmentApprover : departmentOfficer.getDepartmentApproverList().getApprovers()){
+                if (newDepartmentApproverList.getApprovers().contains(departmentApprover) || departmentOfficer.getDepartment().equals(currentDepartmentOfficer.getDepartment())) continue;
+                newDepartmentApproverList.addApprover(departmentApprover);
             }
         }
-//        return null;
+
+        for (DepartmentApprover departmentApprover : currentDepartmentOfficer.getDepartmentApproverList().getApprovers()){
+            if (newDepartmentApproverList.getApprovers().contains(departmentApprover)) {continue;}
+            newDepartmentApproverList.addApprover(departmentApprover);
+        }
+
+        DepartmentApproverDataSource departmentApproverDataSource = new DepartmentApproverDataSource(departmentList);
+        DataSourceWriter<DepartmentApproverList, DepartmentApprover> departmentApproverDataSourceWriter = new DataSourceWriter<>(departmentApproverDataSource);
+        departmentApproverDataSourceWriter.writeData(newDepartmentApproverList);
     }
 
-    private void saveDepartmentApprover() {
-        DepartmentApproverDataSource departmentApproverDataSource=new DepartmentApproverDataSource(departmentList);
-        DataSourceWriter<DepartmentApproverList,DepartmentApprover> departmentApproverDataSourceWriter=new DataSourceWriter<>(departmentApproverDataSource);
-        departmentApproverDataSourceWriter.writeData(departmentApproverList);
+    private void saveFacultyApprover() throws IOException {
+        FacultyApproverList newFacultyApproverList = new FacultyApproverList();
+        for (FacultyOfficer facultyOfficer : getFacultyOfficerList().getFacultyOfficers()){
+            for (FacultyApprover facultyApprover : facultyOfficer.getFacultyApproverList().getApprovers()){
+                if (newFacultyApproverList.getApprovers().contains(facultyApprover)) continue;
+                newFacultyApproverList.addApprover(facultyApprover);
+            }
+        }
+        FacultyApproverDataSource facultyApproverDataSource = new FacultyApproverDataSource(facultyList);
+        DataSourceWriter<FacultyApproverList, FacultyApprover> facultyApproverDataSourceWriter = new DataSourceWriter<>(facultyApproverDataSource);
+        facultyApproverDataSourceWriter.writeData(newFacultyApproverList);
     }
 
-    private void saveFacultyApprover() {
-        FacultyApproverDataSource facultyApproverDataSource=new FacultyApproverDataSource(facultyList);
-        DataSourceWriter<FacultyApproverList,FacultyApprover> facultyApproverDataSourceWriter=new DataSourceWriter<>(facultyApproverDataSource);
-        facultyApproverDataSourceWriter.writeData(facultyApproverList);
-    }
-
-    private void saveAdvisor() {
-        AdvisorDataSource advisorDataSource=new AdvisorDataSource(departmentList);
-        DataSourceWriter<AdvisorList,Advisor> advisorDataSourceWriter = new DataSourceWriter<>(advisorDataSource);
+    private void saveAdvisor() throws IOException {
+        AdvisorDataSource advisorDataSource = new AdvisorDataSource(departmentList);
+        DataSourceWriter<AdvisorList, Advisor> advisorDataSourceWriter = new DataSourceWriter<>(advisorDataSource);
         advisorDataSourceWriter.writeData(advisorList);
     }
 
-    private void saveStudent() {
-        StudentDataSource studentDataSource=new StudentDataSource(advisorList,departmentList);
-        DataSourceWriter<StudentList,Student> studentDataSourceWriter = new DataSourceWriter<>(studentDataSource);
-        studentDataSourceWriter.writeData(studentList);
+    public void saveStudent() throws IOException {
+        StudentList newStudentList = new StudentList();
+        for (DepartmentOfficer departmentOfficer : getDepartmentOfficerList().getDepartmentOfficers()) {
+            for (Student student : departmentOfficer.getStudentList().getStudents()) {
+                if (newStudentList.getStudents().contains(student)) continue;
+                newStudentList.addStudent(student);
+            }
+        }
+
+        StudentDataSource studentDataSource = new StudentDataSource(advisorList, departmentList);
+        DataSourceWriter<StudentList, Student> studentDataSourceWriter = new DataSourceWriter<>(studentDataSource);
+        studentDataSourceWriter.writeData(newStudentList);
     }
 
-    private void saveDepartmentOfficer() {
-        DepartmentOfficerDataSource departmentOfficerDataSource=new DepartmentOfficerDataSource(departmentList,studentList);
-        DataSourceWriter<DepartmentOfficerList,DepartmentOfficer> departmentOfficerDataSourceWriter = new DataSourceWriter<>(departmentOfficerDataSource);
+    private void saveDepartmentOfficer() throws IOException {
+        DepartmentOfficerDataSource departmentOfficerDataSource = new DepartmentOfficerDataSource(departmentList, studentList);
+        DataSourceWriter<DepartmentOfficerList, DepartmentOfficer> departmentOfficerDataSourceWriter = new DataSourceWriter<>(departmentOfficerDataSource);
         departmentOfficerDataSourceWriter.writeData(departmentOfficerList);
     }
 
-    private void saveFacultyOfficer() {
-        FacultyOfficerDataSource facultyOfficerDataSource=new FacultyOfficerDataSource(facultyList);
-        DataSourceWriter<FacultyOfficerList,FacultyOfficer> facultyOfficerListFacultyDataSourceWriter=new DataSourceWriter<>(facultyOfficerDataSource);
+    private void saveFacultyOfficer() throws IOException {
+        FacultyOfficerDataSource facultyOfficerDataSource = new FacultyOfficerDataSource(facultyList);
+        DataSourceWriter<FacultyOfficerList, FacultyOfficer> facultyOfficerListFacultyDataSourceWriter = new DataSourceWriter<>(facultyOfficerDataSource);
         facultyOfficerListFacultyDataSourceWriter.writeData(facultyOfficerList);
     }
 
-    private void saveAdmin() {
-        AdminDataSource adminDataSource=new AdminDataSource(studentList,departmentList,facultyList,advisorList,departmentOfficerList,facultyOfficerList);
-        DataSourceWriter<UserList,Admin> adminDataSourceWriter = new DataSourceWriter<>(adminDataSource);
+    private void saveAdmin() throws IOException {
+        AdminDataSource adminDataSource = new AdminDataSource(studentList, departmentList, facultyList, advisorList, departmentOfficerList, facultyOfficerList);
+        DataSourceWriter<UserList, Admin> adminDataSourceWriter = new DataSourceWriter<>(adminDataSource);
         adminDataSourceWriter.writeData(allUsers);
     }
 
-    private void saveForms(){
-        RequestFormList absenceRequestFormList=new RequestFormList();
-        RequestFormList addDropRequestFormList=new RequestFormList();
-        RequestFormList coEnrollpRequestFormList=new RequestFormList();
+    private void saveForms() throws IOException {
+        RequestFormList absenceRequestFormList = new RequestFormList();
+        RequestFormList addDropRequestFormList = new RequestFormList();
+        RequestFormList coEnrollpRequestFormList = new RequestFormList();
+        CourseList newCourseList = new CourseList();
         RequestFormActionHistoryList requestFormActionHistoryList = new RequestFormActionHistoryList();
-        for (RequestForm requestForm : allRequestFormList.getRequestForms()){
-            for (RequestFormActionHistory requestFormActionHistory : requestForm.getRequestFormActionHistoryList().getRequestFormApprovingHistories()){
-                requestFormActionHistoryList.addRequestFormApprovingHistory(requestFormActionHistory);
-            }
-            if( requestForm instanceof AbsenceRequestForm){
-                absenceRequestFormList.addRequestForm((AbsenceRequestForm)requestForm);
-            }
-            if( requestForm instanceof AddDropRequestForm){
-                addDropRequestFormList.addRequestForm((AddDropRequestForm)requestForm);
-            }
-            if( requestForm instanceof CoEnrollRequestForm){
-                coEnrollpRequestFormList.addRequestForm((CoEnrollRequestForm)requestForm);
+
+        for (Student student: getStudentList().getStudents()) {
+            for (RequestForm requestForm : student.getRequestFormList().getRequestForms()) {
+                for (RequestFormActionHistory requestFormActionHistory : requestForm.getRequestFormActionHistoryList().getRequestFormApprovingHistories()) {
+                    requestFormActionHistoryList.addRequestFormApprovingHistory(requestFormActionHistory);
+                }
+                if (requestForm instanceof AbsenceRequestForm) {
+                    for (Course course : ((AbsenceRequestForm) requestForm).getCourseList().getCourses()){
+                        newCourseList.addCourse(course);
+                    }
+                    absenceRequestFormList.addRequestForm(requestForm);
+                }
+                if (requestForm instanceof AddDropRequestForm) {
+                    for (Course course : ((AddDropRequestForm) requestForm).getCourseList().getCourses()){
+                        newCourseList.addCourse(course);
+                    }
+                    addDropRequestFormList.addRequestForm(requestForm);
+                }
+                if (requestForm instanceof CoEnrollRequestForm) {
+                    coEnrollpRequestFormList.addRequestForm(requestForm);
+                }
             }
         }
-        AbsenceRequestFormDataSource absenceDataSource=new AbsenceRequestFormDataSource(studentList,advisorList);
+
+        AbsenceRequestFormDataSource absenceDataSource = new AbsenceRequestFormDataSource(studentList, advisorList, newCourseList);
         DataSourceWriter<RequestFormList, AbsenceRequestForm> writerAbsenceForm = new DataSourceWriter<>(absenceDataSource);
         writerAbsenceForm.writeData(absenceRequestFormList);
 
-        AddDropRequestFormDataSource addDropDataSource=new AddDropRequestFormDataSource(studentList,advisorList,new CourseList());
-        DataSourceWriter<RequestFormList, AddDropRequestForm> writerCoEnrollForm = new DataSourceWriter<>(addDropDataSource);
-        writerCoEnrollForm.writeData(addDropRequestFormList);
+        AddDropRequestFormDataSource addDropDataSource = new AddDropRequestFormDataSource(studentList, advisorList, newCourseList);
+        DataSourceWriter<RequestFormList, AddDropRequestForm> writerAddDrop = new DataSourceWriter<>(addDropDataSource);
+        writerAddDrop.writeData(addDropRequestFormList);
 
-        CoEnrollRequestFormDataSource coEnrollDataSource=new CoEnrollRequestFormDataSource(studentList,advisorList);
-        DataSourceWriter<RequestFormList, CoEnrollRequestForm> writerAddDrop = new DataSourceWriter<>(coEnrollDataSource);
-        writerAddDrop.writeData(coEnrollpRequestFormList);
+        CoEnrollRequestFormDataSource coEnrollDataSource = new CoEnrollRequestFormDataSource(studentList, advisorList);
+        DataSourceWriter<RequestFormList, CoEnrollRequestForm> writerCoEnroll = new DataSourceWriter<>(coEnrollDataSource);
+        writerCoEnroll.writeData(coEnrollpRequestFormList);
 
         RequestFormApprovingHistoryDataSource requestFormApprovingHistoryDataSource = new RequestFormApprovingHistoryDataSource();
         DataSourceWriter<RequestFormActionHistoryList, RequestFormActionHistory> requestFormApprovingHistoryDataSourceWriter = new DataSourceWriter<>(requestFormApprovingHistoryDataSource);
         requestFormApprovingHistoryDataSourceWriter.writeData(requestFormActionHistoryList);
 
-        AddDataList addDataList = new AddDataList();
-        addDataList.addData(new AppData("absenceFormNumber", String.valueOf(AbsenceRequestForm.latestRequestFormId)));
-        addDataList.addData(new AppData("addDropFormNumber", String.valueOf(AddDropRequestForm.latestRequestFormId)));
-        addDataList.addData(new AppData("coEnrollFormNumber", String.valueOf(CoEnrollRequestForm.latestRequestFormId)));
-        AppDataSource appDataSource = new AppDataSource();
-        DataSourceWriter<AddDataList, AppData> dataSourceWriter = new DataSourceWriter<>(appDataSource);
-        dataSourceWriter.writeData(addDataList);
+        CourseDataSource courseDataSource = new CourseDataSource();
+        DataSourceWriter<CourseList, Course> courseDataSourceWriter = new DataSourceWriter<>(courseDataSource);
+        courseDataSourceWriter.writeData(newCourseList);
     }
 
-    private void saveFacultyList(){
+    private void saveFacultyList() throws IOException {
         FacultyDataSource facultyDataSource = new FacultyDataSource();
-        DataSourceWriter<FacultyList,Faculty> facultyDataSourceWriter = new DataSourceWriter<>(facultyDataSource);
+        DataSourceWriter<FacultyList, Faculty> facultyDataSourceWriter = new DataSourceWriter<>(facultyDataSource);
         facultyDataSourceWriter.writeData(facultyList);
     }
 
-    private void saveDepartmentList(){
+    private void saveDepartmentList() throws IOException {
         DepartmentDataSource departmentDataSource = new DepartmentDataSource(facultyList);
-        DataSourceWriter<DepartmentList,Department> departmentDataSourceWriter = new DataSourceWriter<>(departmentDataSource);
+        DataSourceWriter<DepartmentList, Department> departmentDataSourceWriter = new DataSourceWriter<>(departmentDataSource);
         departmentDataSourceWriter.writeData(departmentList);
+    }
+
+    public void clearDataProvider() {
+        departmentList=null;
+        facultyList=null;
+        allRequestFormList=null;
+        advisorList=null;
+        studentList=null;
+        departmentOfficerList=null;
+        facultyOfficerList=null;
+        departmentApproverList=null;
+        facultyApproverList=null;
+        allUsers=null;
+        courseList=null;
+    }
+
+    public void updateAdminData() {
+        if (Session.getSession().getLoggedInUser() instanceof Admin) {
+            DataProvider.getDataProvider().clearDataProvider();
+            DataProvider.getDataProvider().reloadData();
+            setAdminData((Admin) Session.getSession().getLoggedInUser());
+        }
+    }
+
+    public boolean doesUsernameExist(String username) {
+        for (User user : getUserList().getUsers()) {
+            if (user.getUsername().equals(username)) return true;
+        }
+        return false;
+    }
+
+    public boolean doesStudentIdExist(String studentId) {
+        for (Student student : getStudentList().getStudents()) {
+            if (student.getStudentId().equals(studentId)) return true;
+        }
+        return false;
+    }
+
+    public boolean doesAdvisorIdExist(String advisorId) {
+        for (Advisor advisor : getAdvisorList().getAdvisors()) {
+            if (advisor.getAdvisorId().equals(advisorId)) return true;
+        }
+        return false;
     }
 
 }

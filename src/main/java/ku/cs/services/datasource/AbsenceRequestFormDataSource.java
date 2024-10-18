@@ -1,6 +1,7 @@
 package ku.cs.services.datasource;
 
 import ku.cs.models.collections.AdvisorList;
+import ku.cs.models.collections.CourseList;
 import ku.cs.models.collections.RequestFormList;
 import ku.cs.models.collections.StudentList;
 import ku.cs.models.requestforms.AbsenceRequestForm;
@@ -9,19 +10,21 @@ import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AbsenceRequestFormDataSource implements Writable<RequestFormList, AbsenceRequestForm>, Readable<RequestFormList, AbsenceRequestForm> {
-    private StudentList studentList;
-    private AdvisorList advisorList;
+    private final StudentList studentList;
+    private final AdvisorList advisorList;
+    private final CourseList courseList;
 
-    public AbsenceRequestFormDataSource(StudentList studentList, AdvisorList advisorList) {
+    public AbsenceRequestFormDataSource(StudentList studentList, AdvisorList advisorList, CourseList courseList) {
         this.studentList = studentList;
         this.advisorList = advisorList;
+        this.courseList = courseList;
     }
+
     @Override
     public String getFileName() {
         return "absence_request_forms.csv";
@@ -29,28 +32,30 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
 
     @Override
     public String getDirectory() {
-        return "data/requestforms/";
+        return "data/request-forms/";
     }
 
     @Override
     public AbsenceRequestForm hashMapToModel(HashMap<String, String> row) {
 
-        // Convert a HashMap to an AbsenceRequestForm model object
-        // Assuming necessary parsing and error-handling logic
+
+
         String requestFormId = row.get("requestFormId");
-        Student student = this.studentList.findStudentById(row.get("studentId"));  // Assuming this constructor
-        Advisor advisor = this.advisorList.findAdvisorById(row.get("advisorId"));  // Assuming this constructor
+        Student student = this.studentList.findStudentById(row.get("studentId"));
+        Advisor advisor = this.advisorList.findAdvisorById(row.get("advisorId"));
         RequestForm.Status status = RequestForm.Status.valueOf(row.get("status"));
-        String program = row.get("program");
-        String academicYear = row.get("academicYear");
+        String academicYear = row.get("studentYear");
+        CourseList absenseCourseList = courseList.getCourseByRelatedRequestFormId(requestFormId);
         String phoneNumber = row.get("phoneNumber");
-        String facebookID = row.get("facebookID");
+        String facebookID = row.get("facebook");
         String lineID = row.get("lineID");
         String absenceType = row.get("absenceType");
         LocalDate absenceDateFrom = LocalDate.parse(row.get("absenceDateFrom"));
         LocalDate absenceDateUntil = LocalDate.parse(row.get("absenceDateUntil"));
+        String requestFormCause = row.get("requestFormCause");
+        String rejectedCause = row.get("rejectedCause");
 
-        return new AbsenceRequestForm(requestFormId, student, advisor, status, program, academicYear, phoneNumber, facebookID, lineID, absenceType, absenceDateFrom, absenceDateUntil);
+        return new AbsenceRequestForm(requestFormId, student, advisor, status, academicYear, phoneNumber, facebookID, lineID, absenceType, absenceDateFrom, absenceDateUntil, absenseCourseList, requestFormCause, rejectedCause);
     }
 
     @Override
@@ -70,14 +75,15 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
         header.add("studentId");
         header.add("advisorId");
         header.add("status");
-        header.add("program");
-        header.add("academicYear");
+        header.add("studentYear");
         header.add("phoneNumber");
-        header.add("facebookID");
+        header.add("facebook");
         header.add("lineID");
         header.add("absenceType");
         header.add("absenceDateFrom");
         header.add("absenceDateUntil");
+        header.add("requestFormCause");
+        header.add("rejectedCause");
         return header;
     }
 
@@ -88,14 +94,15 @@ public class AbsenceRequestFormDataSource implements Writable<RequestFormList, A
         map.put("studentId", model.getStudent().getStudentId());
         map.put("advisorId", model.getAdvisor().getAdvisorId());
         map.put("status", String.valueOf(model.getStatus()));
-        map.put("program", model.getProgram());
-        map.put("academicYear", model.getAcademicYear());
+        map.put("studentYear", model.getStudentYear());
         map.put("phoneNumber", model.getPhoneNumber());
-        map.put("facebookID", model.getFacebookID());
+        map.put("facebook", model.getFacebookID());
         map.put("lineID", model.getLineID());
         map.put("absenceType", model.getAbsenceType());
         map.put("absenceDateFrom", model.getAbsenceDateFrom().toString());
         map.put("absenceDateUntil", model.getAbsenceDateUntil().toString());
+        map.put("requestFormCause", model.getRequestFormCause());
+        map.put("rejectedCause", model.getRejectedCause());
         return map;
     }
 

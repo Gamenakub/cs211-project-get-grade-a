@@ -3,13 +3,9 @@ package ku.cs.controllers.admin;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import ku.cs.controllers.components.SearchController;
-import ku.cs.controllers.components.tables.EventCallback;
 import ku.cs.controllers.components.tables.TableComponentController;
 import ku.cs.models.collections.FacultyOfficerList;
 import ku.cs.models.users.Admin;
@@ -18,75 +14,58 @@ import ku.cs.services.AlertService;
 import ku.cs.services.Session;
 import ku.cs.services.SortDirection;
 import ku.cs.services.popup.PopupComponent;
-
 import java.io.IOException;
 
 public class AdminFacultyOfficerManagementPageController {
     @FXML private Pane navBarPane;
     @FXML private Pane tablePane;
     @FXML private TextField searchTextField;
-    @FXML private Circle searchButton;
     @FXML private AnchorPane anchorPane;
-    private Admin admin;
-    TableComponentController<FacultyOfficer> tableController;
-
-    SearchController searchController;
+    private TableComponentController<FacultyOfficer> tableController;
+    private SearchController<FacultyOfficer> searchController;
+    private FacultyOfficerList facultyOfficerList;
 
     @FXML
     public void initialize() {
-        Session.getSession().setNavbar(navBarPane);
-        Session.getSession().getTheme().setTheme(anchorPane);
-        admin = (Admin) Session.getSession().getLoggedInUser();
-
-        FacultyOfficerList facultyOfficerList = admin.getFacultyOfficerList();
-
-        Image searchIcon = new Image(getClass().getResource("/images/search-icon.png").toString(), false);
-        searchButton.setFill(new ImagePattern(searchIcon));
-
-        tablePane.getChildren().clear();
-        tablePane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        Session session = Session.getSession();
+        session.setNavbarByUserRole(navBarPane);
+        session.getThemeProvider().setTheme(anchorPane);
+        Admin admin = (Admin) session.getLoggedInUser();
+        facultyOfficerList = admin.getFacultyOfficerList();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ku/cs/views/components/table-component.fxml"));
         try {
             AnchorPane table = fxmlLoader.load();
             tableController = fxmlLoader.getController();
-            tableController.setHeadHeight(40);
-            tableController.setRowHeight(60);
-            tableController.setDisplayRowCount(5);
-
-            tableController.setTableHeadDescriptor(new FacultyOfficerTableDescriptor());
-            tableController.setTablePane(tablePane);
+            tableController.setTableAttributes(tablePane, 40, 60, 6, new FacultyOfficerTableDescriptor());
             tableController.sortBy("คณะที่สังกัด", SortDirection.ASCENDING);
             tableController.setDisplayModels(facultyOfficerList.getFacultyOfficers());
-
             tablePane.getChildren().add(table);
-            searchController = new SearchController(searchTextField, tableController, admin.getFacultyOfficerList());
-
+            searchController = new SearchController<>(searchTextField, tableController, admin.getFacultyOfficerList());
         } catch (IOException e) {
             AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
-            System.exit(0);
+            System.exit(1);
         }
     }
 
-    public void onSearchButtonClick(){
+    @FXML
+    public void onSearchButton() {
         searchController.searchFilter();
     }
 
     @FXML
-    public void onAddFacultyStaffButton() {
-        PopupComponent<FacultyOfficer> requestActionPopup = new PopupComponent<>(null, "/ku/cs/views/admin/admin-faculty-officer-management-popup.fxml","admin-faculty-officer-management-popup",navBarPane.getScene().getWindow());
+    public void onAddFacultyOfficerButton() {
+        PopupComponent<FacultyOfficer> requestActionPopup = null;
+        try {
+            requestActionPopup = new PopupComponent<>("/ku/cs/views/admin/admin-faculty-officer-management-popup.fxml", navBarPane.getScene().getWindow());
+        } catch (IOException e) {
+            AlertService.showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(1);
+        }
         requestActionPopup.show();
         requestActionPopup.getPopupController().addEventListener(
-                "success", new EventCallback() {
-                    @Override
-                    public void onEvent(Object eventData) {
-                        try {
-                            tableController.setDisplayModels(admin.getFacultyOfficerList().getFacultyOfficers());
-                        } catch (IOException e) {
-                            AlertService.showError("ระบบมีความผิดพลาด กรุณาตรวจสอบไฟล์โปรแกรม");
-                            System.exit(0);
-                        }
-                        searchController.searchFilter();
-                    }
+                "success", eventData -> {
+                    tableController.setDisplayModels(facultyOfficerList.getFacultyOfficers());
+                    searchController.searchFilter();
                 }
         );
     }

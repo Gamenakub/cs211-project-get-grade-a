@@ -6,13 +6,12 @@ import ku.cs.models.users.officers.FacultyOfficer;
 import ku.cs.models.users.officers.Officer;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, FacultyOfficer>, Writable<FacultyOfficerList, FacultyOfficer> {
-
-    private FacultyList facultyList;
+    private final FacultyList facultyList;
 
     public FacultyOfficerDataSource(FacultyList facultyList) {
         this.facultyList = facultyList;
@@ -37,11 +36,11 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
                 row.get("name"),
                 row.get("surname"),
                 row.get("role"),
-                row.get("recentTime"),
+                row.get("recentTime").equals("null") ? null : LocalDateTime.parse(row.get("recentTime")),
                 Boolean.parseBoolean(row.get("status")),
                 Boolean.parseBoolean(row.get("activated")),
                 row.get("profilePictureFileName"),
-                this.facultyList.findFacultyById(row.get("faculty"))
+                this.facultyList.findFacultyById(row.get("facultyId"))
         );
     }
 
@@ -55,14 +54,12 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         list.addOfficer(model);
     }
 
-    // Writable interface methods
-
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> headers = new ArrayList<>();
-        headers.add("nameTitle");
         headers.add("username");
         headers.add("hashedPassword");
+        headers.add("nameTitle");
         headers.add("name");
         headers.add("surname");
         headers.add("role");
@@ -70,8 +67,7 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         headers.add("status");
         headers.add("activated");
         headers.add("profilePictureFileName");
-        headers.add("faculty");
-
+        headers.add("facultyId");
         return headers;
     }
 
@@ -88,7 +84,7 @@ public class FacultyOfficerDataSource implements Readable<FacultyOfficerList, Fa
         row.put("status", String.valueOf(model.getStatus()));
         row.put("activated", String.valueOf(model.getActivated()));
         row.put("profilePictureFileName", model.getProfilePictureFileName());
-        row.put("faculty", model.getFaculty().getId());
+        row.put("facultyId", model.getFaculty().getId());
 
         return row;
     }

@@ -8,15 +8,15 @@ import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StudentDataSource implements Writable<StudentList, Student>, Readable<StudentList, Student> {
-    private AdvisorList advisorList;
-    private DepartmentList departmentList;
     private static final String FILE_NAME = "student.csv";
     private static final String DIRECTORY = "data/users";
+    private final AdvisorList advisorList;
+    private final DepartmentList departmentList;
 
     public StudentDataSource(AdvisorList advisorList, DepartmentList departmentList) {
         this.advisorList = advisorList;
@@ -68,8 +68,8 @@ public class StudentDataSource implements Writable<StudentList, Student>, Readab
         map.put("profilePictureFileName", student.getProfilePictureFileName());
         map.put("studentId", student.getStudentId());
         map.put("studentEmail", student.getStudentEmail());
-        map.put("advisorId", student.getAdvisor() != null ? student.getAdvisor().getAdvisorId() : ""); // Adjust based on actual Advisor serialization
-        map.put("departmentId", student.getDepartment().getId()); // Adjust based on actual Department serialization
+        map.put("advisorId", student.getAdvisor() != null ? student.getAdvisor().getAdvisorId() : "");
+        map.put("departmentId", student.getDepartment().getId());
         return map;
     }
 
@@ -86,15 +86,15 @@ public class StudentDataSource implements Writable<StudentList, Student>, Readab
         String name = row.get("name");
         String surname = row.get("surname");
         String role = row.get("role");
-        String recentTime = row.get("recentTime");
+        LocalDateTime recentTime = row.get("recentTime").equals("null") ? null : LocalDateTime.parse(row.get("recentTime"));
         boolean status = Boolean.parseBoolean(row.get("status"));
         boolean activated = Boolean.parseBoolean(row.get("activated"));
         String profilePictureFileName = row.get("profilePictureFileName");
         String studentId = row.get("studentId");
         String studentEmail = row.get("studentEmail");
-        // Assume Advisor, Department, Faculty can be created or retrieved based on string values
-        Advisor advisor = advisorList.findAdvisorById(row.get("advisorId")); // Implement this method
-        Department department = departmentList.findDepartmentById(row.get("departmentId")); // Implement this method
+
+        Advisor advisor = advisorList.findAdvisorById(row.get("advisorId"));
+        Department department = departmentList.findDepartmentById(row.get("departmentId"));
 
         return new Student(username, password, nameTitle, name, surname, role, recentTime, status, activated, profilePictureFileName, studentId, studentEmail, advisor, department);
     }

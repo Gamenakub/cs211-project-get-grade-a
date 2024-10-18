@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="480.0" prefWidth="400.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDepartmentManagementPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="480.0" prefWidth="400.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminDepartmentManagementPopupController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="400.0" spacing="20.0">
          <children>
-            <Label fx:id="titleLabel" styleClass="popup-header" text="แก้ไขข้อมูลภาควิชา">
+            <Label fx:id="titleLabel" alignment="CENTER" prefHeight="71.0" prefWidth="478.0" styleClass="popup-header" text="แก้ไขข้อมูลภาควิชา">
                <font>
                   <Font name="TH SarabunPSK Bold" size="64.0" />
                </font>
@@ -28,7 +28,7 @@
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentNameTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="text-field-box" />
+                        <TextField fx:id="departmentNameTextField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" prefWidth="280.0" promptText="กรอกชื่อภาควิชา" styleClass="text-field-box" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
@@ -38,7 +38,7 @@
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="facultyMenuButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="359.0" styleClass="menu-button" text="เลือกคณะที่สังกัด" />
+                        <MenuButton fx:id="facultyMenuButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="44.0" prefWidth="359.0" styleClass="menu-button-custom" text="เลือกคณะที่สังกัด" />
                      </children>
                   </VBox>
                   <VBox prefHeight="38.0" prefWidth="280.0">
@@ -48,7 +48,7 @@
                               <Font name="TH SarabunPSK Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="departmentIdTextField" prefHeight="28.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="text-field-box" />
+                        <TextField fx:id="departmentIdTextField" prefHeight="40.0" prefWidth="280.0" promptText="กรอกรหัสภาควิชา" styleClass="text-field-box" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" />

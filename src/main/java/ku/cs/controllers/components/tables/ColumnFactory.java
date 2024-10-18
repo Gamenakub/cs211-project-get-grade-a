@@ -4,13 +4,14 @@ import javafx.scene.Node;
 
 import java.util.Comparator;
 
-public interface ColumnFactory<MODEL> {
-    Node getDisplayNode(MODEL obj);
-    default Node getHeadNode(){
+public interface ColumnFactory<E> {
+    Node getDisplayNode(E obj);
+
+    default Node getHeadNode() {
         return null;
     }
 
-    default Comparator<MODEL> getComparator() {
+    default Comparator<E> getComparator() {
         return null;
     }
 }

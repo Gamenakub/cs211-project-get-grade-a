@@ -17,6 +17,10 @@ public class Faculty implements Comparable<Faculty> {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getId() {
         return this.id;
     }
@@ -25,12 +29,12 @@ public class Faculty implements Comparable<Faculty> {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public DepartmentList getDepartmentList() {
         return this.departmentList;
+    }
+
+    public void setDepartmentList(DepartmentList departmentList) {
+        this.departmentList = departmentList;
     }
 
     public Department addDepartment(String departmentName, String departmentId) {
@@ -39,29 +43,20 @@ public class Faculty implements Comparable<Faculty> {
         return department;
     }
 
-    public Department addDepartment(Department department) {
+    public void addDepartment(Department department) {
         departmentList.addDepartment(department);
         department.setFaculty(this);
-        return department;
-    }
-
-    public void setDepartmentList(DepartmentList departmentList) {
-        this.departmentList = departmentList;
     }
 
     public void removeDepartment(Department department) {
         departmentList.removeDepartment(department);
     }
 
-    public Department findDepartmentByName(String departmentName) {
-        return departmentList.findDepartmentByName(departmentName);
-    }
-
-    public boolean isName(String name){
+    public boolean isName(String name) {
         return this.name.equals(name);
     }
 
-    public boolean isId(String Id){
+    public boolean isId(String Id) {
         return this.id.equals(Id);
     }
 

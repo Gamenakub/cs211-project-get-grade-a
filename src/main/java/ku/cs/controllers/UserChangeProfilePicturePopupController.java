@@ -2,6 +2,7 @@ package ku.cs.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -9,13 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import ku.cs.config.Configuration;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.controllers.components.ProfilePictureController;
 import ku.cs.models.users.User;
-import ku.cs.services.AlertService;
-import ku.cs.services.FileUploader;
-import ku.cs.services.ImageCropper;
-import ku.cs.services.Session;
+import ku.cs.services.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,51 +27,64 @@ import java.nio.file.Path;
 public class UserChangeProfilePicturePopupController extends BasePopup<User> {
     @FXML private AnchorPane anchorPane;
     @FXML private Circle profilePictureCircle;
+    @FXML private Label fileNameLabel;
     private FileUploader profilePictureUploader;
     private User user;
 
 
     public void onPopupOpen() {
-        Session.getSession().getTheme().setTheme(anchorPane);
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
         user = Session.getSession().getLoggedInUser();
-        ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
-        profilePictureUploader = new FileUploader(ProfilePictureController.imagesPath);
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+        profilePictureUploader = new FileUploader(Configuration.getConfiguration().getImagesPath());
         user = getModel();
     }
 
     @FXML
-    public void onSaveButton() throws IOException {
-        if(profilePictureUploader.getFile() != null) {
+    public void onSaveButton() {
+        if (profilePictureUploader.getFile() != null) {
             user.setProfilePictureFileName();
-            profilePictureUploader.saveFile(user.getProfilePictureFileName());
-            ImageCropper.cropImageFileToSquare(new File(ProfilePictureController.imagesPath + File.separator + user.getProfilePictureFileName()));
+            try {
+                profilePictureUploader.saveFile(user.getProfilePictureFileName());
+                ImageCropper.cropImageFileToSquare(new File(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
+            } catch (IOException e) {
+                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
+            }
         }
-        AlertService.showInfo("เปลี่ยนรูปโปรไฟล์เรียบร้อยแล้ว");
+        DataProvider.getDataProvider().saveUser();
+        issueEvent("success");
+        AlertService.showInfo("เปลี่ยนรูปโพรไฟล์เรียบร้อยแล้ว");
         this.close();
     }
 
     @FXML
     public void onResetProfilePictureFileNameButton() {
-        if(!(user.getProfilePictureFileName().equals(User.defaultProfilePictureFileName))) {
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        if (!(user.getProfilePictureFileName().equals(Configuration.getConfiguration().getDefaultProfilePictureFileName()))) {
             try {
-                if(AlertService.showConfirmation("ระบบจะทำการลบรูปโปรไฟล์ออกจากระบบ และใช้รูปโปรไฟล์พื้นฐาน")){
-                    Files.delete(Path.of(ProfilePictureController.imagesPath + File.separator + user.getProfilePictureFileName()));
+                if (AlertService.showConfirmation("ระบบจะทำการลบรูปโพรไฟล์ออกจากระบบ และใช้รูปโพรไฟล์พื้นฐาน")) {
                     user.resetProfilePictureFileName();
-                    ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+                    profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+                    DataProvider.getDataProvider().saveUser();
+                    fileNameLabel.setText("ยังไม่ได้อัปโหลดไฟล์");
+                    Files.delete(Path.of(Configuration.getConfiguration().getImagesPath() + File.separator + user.getProfilePictureFileName()));
+                    issueEvent("success");
+                    AlertService.showInfo("เปลี่ยนรูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานเรียบร้อยแล้ว");
                 } else {
-                    AlertService.showInfo("เปลี่ยนรูปโปรไฟล์เป็นรูปโปรไฟล์พื้นฐานเรียบร้อยแล้ว");
+                    AlertService.showWarning("การดำเนินการถูกยกเลิก");
                 }
             } catch (IOException e) {
-                AlertService.showError("การลบรูปโปรไฟล์เดิมผิดพลาด กรุณาลองใหม่อีกครั้ง");
+                AlertService.showInfo("ไฟล์รูปโพรไฟล์ไม่มีอยู่ในระบบแล้ว");
             }
         } else {
-            AlertService.showInfo("รูปโปรไฟล์เป็นรูปโปรไฟล์พื้นฐานแล้ว");
+            AlertService.showInfo("รูปโพรไฟล์เป็นรูปโพรไฟล์พื้นฐานแล้ว");
         }
-
         this.close();
     }
 
-    @FXML public void onUploadButton(MouseEvent event){
+    @FXML
+    public void onUploadButton(MouseEvent event) {
         Node source = (Node) event.getSource();
         profilePictureUploader.setFileTypeDescription("Images");
         profilePictureUploader.addFileType("*.png");
@@ -81,39 +93,47 @@ public class UserChangeProfilePicturePopupController extends BasePopup<User> {
         profilePictureUploader.addFileType("*.PNG");
         profilePictureUploader.addFileType("*.JPEG");
         profilePictureUploader.addFileType("*.JPG");
-
         try {
             File file = profilePictureUploader.fileChooserUpload(source);
-            profilePictureUploader.setFile(file);
-            FileInputStream inputStream = new FileInputStream(file);
-            Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
-            ProfilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+            if (file == null) {
+                AlertService.showWarning("การอัปโหลดถูกยกเลิก" + System.lineSeparator() + "เนื่องจากไม่มีการเลือกไฟล์");
+            } else {
+                profilePictureUploader.setFile(file);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
+                ProfilePictureController profilePictureController = new ProfilePictureController();
+                profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+                fileNameLabel.setText(file.getName());
+            }
         } catch (IOException e) {
-            AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
+            AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
         }
     }
 
-    @FXML public void dropOnUploadButton(DragEvent event) throws IOException {
+    @FXML
+    public void dropOnUploadButton(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if(dragboard.hasImage() || dragboard.hasFiles()) {
+        if (dragboard.hasImage() || dragboard.hasFiles()) {
             File file = dragboard.getFiles().getFirst();
             profilePictureUploader.setFile(file);
             try {
                 FileInputStream inputStream = new FileInputStream(file);
                 Image croppedImage = ImageCropper.cropImageToSquare(new Image(inputStream));
-                ProfilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+                ProfilePictureController profilePictureController = new ProfilePictureController();
+                profilePictureController.setImageToCircle(profilePictureCircle, croppedImage);
+                fileNameLabel.setText(file.getName());
             } catch (FileNotFoundException e) {
-                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัพโหลดใหม่อีกครั้ง");
+                AlertService.showError("เกิดปัญหาการเข้าถึงไฟล์ กรุณาอัปโหลดใหม่อีกครั้ง");
             }
         }
     }
 
-    @FXML public void dragOverUploadButton(DragEvent event){
+    @FXML
+    public void dragOverUploadButton(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        if(dragboard.hasImage() || dragboard.hasFiles()) {
+        if (dragboard.hasImage() || dragboard.hasFiles()) {
             event.acceptTransferModes(TransferMode.COPY);
         }
         event.consume();
     }
-
 }

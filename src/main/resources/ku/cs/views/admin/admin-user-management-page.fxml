@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.admin.AdminUserManagementPageController">
@@ -27,14 +28,15 @@
             <Insets left="80.0" top="20.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="40.0" AnchorPane.leftAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" layoutY="160.0" prefHeight="100.0" prefWidth="1080.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="500.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></TextField>
-            <Circle fx:id="searchButton" accessibleRole="BUTTON" fill="DODGERBLUE" onMouseClicked="#onSearchButtonClick" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
-            <MenuButton fx:id="filterMenuButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="course-info-box" text="ทุกบทบาท" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="searchTextField" prefHeight="50.0" prefWidth="440.0" promptText="ค้นหาข้อมูลผู้ใช้" styleClass="text-field-box">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#onSearchButton" prefHeight="50.0" prefWidth="160.0" styleClass="green-button" text="ค้นหา" />
+            <MenuButton fx:id="filterMenuButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="260.0" text="ทุกบทบาท" textAlignment="CENTER" textFill="WHITE">
                <items>
                   <MenuItem fx:id="allRolesMenuItem" mnemonicParsing="false" onAction="#onAllRolesMenuItem" text="ทุกบทบาท" />
                   <MenuItem fx:id="studentRoleMenuItem" mnemonicParsing="false" onAction="#onStudentRoleMenuItem" text="นิสิต" />
@@ -42,12 +44,16 @@
                   <MenuItem fx:id="facultyOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onFacultyOfficerRoleMenuItem" text="เจ้าหน้าที่คณะ" />
                   <MenuItem fx:id="departmentOfficerRoleMenuItem" mnemonicParsing="false" onAction="#onDepartmentOfficerRoleMenuItem" text="เจ้าหน้าที่ภาควิชา" />
                </items>
+               <styleClass>
+                  <String fx:value="menu-button-custom" />
+                  <String fx:value="unfixed-size" />
+               </styleClass>
             </MenuButton>
          </children>
          <padding>
-            <Insets left="80.0" />
+            <Insets left="80.0" right="100.0" />
          </padding>
       </HBox>
-      <Pane fx:id="tablePane" layoutX="81.0" layoutY="267.0" prefHeight="404.0" prefWidth="910.0" />
+      <Pane fx:id="tablePane" layoutX="81.0" layoutY="267.0" prefHeight="340.0" prefWidth="900.0" AnchorPane.leftAnchor="80.0" />
    </children>
 </AnchorPane>

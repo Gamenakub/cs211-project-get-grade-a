@@ -11,6 +11,7 @@ import ku.cs.models.Department;
 import ku.cs.models.Faculty;
 import ku.cs.models.users.Admin;
 import ku.cs.services.AlertService;
+import ku.cs.services.DataProvider;
 import ku.cs.services.Session;
 
 public class AdminDepartmentManagementPopupController extends BasePopup<Department> {
@@ -22,55 +23,69 @@ public class AdminDepartmentManagementPopupController extends BasePopup<Departme
     private Admin admin;
     private Department department;
 
+    @Override
     public void onPopupOpen() {
-        Session.getSession().getTheme().setTheme(anchorPane);
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
         admin = (Admin) Session.getSession().getLoggedInUser();
-        department = getModel();
-
-
-        FacultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
-
-        if(department != null){
+        FacultyMenuButtonController facultyMenuButtonController = new FacultyMenuButtonController();
+        facultyMenuButtonController.addItems(facultyMenuButton, admin.getFacultyList().getFaculties());
+        if (this.hasModel()) {
+            department = getModel();
             titleLabel.setText("แก้ไขข้อมูลภาควิชา");
             departmentNameTextField.setText(department.getName());
             departmentIdTextField.setText(department.getId());
-            FacultyMenuButtonController.setMenuButton(facultyMenuButton, department.getFaculty());
+            facultyMenuButtonController.setMenuButton(facultyMenuButton, department.getFaculty());
         } else {
             titleLabel.setText("เพิ่มข้อมูลภาควิชา");
         }
-
     }
 
     @FXML
-    public void onCancelButton(){
+    public void onCancelButton() {
         AlertService.showWarning("ระบบไม่ได้บันทึกข้อมูล");
         this.close();
     }
 
     @FXML
-    public void onConfirmButton(){
+    public void onConfirmButton() {
         String departmentName = departmentNameTextField.getText();
         String departmentId = departmentIdTextField.getText();
         Faculty faculty = (Faculty) facultyMenuButton.getUserData();
-
-        if(departmentName.isEmpty() || departmentId.isEmpty()) {
-            AlertService.showError("กรุณากรอกข้อมูลให้ครบถ้วน");
+        if (departmentName.isEmpty()) {
+            AlertService.showError("กรุณากรอกชื่อภาควิชาให้ครบถ้วนและถูกต้อง");
+        } else if (departmentId.isEmpty()) {
+            AlertService.showError("กรุณากรอกรหัสภาควิชาให้ครบถ้วน");
+        } else if (faculty == null) {
+            AlertService.showError("กรุณาเลือกคณะ");
+        } else if (!doesDepartmentCanBeModifyOrCreateTo(department, departmentName, departmentId)) {
+            AlertService.showError("ภาควิชานี้มีอยู่ในระบบอยู่แล้ว");
         } else {
-            if(department == null){
+            if (this.hasModel()) {
+                if (!faculty.equals(department.getFaculty())) {
+                    department.setName(departmentName);
+                    department.setId(departmentId);
+                    department.getFaculty().removeDepartment(department);
+                    faculty.addDepartment(department);
+                } else {
+                    department.setName(departmentName);
+                    department.setId(departmentId);
+                }
+            } else {
                 department = faculty.addDepartment(departmentName, departmentId);
                 admin.getDepartmentList().addDepartment(department);
-            } else if(!faculty.equals(department.getFaculty())) {
-                department.setName(departmentName);
-                department.setId(departmentId);
-                department.getFaculty().removeDepartment(department);
-                faculty.addDepartment(department);
-            } else {
-                department.setName(departmentName);
-                department.setId(departmentId);
             }
+            DataProvider.getDataProvider().saveUser();
             AlertService.showInfo("บันทึกข้อมูลเรียบร้อยแล้ว");
             this.issueEvent("success");
             this.close();
         }
+    }
+
+    public boolean doesDepartmentCanBeModifyOrCreateTo(Department departmentReference, String newDepartmentName, String newDepartmentId) {
+        for (Department department : admin.getDepartmentList().getDepartments()) {
+            if (department.equals(departmentReference)) continue;
+            if (department.getName().equals(newDepartmentName) || department.getId().equals(newDepartmentId)) return false;
+        }
+        return true;
     }
 }

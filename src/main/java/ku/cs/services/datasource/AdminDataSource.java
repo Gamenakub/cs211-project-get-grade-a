@@ -5,22 +5,19 @@ import ku.cs.models.users.Admin;
 import ku.cs.models.users.User;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class AdminDataSource implements Readable<UserList, Admin>, Writable<UserList, Admin> {
-    private StudentList studentList;
-    private DepartmentList departments;
-    private FacultyList faculty;
-    private StudentList students;
-    private AdvisorList advisors;
-    private DepartmentOfficerList departmentOfficers;
-    private FacultyOfficerList facultyOfficers;
+    private final StudentList studentList;
+    private final DepartmentList departments;
+    private final FacultyList faculty;
+    private final AdvisorList advisors;
+    private final DepartmentOfficerList departmentOfficers;
+    private final FacultyOfficerList facultyOfficers;
 
     public AdminDataSource(StudentList studentList, DepartmentList departments, FacultyList faculty, AdvisorList advisors, DepartmentOfficerList departmentOfficers, FacultyOfficerList facultyOfficers) {
-        // Initialize the data source with the collections
         this.studentList = studentList;
         this.departments = departments;
         this.faculty = faculty;
@@ -31,25 +28,24 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public String getFileName() {
-        return "admin.csv";  // Example file name for storage
+        return "admin.csv";
     }
 
     @Override
     public String getDirectory() {
-        return "data/users";  // Example directory where the file will be stored
+        return "data/users";
     }
 
     @Override
     public Admin hashMapToModel(HashMap<String, String> row) {
-        // Convert a HashMap representation of a row back to an Admin object
-        Admin admin =  new Admin(
+        Admin admin = new Admin(
                 row.get("username"),
                 row.get("hashedPassword"),
                 row.get("nameTitle"),
                 row.get("name"),
                 row.get("surname"),
                 row.get("role"),
-                row.get("recentTime"),
+                row.get("recentTime").equals("null") ? null : LocalDateTime.parse(row.get("recentTime")),
                 Boolean.parseBoolean(row.get("status")),
                 Boolean.parseBoolean(row.get("activated")),
                 row.get("profilePictureFileName")
@@ -57,7 +53,7 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
         admin.setStudentList(studentList);
         admin.setDepartmentList(departments);
         admin.setFacultyList(faculty);
-        admin.setStudentList(students);
+        admin.setStudentList(studentList);
         admin.setAdvisorList(advisors);
         admin.setDepartmentOfficerList(departmentOfficers);
         admin.setFacultyOfficerList(facultyOfficers);
@@ -66,17 +62,16 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public UserList collectionInitializer() {
-        return new UserList();  // Initialize a new UserList collection
+        return new UserList();
     }
 
     @Override
     public void addModelToList(UserList list, Admin model) {
-        list.addUser(model);  // Add the model (Admin) to the collection (UserList)
+        list.addUser(model);
     }
 
     @Override
     public ArrayList<String> getTableHeader() {
-        // Define the header for the CSV file
         ArrayList<String> header = new ArrayList<>();
         header.add("username");
         header.add("hashedPassword");
@@ -93,7 +88,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public HashMap<String, String> modelToHashMap(Admin model) {
-        // Convert an Admin object to a HashMap representation for saving
         HashMap<String, String> map = new HashMap<>();
         map.put("username", model.getUsername());
         map.put("hashedPassword", model.getHashedPassword());
@@ -110,7 +104,6 @@ public class AdminDataSource implements Readable<UserList, Admin>, Writable<User
 
     @Override
     public ArrayList<Admin> getCollectionArrayList(UserList collection) {
-        // Cast the users in the collection to Admin objects and return them as a list
         ArrayList<Admin> admins = new ArrayList<>();
         for (User user : collection.getUsers()) {
             if (user instanceof Admin) {

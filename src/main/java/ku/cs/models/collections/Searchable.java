@@ -2,9 +2,11 @@ package ku.cs.models.collections;
 
 import java.util.ArrayList;
 
-public interface Searchable<T> {
-    ArrayList<T> search(String term);
-    default ArrayList<T> filter(String status){
+public interface Searchable<E> {
+    ArrayList<E> search(String keyword);
+
+    default ArrayList<E> filter(String keyword) {
         return null;
-    };
+    }
+
 }

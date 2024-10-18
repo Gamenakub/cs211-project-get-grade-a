@@ -1,52 +1,56 @@
 package ku.cs.controllers.officer.department;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import ku.cs.controllers.components.BasePopup;
 import ku.cs.models.collections.AdvisorList;
+import ku.cs.models.requestforms.RequestForm;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.services.AlertService;
+import ku.cs.services.DataProvider;
 import ku.cs.services.Session;
 
 public class DepartmentOfficerStudentModifyPopupController extends BasePopup<Student> {
-    @FXML public TextField studentEmailTextField;
-    @FXML public TextField surnameTextField;
-    @FXML public TextField nameTextField;
-    @FXML public TextField studentIdTextField;
-    @FXML private ChoiceBox advisorSelectDropdown;
-    @FXML
-    private AnchorPane anchorPane;
+    @FXML private TextField studentEmailTextField;
+    @FXML private TextField surnameTextField;
+    @FXML private TextField nameTextField;
+    @FXML private TextField studentIdTextField;
+    @FXML private TextField nameTitleTextField;
+    @FXML private ChoiceBox<String> advisorSelectChoiceBox;
+    @FXML private AnchorPane anchorPane;
     private Student student;
     private AdvisorList advisorList;
+
     @Override
     public void onPopupOpen() {
         studentEmailTextField.clear();
         surnameTextField.clear();
         nameTextField.clear();
         studentIdTextField.clear();
-        advisorSelectDropdown.getItems().clear();
-        advisorList = ((DepartmentOfficer)Session.getSession().getLoggedInUser()).getAdvisorList();
+        advisorSelectChoiceBox.getItems().clear();
+        advisorList = ((DepartmentOfficer) Session.getSession().getLoggedInUser()).getAdvisorList();
         student = getModel();
-        if(student != null) {
+        if (student != null) {
             studentEmailTextField.setText(student.getStudentEmail());
             surnameTextField.setText(student.getSurname());
             nameTextField.setText(student.getName());
             studentIdTextField.setText(student.getStudentId());
+            nameTitleTextField.setText(student.getNameTitle());
             AdvisorList usingAdvisorList = advisorList.findAdvisorByDepartment(student.getDepartment());
             for (int i = 0; i < usingAdvisorList.getAdvisors().size(); i++) {
-                //System.out.println("KOAISGIASNG)(EQWG "+usingAdvisorList.getAdvisors().get(i).getDepartment());
-                advisorSelectDropdown.getItems().add(usingAdvisorList.getAdvisors().get(i).getName());
+                advisorSelectChoiceBox.getItems().add(usingAdvisorList.getAdvisors().get(i).getName());
             }
-            // add "ไม่มี" to the dropdown
-            advisorSelectDropdown.getItems().add("ไม่มี");
-            // select first advisor
+
+            advisorSelectChoiceBox.getItems().add("ไม่มี");
+
             if (student.getAdvisor() != null) {
-                advisorSelectDropdown.getSelectionModel().select(usingAdvisorList.getAdvisors().indexOf(student.getAdvisor()));
+                advisorSelectChoiceBox.getSelectionModel().select(usingAdvisorList.getAdvisors().indexOf(student.getAdvisor()));
+            } else {
+                advisorSelectChoiceBox.getSelectionModel().select(usingAdvisorList.getAdvisors().size());
             }
         }
 
@@ -55,38 +59,55 @@ public class DepartmentOfficerStudentModifyPopupController extends BasePopup<Stu
 
     @FXML
     public void initialize() {
-        anchorPane.getStylesheets().add(getClass().getResource("/ku/cs/views/styles/main-style.css").toString());
+        Session.getSession().getThemeProvider().setTheme(anchorPane);
+        
     }
-    public void onCancel(ActionEvent actionEvent) {
+
+    public void onCancelButton() {
         close();
     }
 
-    public void onConfirm(ActionEvent actionEvent) {
-        // ensure all field are filled
-        if (studentEmailTextField.getText().trim().isEmpty() || surnameTextField.getText().trim().isEmpty() || nameTextField.getText().trim().isEmpty() || studentIdTextField.getText().trim().isEmpty()) {
+    public void onConfirmButton() {
+        String emailPattern = "^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,3}$";
+        String studentIdPattern = "^\\d{10}$";
+
+        if (studentEmailTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || studentIdTextField.getText().isEmpty() || nameTitleTextField.getText().isEmpty()) {
             AlertService.showError("กรุณากรอกข้อมูลให้ครบถ้วน");
             return;
         }
 
-        // if studentEmail is not valid
-        if (!studentEmailTextField.getText().matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")) {
+        if (!studentEmailTextField.getText().matches(emailPattern)) {
             AlertService.showError("กรุณากรอกอีเมลให้ถูกต้อง");
             return;
         }
 
+        if (!studentIdTextField.getText().matches(studentIdPattern)) {
+            AlertService.showError("กรุณากรอกรหัสนิสิตให้ครบถ้วนและถูกต้อง (ตัวเลข 10 หลัก)");
+            return;
+        }
+
+        if (DataProvider.getDataProvider().doesStudentIdExist(studentIdTextField.getText()) && !studentIdTextField.getText().equals(student.getStudentId())) {
+            AlertService.showError("รหัสนิสิตนี้มีอยู่ในระบบแล้ว");
+            return;
+        }
+
         student.setStudentEmail(studentEmailTextField.getText().trim());
+        student.setNameTitle(nameTitleTextField.getText().trim());
         student.setSurname(surnameTextField.getText().trim());
         student.setName(nameTextField.getText().trim());
         student.setStudentId(studentIdTextField.getText().trim());
-        if (advisorSelectDropdown.getSelectionModel().getSelectedIndex() != -1) {
-            int selIndex = advisorSelectDropdown.getSelectionModel().getSelectedIndex();
+        if (advisorSelectChoiceBox.getSelectionModel().getSelectedIndex() != -1) {
+            int selIndex = advisorSelectChoiceBox.getSelectionModel().getSelectedIndex();
             Advisor advisor;
-            if (selIndex == advisorSelectDropdown.getItems().size() - 1) {
+            if (selIndex == advisorSelectChoiceBox.getItems().size() - 1) {
                 advisor = null;
             } else {
                 advisor = advisorList.getAdvisors().get(selIndex);
             }
             student.setAdvisor(advisor);
+            for (RequestForm requestForm : student.getRequestFormList().getRequestForms()) {
+                requestForm.setAdvisor(advisor);
+            }
         }
         close();
     }

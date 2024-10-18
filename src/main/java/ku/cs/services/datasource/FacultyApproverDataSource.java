@@ -6,14 +6,11 @@ import ku.cs.models.collections.FacultyApproverList;
 import ku.cs.models.collections.FacultyList;
 import ku.cs.services.datahandle.Readable;
 import ku.cs.services.datahandle.Writable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FacultyApproverDataSource implements Writable<FacultyApproverList, FacultyApprover>, Readable<FacultyApproverList, FacultyApprover> {
-
-    private FacultyList facultyList;
-
+    private final FacultyList facultyList;
 
     public FacultyApproverDataSource(FacultyList facultyList) {
         this.facultyList = facultyList;
@@ -21,7 +18,7 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
 
     @Override
     public String getFileName() {
-        return "faculty-approver.csv";
+        return "faculty_approver.csv";
     }
 
     @Override
@@ -30,14 +27,14 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
     }
 
 
-
     @Override
     public FacultyApprover hashMapToModel(HashMap<String, String> row) {
+        String nameTitle = row.get("nameTitle");
         String name = row.get("name");
         String surname = row.get("surname");
         String role = row.get("role");
-        Faculty faculty = facultyList.findFacultyById(row.get("faculty")); // Assuming Faculty has a constructor that takes a String
-        return new FacultyApprover(name, surname, role, faculty);
+        Faculty faculty = facultyList.findFacultyById(row.get("facultyId"));
+        return new FacultyApprover(nameTitle, name, surname, role, faculty);
     }
 
     @Override
@@ -53,20 +50,22 @@ public class FacultyApproverDataSource implements Writable<FacultyApproverList, 
     @Override
     public ArrayList<String> getTableHeader() {
         ArrayList<String> headers = new ArrayList<>();
+        headers.add("nameTitle");
         headers.add("name");
         headers.add("surname");
         headers.add("role");
-        headers.add("faculty");
+        headers.add("facultyId");
         return headers;
     }
 
     @Override
     public HashMap<String, String> modelToHashMap(FacultyApprover model) {
         HashMap<String, String> row = new HashMap<>();
+        row.put("nameTitle", model.getNameTitle());
         row.put("name", model.getName());
         row.put("surname", model.getSurname());
         row.put("role", model.getRole());
-        row.put("faculty", model.getFaculty().getId()); // Assuming Faculty has a getName() method
+        row.put("facultyId", model.getFaculty().getId());
         return row;
     }
 

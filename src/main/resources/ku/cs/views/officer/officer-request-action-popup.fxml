@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.OfficerRequestActionPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.officer.OfficerRequestActionPopupController">
    <children>
-      <Pane layoutX="2.0" layoutY="6.0" prefHeight="389.0" prefWidth="595.0">
+      <Pane layoutX="2.0" layoutY="6.0" prefHeight="389.0" prefWidth="595.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css">
          <children>
             <VBox alignment="CENTER" layoutX="95.0" layoutY="48.0" prefHeight="268.0" prefWidth="411.0" spacing="20.0">
                <children>
@@ -20,17 +20,17 @@
                         <Font name="System Italic" size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="topicLabel" styleClass="text-field-label" text="เรื่อง ขอลาออก" />
-                  <Label fx:id="numberLabel" styleClass="text-field-label" text="เลขที่ใบคำร้อง กข-123" />
-                  <Label fx:id="nisitIdLabel" styleClass="text-field-label" text="รหัสนิสิต 6610401993" />
+                  <Label fx:id="topicLabel" styleClass="normal-text" text="เรื่อง ขอลาออก" />
+                  <Label fx:id="numberLabel" styleClass="normal-text" text="เลขที่ใบคำร้อง กข-123" />
+                  <Label fx:id="studentIdLabel" styleClass="normal-text" text="รหัสนิสิต 6610401993" />
                   <HBox alignment="CENTER" prefHeight="82.0" prefWidth="411.0" spacing="16.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#onRequestDetailViewAndOperate" prefHeight="82.0" prefWidth="210.0" styleClass="back-button" text=" ดูรายละเอียดคำร้อง และดำเนินการคำร้อง" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#onRequestDetailViewAndOperateButton" prefHeight="82.0" prefWidth="210.0" styleClass="green-button" text=" ดูรายละเอียดคำร้อง" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onDownloadRequest" prefHeight="82.0" prefWidth="210.0" styleClass="back-button" text="ดาวน์โหลดใบคำร้อง" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#onDownloadRequestButton" prefHeight="82.0" prefWidth="210.0" styleClass="green-button" text="ดาวน์โหลดใบคำร้อง" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="18.0" />
                            </font>

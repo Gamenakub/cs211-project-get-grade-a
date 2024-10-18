@@ -1,155 +1,168 @@
 package ku.cs.controllers.components;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import ku.cs.controllers.admin.AdminDashboardPageController;
 import ku.cs.models.Department;
 import ku.cs.models.Faculty;
 import ku.cs.models.collections.RequestFormList;
 import ku.cs.models.collections.UserList;
 import ku.cs.models.requestforms.RequestForm;
+import ku.cs.models.users.Admin;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
 import ku.cs.models.users.User;
 import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.models.users.officers.FacultyOfficer;
+import ku.cs.services.Session;
 
 import java.util.ArrayList;
 
 public class DashboardMenuButtonController {
 
-    private Label totalSuccessFormFilteredLabel;
-    private Label totalFacultyOfficerLabel;
-    private Label totalDepartmentOfficerLabel;
-    private Label totalAdvisorLabel;
-    private Label totalStudentLabel;
-    private UserList allUser;
-    private RequestFormList allRequestForm;
+    private final AdminDashboardPageController adminDashboardPageController;
+    private Faculty formFaculty = null;
+    private Department formDepartment = null;
+    private Faculty userFaculty = null;
+    private Department userDepartment = null;
 
-
-    public DashboardMenuButtonController(Label totalSuccessFormFilteredLabel, Label totalFacultyOfficerLabel, Label totalDepartmentOfficerLabel, Label totalAdvisorLabel, Label totalStudentLabel, UserList userList, RequestFormList requestFormList) {
-        this.totalSuccessFormFilteredLabel = totalSuccessFormFilteredLabel;
-        this.totalFacultyOfficerLabel = totalFacultyOfficerLabel;
-        this.totalDepartmentOfficerLabel = totalDepartmentOfficerLabel;
-        this.totalAdvisorLabel = totalAdvisorLabel;
-        this.totalStudentLabel = totalStudentLabel;
-        this.allUser = userList;
-        this.allRequestForm = requestFormList;
+    public  DashboardMenuButtonController(AdminDashboardPageController adminDashboardPageController){
+        this.adminDashboardPageController = adminDashboardPageController;
     }
 
+    public void addItemsDepartmentDashBoard(MenuButton departmentMenuButton, ArrayList<Department> departments, Faculty faculty, String mode) {
 
-    public void addItemsDepartmentDashBoard(MenuButton departmentMenuButton, ArrayList<Department> departments, Faculty faculty,String mode) {
-        MenuItem allDepartmentMenuItem=departmentMenuButton.getItems().getFirst();
-        allDepartmentMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                if(mode=="User") setUsersDataByFaculty(faculty);
-                else if (mode=="Form") setTotalFormByFaculty(faculty);
-                departmentMenuButton.setText("ทั้งหมด");
+        MenuItem allDepartmentMenuItem = departmentMenuButton.getItems().getFirst();
+        allDepartmentMenuItem.setOnAction(event -> {
+            if (mode.equals("User")) {
+                setUsersDataByFaculty(faculty);
+                userDepartment = null;
+            } else if (mode.equals("Form")) {
+                setTotalFormByFaculty(faculty);
+                formDepartment = null;
             }
+            departmentMenuButton.setText("ทั้งหมด");
+            update();
         });
         departmentMenuButton.getItems().clear();
         departmentMenuButton.getItems().add(allDepartmentMenuItem);
         departmentMenuButton.setText("ทั้งหมด");
-        for(Department department : departments) {
+
+        for (Department department : departments) {
             MenuItem departmentItem = new MenuItem(department.getName());
             departmentMenuButton.getItems().add(departmentItem);
-            departmentItem.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    departmentMenuButton.setText(departmentItem.getText());
-                    departmentMenuButton.setUserData(department);
-                    if (mode == "User") setUsersDataByDepartment(department);
-                    else if (mode == "Form") setTotalFormByDepartment(department);
+            departmentItem.setOnAction(event -> {
+                departmentMenuButton.setText(department.getName());
+                departmentMenuButton.setUserData(department);
+                if (mode.equals("User")) {
+                    userDepartment = department;
+                } else if (mode.equals("Form")) {
+                    formDepartment = department;
                 }
+                update();
             });
         }
-        departmentMenuButton.getItems();
     }
 
-    public void addItemsDepartmentDashBoard(MenuButton facultyMenuButton, MenuButton departmentMenuButton, ArrayList<Faculty> faculties, UserList userList, String mode) {
-        for(Faculty faculty : faculties) {
+    public void addItemsDepartmentDashBoard(MenuButton facultyMenuButton, MenuButton departmentMenuButton, ArrayList<Faculty> faculties, String mode) {
+        for (Faculty faculty : faculties) {
             MenuItem facultyItem = new MenuItem(faculty.getName());
             facultyMenuButton.getItems().add(facultyItem);
-            facultyItem.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    facultyMenuButton.setText(facultyItem.getText());
-                    facultyMenuButton.setUserData(faculty);
-                    addItemsDepartmentDashBoard(departmentMenuButton, faculty.getDepartmentList().getDepartments(),faculty,mode);
-                    if (mode == "User") setUsersDataByFaculty(faculty);
-                    else if (mode == "Form") setTotalFormByFaculty(faculty);
+            facultyItem.setOnAction(event -> {
+                facultyMenuButton.setText(facultyItem.getText());
+                addItemsDepartmentDashBoard(departmentMenuButton, faculty.getDepartmentList().getDepartments(), faculty, mode);
+                if (mode.equals("User")) {
+                    userFaculty = faculty;
+                    userDepartment = null;
+                } else if (mode.equals("Form")) {
+                    formFaculty = faculty;
+                    formDepartment = null;
                 }
+                update();
             });
         }
-        facultyMenuButton.getItems();
     }
 
-
     private void setUsersDataByDepartment(Department department){
-        UserList userList=allUser;
+        UserList userList=((Admin)Session.getSession().getLoggedInUser()).getUserList();
         ArrayList<DepartmentOfficer> departmentOfficers = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<FacultyOfficer> facultyOfficers = new ArrayList<>();
         ArrayList<Advisor> advisors = new ArrayList<>();
         for (User user : userList.getUsers()) {
-            if (user instanceof DepartmentOfficer) {
-                DepartmentOfficer departmentOfficer = (DepartmentOfficer) user;
+            if (user instanceof DepartmentOfficer departmentOfficer) {
                 if (((DepartmentOfficer) user).getDepartment().equals(department)) departmentOfficers.add(departmentOfficer);
-            } else if (user instanceof Student) {
-                Student student = (Student) user;
-                if (((Student) user).getDepartment().equals(department)) students.add(student);
-            } else if (user instanceof FacultyOfficer) {
-                FacultyOfficer facultyOfficer = (FacultyOfficer) user;
-                if (((FacultyOfficer) user).getFaculty().equals(department.getFaculty())) facultyOfficers.add(facultyOfficer);
-            } else if (user instanceof Advisor) {
-                Advisor advisor = (Advisor) user;
+            } else if (user instanceof Student student) {
+                if (student.getDepartment().equals(department)) students.add(student);
+            } else if (user instanceof FacultyOfficer facultyOfficer) {
+                if (facultyOfficer.getFaculty().equals(department.getFaculty())) facultyOfficers.add(facultyOfficer);
+            } else if (user instanceof Advisor advisor) {
                 if (((Advisor) user).getDepartment().equals(department)) advisors.add(advisor);
             }
         }
-        totalStudentLabel.setText(students.size() + "");
-        totalFacultyOfficerLabel.setText(facultyOfficers.size() + "");
-        totalAdvisorLabel.setText(advisors.size() + "");
-        totalDepartmentOfficerLabel.setText(departmentOfficers.size() + "");
+
+        adminDashboardPageController.setUserData(students.size(),advisors.size(),facultyOfficers.size(),departmentOfficers.size());
     }
 
-    private void setUsersDataByFaculty(Faculty faculty){
-        UserList userList=allUser;
+    private void setUsersDataByFaculty(Faculty faculty) {
+        UserList userList = ((Admin) Session.getSession().getLoggedInUser()).getUserList();
         ArrayList<DepartmentOfficer> departmentOfficers = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<FacultyOfficer> facultyOfficers = new ArrayList<>();
         ArrayList<Advisor> advisors = new ArrayList<>();
         for (User user : userList.getUsers()) {
-            if (user instanceof DepartmentOfficer) {
-                DepartmentOfficer departmentOfficer = (DepartmentOfficer) user;
+            if (user instanceof DepartmentOfficer departmentOfficer) {
                 if (((DepartmentOfficer) user).getFaculty().equals(faculty)) departmentOfficers.add(departmentOfficer);
-            } else if (user instanceof Student) {
-                Student student = (Student) user;
+            } else if (user instanceof Student student) {
                 if (((Student) user).getFaculty().equals(faculty)) students.add(student);
-            } else if (user instanceof FacultyOfficer) {
-                FacultyOfficer facultyOfficer = (FacultyOfficer) user;
+            } else if (user instanceof FacultyOfficer facultyOfficer) {
                 if (((FacultyOfficer) user).getFaculty().equals(faculty)) facultyOfficers.add(facultyOfficer);
-            } else if (user instanceof Advisor) {
-                Advisor advisor = (Advisor) user;
+            } else if (user instanceof Advisor advisor) {
                 if (((Advisor) user).getFaculty().equals(faculty)) advisors.add(advisor);
             }
         }
-        totalStudentLabel.setText(students.size() + "");
-        totalFacultyOfficerLabel.setText(facultyOfficers.size() + "");
-        totalAdvisorLabel.setText(advisors.size() + "");
-        totalDepartmentOfficerLabel.setText(departmentOfficers.size() + "");
+        adminDashboardPageController.setUserData(students.size(),advisors.size(),facultyOfficers.size(),departmentOfficers.size());
     }
 
-    // TODO: SET FACULTY TOO
-    private void setTotalFormByFaculty(Faculty faculty){
-
-        int size=allRequestForm.findRequestFormsByFaculty(faculty).findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_DEPARTMENT).getRequestForms().size();
-        totalSuccessFormFilteredLabel.setText("" + size);
-
+    private void setTotalFormByFaculty(Faculty faculty) {
+        RequestFormList target = ((Admin)Session.getSession().getLoggedInUser()).getRequestFormList().findRequestFormsByFaculty(faculty);
+        int size = target.findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_DEPARTMENT).getRequestForms().size() + target.findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_FACULTY).getRequestForms().size();
+        adminDashboardPageController.setFormData(size);
     }
 
-    private void setTotalFormByDepartment(Department department){
-        int size=allRequestForm.findRequestFormsByDepartment(department).findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_DEPARTMENT).getRequestForms().size();
-        totalSuccessFormFilteredLabel.setText("" + size);
+    private void setTotalFormByDepartment(Department department) {
+        RequestFormList target = ((Admin)Session.getSession().getLoggedInUser()).getRequestFormList().findRequestFormsByDepartment(department);
+        int size = target.findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_DEPARTMENT).getRequestForms().size() + target.findRequestFormsByStatus(RequestForm.Status.APPROVED_BY_FACULTY).getRequestForms().size();
+        adminDashboardPageController.setFormData(size);
+    }
+
+    public void clearFormFilter() {
+        formFaculty = null;
+        formDepartment = null;
+    }
+
+    public void clearUserFilter() {
+        userFaculty = null;
+        userDepartment = null;
+    }
+
+    public void update() {
+        if (Session.getSession().getLoggedInUser() instanceof Admin admin) {
+            if (userDepartment != null) {
+                userDepartment = admin.getDepartmentList().findDepartmentById(userDepartment.getId());
+                setUsersDataByDepartment(userDepartment);
+            } else if (userFaculty != null) {
+                userFaculty = admin.getFacultyList().findFacultyById(userFaculty.getId());
+                setUsersDataByFaculty(userFaculty);
+            }
+            if (formDepartment != null) {
+                formDepartment = admin.getDepartmentList().findDepartmentById(formDepartment.getId());
+                setTotalFormByDepartment(formDepartment);
+            } else if (formFaculty != null) {
+                formFaculty = admin.getFacultyList().findFacultyById(formFaculty.getId());
+                setTotalFormByFaculty(formFaculty);
+            }
+        }
     }
 
 }

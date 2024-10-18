@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="650.0" prefWidth="800.0" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerDepartmentRequestFormConfirmationPopupController">
+<AnchorPane fx:id="anchorPane" prefHeight="650.0" prefWidth="800.0" styleClass="popup-pane" stylesheets="@../styles/main-style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.requestforms.OfficerDepartmentRequestFormConfirmationPopupController">
    <children>
       <VBox alignment="CENTER" prefHeight="558.0" prefWidth="800.0" spacing="20.0">
          <children>
@@ -29,19 +29,20 @@
             </Label>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="100.0">
                <children>
-                  <Pane onDragDropped="#dropOnUploadButton" onDragOver="#dragOverUploadButton" onMouseClicked="#onUploadButton" prefHeight="180.0" prefWidth="320.0" styleClass="upload-area">
+                  <Pane onDragDropped="#dropOnUploadButton" onDragOver="#dragOverUploadButton" onMouseClicked="#onUploadButton" prefHeight="180.0" prefWidth="496.0" styleClass="upload-area">
                      <children>
-                        <ImageView fitHeight="79.0" fitWidth="109.0" layoutX="116.0" layoutY="28.0" onDragDropped="#dropOnUploadButton" onDragOver="#dragOverUploadButton" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="79.0" fitWidth="109.0" layoutX="207.0" layoutY="29.0" onDragDropped="#dropOnUploadButton" onDragOver="#dragOverUploadButton" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../images/upload-icon.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="96.0" layoutY="116.0" styleClass="normal-text" text="อัปโหลดไฟล์รูปภาพ" />
+                        <Label fx:id="documentUploadLabel" alignment="CENTER" layoutX="114.0" layoutY="131.0" prefHeight="29.0" prefWidth="274.0" styleClass="normal-text" text="*ยังไม่ได้อัปโหลดไฟล์เอกสาร" textAlignment="CENTER" />
+                        <Label fx:id="documentUploadLabel11" alignment="CENTER" layoutX="91.0" layoutY="103.0" prefHeight="34.0" prefWidth="320.0" styleClass="normal-text" text="อัปโหลดไฟล์เอกสาร" textAlignment="CENTER" />
                      </children>
                   </Pane>
                   <VBox maxWidth="-Infinity" spacing="4.0">
                      <children>
-                        <Label prefWidth="273.0" styleClass="text-field-label" text="เลือกบุคคล">
+                        <Label prefWidth="273.0" styleClass="text-field-label" text="เลือกบุคคลอนุมัติ">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -49,7 +50,7 @@
                               <Font name="TH SarabunPSK" size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="selectTargetDepartmentApprover" prefHeight="39.0" prefWidth="576.0" styleClass="menu-button" />
+                        <ChoiceBox fx:id="selectTargetDepartmentApprover" prefHeight="39.0" prefWidth="576.0" styleClass="menu-button-custom" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -59,23 +60,12 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="62.0" prefWidth="720.0" spacing="8.0">
                <children>
-                  <Pane prefHeight="84.0" prefWidth="278.0" />
-                  <Button mnemonicParsing="false" onAction="#onButtonBack" prefHeight="50.0" prefWidth="272.0" styleClass="back-button" text="ย้อนกลับ">
+                  <Button mnemonicParsing="false" onAction="#onPreviousPageButton" prefHeight="50.0" prefWidth="269.0" styleClass="back-button" text="ย้อนกลับ">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onRequestSubmitEndAtDepartmentLeader" prefHeight="50.0" prefWidth="352.0" styleClass="green-button" text="คำร้องสิ้นสุดที่หัวหน้าภาควิชา" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onRequestSubmitSetEndToDean" prefHeight="50.0" prefWidth="352.0" styleClass="green-button" text="ส่งต่อให้คณะบดี" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onRequestRefuse" prefHeight="50.0" prefWidth="352.0" styleClass="deny-button" text="ปฏิเสธคำร้อง" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onRequestSubmitButton" prefHeight="50.0" prefWidth="352.0" styleClass="green-button" text="ยืนยัน" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>

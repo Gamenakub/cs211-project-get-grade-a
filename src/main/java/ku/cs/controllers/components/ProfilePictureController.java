@@ -1,24 +1,29 @@
 package ku.cs.controllers.components;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import ku.cs.config.Configuration;
 
 import java.io.File;
 
 public class ProfilePictureController {
 
-    public static final String imagesPath = "data" + File.separator + "profile-pictures";
-    public static final String defaultImagePath = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images" + File.separator + "default-image.jpg";
-
-    public static void setImageToCircle(Circle profilePictureCircle, String imageName) {
-        Image image;
-        if(imageName.equals("default-image.jpg")) image = new Image("file:" + defaultImagePath);
-        else image = new Image("file:" + imagesPath + File.separator + imageName);
-        setImageToCircle(profilePictureCircle, image);
+    @FXML
+    public void setImageToCircle(Circle profilePictureCircle, String imageName) {
+        File imageFile = new File(Configuration.getConfiguration().getImagesPath() + File.separator + imageName);
+        if (!imageFile.exists() || !imageFile.isFile()) {
+            setImageToCircle(profilePictureCircle, new Image(Configuration.getConfiguration().getDefaultImagePath()));
+        } else {
+            setImageToCircle(profilePictureCircle, new Image("file:" + imageFile.getPath()));
+        }
     }
 
-    public static void setImageToCircle(Circle profilePictureCircle, Image image) {
-        profilePictureCircle.setFill(new ImagePattern(image));
+    @FXML
+    public void setImageToCircle(Circle profilePictureCircle, Image image) {
+        if(image != null) {
+            profilePictureCircle.setFill(new ImagePattern(image));
+        }
     }
 }

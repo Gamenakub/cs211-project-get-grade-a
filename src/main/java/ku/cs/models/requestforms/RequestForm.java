@@ -4,97 +4,96 @@ import ku.cs.models.RequestFormActionHistory;
 import ku.cs.models.collections.RequestFormActionHistoryList;
 import ku.cs.models.users.Advisor;
 import ku.cs.models.users.Student;
-import ku.cs.services.Utility;
-
 import java.time.LocalDateTime;
 
 public class RequestForm {
 
-    public RequestFormActionHistoryList getRequestFormApprovingHistoryList() {
-        return requestFormActionHistoryList;
+    private final String requestFormTitle;
+    private String requestFormId;
+    private final Student student;
+    private Advisor advisor;
+    private Status status;
+    private String rejectedCause;
+    private RequestFormActionHistoryList requestFormActionHistoryList = new RequestFormActionHistoryList();
+
+    public RequestForm(String title, String requestFormId, Student student, Advisor advisor, Status status, String rejectedCause) {
+        this.requestFormTitle = title;
+        this.requestFormId = requestFormId;
+        this.student = student;
+        this.advisor = advisor;
+        this.status = status;
+        this.rejectedCause = rejectedCause;
     }
 
     public void setRequestFormApprovingHistoryList(RequestFormActionHistoryList requestFormActionHistoryList) {
         this.requestFormActionHistoryList = requestFormActionHistoryList;
     }
 
-    public enum Status {
-        PENDING_TO_ADVISOR, PENDING_TO_DEPARTMENT, REJECTED_BY_ADVISOR, CANCELED_BY_STUDENT, APPROVED_BY_DEPARTMENT, PENDING_TO_FACULTY, REFUSED_BY_DEPARTMENT, CREATING, REFUSED_BY_FACULTY, APPROVED_BY_FACULTY;
+    public void setRequestFormNumber(String requestFormId) {
+        this.requestFormId = requestFormId;
     }
-
-    private String requestFormTitle;
-    private String requestFormId;
-    private Student student;
-    private Advisor advisor;
-    private String requestFormCause;
-    private Status status;
-    private LocalDateTime timeStamp;
-    private String rejectedFormCause;
 
     public RequestFormActionHistoryList getRequestFormActionHistoryList() {
         return requestFormActionHistoryList;
     }
 
-    private RequestFormActionHistoryList requestFormActionHistoryList = new RequestFormActionHistoryList();
-
-    //constructor สำหรับสร้าง object ใหม่
-    public RequestForm(String title,String requestFormId, Student student, Advisor advisor, Status status) {
-        this.requestFormTitle = title;
-        this.requestFormId = requestFormId;
-        this.student = student;
-        this.advisor = advisor;
-        this.status = status;
-        this.timeStamp = LocalDateTime.now();
-    }
-    //constructor สำหรับดึง object
-    public RequestForm(String title,String requestFormId, Student student, Advisor advisor, Status status, LocalDateTime timeStamp) {
-        this.requestFormTitle = title;
-        this.requestFormId = requestFormId;
-        this.student = student;
-        this.advisor = advisor;
-        this.status = status;
-        this.timeStamp = timeStamp;
-    }
-
-    public void setRequestFormId(String requestFormId) { this.requestFormId = requestFormId;}
-    public void setStudent(Student student) { this.student = student; }
-    public void setAdvisor(Advisor advisor) { this.advisor = advisor; }
-    public void setRequestFormCause(String requestFormCause) { this.requestFormCause = requestFormCause; }
-    public void setTimeStamp(LocalDateTime timeStamp) { this.timeStamp = timeStamp; }
-    public void setStatus(RequestFormActionHistory actionOwner) {
-        this.status = actionOwner.getAction();
-        addApprovingHistory(actionOwner);
-    }
     public void addApprovingHistory(RequestFormActionHistory approvingHistory) {
         requestFormActionHistoryList.addRequestFormApprovingHistory(approvingHistory);
-    }
-
-    public void addRequestFormCause(String requestFormCause) {
-        this.requestFormCause = requestFormCause;
-    }
-    public void updateTimeStamp() {
-        this.timeStamp = LocalDateTime.now();
     }
 
     public String getRequestFormTitle() {
         return requestFormTitle;
     }
 
-
-    public String getSenderId(){
-        return student.getStudentId();
+    public String getRequestFormId() {
+        return requestFormId;
     }
 
-    public String getRequestFormId() { return requestFormId; }
-    public Student getStudent() { return student; }
-    public Advisor getAdvisor() { return advisor; }
-    public String getRequestFormCause() { return requestFormCause;}
-    public Status getStatus() { return status; }
-
-    public String getTimeStamp() {
-        return Utility.getTimeStamp(timeStamp);
+    public Student getStudent() {
+        return student;
     }
 
-    public boolean checkRequestFormById(String requestFormID) { return requestFormID.equals(this.requestFormId);}
+    public Advisor getAdvisor() {
+        return advisor;
+    }
+
+    public void setAdvisor(Advisor advisor) {
+        this.advisor = advisor;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestFormActionHistory actionOwner) {
+        this.status = actionOwner.getAction();
+        addApprovingHistory(actionOwner);
+    }
+
+    public String getRejectedCause() {
+        return rejectedCause;
+    }
+
+    public void setRejectedCause(String rejectedCause) {
+        this.rejectedCause = rejectedCause;
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return requestFormActionHistoryList.getLatestRequestFormApprovingHistory().getApprovedAt();
+    }
+
+    public enum Status {
+        CREATING("คำร้องใหม่\nกำลังถูกสร้าง"),PENDING_TO_ADVISOR("ใบคำร้องใหม่\nคำร้องส่งต่อให้อาจารย์ที่ปรึกษา"), PENDING_TO_DEPARTMENT("อนุมัติโดยอาจารย์ที่ปรึกษา\nคำร้องส่งต่อให้หัวหน้าภาควิชา"), REJECTED_BY_ADVISOR("ปฏิเสธโดยอาจารย์ที่ปรึกษา\nคำร้องถูกปฏิเสธ"), APPROVED_BY_DEPARTMENT("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องดำเนินการครบถ้วน"), PENDING_TO_FACULTY("อนุมัติโดยหัวหน้าภาควิชา\nคำร้องส่งต่อให้คณบดี"), REJECTED_BY_DEPARTMENT("ปฏิเสธโดยหัวหน้าภาควิชา\nคำร้องถูกปฏิเสธ"), REJECTED_BY_FACULTY("ปฏิเสธโดยคณบดี\nคำร้องถูกปฏิเสธ"), APPROVED_BY_FACULTY("อนุมัติโดยคณบดี\nคำร้องดำเนินการครบถ้วน");
+        private final String label;
+
+        Status(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+    }
 
 }

@@ -12,8 +12,11 @@ import ku.cs.models.users.Student;
 import ku.cs.models.users.User;
 import ku.cs.models.users.officers.DepartmentOfficer;
 import ku.cs.models.users.officers.FacultyOfficer;
+import ku.cs.services.AlertService;
 import ku.cs.services.Session;
+import ku.cs.services.ThaiStringConverter;
 import ku.cs.services.popup.PopupComponent;
+import java.io.IOException;
 
 public class UserPersonalInformationManagementPageController {
     @FXML private Pane navBarPane;
@@ -26,27 +29,21 @@ public class UserPersonalInformationManagementPageController {
     @FXML private Label facultyLabel;
     @FXML private Label departmentLabel;
     @FXML private Label IdLabel;
-    User user;
+    private User user;
 
     @FXML
     public void initialize() {
-        Session.getSession().getTheme().setTheme(anchorPane);
-        Session.getSession().setNavbar(navBarPane);
+        Session session = Session.getSession();
+        Session.getSession().setNavbarByUserRole(navBarPane);
+        session.getThemeProvider().setTheme(anchorPane);
         user = Session.getSession().getLoggedInUser();
-
-        ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+        ProfilePictureController profilePictureController = new ProfilePictureController();
+        profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
 
         nameLabel.setText(user.getNameTitle() + " " + user.getName());
         surnameLabel.setText(user.getSurname());
         usernameLabel.setText("ชื่อผู้ใช้ " + user.getUsername());
-        roleLabel.setText("บทบาท " + switch (user.getRole()) {
-            case "admin" -> "ผู้ดูแลระบบ";
-            case "advisor" -> "อาจารย์ที่ปรึกษา";
-            case "student" -> "นิสิต";
-            case "departmentOfficer" -> "เจ้าหน้าที่ภาควิชา";
-            case "facultyOfficer" -> "เจ้าหน้าที่คณะ";
-            default -> user.getRole();
-        });
+        roleLabel.setText("บทบาท " + ThaiStringConverter.getThaiUserRoleString(user));
 
         if (user instanceof Admin) {
             facultyLabel.setVisible(false);
@@ -73,16 +70,31 @@ public class UserPersonalInformationManagementPageController {
 
     @FXML
     public void onChangeProfilePictureButton() {
-        PopupComponent<User> requestActionPopup = new PopupComponent<>(Session.getSession().getLoggedInUser() ,"/ku/cs/views/user-change-profile-picture-popup.fxml","user-change-profile-picture-popup",navBarPane.getScene().getWindow());
+        PopupComponent<User> requestActionPopup = null;
+        try {
+            requestActionPopup = new PopupComponent<>(Session.getSession().getLoggedInUser(), "/ku/cs/views/user-change-profile-picture-popup.fxml", navBarPane.getScene().getWindow());
+        } catch (IOException e) {
+            AlertService.showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(1);
+        }
         requestActionPopup.show();
-        requestActionPopup.onEvent((eventName, eventData) -> {
-            ProfilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
-            Session.getSession().setNavbar(navBarPane);
+
+        requestActionPopup.addEventListener("success", eventData -> {
+            ProfilePictureController profilePictureController = new ProfilePictureController();
+            profilePictureController.setImageToCircle(profilePictureCircle, user.getProfilePictureFileName());
+            Session.getSession().setNavbarByUserRole(anchorPane);
         });
     }
 
+    @FXML
     public void onChangePasswordButton() {
-        PopupComponent<User> requestActionPopup = new PopupComponent<>(Session.getSession().getLoggedInUser(),"/ku/cs/views/user-change-password-popup.fxml","user-change-password-popup",navBarPane.getScene().getWindow());
+        PopupComponent<User> requestActionPopup = null;
+        try {
+            requestActionPopup = new PopupComponent<>(Session.getSession().getLoggedInUser(), "/ku/cs/views/user-change-password-popup.fxml", navBarPane.getScene().getWindow());
+        } catch (IOException e) {
+            AlertService.showError("ไฟล์โปรแกรมไม่สมบูรณ์ กรุณาตรวจสอบไฟล์โปรแกรม");
+            System.exit(1);
+        }
         requestActionPopup.show();
     }
 }
