@@ -168,10 +168,9 @@
 ## วิธีการติดตั้งและรันโปรแกรม
 ### ดาวน์โหลดโปรแกรม
 #### Jar file for Windows
->ดาวน์โหลด <b>FormXpress-windows.zip</b> จาก [Release](<link>) หรือ [Click](<link>)
+>ดาวน์โหลด <b>FormXpress-windows.zip</b> จาก [Release](https://github.com/CS211-671/cs211-project-get-grade-a/releases/tag/4.0.0) หรือ [Click](https://github.com/CS211-671/cs211-project-get-grade-a/releases/download/4.0.0/FormXpress-windows.zip)
 #### Jar file for macOS M1
->ดาวน์โหลด <b>FormXpress-mac-m1-m2.zip</b> จาก [Release](<link>) หรือ [Click](<link>)
-
+>ดาวน์โหลด <b>FormXpress-mac-m1-m2.zip</b> จาก [Release](https://github.com/CS211-671/cs211-project-get-grade-a/releases/tag/4.0.0) หรือ [Click](https://github.com/CS211-671/cs211-project-get-grade-a/releases/download/4.0.0/FormXpress-mac-m1-m2.zip)
 -----------
 ### การติดตั้งโปรแกรม
 ### การติดตั้งโปรแกรมสำหรับ Windows
