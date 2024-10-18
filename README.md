@@ -170,16 +170,16 @@
 #### Jar file for MacOs M1
 >Download <b>FormXpress-for-Windows.zip</b> from [Release](<link>) or [Click](<link>)
 
-## Installation[![](https://raw.githubusercontent.com/aregtech/areg-sdk/master/docs/img/pin.svg)](#introduction)
-### Windows Installation
-#### 1. Extract Zip File
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+## Installation
+### การติดตั้งโปรแกรมสำหรับ Windows
+#### 1. แตกไฟล์ FormXpress.zip
+<img width="300" alt="install1" src="https://github.com/user-attachments/assets/0407cc77-2de0-48b4-85bd-daa4a2169450">
 
-#### 2. Select <Name> Folder
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+#### 2. เข้าไปที่ FormXpress Folder
+<img width="300" alt="install1" src="https://github.com/user-attachments/assets/8949677e-a894-4548-bf23-5b3f71d1e734">
 
-#### 3. Double Click <Name>.jar
-<img width="300" alt="install1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2UOW09a8y-Ue_FtTFn01C4U4-dZmIax-P_g&s">
+#### 3. กดเลือก FormXpress.jar
+<img width="300" alt="install1" src="https://github.com/user-attachments/assets/c0b3a0f2-d088-4786-b6cb-9711e2509149">
 
 
 
