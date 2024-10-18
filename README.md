@@ -176,24 +176,24 @@
 ### การติดตั้งโปรแกรม
 ### การติดตั้งโปรแกรมสำหรับ Windows
 #### 1. แตกไฟล์ FormXpress.zip
-<img width="300" alt="install1" src="https://github.com/user-attachments/assets/0407cc77-2de0-48b4-85bd-daa4a2169450">
+<img width="300" alt="window-install1" src="https://github.com/user-attachments/assets/5a8e2b0a-2d63-429b-8cbd-85bf278daba6">
 
 #### 2. เข้าไปที่ FormXpress Folder
-<img width="300" alt="install1" src="https://github.com/user-attachments/assets/8949677e-a894-4548-bf23-5b3f71d1e734">
+<img width="300" alt="window-install2" src="https://github.com/user-attachments/assets/8ae469e1-27b7-44db-ae10-3bdbf1a8a34c">
 
 #### 3. กดเลือก FormXpress.jar
-<img width="300" alt="install1" src="https://github.com/user-attachments/assets/c0b3a0f2-d088-4786-b6cb-9711e2509149">
+<img width="300" alt="window-install3" src="https://github.com/user-attachments/assets/d75a3671-7c33-4392-887b-0b532a27dbc0">
 
 ### การติดตั้งโปรแกรมสำหรับ macOS
 
 #### 1. แตกไฟล์ FormXpress-mac-m1-m2.zip
-<img width="763" alt="image" src="https://github.com/user-attachments/assets/b84e3dcf-ef8b-4cb0-8dee-17c28cbc7acb">
+<img width="763" alt="mac-install1" src="https://github.com/user-attachments/assets/b84e3dcf-ef8b-4cb0-8dee-17c28cbc7acb">
 
 #### 2. เข้าไปที่ FormXpress-mac-m1-m2 Folder
-<img width="762" alt="image" src="https://github.com/user-attachments/assets/c3638487-8808-447d-9ff0-480e02f0d47b">
+<img width="762" alt="mac-install2" src="https://github.com/user-attachments/assets/c3638487-8808-447d-9ff0-480e02f0d47b">
 
 #### 3. กดเลือก FormXpress-mac-m1-m2.jar
-<img width="764" alt="image" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
+<img width="764" alt="mac-install3" src="https://github.com/user-attachments/assets/997f63e3-b2a8-4a17-81da-db4290378ec1">
 
 ### หรือรันผ่านคำสั่ง
 ```bash
